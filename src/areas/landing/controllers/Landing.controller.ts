@@ -16,10 +16,7 @@ class LandingController implements IController {
   }
 
   private showLandingPage = (_: express.Request, res: express.Response) => {
-    const viewsPath = path.join(__dirname, '..', 'views');  
-    console.log(viewsPath);
-    res.app.set('views', viewsPath);  
-    res.render("index");  
+    res.render("index");
   };
 }
 
