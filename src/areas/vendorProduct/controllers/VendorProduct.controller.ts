@@ -15,9 +15,6 @@ class vendorProductController implements IController {
   }
 
   private vendorAddProduct = (_: express.Request, res: express.Response) => {
-    const viewsPath = path.join(__dirname, "..", "views");
-    res.app.set("views", viewsPath);
-    res.app.use("/styles", express.static(path.join(__dirname, "..", "styles")));
     res.render("addProduct");
   };
 }
