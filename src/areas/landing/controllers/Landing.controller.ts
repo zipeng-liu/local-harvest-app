@@ -16,7 +16,7 @@ class LandingController implements IController {
   }
 
   private showLandingPage = (_: express.Request, res: express.Response) => {
-    res.render("index");  
+    res.render("index");
   };
 }
 
