@@ -13,15 +13,15 @@ class vendorProductController implements IController {
 
   private initializeRoutes() {
     this.router.get(`${this.path}/addItem`, this.vendorAddProduct);
-    this.router.get(`${this.path}/success`, this.showSuccessPage)
+    this.router.get(`${this.path}/inventory`, this.showInventoryPage)
   }
 
   private vendorAddProduct = (_: express.Request, res: express.Response) => {
     res.render("addProduct");
   };
 
-  private showSuccessPage = (_: express.Request, res: express.Response) => {
-    res.render("success")
+  private showInventoryPage = (_: express.Request, res: express.Response) => {
+    res.render("inventory")
   }
 }
 
