@@ -7,15 +7,15 @@ import path from "node:path";
 
 class App {
   private _app: express.Application;
-  private readonly _port: number = Number(process.env.PORT) || 3000;
+  private readonly _port: number = Number(process.env.PORT) || 8000;
 
   constructor(controllers: Controller[]) {
     dotenv.config();
 
     //this.initializeLiveReloadServer();
     this._app = express();
-    this._app.set('view engine', 'ejs');
-    this._app.set('views', path.join(__dirname, 'views'));
+    this._app.set("view engine", "ejs");
+    this._app.set("views", path.join(__dirname, "views"));
     //this.initializeMiddlewares();
     this.initializeControllers(controllers);
     //this.initializeErrorHandling();
@@ -36,7 +36,6 @@ class App {
   //   this._app.use(errorMiddleware);
   // }
 
-  
   private initializeControllers(controllers: Controller[]) {
     controllers.forEach((controller) => {
       this._app.use("/", controller.router);

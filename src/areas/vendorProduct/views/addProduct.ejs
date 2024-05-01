@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link href="../styles/styleguide.css" rel="stylesheet" />
+    <link href="../styles/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="vendor-item">
+      <div class="div">
+        <div class="text-wrapper">Add a Product</div>
+        <img class="back-button" src="/image/backButton.png" />
+        <form
+          action="/submit-product"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="primary-image-2">
+            <div class="group-2">
+              <img class="img" src="/image/uploadImg.png" />
+            </div>
+            <div class="text-wrapper-2">Primary Image</div>
+            <p class="text-wrapper-3">The first image a user will see</p>
+          </div>
+          <div class="primary-image">
+            <div class="group">
+              <img class="icons-file-upload" src="/image/uploadImg.png" />
+            </div>
+            <div class="icons-file-upload-wrapper">
+              <img class="icons-file-upload" src="/image/uploadImg.png" />
+            </div>
+            <div class="img-wrapper">
+              <img class="icons-file-upload" src="/image/uploadImg.png" />
+            </div>
+            <div class="text-wrapper-2">Secondary Image</div>
+            <div class="text-wrapper-3">Additional images if needed</div>
+          </div>
+          <div class="short-text-field">
+            <div class="label">Product name</div>
+            <input
+              type="text"
+              class="text-field"
+              placeholder="Enter product name"
+            />
+          </div>
+          <div class="short-text-field-2">
+            <div class="label">Price</div>
+            <input type="text" class="text-field" placeholder="Enter price" />
+          </div>
+          <div class="short-text-field-3">
+            <div class="label">Quantity per</div>
+            <input
+              type="number"
+              class="text-field"
+              placeholder="Enter quantity per unit"
+            />
+          </div>
+          <div class="short-text-field-4">
+            <div class="label">ID</div>
+            <input type="text" class="text-field" placeholder="Product ID" />
+          </div>
+          <div class="short-text-field-5">
+            <div class="label">Total Inventory count</div>
+            <input
+              type="number"
+              class="text-field"
+              placeholder="Enter total inventory count"
+            />
+          </div>
+          <button type="submit" class="large-button submit-order">
+            Add Product
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
