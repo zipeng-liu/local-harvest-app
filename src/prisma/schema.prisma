@@ -13,7 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 // Define the models based on the ER diagram
 model Customer {
   customerId Int     @id @default(autoincrement())
