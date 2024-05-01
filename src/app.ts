@@ -32,6 +32,7 @@ class App {
           fs.existsSync(viewsPath) && fs.statSync(viewsPath).isDirectory()
       );
 
+    console.log(viewPaths)
     this._app.set("views", viewPaths);
   }
 
