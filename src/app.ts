@@ -37,6 +37,7 @@ class App {
       }
     });
 
+    console.log(viewPaths)
     this._app.set("views", viewPaths);
   }
 
