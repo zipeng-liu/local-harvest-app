@@ -1,5 +1,4 @@
 import express from "express";
-//import { forwardAuthenticated } from "../../../middleware/authentication.middleware";
 import IController from "../../../interfaces/controller.interface";
 import path from "path";
 
@@ -21,10 +20,7 @@ class vendorProductController implements IController {
   }
 
   private initializeRoutes() {
-    this.router.get(`${this.path}/addItem`, this.vendorAddProduct);
-    // Just temporally do GET method for everyone see how it looks
-    // it should be redirected after completing addProduct
-    // this.router.get(`${this.path}/success`, this.getSuccessPage) 
+    this.router.get(`${this.path}/`, this.vendorAddProduct);
   }
 
   private vendorAddProduct = (_: express.Request, res: express.Response) => {
