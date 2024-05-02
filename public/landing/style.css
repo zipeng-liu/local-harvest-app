@@ -200,7 +200,7 @@ body {
   .landing-page .header-group {
     position: absolute;
     top: 120px;
-    left: 90px; 
+    left: 70px;
     display: flex;
     align-items: center;
   }
@@ -213,9 +213,9 @@ body {
   }
   
   .landing-page .orang {
-    width: 35px;
-    height: 67px;
-    margin-right: 20px; 
+    width: 360px;
+    height: auto;
+    /* margin-right: 10px;  */
   }
   
   .landing-page .overlay-button {
