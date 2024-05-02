@@ -3,6 +3,9 @@ import IController from "../../../interfaces/controller.interface";
 import IVendorProductService from "../services/IVendorProduct.service";
 import path from "path";
 import { VendorProductService } from "../services/VendorProduct.service";
+import { randomUUID } from "crypto";
+import { Product } from "@prisma/client";
+
 
 class VendorProductController implements IController {
   public path = "/vendor";
@@ -15,32 +18,30 @@ class VendorProductController implements IController {
   }
 
   private initializeRoutes() {
-    this.router.get(`${this.path}/addItem`, this.showAddProduct);
-    this.router.post(`${this.path}/addItem`, this.addProduct);
+    this.router.get(`${this.path}/addItem`, this.vendorAddProduct);
     this.router.get(`${this.path}/inventory`, this.showInventoryPage);
+    this.router.post(`${this.path}/addItem`, this.addProduct)
   }
 
   private showAddProduct = (_: express.Request, res: express.Response) => {
     res.render("addProduct");
   };
 
-  private addProduct = async (
-    _: express.Request,
-    req: express.Request,
-    res: express.Response
-  ) => {
+  private addProduct = async (req: express.Request, res: express.Response) => {
+    // check if(vendor) here
     try {
-      const { productName, price, quantity, description } = req.body;
-      const vendorId = req.session.userId;
+      const vendorId = 1;
 
-      const product = await this._service.addProduct(
-        productName,
-        price,
-        quantity,
-        description,
-        vendorId
-      );
-
+      const product = {
+        name: req.body.name,
+        price: parseFloat(req.body.price),
+        quantity: parseInt(req.body.inventory),
+        vendorId: vendorId
+      } 
+      console.log("controller", product)
+      //@ts-ignore
+      const addProduct = await this._service.addProductToVendor(vendorId, product);
+      console.log("addProduct", addProduct);
       res.redirect(`${this.path}/inventory`);
     } catch (error) {
       console.error("Failed to add product", error);
@@ -48,10 +49,7 @@ class VendorProductController implements IController {
     }
   };
 
-  private showInventoryPage = async (
-    _: express.Request,
-    res: express.Response
-  ) => {
+  private showInventoryPage = async (_: express.Request, res: express.Response) => {
     try {
       let vendorId = 1;
       const inventoryList = await this._service.findAllProductsByVendor(
