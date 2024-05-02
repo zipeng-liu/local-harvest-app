@@ -16,7 +16,9 @@ class LandingController implements IController {
   }
 
   private showLandingPage = (_: express.Request, res: express.Response) => {
-    res.render("index");
+    let now = new Date();
+        let currentTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    res.render("index2", { currentTime: currentTime});
   };
 }
 
