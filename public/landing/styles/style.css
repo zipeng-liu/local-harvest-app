@@ -91,6 +91,7 @@
 }
 
 .market-info-page .rectangle {
+  object-fit: cover;
   position: absolute;
   width: 199px;
   height: 178px;
@@ -107,6 +108,7 @@
 }
 
 .market-info-page .placeholder {
+  object-fit: cover;
   position: absolute;
   width: 399px;
   height: 200px;
@@ -149,6 +151,7 @@
 }
 
 .market-info-page .rectangle-3 {
+  object-fit: cover;
   position: absolute;
   width: 191px;
   height: 120px;
