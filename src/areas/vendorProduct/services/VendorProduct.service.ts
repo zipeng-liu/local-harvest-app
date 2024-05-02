@@ -28,8 +28,15 @@ export class VendorProductService implements IVendorProductService {
   }
 
   async findAllProductsByVendor(vendorId: number): Promise<Product[]> {
-    return await this._db.prisma.product.findMany({
-      where: { vendorId },
+    const vendorWithProducts = await this._db.prisma.vendor.findUnique({
+      where: { 
+        vendorId: vendorId 
+      },
+      include: {
+        products: true
+      }
     });
-  }
+    return vendorWithProducts ? vendorWithProducts.products : [];
+}
+
 }
