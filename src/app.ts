@@ -22,6 +22,7 @@ class App {
     this.setViewsFromAreas();
     this.initializeStaticFiles();
     this.initializeSession();
+    this.initializeUrlendcoded();
   }
 
   private setViewsFromAreas() {
@@ -39,6 +40,10 @@ class App {
 
   private initializeStaticFiles() {
     this._app.use(express.static(this._staticPath));
+  }
+
+  private initializeUrlendcoded() {
+    this._app.use(express.urlencoded({ extended: true }))
   }
 
   private initializeSession() {

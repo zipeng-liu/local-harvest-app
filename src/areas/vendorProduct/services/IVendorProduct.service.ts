@@ -6,7 +6,8 @@ import type { Vendor, Market, Product } from "@prisma/client";
 export default interface IVendorProductService {
   findVendorById(vendorId: number): Promise<Vendor | null> 
 
-  addProductToVendor(vendorId: number, productData: Omit<Product, 'productId'>): Promise<Product> 
+  // addProductToVendor(vendorId: number, product: Omit<Product, 'productId'>): Promise<Product> 
+  addProductToVendor(vendorId: number, product: Product): void 
 
   findAllProductsByVendor(vendorId: number): Promise<Product[]> 
 

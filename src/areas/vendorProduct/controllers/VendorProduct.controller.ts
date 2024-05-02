@@ -3,6 +3,9 @@ import IController from "../../../interfaces/controller.interface";
 import IVendorProductService from "../services/IVendorProduct.service";
 import path from "path";
 import { VendorProductService } from "../services/VendorProduct.service";
+import { randomUUID } from "crypto";
+import { Product } from "@prisma/client";
+
 
 class vendorProductController implements IController {
   public path = "/vendor";
@@ -16,11 +19,34 @@ class vendorProductController implements IController {
 
   private initializeRoutes() {
     this.router.get(`${this.path}/addItem`, this.vendorAddProduct);
-    this.router.get(`${this.path}/inventory`, this.showInventoryPage)
+    this.router.get(`${this.path}/inventory`, this.showInventoryPage);
+    this.router.post(`${this.path}/addItem`, this.addProduct)
   }
 
   private vendorAddProduct = (_: express.Request, res: express.Response) => {
     res.render("addProduct");
+  };
+
+  private addProduct = async (req: express.Request, res: express.Response) => {
+    // check if(vendor) here
+    try {
+      const vendorId = 1;
+
+      const product = {
+        name: req.body.name,
+        price: parseFloat(req.body.price),
+        quantity: parseInt(req.body.inventory),
+        vendorId: vendorId
+      } 
+      console.log("controller", product)
+      //@ts-ignore
+      const addProduct = await this._service.addProductToVendor(vendorId, product);
+      console.log("addProduct", addProduct);
+      res.redirect(`${this.path}/inventory`);
+    } catch (error) {
+      console.error("Failed to add product", error);
+      res.status(500).send("Failed to add product");
+    }
   };
 
   private showInventoryPage = async (_: express.Request, res: express.Response) => {
