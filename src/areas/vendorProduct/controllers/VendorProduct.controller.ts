@@ -1,6 +1,6 @@
 import express from "express";
 import IController from "../../../interfaces/controller.interface";
-import IVendorProductService from "../services/IVendorProductService";
+import IVendorProductService from "../services/IVendorProduct.service";
 import path from "path";
 import { VendorProductService } from "../services/VendorProduct.service";
 
