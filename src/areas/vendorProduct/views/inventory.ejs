@@ -15,11 +15,12 @@
         <img class="back-button" src="/image/navigate_before.svg" />
         <div class="product-detailed">
           <div class="group">
-            <div class="cart-product">
-              <div class="frame"><div class="product-name">Avocado</div></div>
+            <% inventoryList.forEach(product => { %>
+              <div class="cart-product">
+              <div class="frame"><div class="product-name"><%= product.name %></div></div>
               <div class="frame-2">
                 <div class="text-wrapper-2">Price</div>
-                <div class="text-wrapper-2">$11.11/lbs</div>
+                <div class="text-wrapper-2">$<%= product.price %>/lbs</div>
               </div>
               <div class="frame-3">
                 <div class="text-wrapper-2">Weight</div>
@@ -27,11 +28,11 @@
               </div>
               <div class="frame-4">
                 <div class="text-wrapper-2">ID</div>
-                <div class="text-wrapper-2">#14926</div>
+                <div class="text-wrapper-2">#<%= product.productId %></div>
               </div>
               <div class="frame-5">
                 <div class="text-wrapper-2">Inv. count</div>
-                <div class="text-wrapper-2">23 pcs</div>
+                <div class="text-wrapper-2"><%= product.quantity %> pcs</div>
               </div>
               <div class="cart-image"></div>
               <div class="overlap-group">
@@ -42,195 +43,8 @@
                 <div class="text-wrapper-3">Edit</div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="group-wrapper">
-          <div class="group">
-            <div class="cart-product">
-              <div class="frame"><div class="product-name">Tomato</div></div>
-              <div class="frame-2">
-                <div class="text-wrapper-2">Price</div>
-                <div class="text-wrapper-2">$11.11/lbs</div>
-              </div>
-              <div class="frame-3">
-                <div class="text-wrapper-2">Weight</div>
-                <div class="text-wrapper-2">5lbs</div>
-              </div>
-              <div class="frame-4">
-                <div class="text-wrapper-2">ID</div>
-                <div class="text-wrapper-2">#14925</div>
-              </div>
-              <div class="frame-5">
-                <div class="text-wrapper-2">Inv. count</div>
-                <div class="text-wrapper-2">23 pcs</div>
-              </div>
-              <div class="cart-image-2"></div>
-              <div class="overlap-group">
-                <img
-                  class="interface-edit-write"
-                  src="/image/interface-edit-write-2--change-document-edit-modify-paper-pencil-write-writing.svg"
-                />
-                <div class="text-wrapper-3">Edit</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="div-wrapper">
-          <div class="group">
-            <div class="cart-product">
-              <div class="frame"><div class="product-name">Creamy Dream Avo...</div></div>
-              <div class="frame-2">
-                <div class="text-wrapper-2">Price</div>
-                <div class="text-wrapper-2">$11.11/lbs</div>
-              </div>
-              <div class="frame-3">
-                <div class="text-wrapper-2">Weight</div>
-                <div class="text-wrapper-2">5lbs</div>
-              </div>
-              <div class="frame-4">
-                <div class="text-wrapper-2">ID</div>
-                <div class="text-wrapper-2">#14925</div>
-              </div>
-              <div class="frame-5">
-                <div class="text-wrapper-2">Inv. count</div>
-                <div class="text-wrapper-2">23 pcs</div>
-              </div>
-              <div class="cart-image-3"></div>
-              <div class="overlap-group">
-                <img
-                  class="interface-edit-write"
-                  src="/image/interface-edit-write-2--change-document-edit-modify-paper-pencil-write-writing.svg"
-                />
-                <div class="text-wrapper-3">Edit</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="product-detailed-2">
-          <div class="group">
-            <div class="cart-product">
-              <div class="frame"><div class="product-name">Creamy Dream Avo...</div></div>
-              <div class="frame-2">
-                <div class="text-wrapper-2">Price</div>
-                <div class="text-wrapper-2">$11.11/lbs</div>
-              </div>
-              <div class="frame-3">
-                <div class="text-wrapper-2">Weight</div>
-                <div class="text-wrapper-2">5lbs</div>
-              </div>
-              <div class="frame-4">
-                <div class="text-wrapper-2">ID</div>
-                <div class="text-wrapper-2">#14925</div>
-              </div>
-              <div class="frame-5">
-                <div class="text-wrapper-2">Inv. count</div>
-                <div class="text-wrapper-2">23 pcs</div>
-              </div>
-              <div class="cart-image-4"></div>
-              <div class="overlap-group">
-                <img
-                  class="interface-edit-write"
-                  src="/image/interface-edit-write-2--change-document-edit-modify-paper-pencil-write-writing.svg"
-                />
-                <div class="text-wrapper-3">Edit</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="product-detailed-3">
-          <div class="group">
-            <div class="cart-product">
-              <div class="frame"><div class="product-name">Creamy Dream Avo...</div></div>
-              <div class="frame-2">
-                <div class="text-wrapper-2">Price</div>
-                <div class="text-wrapper-2">$11.11/lbs</div>
-              </div>
-              <div class="frame-3">
-                <div class="text-wrapper-2">Weight</div>
-                <div class="text-wrapper-2">5lbs</div>
-              </div>
-              <div class="frame-4">
-                <div class="text-wrapper-2">ID</div>
-                <div class="text-wrapper-2">#14925</div>
-              </div>
-              <div class="frame-5">
-                <div class="text-wrapper-2">Inv. count</div>
-                <div class="text-wrapper-2">23 pcs</div>
-              </div>
-              <div class="cart-image-5"></div>
-              <div class="overlap-group">
-                <img
-                  class="interface-edit-write"
-                  src="/image/interface-edit-write-2--change-document-edit-modify-paper-pencil-write-writing.svg"
-                />
-                <div class="text-wrapper-3">Edit</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="product-detailed-4">
-          <div class="group">
-            <div class="cart-product">
-              <div class="frame"><div class="product-name">Creamy Dream Avo...</div></div>
-              <div class="frame-2">
-                <div class="text-wrapper-2">Price</div>
-                <div class="text-wrapper-2">$11.11/lbs</div>
-              </div>
-              <div class="frame-3">
-                <div class="text-wrapper-2">Weight</div>
-                <div class="text-wrapper-2">5lbs</div>
-              </div>
-              <div class="frame-4">
-                <div class="text-wrapper-2">ID</div>
-                <div class="text-wrapper-2">#14925</div>
-              </div>
-              <div class="frame-5">
-                <div class="text-wrapper-2">Inv. count</div>
-                <div class="text-wrapper-2">23 pcs</div>
-              </div>
-              <div class="cart-image-6"></div>
-              <div class="overlap-group">
-                <img
-                  class="interface-edit-write"
-                  src="/image/interface-edit-write-2--change-document-edit-modify-paper-pencil-write-writing.svg"
-                />
-                <div class="text-wrapper-3">Edit</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="product-detailed-5">
-          <div class="group">
-            <div class="cart-product">
-              <div class="frame"><div class="product-name">Creamy Dream Avo...</div></div>
-              <div class="frame-2">
-                <div class="text-wrapper-2">Price</div>
-                <div class="text-wrapper-2">$11.11/lbs</div>
-              </div>
-              <div class="frame-3">
-                <div class="text-wrapper-2">Weight</div>
-                <div class="text-wrapper-2">5lbs</div>
-              </div>
-              <div class="frame-4">
-                <div class="text-wrapper-2">ID</div>
-                <div class="text-wrapper-2">#14925</div>
-              </div>
-              <div class="frame-5">
-                <div class="text-wrapper-2">Inv. count</div>
-                <div class="text-wrapper-2">23 pcs</div>
-              </div>
-              <div class="cart-image-7"></div>
-              <div class="overlap-group">
-                <img
-                  class="interface-edit-write"
-                  src="/image/interface-edit-write-2--change-document-edit-modify-paper-pencil-write-writing.svg"
-                />
-                <div class="text-wrapper-3">Edit</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
+           <%  }) %>
+            
     </div>
     <%- include('../../../components/footer') %>
   </body>
