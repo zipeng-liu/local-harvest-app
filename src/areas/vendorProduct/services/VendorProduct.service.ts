@@ -1,7 +1,7 @@
 import IVendor from "../../../interfaces/vendor.interface";
 import IProduct from "../../../interfaces/product.interface";
 import IMarket from "../../../interfaces/market.interface";
-import IVendorProductService from "./IVendorProductService";
+import IVendorProductService from "./IVendorProduct.service";
 import type { Vendor, Market, Product } from "@prisma/client";
 import DBClient from "../../../PrismaClient";
 
