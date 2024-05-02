@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import IController from "../../../interfaces/controller.interface";
 import IVendorProductService from "../services/IVendorProduct.service";
 import path from "path";
@@ -7,7 +7,7 @@ import { randomUUID } from "crypto";
 import { Product } from "@prisma/client";
 
 
-class vendorProductController implements IController {
+class VendorProductController implements IController {
   public path = "/vendor";
   public router = express.Router();
   private _service: IVendorProductService;
@@ -23,7 +23,7 @@ class vendorProductController implements IController {
     this.router.post(`${this.path}/addItem`, this.addProduct)
   }
 
-  private vendorAddProduct = (_: express.Request, res: express.Response) => {
+  private showAddProduct = (_: express.Request, res: express.Response) => {
     res.render("addProduct");
   };
 
@@ -52,13 +52,15 @@ class vendorProductController implements IController {
   private showInventoryPage = async (_: express.Request, res: express.Response) => {
     try {
       let vendorId = 1;
-      const inventoryList = await this._service.findAllProductsByVendor(vendorId);
-      res.render("inventory", { inventoryList: inventoryList })
-    } catch(error) {
-      console.error ("Failed to get inventory", error)
-      res.status(500).send("Failed to get inventory")
+      const inventoryList = await this._service.findAllProductsByVendor(
+        vendorId
+      );
+      res.render("inventory", { inventoryList: inventoryList });
+    } catch (error) {
+      console.error("Failed to get inventory", error);
+      res.status(500).send("Failed to get inventory");
     }
-  }
+  };
 }
 
-export default vendorProductController;
+export default VendorProductController;

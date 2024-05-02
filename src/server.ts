@@ -14,7 +14,6 @@ const server = new App([
   new VendorProductController(new VendorProductService()),
   new HomeController(),
   new VendorProfileController(),
-  
 ]);
 
 server.start();
