@@ -1,7 +1,7 @@
 import IVendor from "../../../interfaces/vendor.interface";
 import IProduct from "../../../interfaces/product.interface";
 import IMarket from "../../../interfaces/market.interface";
-import IVendorProductService from "./IVendorProductService";
+import IVendorProductService from "./IVendorProduct.service";
 import type { Vendor, Market, Product } from "@prisma/client";
 import DBClient from "../../../PrismaClient";
 
@@ -28,8 +28,15 @@ export class VendorProductService implements IVendorProductService {
   }
 
   async findAllProductsByVendor(vendorId: number): Promise<Product[]> {
-    return await this._db.prisma.product.findMany({
-      where: { vendorId },
+    const vendorWithProducts = await this._db.prisma.vendor.findUnique({
+      where: { 
+        vendorId: vendorId 
+      },
+      include: {
+        products: true
+      }
     });
-  }
+    return vendorWithProducts ? vendorWithProducts.products : [];
+}
+
 }
