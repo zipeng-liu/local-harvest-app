@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import session, { MemoryStore } from "express-session";
+import session from "express-session";
 import path from "node:path";
 import fs from "fs";
 import Controller from "./interfaces/controller.interface";
@@ -21,6 +21,7 @@ class App {
     this._app.set("view engine", "ejs");
     this.setViewsFromAreas();
     this.initializeStaticFiles();
+    this.initializeSession();
   }
 
   private setViewsFromAreas() {
@@ -33,12 +34,23 @@ class App {
           fs.existsSync(viewsPath) && fs.statSync(viewsPath).isDirectory()
       );
 
-    console.log(viewPaths)
     this._app.set("views", viewPaths);
   }
 
   private initializeStaticFiles() {
     this._app.use(express.static(this._staticPath));
+  }
+
+  private initializeSession() {
+    this._app.use(session({
+      secret: process.env.SESSION_SECRET || 'default_secret',
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        secure: process.env.NODE_ENV === 'production', 
+        maxAge: 1000 * 60 * 60 * 24 
+      }
+    }));
   }
 
   private initializeControllers(controllers: Controller[]) {
