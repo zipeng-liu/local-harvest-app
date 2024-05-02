@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import session, { MemoryStore } from "express-session";
 import path from "node:path";
 import fs from "fs";
 import Controller from "./interfaces/controller.interface";
