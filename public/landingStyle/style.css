@@ -16,7 +16,6 @@ body {
     }
   }
   
-  
   .landing-page .status-bar-iphone {
     display: flex;
     justify-content: space-between;
@@ -68,17 +67,13 @@ body {
     height: 100%;
   }
   
-  .landing-page .cap, .wifi, .cellular-connection {
-    margin-left: 5px; 
-  }
-  
-  .landing-page {
+  /* .landing-page {
     position: relative;
     width: 100%;
     height: auto; /* Height automatically adjusts based on content */
-    background-color: transparent;
+    /* background-color: transparent;
     overflow: hidden; /* Ensures no spill over */
-  }
+  
   
   /* Adjustments to internal elements */
   .landing-page .square-rectangle, .landing-page .group {

@@ -32,7 +32,9 @@ class VendorAuthenticationController implements IController {
   private showVendorLoginPage = (req: express.Request, res: express.Response) => {
     const errorMessage = req.session.messages || null;
     req.session.messages = null;
-    res.render("login", { errorMessage });
+    let now = new Date();
+    let currentTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    res.render("login", { errorMessage, currentTime: currentTime });
   };
 
   private vendorLogin = async (req: express.Request, res: express.Response) => {
