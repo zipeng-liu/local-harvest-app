@@ -11,7 +11,6 @@ const server = new App([
   new VendorAuthenticationController(new VendorAuthenticationService()),
   new VendorProductController(new VendorProductService()),
   new HomeController(),
-  
 ]);
 
 server.start();

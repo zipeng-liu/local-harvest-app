@@ -3,11 +3,23 @@ import IProduct from "../../../interfaces/product.interface";
 import IMarket from "../../../interfaces/market.interface";
 import type { Vendor, Market, Product } from "@prisma/client";
 
-export default interface IVendorProductService {
-  findVendorById(vendorId: number): Promise<Vendor | null> 
+interface IVendorProductService {
+  findVendorById(vendorId: number): Promise<Vendor | null>;
 
-  addProductToVendor(vendorId: number, productData: Omit<Product, 'productId'>): Promise<Product> 
+  addProductToVendor(
+    vendorId: number,
+    productData: Omit<Product, "productId">
+  ): Promise<Product>;
 
-  findAllProductsByVendor(vendorId: number): Promise<Product[]> 
+  findAllProductsByVendor(vendorId: number): Promise<Product[]>;
 
+  addProduct(
+    productName: string,
+    price: number,
+    quantity: number,
+    description: string,
+    vendorId: number
+  ): Promise<Product>;
 }
+
+export default IVendorProductService;
