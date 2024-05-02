@@ -13,7 +13,7 @@ export class VendorProductService implements IVendorProductService {
     return await this._db.prisma.vendor.findUnique({
       where: { vendorId },
       include: {
-        products: true,
+        products: true, 
       }
     });
   }
@@ -24,6 +24,12 @@ export class VendorProductService implements IVendorProductService {
         ...productData,
         vendorId: vendorId,
       }
+    });
+  }
+
+  async findAllProductsByVendor(vendorId: number): Promise<Product[]> {
+    return await this._db.prisma.product.findMany({
+      where: { vendorId },
     });
   }
 }
