@@ -2,49 +2,55 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="/vendorStyle/style.css" />
     <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/vendorStyle/style.css" />
     <link rel="stylesheet" href="/sharedStyle/style.css" />
   </head>
   <body>
     <%- include('../../../components/header') %>
-
     <div class="vendor-inventory">
       <div class="div">
         <div class="text-wrapper">Vendor Product List</div>
-        <img class="back-button" src="/image/navigate_before.svg" />
+        <a href="/vendor/profile"><img class="back-button" src="/image/navigate_before.svg" /></a>
         <div class="product-detailed">
           <div class="group">
-            <% inventoryList.forEach(product => { %>
+            <% inventoryList.forEach(product=> { %>
               <div class="cart-product">
-              <div class="frame"><div class="product-name"><%= product.name %></div></div>
-              <div class="frame-2">
-                <div class="text-wrapper-2">Price</div>
-                <div class="text-wrapper-2">$<%= product.price %>/lbs</div>
+                <div class="frame">
+                  <div class="product-name">
+                    <%= product.name %>
+                  </div>
+                </div>
+                <div class="frame-2">
+                  <div class="text-wrapper-2">Price</div>
+                  <div class="text-wrapper-2">$<%= product.price %>/lbs</div>
+                </div>
+                <div class="frame-3">
+                  <div class="text-wrapper-2">Weight</div>
+                  <div class="text-wrapper-2">5lbs</div>
+                </div>
+                <div class="frame-4">
+                  <div class="text-wrapper-2">ID</div>
+                  <div class="text-wrapper-2">#<%= product.productId %>
+                  </div>
+                </div>
+                <div class="frame-5">
+                  <div class="text-wrapper-2">Inv. count</div>
+                  <div class="text-wrapper-2">
+                    <%= product.quantity %> pcs
+                  </div>
+                </div>
+                <div class="cart-image"></div>
+                <div class="overlap-group">
+                  <img class="interface-edit-write"
+                    src="/image/interface-edit-write-2--change-document-edit-modify-paper-pencil-write-writing.svg" />
+                  <div class="text-wrapper-3">Edit</div>
+                </div>
               </div>
-              <div class="frame-3">
-                <div class="text-wrapper-2">Weight</div>
-                <div class="text-wrapper-2">5lbs</div>
-              </div>
-              <div class="frame-4">
-                <div class="text-wrapper-2">ID</div>
-                <div class="text-wrapper-2">#<%= product.productId %></div>
-              </div>
-              <div class="frame-5">
-                <div class="text-wrapper-2">Inv. count</div>
-                <div class="text-wrapper-2"><%= product.quantity %> pcs</div>
-              </div>
-              <div class="cart-image"></div>
-              <div class="overlap-group">
-                <img
-                  class="interface-edit-write"
-                  src="/image/interface-edit-write-2--change-document-edit-modify-paper-pencil-write-writing.svg"
-                />
-                <div class="text-wrapper-3">Edit</div>
-              </div>
-            </div>
-           <%  }) %>
-            
+            <% }) %>
+          </div>
+        </div>
+      </div>
     </div>
     <%- include('../../../components/footer') %>
   </body>

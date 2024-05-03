@@ -58,15 +58,17 @@
   font-family: Helvetica, sans-serif;
 }
 
-nav-item .button-link {
+.nav-item .button-link {
   display: inline-flex;
+  flex-direction: column;  
   align-items: center;
   padding: 5px 10px;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
   border: none;
   color: inherit;
   text-decoration: none;
   border-radius: 5px;
+  gap: 3px;
 }
 
 .nav-item .button-link:hover {
