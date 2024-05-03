@@ -6,10 +6,14 @@ import type { Customer, Vendor } from "@prisma/client";
 
 declare module "express-session" {
   interface SessionData {
-    userId: number;
-    messages: string[] | null;
+    userId: {
+      vendorId: number | null;
+      customerId: number | null;
+    };
+    messages: string | null;
   }
 }
+
 
 class VendorAuthenticationController implements IController {
   public path = "/auth/vendor";
@@ -30,25 +34,23 @@ class VendorAuthenticationController implements IController {
   }
 
   private showVendorLoginPage = (req: express.Request, res: express.Response) => {
-    const errorMessage = req.session.messages || null;
-    req.session.messages = null;
-    let now = new Date();
-    let currentTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-    res.render("login", { errorMessage, currentTime: currentTime });
+    const errorMessage = req.session?.messages || null;
+    req.session.messages = null;  
+    const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    res.render("login", { errorMessage, currentTime });
   };
 
   private vendorLogin = async (req: express.Request, res: express.Response) => {
     const { email, password } = req.body;
     const vendor = await this._service.findUserByEmail(email);
-    if (vendor) {
-      const passwordMatch = await bcrypt.compare(password, vendor.password);
-      if (passwordMatch) {
-        req.session.userId = vendor.vendorId;
-        return res.redirect('/home');
-      }
+    if (vendor && password === vendor.password) {
+      req.session.userId = { vendorId: vendor.vendorId, customerId: null };
+      console.log(req.session);  // Logging the session for debugging
+      return res.redirect('/home');
+    } else {
+      req.session.messages = 'Invalid credentials';
+      res.redirect('/auth/vendor/login');
     }
-    req.session.messages = ['Invalid credentials'];
-    res.redirect('/auth/login');
   };
 }
 
