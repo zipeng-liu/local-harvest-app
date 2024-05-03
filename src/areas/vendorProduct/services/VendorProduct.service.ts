@@ -25,7 +25,8 @@ export class VendorProductService implements IVendorProductService {
         }
       })
       if(!vendor) {
-        console.log("Vendor is not valid")
+        console.log("Vendor is not found")
+        throw new Error("Vendor is not found")
       }
       const newProduct = await this._db.prisma.product.create({ data: product })
       console.log("added Product", newProduct)
@@ -45,24 +46,5 @@ export class VendorProductService implements IVendorProductService {
       },
     });
     return vendorWithProducts ? vendorWithProducts.products : [];
-  }
-
-  async addProduct(
-    productName: string,
-    price: number,
-    quantity: number,
-    description: string,
-    vendorId: number
-  ): Promise<Product> {
-    return await this._db.prisma.product.create({
-      data: {
-        name: productName,
-        price: price,
-        quantity: quantity,
-        description: description,
-        photo: "",
-        vendorId: vendorId,
-      },
-    });
   }
 }
