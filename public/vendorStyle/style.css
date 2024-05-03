@@ -887,7 +887,7 @@
 }
 
 .vendor-account .profile {
-  position: fixed;
+  position: absolute;
   width: 398px;
   height: 90px;
   top: 111px;
