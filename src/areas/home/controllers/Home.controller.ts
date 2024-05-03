@@ -21,7 +21,6 @@ class HomeController implements IController {
       : req.session?.userId?.customerId
       ? "/customer/profile"
       : undefined;
-
     if (profileLink) {
       res.render("home", { profileLink });
     }

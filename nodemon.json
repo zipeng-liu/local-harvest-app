@@ -1,0 +1,9 @@
+{
+  "watch": ["src"],
+  "ext": "ts,ejs,js",
+  "ignore": ["src/**/*.spec.ts"],
+  "exec": "ts-node src/server.ts",
+  "events": {
+    "restart": "npm run reload-browser"
+  }
+}

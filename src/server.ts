@@ -7,7 +7,6 @@ import { VendorProductService } from "./areas/vendorProduct/services/VendorProdu
 import HomeController from "./areas/home/controllers/Home.controller";
 import VendorProfileController from "./areas/vendorProfile/controllers/VendorProfile.controller";
 
-
 const server = new App([
   new LandingController(),
   new VendorAuthenticationController(new VendorAuthenticationService()),
