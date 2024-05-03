@@ -20,13 +20,15 @@ class HomeController implements IController {
     let profileLink;
 
     if (vendorId) {
-      profileLink = '/vendor/profile';
+      profileLink = "/vendor/profile";
     } else if (customerId) {
-      profileLink = '/customer/profile';
+      profileLink = "/customer/profile";
     } else {
-      res.status(403).send('Access Denied: You must be logged in to view this page.');
+      res
+        .status(403)
+        .send("Access Denied: You must be logged in to view this page.");
     }
-    res.render("home", { profileLink }); 
+    res.render("home", { profileLink });
   };
 }
 

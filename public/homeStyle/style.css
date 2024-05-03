@@ -91,6 +91,7 @@
 }
 
 .market-info-page .rectangle {
+  border-radius: 30px;
   object-fit: cover;
   position: absolute;
   width: 199px;
@@ -108,6 +109,7 @@
 }
 
 .market-info-page .placeholder {
+  border-radius: 30px;
   object-fit: cover;
   position: absolute;
   width: 399px;
