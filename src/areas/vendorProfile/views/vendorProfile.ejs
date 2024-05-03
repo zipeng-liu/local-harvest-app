@@ -11,8 +11,19 @@
 
     <div class="vendor-account">
       <div class="div">
-        <img class="back-button" src="/image/navigate_before.svg" />
+        <a href="/home"><img class="back-button" src="/image/navigate_before.svg" /></a>
         <div class="text-wrapper">Your Account</div>
+        <div class="profile">
+          <div class="overlap-group">
+            <!-- <img
+              class="interface-edit-write"
+              src="/image/interface-edit-write-2-change-document-edit-modify-paper-pencil-4.svg"
+            /> -->
+          </div>
+          <div class="text-wrapper-2"><%= vendorName %></div>
+          <div class="text-wrapper-3">Account type</div>
+          <div class="text-wrapper-4">Edit Basic Profile</div>
+        </div>
         <div class="account-nav">
           <div class="frame">
             <img class="img" src="/image/interface-edit-binocular--binocular-binoculars-view-zoom.svg" />
@@ -83,19 +94,8 @@
         <div class="line-wrapper"><img class="line-2" src="/image/line-28-4.svg" /></div>
         <div class="img-wrapper"><img class="line-2" src="/image/line-28-4.svg" /></div>
         <div class="line-3"><img class="line-2" src="/image/line-28-4.svg" /></div>
-        <div class="profile">
-          <div class="overlap-group">
-            <!-- <img
-              class="interface-edit-write"
-              src="/image/interface-edit-write-2-change-document-edit-modify-paper-pencil-4.svg"
-            /> -->
-          </div>
-          <div class="text-wrapper-2">Vendor Name</div>
-          <div class="text-wrapper-3">Account type</div>
-          <div class="text-wrapper-4">Edit Basic Profile</div>
-        </div>
-    
       </div>
     </div>
+    <%- include('../../../components/footer') %>
   </body>
 </html>

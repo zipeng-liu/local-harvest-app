@@ -6,13 +6,14 @@ import VendorProductController from "./areas/vendorProduct/controllers/VendorPro
 import { VendorProductService } from "./areas/vendorProduct/services/VendorProduct.service";
 import HomeController from "./areas/home/controllers/Home.controller";
 import VendorProfileController from "./areas/vendorProfile/controllers/VendorProfile.controller";
+import { VendorProfileService } from "./areas/vendorProfile/services/VendorProfile.service";
 
 const server = new App([
   new LandingController(),
   new VendorAuthenticationController(new VendorAuthenticationService()),
   new VendorProductController(new VendorProductService()),
   new HomeController(),
-  new VendorProfileController(),
+  new VendorProfileController(new VendorProfileService()),
 ]);
 
 server.start();
