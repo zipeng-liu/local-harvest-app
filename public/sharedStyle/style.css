@@ -60,3 +60,20 @@
     font-size: 16px;
     font-family: Helvetica, sans-serif
 }
+
+
+nav-item .button-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #f0f0f0; /* Example background */
+    border: none;
+    color: inherit; /* Inherits text color from parent */
+    text-decoration: none; /* Removes underline */
+    border-radius: 5px; /* Optional rounded corners */
+}
+
+.nav-item .button-link:hover {
+    background-color: #e2e2e2; /* Slightly darker on hover */
+    cursor: pointer;
+}
