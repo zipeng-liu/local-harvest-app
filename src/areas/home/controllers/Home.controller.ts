@@ -16,18 +16,6 @@ class HomeController implements IController {
   }
 
   private showHomepage = (req: express.Request, res: express.Response) => {
-    // const vendorId = req.session?.userId?.vendorId;
-    // const customerId = req.session?.userId?.customerId;
-    // let profileLink;
-
-    // if (vendorId) {
-    //   profileLink = "/vendor/profile";
-    //   res.render("home", { profileLink });
-    // } else if (customerId) {
-    //   profileLink = "/customer/profile";
-    //   res.render("home", { profileLink });
-    // }
-
     const profileLink = req.session?.userId?.vendorId
       ? "/vendor/profile"
       : req.session?.userId?.customerId
