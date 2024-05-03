@@ -15,7 +15,7 @@ class VendorProfileController implements IController {
   }
 
   private showVendorProfile = (req: express.Request, res: express.Response) => {
-    res.render("vendorProfile", { profileLink: '/vendor/profile' }); 
+    res.render("vendorProfile"); 
   }
 }
 
