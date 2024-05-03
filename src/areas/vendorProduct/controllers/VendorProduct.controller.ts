@@ -31,7 +31,7 @@ class VendorProductController implements IController {
   ) => {
     try {
       const { productName, price, quantity, description } = req.body;
-      const vendorId = req.session.userId;
+      const vendorId = 1;
 
       const product = await this._service.addProduct(
         productName,
@@ -41,7 +41,12 @@ class VendorProductController implements IController {
         vendorId
       );
 
-      res.redirect(`${this.path}/inventory`);
+      if (product) {
+        console.log("New Product Added:", product);
+        res.redirect(`${this.path}/inventory/${product.vendorId}`);
+      } else {
+        throw new Error("Product creation failed");
+      }
     } catch (error) {
       console.error("Failed to add product", error);
       res.status(500).send("Failed to add product");
