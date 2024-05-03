@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:server": "nodemon ./dist/server.js",
+    "start:server": "nodemon --watch 'src/**/*.ts' --exec ts-node src/server.ts",
     "build:ts": "tsc",
     "build:assets": "npx cpx2 \"src/**/*.{ejs,css,prisma,sql}\" dist",
     "build": "npm run build:ts && npm run build:assets",
-    "start:watcher": "nodemon --watch 'src/**/*' --exec npm run build"
+    "start:watcher": "browser-sync start --proxy 'localhost:8000' --files 'src/**/*.ejs, src/**/*.css' --port 3000",
+    "reload-browser": "browser-sync reload"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +30,7 @@
     "@types/express": "^4.17.21",
     "@types/multer": "^1.4.11",
     "@types/node": "^20.12.7",
+    "browser-sync": "^3.0.2",
     "cpx2": "^7.0.1",
     "nodemon": "^3.1.0",
     "prisma": "^5.13.0",
