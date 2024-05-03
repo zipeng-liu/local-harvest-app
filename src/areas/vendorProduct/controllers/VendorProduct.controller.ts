@@ -28,39 +28,46 @@ class VendorProductController implements IController {
   };
 
   private addProduct = async (req: express.Request, res: express.Response) => {
-    // check if(vendor) here
-    try {
-      const vendorId = 1;
-
-      const product = {
-        name: req.body.name,
-        price: parseFloat(req.body.price),
-        quantity: parseInt(req.body.quantity),
-        description: req.body.description,
-        vendorId: vendorId
-      } 
-      console.log("controller", product)
-      //@ts-ignore
-      const addProduct = await this._service.addProductToVendor(vendorId, product);
-      res.redirect(`${this.path}/inventory`);
-    } catch (error) {
-      console.error("Failed to add product", error);
-      res.status(500).send("Failed to add product");
+    const vendorId = req.session.userId?.vendorId;
+    console.log(vendorId, "vendorId")
+    if(vendorId) {
+      try {
+        const product = {
+          name: req.body.name,
+          price: parseFloat(req.body.price),
+          quantity: parseInt(req.body.quantity),
+          description: req.body.description,
+          vendorId: vendorId
+        } 
+        console.log("controller", product)
+        //@ts-ignore
+        const addProduct = await this._service.addProductToVendor(vendorId, product);
+        res.redirect(`${this.path}/inventory`);
+      } catch (error) {
+        console.error("Failed to add product", error);
+        res.status(500).send("Failed to add product");
+      }
+    } else {
+      res.status(500).send("VendorId not found")
     }
-  };
+  }
 
-  private showInventoryPage = async (_: express.Request, res: express.Response) => {
-    try {
-      let vendorId = 1;
-      const inventoryList = await this._service.findAllProductsByVendor(
-        vendorId
-      );
-      res.render("inventory", { inventoryList: inventoryList });
-    } catch (error) {
-      console.error("Failed to get inventory", error);
-      res.status(500).send("Failed to get inventory");
+  private showInventoryPage = async (req: express.Request, res: express.Response) => {
+    const vendorId = req.session.userId?.vendorId;
+    if(vendorId) {
+      try {
+        const inventoryList = await this._service.findAllProductsByVendor(
+          vendorId
+        );
+        res.render("inventory", { inventoryList: inventoryList });
+      } catch (error) {
+        console.error("Failed to get inventory", error);
+        res.status(500).send("Failed to get inventory");
+      }
+    } else {
+      res.status(500).send("VendorId not found")
     }
-  };
-}
+  }
+};
 
 export default VendorProductController;
