@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import express from "express";
-import session from 'express-session';
+import session from "express-session";
 import path from "node:path";
 import fs from "fs";
 import Controller from "./interfaces/controller.interface";
@@ -15,6 +15,7 @@ class App {
     this._app = express();
     this.configureApp();
     this.initializeControllers(controllers);
+    this.initializePageNotFound();
   }
 
   private configureApp() {
@@ -43,23 +44,31 @@ class App {
   }
 
   private initializeUrlendcoded() {
-    this._app.use(express.urlencoded({ extended: true }))
+    this._app.use(express.urlencoded({ extended: true }));
   }
 
   private initializeSession() {
-    this._app.use(session({
-      secret: process.env.SESSION_SECRET || 'default_secret_key',
-      resave: false, 
-      saveUninitialized: true,  
-      cookie: {
-        maxAge: 24 * 60 * 60 * 1000,
-        secure: process.env.NODE_ENV === 'production',
-      }
-    }));
+    this._app.use(
+      session({
+        secret: process.env.SESSION_SECRET || "default_secret_key",
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+          maxAge: 24 * 60 * 60 * 1000,
+          secure: process.env.NODE_ENV === "production",
+        },
+      })
+    );
   }
 
   private initializeControllers(controllers: Controller[]) {
     controllers.forEach((controller) => this._app.use(controller.router));
+  }
+
+  private initializePageNotFound() {
+    this._app.use((req, res, next) => {
+      res.status(404).render("404", { url: req.originalUrl });
+    });
   }
 
   public start() {
