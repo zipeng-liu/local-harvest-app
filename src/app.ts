@@ -1,6 +1,6 @@
-import express from "express";
 import dotenv from "dotenv";
-import session from "express-session";
+import express from "express";
+import session from 'express-session';
 import path from "node:path";
 import fs from "fs";
 import Controller from "./interfaces/controller.interface";
@@ -48,12 +48,12 @@ class App {
 
   private initializeSession() {
     this._app.use(session({
-      secret: process.env.SESSION_SECRET || 'default_secret',
-      resave: false,
-      saveUninitialized: false,
+      secret: process.env.SESSION_SECRET || 'default_secret_key',
+      resave: false, 
+      saveUninitialized: true,  
       cookie: {
-        secure: process.env.NODE_ENV === 'production', 
-        maxAge: 1000 * 60 * 60 * 24 
+        maxAge: 24 * 60 * 60 * 1000,
+        secure: process.env.NODE_ENV === 'production',
       }
     }));
   }

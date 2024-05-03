@@ -24,8 +24,8 @@ export class VendorAuthenticationService implements IVendorAuthenticationService
       },
     });
 
-    if (vendor && await bcrypt.compare(password, vendor.password)) {
-      return vendor; 
+    if (vendor && vendor.password === password) {
+      return vendor;
     }
 
     return null; 
