@@ -9,14 +9,6 @@ interface IVendorProductService {
   addProductToVendor(vendorId: number, product: Product): void 
 
   findAllProductsByVendor(vendorId: number): Promise<Product[]>;
-
-  addProduct(
-    productName: string,
-    price: number,
-    quantity: number,
-    description: string,
-    vendorId: number
-  ): Promise<Product>;
 }
 
 export default IVendorProductService;

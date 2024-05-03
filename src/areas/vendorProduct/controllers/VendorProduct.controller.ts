@@ -35,13 +35,13 @@ class VendorProductController implements IController {
       const product = {
         name: req.body.name,
         price: parseFloat(req.body.price),
-        quantity: parseInt(req.body.inventory),
+        quantity: parseInt(req.body.quantity),
+        description: req.body.description,
         vendorId: vendorId
       } 
       console.log("controller", product)
       //@ts-ignore
       const addProduct = await this._service.addProductToVendor(vendorId, product);
-      console.log("addProduct", addProduct);
       res.redirect(`${this.path}/inventory`);
     } catch (error) {
       console.error("Failed to add product", error);
