@@ -18,7 +18,7 @@ class VendorProductController implements IController {
   }
 
   private initializeRoutes() {
-    this.router.get(`${this.path}/addItem`, this.addProduct);
+    this.router.get(`${this.path}/addItem`, this.showAddProduct);
     this.router.get(`${this.path}/inventory`, this.showInventoryPage);
     this.router.post(`${this.path}/addItem`, this.addProduct)
   }
