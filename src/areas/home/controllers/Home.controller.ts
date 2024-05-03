@@ -14,8 +14,19 @@ class HomeController implements IController {
     this.router.get(`${this.path}`, this.showHomepage);
   }
 
-  private showHomepage = (_: express.Request, res: express.Response) => {
-    res.render("home");
+  private showHomepage = (req: express.Request, res: express.Response) => {
+    const vendorId = req.session?.userId?.vendorId;
+    const customerId = req.session?.userId?.customerId;
+    let profileLink;
+
+    if (vendorId) {
+      profileLink = '/vendor/profile';
+    } else if (customerId) {
+      profileLink = '/customer/profile';
+    } else {
+      res.status(403).send('Access Denied: You must be logged in to view this page.');
+    }
+    res.render("home", { profileLink }); 
   };
 }
 

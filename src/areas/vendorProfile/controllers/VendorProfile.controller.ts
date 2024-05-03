@@ -14,10 +14,9 @@ class VendorProfileController implements IController {
     this.router.get(`${this.path}/profile`, this.showVendorProfile);
   }
 
-  private showVendorProfile = (_: express.Request, res: express.Response) => {
-    res.render("vendorProfile");
-  };
-
+  private showVendorProfile = (req: express.Request, res: express.Response) => {
+    res.render("vendorProfile", { profileLink: '/vendor/profile' }); 
+  }
 }
 
 export default VendorProfileController;
