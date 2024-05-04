@@ -1,0 +1,262 @@
+.search {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .search .div {
+    background-color: var(--cloud-white);
+    overflow: hidden;
+    width: 430px;
+    height: 932px;
+    position: relative;
+  }
+
+  .search .results {
+    width: 100%; 
+    padding: 20px; 
+    margin-top: 220px;
+    font-family: var(--body-copy-mobile-font-family);
+    font-size: var(--body-copy-mobile-font-size);
+  }
+
+  .search .results .market-title p,
+  .search .results .vendor-title p,
+  .search .results .product-title p {
+    padding-left: 5px; 
+    font-weight: bold;
+  }
+
+  .search .results .market-title p {
+    color: #8bbd8b
+  }
+
+  .search .results .product-title p {
+    color: #ff7c08
+  }
+
+  .search .results ul {
+    list-style-type: none; 
+    padding: 0;
+    margin: 0;
+  }
+  .search .results .market-title .market-list ul li,
+  .search .results .vendor-title .vendor-list ul li,
+  .search .results .product-title .product-list ul li {
+    padding-left: 5px; 
+  }
+
+  .search .results li {
+    display: flex; 
+    align-items: center; 
+    padding: 10px 0; 
+    /* border-bottom: 1px solid #ccc; */
+  }
+
+  .search .results .product-image, 
+  .search .results .vendor-image, 
+  .search .results .market-image {
+    width: 50px; 
+    height: 50px; 
+    margin-right: 10px; 
+    object-fit: cover; 
+  }
+  
+  .search .searchbar-condensed .search-input {
+    position: absolute;
+    width: 300px;
+    height: 40px;
+    top: 120px;
+    padding: 0px 10px;
+    /* top: 120px; */
+    /* left: 66px; */
+    left: 46px;
+    right: 80px;
+    background-color: var(--cloud-white);
+    border-radius: 22.08px;
+    box-shadow: var(--center-drop-shadow);
+    font-family: var(--body-copy-mobile-font-family);
+    font-size: 14px;
+    color: var(--med-dark-grey);
+  }
+
+  .search .searchbar-condensed .search-button {
+    position: absolute;
+    height: 40px; /* Same height as the input */
+    top: 125px;
+    /* left: 400px; */
+    right: 0px;
+    width: 80px; /* Width of the button */
+    border: none;
+    /* border-radius: 0 22.08px 22.08px 0; */
+    background-color: var(--primary-color); /* Adjust color accordingly */
+    color: black;
+    font-family: var(--body-copy-mobile-font-family);
+    /* font-size: var(--body-copy-mobile-font-size); */
+     font-size: 14px;
+  }
+
+  .search .searchbar-condensed .search-input:focus,
+  .search .searchbar-condensed .search-button:focus {
+  outline: none;
+  }
+  
+  .search .group {
+    position: absolute;
+    width: 21px;
+    height: 22px;
+    top: 9px;
+    left: 14px;
+  }
+  
+  .search .overlap-group {
+    position: relative;
+    width: 24px;
+    height: 22px;
+  }
+  
+  .search .line {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 125px;
+    left: 50px;
+    z-index: 1;
+  }
+  
+  .search .placeholder {
+    position: absolute;
+    height: 18px;
+    top: 10px;
+    left: 56px;
+    font-family: var(--body-copy-mobile-font-family);
+    font-weight: var(--body-copy-mobile-font-weight);
+    color: var(--med-dark-grey);
+    font-size: var(--body-copy-mobile-font-size);
+    letter-spacing: var(--body-copy-mobile-letter-spacing);
+    line-height: var(--body-copy-mobile-line-height);
+    white-space: nowrap;
+    font-style: var(--body-copy-mobile-font-style);
+  }
+  
+  .search .back-button {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 125px;
+    left: 5px;
+  }
+  
+  .search .text-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Farm to Market Bold-Regular", Helvetica;
+    font-weight: 400;
+    color: var(--semi-black);
+    font-size: 30.1px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .search .nav-bar {
+    position: fixed;
+    width: 430px;
+    height: 97px;
+    top: 838px;
+    left: 0;
+    background-color: var(--cloud-white);
+    box-shadow: var(--nav-shadow);
+  }
+  
+  .search .frame {
+    display: inline-flex;
+    align-items: center;
+    gap: 67px;
+    position: absolute;
+    top: 13px;
+    left: 43px;
+  }
+  
+  .search .img {
+    position: relative;
+    width: 32px;
+    height: 38.83px;
+  }
+  
+  .search .group-3 {
+    position: relative;
+    width: 38px;
+    height: 38.83px;
+  }
+  
+  .search .text-wrapper-2 {
+    position: absolute;
+    height: 14px;
+    top: 56px;
+    left: 42px;
+    font-family: var(--nav-text-font-family);
+    font-weight: var(--nav-text-font-weight);
+    color: #000000;
+    font-size: var(--nav-text-font-size);
+    text-align: center;
+    letter-spacing: var(--nav-text-letter-spacing);
+    line-height: var(--nav-text-line-height);
+    white-space: nowrap;
+    font-style: var(--nav-text-font-style);
+  }
+  
+  .search .text-wrapper-3 {
+    position: absolute;
+    height: 14px;
+    top: 56px;
+    left: 143px;
+    font-family: var(--nav-text-font-family);
+    font-weight: var(--nav-text-font-weight);
+    color: #000000;
+    font-size: var(--nav-text-font-size);
+    text-align: center;
+    letter-spacing: var(--nav-text-letter-spacing);
+    line-height: var(--nav-text-line-height);
+    white-space: nowrap;
+    font-style: var(--nav-text-font-style);
+  }
+  
+  .search .text-wrapper-4 {
+    position: absolute;
+    height: 14px;
+    top: 56px;
+    left: 255px;
+    font-family: var(--nav-text-font-family);
+    font-weight: var(--nav-text-font-weight);
+    color: #000000;
+    font-size: var(--nav-text-font-size);
+    text-align: center;
+    letter-spacing: var(--nav-text-letter-spacing);
+    line-height: var(--nav-text-line-height);
+    white-space: nowrap;
+    font-style: var(--nav-text-font-style);
+  }
+  
+  .search .text-wrapper-5 {
+    position: absolute;
+    height: 14px;
+    top: 56px;
+    left: 352px;
+    font-family: var(--nav-text-font-family);
+    font-weight: var(--nav-text-font-weight);
+    color: #000000;
+    font-size: var(--nav-text-font-size);
+    text-align: center;
+    letter-spacing: var(--nav-text-letter-spacing);
+    line-height: var(--nav-text-line-height);
+    white-space: nowrap;
+    font-style: var(--nav-text-font-style);
+  }
+  
+
+
+  
