@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/searchStyle/style.css" />
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  </head>
+  <body>
+    <%- include('../../../components/header') %>
+    
+    <div class="search">
+      <div class="div">
+        <div class="searchbar-condensed">
+          <div class="group">
+            <div class="overlap-group">
+              <!-- <div class="ellipse"></div> -->
+              <!-- <img class="line" src="image/search_24px.svg" /> -->
+            </div>
+          </div>
+          <form action="/search" method="POST">
+            <input type="text" name="keyword" class="search-input" placeholder="Markets, Vendors, Product">
+            <button type="submit" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+          </form>
+          <img class="back-button" src="/image/navigate_before.svg" />
+        </div>
+        <div>
+        </div>
+      </div>
+    </div>
+    <%- include('../../../components/footer') %>
+
+  </body>
+</html>
