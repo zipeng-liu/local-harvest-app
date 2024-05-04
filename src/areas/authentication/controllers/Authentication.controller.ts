@@ -1,6 +1,6 @@
 import express from "express";
 import IController from "../../../interfaces/controller.interface";
-import { IVendorAuthenticationService } from "../services/IAuthentication.service";
+import { IVendorAuthenticationService, ICustomerAuthenticationService } from "../services/IAuthentication.service";
 import type { Customer, Vendor } from "@prisma/client";
 
 
@@ -15,7 +15,7 @@ declare module "express-session" {
 }
 
 
-class VendorAuthenticationController implements IController {
+export class VendorAuthenticationController implements IController {
   public path = "/auth/vendor";
   public router = express.Router();
   private _service: IVendorAuthenticationService;
@@ -54,4 +54,42 @@ class VendorAuthenticationController implements IController {
   };
 }
 
-export default VendorAuthenticationController;
+
+export class CustomerAuthenticationController implements IController {
+  public path = "/auth/customer";
+  public router = express.Router();
+  private _service: ICustomerAuthenticationService;
+
+  constructor(service: ICustomerAuthenticationService) {
+    this.initializeRoutes();
+    this._service = service;
+  }
+
+  private initializeRoutes() {
+    this.router.get(`${this.path}/login`, this.showCustomerLoginPage);
+    this.router.post(`${this.path}/login`, this.customerLogin);
+    //this.router.get(`${this.path}/logout`, this.logout);
+    //this.router.get(`${this.path}/register`, this.showRegistrationPage);
+    //this.router.post(`${this.path}/register`, this.registration);
+  }
+
+  private showCustomerLoginPage = (req: express.Request, res: express.Response) => {
+    const errorMessage = req.session?.messages || null;
+    req.session.messages = null;  
+    const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    res.render("login", { errorMessage, currentTime });
+  };
+
+  private customerLogin = async (req: express.Request, res: express.Response) => {
+    const { email, password } = req.body;
+    const customer = await this._service.findUserByEmail(email);
+    if (customer && password === customer.password) {
+      req.session.userId = { vendorId: null, customerId: customer.customerId };
+      console.log(req.session);  // Logging the session for debugging
+      return res.redirect('/home');
+    } else {
+      req.session.messages = 'Invalid credentials';
+      res.redirect('/auth/customer/login');
+    }
+  };
+}
