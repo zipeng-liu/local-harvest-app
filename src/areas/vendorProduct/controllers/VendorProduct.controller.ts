@@ -5,6 +5,7 @@ import path from "path";
 import { VendorProductService } from "../services/VendorProduct.service";
 import { randomUUID } from "crypto";
 import { Product } from "@prisma/client";
+import { getProfileLink } from "../../../helper/profileLink";
 
 
 class VendorProductController implements IController {
@@ -23,8 +24,13 @@ class VendorProductController implements IController {
     this.router.post(`${this.path}/addItem`, this.addProduct)
   }
 
-  private showAddProduct = (_: express.Request, res: express.Response) => {
-    res.render("addProduct");
+  private showAddProduct = (req: express.Request, res: express.Response) => {
+    const profileLink = getProfileLink(req, res);
+    if (profileLink) {
+      res.render("addProduct", { profileLink });
+    } else {
+      res.redirect("landing");
+    }
   };
 
   private addProduct = async (req: express.Request, res: express.Response) => {
@@ -59,7 +65,13 @@ class VendorProductController implements IController {
         const inventoryList = await this._service.findAllProductsByVendor(
           vendorId
         );
-        res.render("inventory", { inventoryList: inventoryList });
+        const profileLink = getProfileLink(req, res);
+        if (profileLink) {
+          res.render("inventory", { inventoryList: inventoryList, profileLink });
+        } else {
+          res.redirect("landing");
+        }
+        
       } catch (error) {
         console.error("Failed to get inventory", error);
         res.status(500).send("Failed to get inventory");

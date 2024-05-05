@@ -2,6 +2,7 @@ import express from "express";
 import IController from "../../../interfaces/controller.interface";
 import path from "path";
 import ensureAuthenticated from "../../../middleware/authentication.middleware";
+import { getProfileLink } from "../../../helper/profileLink";
 
 class HomeController implements IController {
   public path = "/home";
@@ -16,13 +17,11 @@ class HomeController implements IController {
   }
 
   private showHomepage = (req: express.Request, res: express.Response) => {
-    const profileLink = req.session?.userId?.vendorId
-      ? "/vendor/profile"
-      : req.session?.userId?.customerId
-      ? "/customer/profile"
-      : undefined;
+    const profileLink = getProfileLink(req, res);
     if (profileLink) {
       res.render("home", { profileLink });
+    } else {
+      res.redirect("landing");
     }
   };
 }
