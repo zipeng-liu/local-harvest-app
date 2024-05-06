@@ -609,6 +609,14 @@
   left: 0;
 }
 
+.icon-overlay {
+  position: absolute;
+  bottom: 34px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
 .market-info-page .notch {
   position: absolute;
   width: 153px;
