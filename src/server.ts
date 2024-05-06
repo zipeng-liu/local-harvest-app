@@ -1,9 +1,13 @@
 import App from "./app";
 import LandingController from "./areas/landing/controllers/Landing.controller";
-import { VendorAuthenticationController, CustomerAuthenticationController } 
-from "./areas/authentication/controllers/Authentication.controller";
-import { VendorAuthenticationService, CustomerAuthenticationService } 
-from "./areas/authentication/services/Authentication.service";
+import {
+  VendorAuthenticationController,
+  CustomerAuthenticationController,
+} from "./areas/authentication/controllers/Authentication.controller";
+import {
+  VendorAuthenticationService,
+  CustomerAuthenticationService,
+} from "./areas/authentication/services/Authentication.service";
 import VendorProductController from "./areas/vendorProduct/controllers/VendorProduct.controller";
 import { VendorProductService } from "./areas/vendorProduct/services/VendorProduct.service";
 import HomeController from "./areas/home/controllers/Home.controller";
@@ -11,6 +15,7 @@ import VendorProfileController from "./areas/vendorProfile/controllers/VendorPro
 import { VendorProfileService } from "./areas/vendorProfile/services/VendorProfile.service";
 import SearchController from "./areas/search/controller/Search.controller";
 import { SearchService } from "./areas/search/services/Search.service";
+import cartController from "./areas/cart/controller/cart.controller";
 
 const server = new App([
   new LandingController(),
@@ -20,6 +25,7 @@ const server = new App([
   new HomeController(),
   new VendorProfileController(new VendorProfileService()),
   new SearchController(new SearchService()),
+  new cartController(),
 ]);
 
 server.start();
