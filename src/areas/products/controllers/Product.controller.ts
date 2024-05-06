@@ -32,22 +32,19 @@ class ProductController implements IController {
 
   private showItemById = async (req: express.Request, res: express.Response) => {
     try {
-        const productId = req.params.id;
-        console.log("productId", productId, typeof productId)
-        const product = await this._service.findById(parseInt(productId))
-        const profileLink = getProfileLink(req, res);
-        if (profileLink) {
-          res.render("item", { product: product, profileLink });
-        } else {
-          res.redirect("landing");
-        }
-        res.render("item", { product: product });
+      const productId = req.params.id;
+      console.log("productId", productId, typeof productId)
+      const product = await this._service.findById(parseInt(productId))
+      const profileLink = getProfileLink(req, res);
+      if (profileLink) {
+        res.render("item", { product: product, profileLink });
+      } else {
+        res.redirect("landing");
+      }
     } catch (error) {
-        throw new Error("Failed to get product by id")
+      throw new Error("Failed to get product by id")
     }
-    
   };
-
 };
 
 export default ProductController;
