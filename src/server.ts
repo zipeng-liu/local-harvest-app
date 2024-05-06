@@ -16,6 +16,8 @@ import { VendorProfileService } from "./areas/vendorProfile/services/VendorProfi
 import SearchController from "./areas/search/controller/Search.controller";
 import { SearchService } from "./areas/search/services/Search.service";
 import cartController from "./areas/cart/controller/cart.controller";
+import ProductController from "./areas/products/controllers/Product.controller";
+import { ProductService } from "./areas/products/services/Product.service";
 
 const server = new App([
   new LandingController(),
@@ -26,6 +28,7 @@ const server = new App([
   new VendorProfileController(new VendorProfileService()),
   new SearchController(new SearchService()),
   new cartController(),
+  new ProductController(new ProductService()),
 ]);
 
 server.start();
