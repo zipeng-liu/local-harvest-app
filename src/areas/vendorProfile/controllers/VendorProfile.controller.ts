@@ -3,6 +3,7 @@ import IController from "../../../interfaces/controller.interface";
 import path from "path";
 import IVendorProfileService from "../services/IVendorProfile.service";
 import { VendorProfileService } from "../services/VendorProfile.service";
+import { getProfileLink } from "../../../helper/profileLink";
 
 class VendorProfileController implements IController {
   public path = "/vendor";
@@ -28,7 +29,12 @@ class VendorProfileController implements IController {
     try {
       const vendor = await this._service.findVendorById(vendorId);
       if (vendor) {
-        res.render('vendorProfile', { vendorName: vendor.name });
+        const profileLink = getProfileLink(req, res);
+        if (profileLink) {
+          res.render('vendorProfile', { vendorName: vendor.name, profileLink });
+        } else {
+          res.redirect("landing");
+        }
       } else {
         res.status(404).send("Vendor not found");
       }

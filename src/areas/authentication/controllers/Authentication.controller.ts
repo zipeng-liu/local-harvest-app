@@ -12,6 +12,7 @@ declare module "express-session" {
       customerId: number | null;
     };
     messages: string | null;
+    cart: Number[] | null;
   }
 }
 

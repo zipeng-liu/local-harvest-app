@@ -2,6 +2,7 @@ import express from "express";
 import IController from "../../../interfaces/controller.interface";
 import ISearchService from "../services/ISearchService";
 import path from "path";
+import { getProfileLink } from "../../../helper/profileLink";
 
 class SearchController implements IController {
   public path = "/search";
@@ -18,10 +19,15 @@ class SearchController implements IController {
     this.router.post(`${this.path}`, this.showSearchResult);
   }
 
-  private showSearchPage = async (_: express.Request, res: express.Response) => {
+  private showSearchPage = async (req: express.Request, res: express.Response) => {
     try {
-        // check user log in here
-        res.render("search"); 
+      // check user log in here
+      const profileLink = getProfileLink(req, res);
+      if (profileLink) {
+        res.render("search", { profileLink });
+      } else {
+        res.redirect("landing");
+      }     
     } catch(error) {
         throw new Error("Failed to load search page")
     }
@@ -30,22 +36,32 @@ class SearchController implements IController {
 
   private showSearchResult = async (req: express.Request, res: express.Response)=> {
     try {
-        // check user log in here
-        let keyword = req.body.keyword;
-        console.log("keyword", keyword)
-        const marketResults = await this._service.searchMarket(keyword) || [];
+      // check user log in here
+      let keyword = req.body.keyword;
+      console.log("keyword", keyword)
+      const marketResults = await this._service.searchMarket(keyword) || [];
 
-        console.log("market", marketResults)
-        const vendorResults = await this._service.searchVendor(keyword) || [];
-        const productResults = await this._service.searchProduct(keyword) || [];
+      console.log("market", marketResults)
+      const vendorResults = await this._service.searchVendor(keyword) || [];
+      const productResults = await this._service.searchProduct(keyword) || [];
 
-        if(marketResults && vendorResults && productResults) {
-            res.render("searchResults", { markets: marketResults, vendors: vendorResults, products: productResults})
+      if(marketResults && vendorResults && productResults) {
+        const profileLink = getProfileLink(req, res);
+        if (profileLink) {
+          res.render("searchResults", { 
+            markets: marketResults, 
+            vendors: vendorResults, 
+            products: productResults,
+            profileLink: profileLink 
+          })
         } else {
-            res.redirect("/home");
+          res.redirect("landing");
         }
+      } else {
+        res.redirect("/home");
+      }
     } catch(error) {
-        throw new Error("Failed to search")
+      throw new Error("Failed to search")
     }
 
   };
