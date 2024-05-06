@@ -22,7 +22,7 @@ class cartController implements IController {
       if (profileLink) {
         res.render("cart", { profileLink });
       } else {
-        res.redirect("landing");
+        res.redirect("401");
       }
     } catch (error) {
       throw new Error("Failed to load cart page");
