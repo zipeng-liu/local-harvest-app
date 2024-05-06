@@ -1,7 +1,8 @@
 import express, { Request, Response } from "express";
 import IController from "../../../interfaces/controller.interface";
 import path from "path";
-import { Product } from "@prisma/client";
+import { ProductService } from "../services/Product.service";
+import { Vendor, Product } from "@prisma/client";
 import IProductService from "../services/IProduct.service";
 import { getProfileLink } from "../../../helper/profileLink";
 
@@ -17,16 +18,23 @@ class ProductController implements IController {
   }
 
   private initializeRoutes() {
-    this.router.get(`${this.path}`, this.showAllProducts);
+    this.router.get(`${this.path}/vendor/:id`, this.showAllProductsByVendor);
     this.router.get(`${this.path}/:id`, this.showItemById);
   }
 
-  private showAllProducts = (req: express.Request, res: express.Response) => {
-    const profileLink = getProfileLink(req, res);
-    if (profileLink) {
-      res.render("products", { profileLink });
-    } else {
-      res.redirect("landing");
+  private showAllProductsByVendor = async (req: express.Request, res: express.Response) => {
+    try {
+      const vendorId = req.params.id;
+      console.log("vendorId", vendorId);
+      const vendor = await this._service.findVendorById(parseInt(vendorId))
+      if(!vendor) {
+        return undefined
+      }
+      // const productsByVendor = vendor.products;
+      console.log("vendor", vendor)
+      res.render("productsByVendor", { vendor: vendor })
+    } catch(error) {
+      throw new Error("Failed to get vendor by id")
     }
   };
 
@@ -34,7 +42,7 @@ class ProductController implements IController {
     try {
       const productId = req.params.id;
       console.log("productId", productId, typeof productId)
-      const product = await this._service.findById(parseInt(productId))
+      const product = await this._service.findItemById(parseInt(productId))
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
         res.render("item", { product: product, profileLink });

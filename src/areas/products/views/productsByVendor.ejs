@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/productStyle/style.css" />
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+    <link rel="stylesheet" href="/sharedStyle/searchStyle.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  </head>
+  <body>
+<%- include('../../../components/header') %>
+    <div class="vendor-product-page">
+      <div class="div">
+          <div class="text-wrapper">Products</div>
+          <div class="text-wrapper-2">from <%= vendor.name %></div>
+          <%- include('../../../components/search') %>
+
+          <div class="products-container">
+            <% const productsByVendor = vendor.products %>
+
+              <% productsByVendor.forEach(product => { %>
+                  <div class="product-card">
+                      <img src="/image/defaultProductImg.png" alt="product-image" class="product-image">
+                      <div class="product-name"><a href="/products/<%= product.productId %>"><%= product.name %></a></div>
+                      <div class="product-price">$<%= product.price %></div>
+                      <div class="overlap-group">
+                        <img class="add-to-cart" src="/image/add_24px.svg" />
+                      </div>
+                </div>
+              <% }) %>
+         
+      </div>
+  </div>
+
+  <%- include('../../../components/footer') %>
+  </body>
+</html>
