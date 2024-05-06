@@ -70,7 +70,8 @@
                           <ul>
                               <li>
                                 <img src="/image/defaultProductImg.png" alt="img" class="product-image">
-                                <%= product.name %>
+                                <a href="/products/<%= product.productId %>"><%= product.name %></a>
+                                <!-- <input type="hidden" name="productId" value="<%= product.productId %>"> -->
                               </li>
                           </ul>
                       <% }) %>
