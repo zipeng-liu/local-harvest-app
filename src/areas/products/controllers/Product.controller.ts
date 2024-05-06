@@ -32,7 +32,13 @@ class ProductController implements IController {
       }
       // const productsByVendor = vendor.products;
       console.log("vendor", vendor)
-      res.render("productsByVendor", { vendor: vendor })
+      const profileLink = getProfileLink(req, res);
+      if (profileLink) {
+        res.render("productsByVendor", { vendor: vendor, profileLink: profileLink})
+
+      } else {
+        res.redirect("landing");
+      }
     } catch(error) {
       throw new Error("Failed to get vendor by id")
     }
