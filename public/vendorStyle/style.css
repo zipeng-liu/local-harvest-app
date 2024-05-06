@@ -270,47 +270,6 @@
   border-color: #00000059;
 }
 
-.vendor-item .capacity {
-  position: relative;
-  width: 21px;
-  height: 9px;
-  top: 1px;
-  left: 1px;
-  background-color: #000000;
-  border-radius: 1.33px;
-}
-
-.vendor-item .cap {
-  position: absolute;
-  width: 1px;
-  height: 4px;
-  top: 5px;
-  left: 26px;
-}
-
-.vendor-item .wifi {
-  position: absolute;
-  width: 17px;
-  height: 12px;
-  top: 1px;
-  left: 27px;
-}
-
-.vendor-item .cellular-connection {
-  position: absolute;
-  width: 19px;
-  height: 12px;
-  top: 1px;
-  left: 0;
-}
-
-.vendor-item .notch {
-  position: absolute;
-  width: 153px;
-  height: 50px;
-  top: 0;
-  left: 138px;
-}
 
 
 
@@ -536,17 +495,6 @@
   left: 17px;
 }
 
-.vendor-inventory .cart-image-2 {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 5px;
-  left: 7px;
-  box-shadow: var(--drop-shadow);
-  background-image: url(./img/rectangle-134-5.svg);
-  background-size: 100% 100%;
-}
-
 .vendor-inventory .div-wrapper {
   position: absolute;
   top: 350px;
@@ -555,109 +503,15 @@
   left: 17px;
 }
 
-.vendor-inventory .cart-image-3 {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 5px;
-  left: 7px;
-  box-shadow: var(--drop-shadow);
-  background-image: url(./img/rectangle-134-4.svg);
-  background-size: 100% 100%;
+.vendor-inventory a {
+  text-decoration: none;
+  color: var(--semi-black);
+  transition: color 0.3s ease; 
 }
 
-.vendor-inventory .product-detailed-2 {
-  position: absolute;
-  top: 470px;
-  width: 398px;
-  height: 110px;
-  left: 17px;
+.vendor-inventory a:hover {
+  text-decoration: underline;
 }
-
-.vendor-inventory .cart-image-4 {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 5px;
-  left: 7px;
-  box-shadow: var(--drop-shadow);
-  background-image: url(./img/rectangle-134.svg);
-  background-size: 100% 100%;
-}
-
-.vendor-inventory .product-detailed-3 {
-  position: absolute;
-  top: 590px;
-  width: 398px;
-  height: 110px;
-  left: 17px;
-}
-
-.vendor-inventory .cart-image-5 {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 5px;
-  left: 7px;
-  box-shadow: var(--drop-shadow);
-  background-image: url(./img/rectangle-134-6.svg);
-  background-size: 100% 100%;
-}
-
-.vendor-inventory .product-detailed-4 {
-  position: absolute;
-  top: 710px;
-  width: 398px;
-  height: 110px;
-  left: 17px;
-}
-
-.vendor-inventory .cart-image-6 {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 5px;
-  left: 7px;
-  box-shadow: var(--drop-shadow);
-  background-image: url(./img/image.svg);
-  background-size: 100% 100%;
-}
-
-.vendor-inventory .product-detailed-5 {
-  position: fixed;
-  top: 830px;
-  width: 398px;
-  height: 110px;
-  left: 17px;
-}
-
-.vendor-inventory .cart-image-7 {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 5px;
-  left: 7px;
-  box-shadow: var(--drop-shadow);
-  background-image: url(./img/rectangle-134-2.svg);
-  background-size: 100% 100%;
-}
-
-.vendor-inventory .capacity-wrapper {
-  border-radius: 4px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.vendor-inventory .capacity {
-  background-color: #4CAF50; 
-  width: 80%; 
-  height: 100%;
-}
-
-
-
 
 /* vendor profile page */
 .vendor-account {

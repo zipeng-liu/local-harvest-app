@@ -3,7 +3,7 @@ import IController from "../../../interfaces/controller.interface";
 // import IProductService from "../services/IVendorProduct.service";
 import path from "path";
 // import { ProductService } from "../services/Product.service";
-import { Product } from "@prisma/client";
+import { Vendor, Product } from "@prisma/client";
 import IProductService from "../services/IProduct.service";
 
 
@@ -18,19 +18,30 @@ class ProductController implements IController {
   }
 
   private initializeRoutes() {
-    this.router.get(`${this.path}`, this.showAllProducts);
+    this.router.get(`${this.path}/vendor/:id`, this.showAllProductsByVendor);
     this.router.get(`${this.path}/:id`, this.showItemById);
   }
 
-  private showAllProducts = (_: express.Request, res: express.Response) => {
-    res.render("products");
+  private showAllProductsByVendor = async (req: express.Request, res: express.Response) => {
+    try {
+      const vendorId = req.params.id;
+      console.log("vendorId", vendorId);
+      const vendor = await this._service.findVendorById(parseInt(vendorId))
+      if(!vendor) {
+        return undefined
+      }
+      // const productsByVendor = vendor.products;
+      console.log("vendor", vendor)
+      res.render("productsByVendor", { vendor: vendor })
+    } catch(error) {
+      throw new Error("Failed to get vendor by id")
+    }
   };
 
   private showItemById = async (req: express.Request, res: express.Response) => {
     try {
         const productId = req.params.id;
-        console.log("productId", productId, typeof productId)
-        const product = await this._service.findById(parseInt(productId))
+        const product = await this._service.findItemById(parseInt(productId))
         res.render("item", { product: product });
     } catch (error) {
         throw new Error("Failed to get product by id")

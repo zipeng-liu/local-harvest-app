@@ -1,5 +1,8 @@
-import { Product } from "@prisma/client";
+import { Vendor, Product } from "@prisma/client";
 
 export default interface IProductService {
-    findById(productId: number): Promise<Product | undefined>;
+    findItemById(productId: number): Promise<Product | undefined>;
+
+    findVendorById(vendorId: number): Promise<Vendor | undefined>;
+
 }
