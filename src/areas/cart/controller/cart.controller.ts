@@ -2,6 +2,7 @@ import express from "express";
 import IController from "../../../interfaces/controller.interface";
 import path from "path";
 import ensureAuthenticated from "../../../middleware/authentication.middleware";
+import { getProfileLink } from "../../../helper/profileLink";
 
 class cartController implements IController {
   public path = "/cart";
@@ -15,9 +16,14 @@ class cartController implements IController {
     this.router.get(`${this.path}`, ensureAuthenticated, this.showCart);
   }
 
-  private showCart = async (_: express.Request, res: express.Response) => {
+  private showCart = async (req: express.Request, res: express.Response) => {
     try {
-      res.render("cart");
+      const profileLink = getProfileLink(req, res);
+      if (profileLink) {
+        res.render("cart", { profileLink });
+      } else {
+        res.redirect("landing");
+      }
     } catch (error) {
       throw new Error("Failed to load cart page");
     }
