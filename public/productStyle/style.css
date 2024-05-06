@@ -630,9 +630,9 @@
   /* add to cart button */
   .vendor-product-page .overlap-group {
     position: absolute;
-    right: 10px;  /* Adjust as necessary to fit your design */
-    bottom: 10px;  /* Adjust as necessary to fit your design */
-    width: auto;  /* Adjust width based on content size */
+    right: 10px;  
+    bottom: 10px; 
+    width: auto; 
 }
   
 
