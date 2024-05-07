@@ -18,6 +18,8 @@ import { SearchService } from "./areas/search/services/Search.service";
 import cartController from "./areas/cart/controller/cart.controller";
 import ProductController from "./areas/products/controllers/Product.controller";
 import { ProductService } from "./areas/products/services/Product.service";
+import CustomerProfileController from "./areas/customerProfile/controllers/CustomerProfile.controller";
+import { CustomerProfileService } from "./areas/customerProfile/services/CustomerProfile.service";
 
 const server = new App([
   new LandingController(),
@@ -29,6 +31,7 @@ const server = new App([
   new SearchController(new SearchService()),
   new cartController(),
   new ProductController(new ProductService()),
+  new CustomerProfileController(new CustomerProfileService())
 ]);
 
 server.start();
