@@ -49,7 +49,10 @@ model Product {
   description String?
   quantity    Int
   price       Float
-  photo       String?
+  primaryPhoto  String?
+  secondaryPhoto1 String?
+  secondaryPhoto2 String?
+  secondaryPhoto3 String?
   category    String?
   vendorId    Int            // Foreign key to Vendor
   vendor      Vendor         @relation(fields: [vendorId], references: [vendorId])
