@@ -11,7 +11,6 @@ declare module "express-session" {
       customerId: number | null;
     };
     messages: string | null;
-    cart: Number[] | null;
   }
 }
 
@@ -31,11 +30,7 @@ class CustomerOrderController implements IController {
   }
 
   private addItemToCart = async (req: express.Request, res: express.Response) => {
-    const { productId } = req.body;
-    if (!req.session.cart) {
-      req.session.cart = [];
-    }
-    req.session.cart.push(productId);
+    
   }
 }
 
