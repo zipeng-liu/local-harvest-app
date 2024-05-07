@@ -3,12 +3,16 @@ import IController from "../../../interfaces/controller.interface";
 import path from "path";
 import ensureAuthenticated from "../../../middleware/authentication.middleware";
 import { getProfileLink } from "../../../helper/profileLink";
+import { ICartService } from "../services/ICart.service";
 
-class cartController implements IController {
+
+class CartController implements IController {
   public path = "/cart";
   public router = express.Router();
+  private _service: ICartService;
 
-  constructor() {
+  constructor(cartService: ICartService) {
+    this._service = cartService;
     this.initializeRoutes();
   }
 
@@ -18,15 +22,20 @@ class cartController implements IController {
 
   private showCart = async (req: express.Request, res: express.Response) => {
     try {
+      const customerId = req.session.userId?.customerId;
+      if (!customerId) {
+        return res.redirect("401"); 
+      }
+      const cartItems = await this._service.getCartByUserId(customerId);
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
-        res.render("cart", { profileLink });
+        res.render("cart", { profileLink, cartItems });
       } else {
         res.redirect("401");
       }
     } catch (error) {
       throw new Error("Failed to load cart page");
     }
-  };
+};
 }
-export default cartController;
+export default CartController;

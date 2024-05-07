@@ -15,7 +15,8 @@ import VendorProfileController from "./areas/vendorProfile/controllers/VendorPro
 import { VendorProfileService } from "./areas/vendorProfile/services/VendorProfile.service";
 import SearchController from "./areas/search/controller/Search.controller";
 import { SearchService } from "./areas/search/services/Search.service";
-import cartController from "./areas/cart/controller/cart.controller";
+import CartController from "./areas/cart/controller/Cart.controller";
+import { CartService } from "./areas/cart/services/Cart.service";
 import ProductController from "./areas/products/controllers/Product.controller";
 import { ProductService } from "./areas/products/services/Product.service";
 import CustomerProfileController from "./areas/customerProfile/controllers/CustomerProfile.controller";
@@ -29,7 +30,7 @@ const server = new App([
   new HomeController(),
   new VendorProfileController(new VendorProfileService()),
   new SearchController(new SearchService()),
-  new cartController(),
+  new CartController(new CartService()),
   new ProductController(new ProductService()),
   new CustomerProfileController(new CustomerProfileService())
 ]);

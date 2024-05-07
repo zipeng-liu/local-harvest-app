@@ -84,3 +84,20 @@
   text-decoration: none;
   color: #ffffff;
 }
+
+.button-color-affect:hover {
+  background-color: #e2e2e2;
+  cursor: pointer;
+}
+
+.button-enlarge-affect:hover {
+  transform: scale(1.10);
+  cursor: pointer;
+}
+
+.button-full-affect:hover {
+  background-color: #e2e2e2;
+  transform: scale(1.10);
+  cursor: pointer;
+}
+

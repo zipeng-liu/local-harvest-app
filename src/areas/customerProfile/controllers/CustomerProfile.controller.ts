@@ -18,20 +18,12 @@ class CustomerProfileController implements IController {
     this.router.get(`${this.path}/profile`, this.showCustomerProfile);
   }
 
-  // private showCustomerProfile = async (req: express.Request, res: express.Response) => {
-  //   try {
-  //       res.render("customerProfile")
-  //   } catch(error) {
-  //       throw new Error("Failed to get customer profile")
-  //   }
-  // }
   private showCustomerProfile = async (req: express.Request, res: express.Response) => {
     const customerId = req.session.userId?.customerId;
     if (!customerId) {
       res.status(400).send("Customer ID is required in the session");
       return;
     }
-
     try {
       const customer = await this._service.findCustomerById(customerId);
       if (customer) {

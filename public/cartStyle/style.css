@@ -48,7 +48,7 @@
   width: 398px;
   top: 200px;
   left: 16px;
-  position: absolute;
+  position: relative;
   height: 120px;
 }
 
@@ -142,7 +142,7 @@
 }
 
 .shopping-cart-page .payment-method {
-  position: absolute;
+  position: relative;
   width: 398px;
   height: 120px;
   top: 340px;
@@ -390,20 +390,19 @@
 }
 
 .shopping-cart-page .header-variants {
-  position: fixed;
-  width: 430px;
+  position: absolute;
+  width: 80px;
   height: 107px;
   top: 0;
   left: 0;
-  background-color: var(--cloud-white);
 }
 
 .shopping-cart-page .back-button {
-  position: absolute;
+  position: relative;
   width: 40px;
   height: 40px;
   top: 60px;
-  left: 24rem;
+  left: 16px;
 }
 
 .shopping-cart-page .orang {
