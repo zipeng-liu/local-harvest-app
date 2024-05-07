@@ -12,27 +12,26 @@
       <div class="div">
         <div class="text-wrapper">Add a Product</div>
         <a href="/vendor/profile"><img class="back-button" src="/image/backButton.png" /></a>
-        <form action="/vendor/addItem" method="POST">
-          <div class="primary-image-2">
-            <div class="group-2">
-              <img class="img" src="/image/uploadImg.png" />
-            </div>
-            <div class="text-wrapper-2">Primary Image</div>
-            <p class="text-wrapper-3">The first image a user will see</p>
+        <form action="/vendor/addItem" method="POST" enctype="multipart/form-data">
+          <div class="image-upload primary-image">
+              <label for="primaryImage" class="group">
+                  <img class="icons-file-upload" src="/image/uploadImg.png" alt="Upload Primary Image"/>
+              </label>
+              <input id="primaryImage" name="primaryImage" type="file" style="display: none;"/>
+              <div class="text-wrapper-1">Primary Image</div>
+              <p class="text-wrapper-3">The first image a user will see</p>
           </div>
-          <div class="primary-image">
-            <div class="group">
-              <img class="icons-file-upload" src="/image/uploadImg.png" />
-            </div>
-            <div class="icons-file-upload-wrapper">
-              <img class="icons-file-upload" src="/image/uploadImg.png" />
-            </div>
-            <div class="img-wrapper">
-              <img class="icons-file-upload" src="/image/uploadImg.png" />
-            </div>
-            <div class="text-wrapper-2">Secondary Image</div>
-            <div class="text-wrapper-3">Additional images if needed</div>
+
+          <div class="image-upload primary-image">
+              <label for="secondaryImage" class="icons-file-upload-wrapper">
+                  <img class="icons-file-upload" src="/image/uploadImg.png" alt="Upload Secondary Image"/>
+              </label>
+              <input id="secondaryImage" name="secondaryImage" type="file" style="display: none;" multiple/>
+
+              <div class="text-wrapper-2">Secondary Image</div>
+              <p class="text-wrapper-4">Additional images if needed (up to 3 images)</p>
           </div>
+              
           <div class="short-text-field">
             <div class="label">Product name</div>
             <input

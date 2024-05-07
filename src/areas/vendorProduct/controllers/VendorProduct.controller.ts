@@ -6,6 +6,8 @@ import { VendorProductService } from "../services/VendorProduct.service";
 import { randomUUID } from "crypto";
 import { Product } from "@prisma/client";
 import { getProfileLink } from "../../../helper/profileLink";
+import { multerUploads } from "../../../middleware/multer.middleware";
+import { cloudinary } from "../../../config/cloudinaryConfig";
 
 
 class VendorProductController implements IController {
@@ -38,6 +40,25 @@ class VendorProductController implements IController {
     console.log(vendorId, "vendorId")
     if(vendorId) {
       try {
+        // const imagePath = req.files;
+        // const primaryImage = req.files['primaryImage'] ? req.files['primaryImage'][0] : null;
+        // let primaryImageUrl = '';
+        // if(primaryImage) {
+        //   const imageBase64 = `data:${primaryImage.mimetype};base64,${primaryImage.buffer.toString('base64')}`;
+        //   const uploadResult = await cloudinary.uploader.upload(imageBase64);
+        //   primaryImageUrl = uploadResult.url;
+        // }
+
+        // const secondaryImages = req.files['secondaryImage'];
+        // let secondaryImageUrls = [];
+        // if(secondaryImages) {
+        //   for(const image of secondaryImages) {
+        //     const imageBase64 = `data:${image.mimetype};base64,${image.buffer.toString('base64')}`;
+        //     const uploadResult = await cloudinary.uploader.upload(imageBase64);
+        //     secondaryImageUrls.push(uploadResult.url);
+        //   }
+        // }
+    
         const product = {
           name: req.body.name,
           price: parseFloat(req.body.price),
