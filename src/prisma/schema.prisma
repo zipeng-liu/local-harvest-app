@@ -50,7 +50,7 @@ model Product {
   quantity    Int
   price       Float
   photo       String?
-  Category    String?
+  category    String?
   vendorId    Int            // Foreign key to Vendor
   vendor      Vendor         @relation(fields: [vendorId], references: [vendorId])
   productOrders ProductOrder[] // One-to-many relationship with ProductOrder
