@@ -23,6 +23,8 @@ model Customer {
   lastName   String?
   photo      String?
   orders     Order[] // One-to-many relationship with Order
+  carts      Cart[] // One-to-many relationship with Cart
+  itemReviews ItemReview[] // One-to-many relationship with ItemReview
 }
 
 model Order {
@@ -48,9 +50,12 @@ model Product {
   quantity    Int
   price       Float
   photo       String?
+  Category    String?
   vendorId    Int            // Foreign key to Vendor
   vendor      Vendor         @relation(fields: [vendorId], references: [vendorId])
   productOrders ProductOrder[] // One-to-many relationship with ProductOrder
+  carts       Cart[] // One-to-many relationship with Cart
+  itemReviews ItemReview[] // One-to-many relationship with ItemReview
 }
 
 model Vendor {
@@ -62,6 +67,7 @@ model Vendor {
   address    String
   description String?
   photo       String?
+  review     String
   marketId   Int      // Foreign key to Market
   market     Market   @relation(fields: [marketId], references: [marketId])
   products   Product[] // One-to-many relationship with Product
@@ -69,9 +75,31 @@ model Vendor {
 
 model Market {
   marketId     Int      @id @default(autoincrement())
+  name         String
   location     String
   contact      String
-  description  String?
+  email        String
+  hours        String?
   photo        String?
   vendors      Vendor[] // One-to-many relationship with Vendor
+}
+
+model Cart {
+  cartId    Int     @id @default(autoincrement())
+  userId    Int     // Foreign key to Customer
+  productId Int     // Foreign key to Product
+  quantity  Int
+  customer  Customer @relation(fields: [userId], references: [customerId])
+  product   Product  @relation(fields: [productId], references: [productId])
+}
+
+model ItemReview {
+  reviewId   Int      @id @default(autoincrement())
+  productId  Int      // Foreign key to Product
+  userId     Int      // Foreign key to Customer
+  rating     Int      
+  reviewText String?  
+  createdAt  DateTime @default(now()) 
+  product   Product  @relation(fields: [productId], references: [productId])
+  customer  Customer @relation(fields: [userId], references: [customerId])
 }
