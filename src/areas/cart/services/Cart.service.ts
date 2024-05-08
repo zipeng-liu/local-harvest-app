@@ -1,55 +1,85 @@
-import DBClient from "../../../PrismaClient";
-import { ICartService } from "./ICart.service";
-import type { Cart, Vendor } from "@prisma/client";
-
-
+import { PrismaClient, Cart } from "@prisma/client";
+import ICartService from "./ICart.service";
 export class CartService implements ICartService {
-  readonly _db: DBClient = DBClient.getInstance();
+  private prisma = new PrismaClient();
 
-  async getCartByUserId(userId: number): Promise<Cart[]> {
-    try {
-      return await this._db.prisma.cart.findMany({
-        where: {
-          userId: userId
-        },
-        include: {
-          product: true  
-        }
-      });
-    } catch (error) {
-      console.error("Failed to fetch cart items:", error);
-      throw new Error("Unable to retrieve cart items.");
-    }
+  async addProductToCart(
+    customerId: number,
+    productId: number,
+    quantity: number
+  ): Promise<Cart> {
+    return await this.prisma.cart.create({
+      data: {
+        userId: customerId,
+        productId: productId,
+        quantity: quantity,
+      },
+    });
   }
 
-  // Remove an item from the cart
-  async removeFromCart(cartId: number): Promise<Cart> {
-    try {
-      return await this._db.prisma.cart.delete({
-        where: {
-          cartId: cartId
-        }
-      });
-    } catch (error) {
-      console.error("Failed to remove cart item:", error);
-      throw new Error("Unable to remove item from cart.");
-    }
+  async getCartByUserId(customerId: number): Promise<Cart[]> {
+    return await this.prisma.cart.findMany({
+      where: {
+        userId: customerId,
+      },
+      include: {
+        product: true,
+      },
+    });
   }
 
-  // Update the quantity of a cart item
-  async updateCartItem(cartId: number, quantity: number): Promise<Cart> {
-    try {
-      return await this._db.prisma.cart.update({
+  async removeProductFromCart(
+    customerId: number,
+    productId: number
+  ): Promise<boolean> {
+    const deleteResult = await this.prisma.cart.deleteMany({
+      where: {
+        userId: customerId,
+        productId: productId,
+      },
+    });
+    return deleteResult.count > 0;
+  }
+
+  async updateProductQuantity(
+    customerId: number,
+    productId: number,
+    quantity: number
+  ): Promise<Cart | null> {
+    const cartItem = await this.prisma.cart.findFirst({
+      where: {
+        userId: customerId,
+        productId: productId,
+      },
+    });
+
+    if (cartItem) {
+      return await this.prisma.cart.update({
         where: {
-          cartId: cartId
+          cartId: cartItem.cartId,
         },
         data: {
-          quantity: quantity
-        }
+          quantity: quantity,
+        },
       });
-    } catch (error) {
-      console.error("Failed to update cart item:", error);
-      throw new Error("Unable to update cart item.");
     }
+    return null;
+  }
+
+  async clearCart(customerId: number): Promise<boolean> {
+    const deleteResult = await this.prisma.cart.deleteMany({
+      where: {
+        userId: customerId,
+      },
+    });
+    return deleteResult.count > 0;
+  }
+
+  async calculateCartTotal(customerId: number): Promise<number> {
+    const cartItems = await this.getCartByUserId(customerId);
+    return cartItems.reduce(
+      (acc, item) => acc + item.quantity * item.product.price,
+      0
+    );
   }
 }
