@@ -5,15 +5,14 @@ import ICustomerOrderService from "../services/ICustomerOrder.service";
 import { getProfileLink } from "../../../helper/profileLink";
 
 declare module "express-session" {
-  interface SessionData {
-    userId: {
-      vendorId: number | null;
-      customerId: number | null;
-    };
-    messages: string | null;
-  }
+  // interface SessionData {
+  //   userId: {
+  //     vendorId: number | null;
+  //     customerId: number | null;
+  //   };
+  //   messages: string | null;
+  // }
 }
-
 
 class CustomerOrderController implements IController {
   public path = "/customer";
@@ -29,9 +28,10 @@ class CustomerOrderController implements IController {
     this.router.post(`${this.path}/addItem`, this.addItemToCart);
   }
 
-  private addItemToCart = async (req: express.Request, res: express.Response) => {
-    
-  }
+  private addItemToCart = async (
+    req: express.Request,
+    res: express.Response
+  ) => {};
 }
 
 export default CustomerOrderController;

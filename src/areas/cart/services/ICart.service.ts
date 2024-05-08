@@ -1,10 +1,11 @@
 import { Cart, Product } from "@prisma/client";
 
-export default interface ICartService {
+export interface ICartService {
   addProductToCart(customerId: number, productId: number, quantity: number): Promise<Cart>;
-  getCartByUserId(customerId: number): Promise<Cart[]>;
-  removeProductFromCart(customerId: number, productId: number): Promise<boolean>;
-  increaseProductQuantity(customerId: number, productId: number): Promise<Cart | null>;
-  decreaseProductQuantity(customerId: number, productId: number): Promise<Cart | null>;
-  clearCart(customerId: number): Promise<void>;
+  getCartByUserId(customerId: number): Promise<any>;
+  removeProductFromCart(cartId: number): Promise<boolean>;
+  increaseCartItem(cartId: number): Promise<Cart>;
+  decreaseCartItem(cartId: number): Promise<Cart>;
+  updateCartItemQuantity(cartId: number, change: number): Promise<Cart>;
+  getCartCount(customerId: number): Promise<number>; 
 }

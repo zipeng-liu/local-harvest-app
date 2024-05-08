@@ -1,26 +1,98 @@
+<style>
+  .nav-item {
+    position: relative;
+    display: inline-block;
+  }
+
+  .cart-counter {
+    position: absolute;
+    bottom: 35px;
+    left: 25px;
+    background-color: red;
+    border-radius: 80%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+    display: none; /* Initially hidden */
+  }
+</style>
 <div class="nav-bar">
-    <div class="nav-item">
-      <a href="/home" class="button-link">
-        <img src="/image/Home.svg" alt="Home">
-        <span>Home</span>
-      </a>
-    </div>
-    <div class="nav-item">
-      <a href="/search" class="button-link">
-        <img src="/image/Search.svg" alt="Search">
-        <span>Search</span>
-      </a>
-    </div>
-    <div class="nav-item">
-      <a href="/cart" class="button-link">
-        <img src="/image/Cart.svg" alt="Cart">
-        <span>Cart</span>
-      </a>
-    </div>
-    <div class="nav-item">
-      <a href=<%= profileLink %> class="button-link">
-        <img src="/image/Account.svg" alt="Profile">
-        <span>Profile</span>
-      </a>
-    </div>
+  <div class="nav-item">
+    <a href="/home" class="button-link">
+      <img src="/image/Home.svg" alt="Home" />
+      <span>Home</span>
+    </a>
+  </div>
+  <div class="nav-item">
+    <a href="/search" class="button-link">
+      <img src="/image/Search.svg" alt="Search" />
+      <span>Search</span>
+    </a>
+  </div>
+  <div class="nav-item">
+    <a href="/cart" class="button-link">
+      <img src="/image/Cart.svg" alt="Cart" />
+      <span>Cart</span>
+      <span class="cart-counter" id="cart-counter" style="color: white;"></span>
+    </a>
+  </div>
+  <div class="nav-item">
+    <a href="<%=profileLink %>" class="button-link">
+      <img src="/image/Account.svg" alt="Profile" />
+      <span>Profile</span>
+    </a>
+  </div>
 </div>
+<script>
+  const cartCounter = document.getElementById("cart-counter");
+
+  document.addEventListener("DOMContentLoaded", function () {
+    function fetchCartCount() {
+      fetch("/cart/api/getCount")
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Network response was not ok.");
+        })
+        .then((data) => {
+          // Update the counter value
+          cartCounter.textContent = data.count;
+
+          // Toggle visibility based on item count
+          if (data.count > 0) {
+            cartCounter.style.display = "inline";
+          } else {
+            cartCounter.style.display = "none";
+          }
+        })
+        .catch((error) => {
+          console.error(
+            "There has been a problem with your fetch operation:",
+            error
+          );
+        });
+    }
+
+    fetchCartCount();
+  });
+
+  function updateCartCount(change) {
+    let currentCount = parseInt(cartCounter.textContent);
+    currentCount += change;
+
+    // Prevent negative values
+    if (currentCount < 0) {
+      currentCount = 0;
+    }
+
+    cartCounter.textContent = currentCount;
+
+    // Toggle visibility based on updated count
+    if (currentCount > 0) {
+      cartCounter.style.display = "inline";
+    } else {
+      cartCounter.style.display = "none";
+    }
+  }
+</script>
