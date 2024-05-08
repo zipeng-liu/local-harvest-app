@@ -20,6 +20,8 @@ class CartController implements IController {
     this.router.post(`${this.path}/increase/:cartId`, ensureAuthenticated, this.handleIncreaseQuantity);
     this.router.post(`${this.path}/decrease/:cartId`, ensureAuthenticated, this.handleDecreaseQuantity);
     this.router.post(`${this.path}/delete/:cartId`, ensureAuthenticated, this.handleRemoveProductFromCart);
+    this.router.get(`${this.path}/success`, ensureAuthenticated, this.showSuccessPage);
+    this.router.get(`${this.path}/viewOrder`, ensureAuthenticated, this.viewOrder);
   }
 
   private showCart = async (req: Request, res: Response) => {
@@ -88,6 +90,34 @@ class CartController implements IController {
       res.status(500).json({ success: false, message: "Internal server error" });
     }
   };
+
+  private showSuccessPage = async (req: Request, res: Response) => {
+    try {
+      const profileLink = getProfileLink(req, res);
+      if (profileLink) {
+        res.render("success", { profileLink });
+      } else {
+        res.redirect("401");
+      }
+    } catch(error) {
+      throw new Error("Failed to load successful page for order")
+    }
+  };
+
+  // add logic to check customer ID here to show order details
+  private viewOrder = async(req: Request, res: Response) => {
+    try {
+      const profileLink = getProfileLink(req, res);
+      if (profileLink) {
+        res.render("orderDetails", { profileLink });
+      } else {
+        res.redirect("401");
+      }
+    } catch(error) {
+      throw new Error("Failed to load order details")
+    } 
+  }
+
 }
 
 export default CartController;

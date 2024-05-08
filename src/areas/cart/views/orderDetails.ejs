@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/cartStyle/style.css" />
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+
+  </head>
+  <body>
+    <%- include('../../../components/header') %>
+
+    <div class="order-details">
+        <div class="div">
+            <div class="box" id="order-info">
+                <h2>Order Number and Items</h2>
+                <p id="order-number">Order #1234</p>
+                <ul id="order-items">
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                </ul>
+            </div>
+            <div class="box" id="order-time">
+                <h2>Order Time</h2>
+                <p>Received at: <span id="time-received">10:30 AM, April 10, 2023</span></p>
+            </div>
+            <div class="box" id="order-subtotal">
+                <h2>Order Subtotal</h2>
+                <p>$120.00</p>
+            </div>
+            <!-- if we can do ajax, this button should be "Close" -->
+            <div class="back-home"><button href="/" class="back-home-button">Back to Home</button></div>
+        </div>
+    </div>
+    <%- include('../../../components/footer') %>
+  </body>
+</html>
