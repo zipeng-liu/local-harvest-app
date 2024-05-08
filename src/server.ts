@@ -15,7 +15,7 @@ import VendorProfileController from "./areas/vendorProfile/controllers/VendorPro
 import { VendorProfileService } from "./areas/vendorProfile/services/VendorProfile.service";
 import SearchController from "./areas/search/controller/Search.controller";
 import { SearchService } from "./areas/search/services/Search.service";
-import CartController from "./areas/cart/controller/Cart.controller";
+import CartController from "./areas/cart/controllers/Cart.controller";
 import { CartService } from "./areas/cart/services/Cart.service";
 import ProductController from "./areas/products/controllers/Product.controller";
 import { ProductService } from "./areas/products/services/Product.service";
