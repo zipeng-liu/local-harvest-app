@@ -45,6 +45,7 @@
 
 .nav-item .button-link:hover {
   background-color: #e2e2e2;
+  transform: scale(1.10);
   cursor: pointer;
 }
 
@@ -85,17 +86,17 @@
   color: #ffffff;
 }
 
-.button-color-affect:hover {
+.button-color-effect:hover {
   background-color: #e2e2e2;
   cursor: pointer;
 }
 
-.button-enlarge-affect:hover {
+.button-enlarge-effect:hover {
   transform: scale(1.10);
   cursor: pointer;
 }
 
-.button-full-affect:hover {
+.button-full-effect:hover {
   background-color: #e2e2e2;
   transform: scale(1.10);
   cursor: pointer;

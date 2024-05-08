@@ -27,6 +27,7 @@ class CartController implements IController {
         return res.redirect("401"); 
       }
       const cartItems = await this._service.getCartByUserId(customerId);
+      console.log(cartItems)
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
         res.render("cart", { profileLink, cartItems });
