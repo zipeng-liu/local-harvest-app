@@ -25,13 +25,10 @@ class ProductController implements IController {
   private showAllProductsByVendor = async (req: express.Request, res: express.Response) => {
     try {
       const vendorId = req.params.id;
-      console.log("vendorId", vendorId);
       const vendor = await this._service.findVendorById(parseInt(vendorId))
       if(!vendor) {
         return undefined
       }
-      // const productsByVendor = vendor.products;
-      console.log("vendor", vendor)
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
         res.render("productsByVendor", { vendor: vendor, profileLink: profileLink})
@@ -47,7 +44,6 @@ class ProductController implements IController {
   private showItemById = async (req: express.Request, res: express.Response) => {
     try {
       const productId = req.params.id;
-      console.log("productId", productId, typeof productId)
       const product = await this._service.findItemById(parseInt(productId))
       const profileLink = getProfileLink(req, res);
       if (profileLink) {

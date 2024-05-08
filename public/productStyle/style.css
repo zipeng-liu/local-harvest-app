@@ -14,6 +14,7 @@
     width: 430px;
     height: 1280px;
     position: relative;
+    top: 50px;
   }
   
   .item-page .add-to-cart {
@@ -68,7 +69,7 @@
     position: absolute;
     width: 430px;
     height: auto;
-    top: 0;
+    top: 20px;
     left: 0;
     border-radius: 8px;
   }
@@ -411,12 +412,13 @@
   }
   
   .item-page .back-button {
-    position: fixed;
+    position: absolute;
     width: 40px;
     height: 40px;
-    top: 60px;
-    left: 17px;
+    top: 40px;
+    left: 12px;
   }
+
   
   .item-page .nav-bar {
     position: fixed;
