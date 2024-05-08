@@ -25,13 +25,12 @@ class ProductController implements IController {
   private showAllProductsByVendor = async (req: express.Request, res: express.Response) => {
     try {
       const vendorId = req.params.id;
-      console.log("vendorId", vendorId);
+      // console.log("vendorId", vendorId);
       const vendor = await this._service.findVendorById(parseInt(vendorId))
       if(!vendor) {
         return undefined
       }
-      // const productsByVendor = vendor.products;
-      console.log("vendor", vendor)
+      // console.log("vendor", vendor)
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
         res.render("productsByVendor", { vendor: vendor, profileLink: profileLink})

@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import multer, { FileFilterCallback } from 'multer';
 
 
-interface MulterRequest extends Request {
+export interface MulterRequest extends Request {
     primaryImage?: Express.Multer.File;
     secondaryImages?: Express.Multer.File[];
 }
@@ -23,8 +23,12 @@ const multerUploads = multer({
     fileFilter,
     limits: {
         fileSize: 10000000,
-        files: 3
+        files: 4
     }
-}).array('image');
+});
 
-export { multerUploads }
+const multiUpload = multerUploads.fields([
+    {name: "primaryImage", maxCount: 1 }, 
+    {name: "secondaryImage", maxCount: 3 }])
+
+export { multiUpload }
