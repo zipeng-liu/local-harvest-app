@@ -3,87 +3,106 @@
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
-    <link rel="stylesheet" href="/homeStyle/style.css" />
     <link rel="stylesheet" href="/sharedStyle/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="/homeStyle/style.css" />
   </head>
   <body>
     <%- include('../../../components/header') %>
-    <div class="market-info-page">
+    <div class="home-page">
       <div class="div">
+        <div class="searchbar">
+          <div class="searchbar-condensed">
+            <form action="/search" method="POST">
+              <input type="text" name="keyword" class="search-input" placeholder="Markets, Vendors, Product">
+              <button type="submit" class="search-button">
+                  <i class="fas fa-search button-full-effect"></i>
+              </button>
+            </form>
+            <a href="/"><img class="back-button button-full-effect" src="/image/navigate_before.svg" /></a>
+          </div>
+        </div>
+
+        <div class="text-wrapper">Categories</div>
+        <div class="text-wrapper-2">Featured Market</div>
+        <div class="text-wrapper-3">Browse Markets</div>
+        <div class="text-wrapper-4">Browse Vendors</div>
+        
+        <div class="text-wrapper-13">View all</div>
+        <div class="text-wrapper-14">View all</div>
+        <div class="text-wrapper-15">View all</div>
+
+        <div class="mid-banner">
+          <div class="overlap-group-2">
+            <div class="div-wrapper"><div class="rectangle-2"></div></div>
+            <div class="text-wrapper-16">Hastings Park Market</div>
+          </div>
+        </div>
+        <div class="mid-banner-2">
+          <div class="overlap-group-2">
+            <div class="mid-banner-3"><div class="rectangle-2"></div></div>
+            <div class="hastings-park-market">Bob’s Tomato Farm</div>
+          </div>
+        </div>
+        <div class="mid-banner-4">
+          <div class="overlap-group-2">
+            <div class="mid-banner-5"><div class="rectangle-2"></div></div>
+            <div class="text-wrapper-16">Hastings Park Market</div>
+          </div>
+        </div>
+        <div class="mid-banner-6">
+          <div class="overlap-group-2">
+            <div class="mid-banner-7"><div class="rectangle-2"></div></div>
+            <div class="hastings-park-market-2">Seb’s Fish Monger</div>
+          </div>
+        </div>
+        
+        <div class="vendor">
+          <p class="lorem-ipsum-dolor">Over 30 vendors each week with variety of selections.</p>
+          <div class="business-name"><a class="button-full-effect" href="/market">Hastings Park</a></div>
+          <img class="rectangle-3" src="image/market.png" />
+          <div class="category"><div class="text-wrapper-17">Hastings Park</div></div>
+          <div class="hastings-park-wrapper"><div class="hastings-park">Winter Market</div></div>
+        </div>
+
+        <div class="category-2"><div class="hastings-park-2">Produce</div></div>
+        <div class="category-3"><div class="hastings-park-3">Fruit</div></div>
+        <div class="category-4"><div class="hastings-park-3">Beverages</div></div>
+        <div class="category-5"><div class="hastings-park-3">Alcohol</div></div>
+        <div class="category-6"><div class="hastings-park-4">Poultry</div></div>
+        <div class="category-7"><div class="hastings-park-3">Specialty</div></div>
+        <div class="category-8"><div class="hastings-park-3">Meats</div></div>
+        <div class="category-9"><div class="hastings-park-4">Baked Goods</div></div>
+
         <div class="overlap">
-          <div class="group">
-            <div class="social-media"></div>
-          </div>
-          <div class="mini-vendor-card">
-            <div class="vendor">Artisan Cutting Boards</div>
-            <img class="rectangle" src="image/small-tomato.jpeg" />
-            <img class="icon-overlay" src="image/more.png" />
-          </div>
-          <div class="mini-vendor-card-2">
-            <div class="vendor">Vancouver and Sons</div>
-            <img class="rectangle" src="image/tomato.jpeg" />
-            <img class="icon-overlay" src="image/more.png" />
-          </div>
-        </div>
-        <img class="placeholder" src="image/market.png" />
-        <div class="text-wrapper">Hastings Market</div>
-        <div class="overlap-group">
-          <div class="rectangle-2"></div>
-          <div class="rectangle-3"></div>
-          <div class="element-col-info">
-            <p class="info-info-info-info">
-              2901 E Hastings St, <br />Vancouver, BC <br />V5K 5J1
-            </p>
-            <div class="words">Location</div>
-          </div>
-          <div class="element-col-info-with-two">
-            <div class="overlap-group-2">
-              <div class="mon-thur-fri-sat-sun">Mon – Sat<br />Sunday</div>
-              <div class="closed">Closed<br />10:00-14:00</div>
-              <div class="text-wrapper-2">Hours</div>
+          <div class="text-wrapper-5">Popular Items</div>
+          <div class="text-wrapper-6"><a class="button-full-effect" href="/products">View all</a></div>
+          <div class="item-carosel">
+            <div class="item-content">
+              <div class="overlap-group">
+                <div class="rectangle-wrapper"><img class="rectangle" src="img/rectangle-121-3.svg" /></div>
+                <div class="group"><img class="add-to-cart" src="img/add-to-cart.svg" /></div>
+              </div>
             </div>
+            <div class="overlap-wrapper">
+              <div class="overlap-group">
+                <div class="rectangle-wrapper"><img class="rectangle" src="img/rectangle-121.svg" /></div>
+                <div class="group"><img class="add-to-cart" src="img/add-to-cart.svg" /></div>
+              </div>
+            </div>
+            <div class="overlap-group-wrapper">
+              <div class="overlap-group">
+                <div class="rectangle-wrapper"><img class="img" src="img/rectangle-121-2.svg" /></div>
+                <img class="group-2" src="img/group-46.png" />
+              </div>
+            </div>
+            <div class="text-wrapper-7">Gala Apple</div>
+            <div class="text-wrapper-8">Juicy Orange</div>
+            <div class="text-wrapper-9">Chocolate C...</div>
+            <div class="text-wrapper-10">$1</div>
+            <div class="text-wrapper-11">$1</div>
+            <div class="text-wrapper-12">$1</div>
           </div>
-        </div>
-        <div class="overlap-2">
-          <div class="rectangle-2"></div>
-          <div class="component">
-            <p class="info-info-info-info">
-              <a
-                href="https://www.google.com/search?client=opera-gx&q=east+hastings+farmers+market+contact&sourceid=opera&ie=UTF-8&oe=UTF-8&lqi=CiRlYXN0IGhhc3RpbmdzIGZhcm1lcnMgbWFya2V0IGNvbnRhY3QiAhABSMni9JPnqoCACFouEAAQARACEAMYABgBGAIYAyIcZWFzdCBoYXN0aW5ncyBmYXJtZXJzIG1hcmtldJIBDmZhcm1lcnNfbWFya2V0qgFZEAEqEiIOZmFybWVycyBtYXJrZXQoADIfEAEiG42J17d4X9IShfJXWDZ6Eh-FNIfZkX47lUIIBjIgEAIiHGVhc3QgaGFzdGluZ3MgZmFybWVycyBtYXJrZXQ#"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><span class="span">(604) 879-3276</span></a
-              >
-              <span class="text-wrapper-3">hastmarket@gmail.com</span>
-            </p>
-            <div class="words">Contact</div>
-          </div>
-        </div>
-        <div class="text-wrapper-4">Vendors</div>
-        <button class="small-button-arrow">
-          <div class="frame"><div class="text-wrapper-5">View More</div></div>
-          <img class="icons-arrow-forward" src="image/arrowsRight.png" />
-        </button>
-        <div class="mini-vendor-card-3">
-          <div class="vendor">Seb’s Fish Monger</div>
-          <img class="rectangle" src="image/tomato.jpeg" />
-          <img class="icon-overlay" src="image/more.png" />
-        </div>
-        <div class="mini-vendor-card-4">
-          <div class="vendor">Bob’s Tomato Farm</div>
-          <img class="rectangle" src="image/small-tomato.jpeg" />
-          <img class="icon-overlay" src="image/more.png" />
-        </div>
-        <form action="/" method="GET">
-          <button type="submit" class="small-button">
-            <div class="our-story">Vendor Sign Up</div>
-          </button>
-        </form>
-        <div class="nav-bar">
-          <div class="text-wrapper-6">Home</div>
-          <div class="text-wrapper-7">Search</div>
-          <div class="text-wrapper-8">Cart</div>
-          <div class="text-wrapper-9">Profile</div>
         </div>
       </div>
     </div>

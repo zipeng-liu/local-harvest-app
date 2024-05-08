@@ -18,7 +18,7 @@
           <div class="cart-product">
             <div class="cart-image">
               <% if (item.product.primaryPhoto) { %>
-                <img src="<%= item.product.primaryPhoto %>" alt="<%= item.product.name %>" />
+                <img class="cart-image" src="<%= item.product.primaryPhoto %>" alt="<%= item.product.name %>" />
               <% } %>
             </div>
               <p class="p"><a class="button-color-effect" href="/products/<%= item.productId %>"><%= item.product.name %></p></a>
@@ -44,7 +44,6 @@
         <% }); %>
         
 
-       
         <div class="payment-method">
           <div class="overlap">
             <div class="rectangle"></div>
