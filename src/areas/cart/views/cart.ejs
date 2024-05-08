@@ -18,34 +18,32 @@
           <div class="cart-product">
             <div class="cart-image">
               <% if (item.product.primaryPhoto) { %>
-                <img src="<%= item.product.primaryPhoto %>" alt="<%= item.product.name %>" />
+                <img class="cart-image" src="<%= item.product.primaryPhoto %>" alt="<%= item.product.name %>" />
               <% } %>
-              <p class="p"><a class="button-color-effect" href="/products/<%= item.productId %>"><%= item.product.name %></p></a>
-              <div class="text-wrapper-3">$<%= item.product.price.toFixed(2) %></div>
-              <div class="product-amount">
-                <div class="overlap-group">
-                  <form action="/cart/delete" method="post">
-                    <input type="hidden" name="productId" value="<%= item.productId %>" />
-                    <button type="submit" class="TRASH button-enlarge-effect" style="background-image: url('/image/trash.png'); background-repeat: no-repeat; background-size: cover;">
-                    </button>
-                  </form>
-                  <form action="/cart/add" method="post">
-                    <input type="hidden" name="productId" value="<%= item.productId %>" />
-                    <button type="submit" class="ADD button-enlarge-effect">+</button>
-                  </form>
-                  <form action="/cart/minus" method="post">
-                    <input type="hidden" name="productId" value="<%= item.productId %>" />
-                    <button type="submit" class="MINUS button-enlarge-effect">-</button>
-                  </form>
-                  <div class="text-wrapper-4"><%= item.quantity %></div>
-                </div>
+            </div>
+            <p class="p"><a class="button-color-effect" href="/products/<%= item.productId %>"><%= item.product.name %></p></a>
+            <div class="text-wrapper-3">$<%= item.product.price.toFixed(2) %></div>
+            <div class="product-amount">
+              <div class="overlap-group">
+                <form action="/cart/increase" method="post">
+                  <input type="hidden" name="productId" value="<%= item.productId %>" />
+                  <button type="submit" class="ADD button-enlarge-effect">+</button>
+                </form>
+                <form action="/cart/decrease" method="post">
+                  <input type="hidden" name="productId" value="<%= item.productId %>" />
+                  <button type="submit" class="MINUS button-enlarge-effect">-</button>
+                </form>
+                <form action="/cart/delete" method="post">
+                  <input type="hidden" name="productId" value="<%= item.productId %>" />
+                  <button type="submit" class="TRASH button-enlarge-effect" style="background-image: url('/image/trash.png'); background-repeat: no-repeat; background-size: cover;"></button>
+                </form>
+                <div class="text-wrapper-4"><%= item.quantity %></div>
               </div>
             </div>
           </div>
         <% }); %>
         
 
-       
         <div class="payment-method">
           <div class="overlap">
             <div class="rectangle"></div>
