@@ -112,7 +112,7 @@
   width: 30px;
   height: 30px;
   top: 0;
-  left: 0;
+  left: 140px;
   box-shadow: var(--drop-shadow);
 }
 
@@ -122,6 +122,15 @@
   height: 30px;
   top: 0;
   left: 90px;
+  box-shadow: var(--drop-shadow);
+}
+
+.shopping-cart-page .MINUS {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 0;
+  left: 0;
   box-shadow: var(--drop-shadow);
 }
 
