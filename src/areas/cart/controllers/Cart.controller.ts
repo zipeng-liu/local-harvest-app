@@ -30,6 +30,7 @@ class CartController implements IController {
     this.router.post(`${this.path}/increase`, ensureAuthenticated, this.increaseQuantity);
     this.router.post(`${this.path}/decrease`, ensureAuthenticated, this.decreaseQuantity);
     this.router.post(`${this.path}/delete`, ensureAuthenticated, this.removeFromCart);
+    this.router.get(`${this.path}/success`, ensureAuthenticated, this.showSuccessPage);
   }
 
   private showCart = async (req: express.Request, res: express.Response) => {
@@ -92,6 +93,11 @@ class CartController implements IController {
       res.status(500).json({ message: "Unable to remove product from cart" });
     }
   };
+
+
+  private showSuccessPage = async (req: Request, res: Response) => {
+    res.render("success")
+  }
 }
 
 export default CartController;

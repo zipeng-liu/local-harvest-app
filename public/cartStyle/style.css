@@ -531,3 +531,282 @@ body a {
 .cart-product-wrapper {
   margin-bottom: 20px;
 }
+
+
+
+/* successful page */
+
+.successful-order {
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 2000px;
+}
+
+.successful-order .div {
+  background-color: var(--cloud-white);
+  overflow: hidden;
+  width: 430px;
+  height: 932px;
+  position: relative;
+  top: 200px;
+}
+
+.successful-order .text-wrapper {
+  position: absolute;
+  width: 398px;
+  top: 264px;
+  left: 16px;
+  font-family: var(--h1-mobile-font-family);
+  font-weight: var(--h1-mobile-font-weight);
+  color: var(--olivine);
+  font-size: var(--h1-mobile-font-size);
+  text-align: center;
+  letter-spacing: var(--h1-mobile-letter-spacing);
+  line-height: var(--h1-mobile-line-height);
+  font-style: var(--h1-mobile-font-style);
+}
+
+.successful-order .large-button {
+  position: absolute;
+  width: 398px;
+  height: 60px;
+  top: 739px;
+  left: 16px;
+  background-color: var(--sandy-brown);
+  border-radius: 15px;
+  box-shadow: var(--drop-shadow);
+}
+
+.successful-order .submit-order {
+  position: absolute;
+  top: 15px;
+  left: 94px;
+  font-family: var(--h2-mobile-font-family);
+  font-weight: var(--h2-mobile-font-weight);
+  color: var(--cloud-white);
+  font-size: var(--h2-mobile-font-size);
+  text-align: center;
+  letter-spacing: var(--h2-mobile-letter-spacing);
+  line-height: var(--h2-mobile-line-height);
+  font-style: var(--h2-mobile-font-style);
+}
+
+.successful-order .overlap {
+  position: absolute;
+  width: 398px;
+  height: 347px;
+  top: 304px;
+  left: 16px;
+}
+
+.successful-order .we-ve-received-your {
+  position: absolute;
+  width: 398px;
+  top: 0;
+  left: 0;
+  font-family: "Roobert TRIAL-Bold", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20.8px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.successful-order .span {
+  font-weight: var(--h2-mobile-font-weight);
+  font-family: var(--h2-mobile-font-family);
+  font-style: var(--h2-mobile-font-style);
+  letter-spacing: var(--h2-mobile-letter-spacing);
+  line-height: var(--h2-mobile-line-height);
+  font-size: var(--h2-mobile-font-size);
+}
+
+.successful-order .text-wrapper-2 {
+  font-family: var(--h3-mobile-font-family);
+  font-weight: var(--h3-mobile-font-weight);
+  font-size: var(--h3-mobile-font-size);
+  font-style: var(--h3-mobile-font-style);
+  letter-spacing: var(--h3-mobile-letter-spacing);
+  line-height: var(--h3-mobile-line-height);
+}
+
+.successful-order .text-wrapper-3 {
+  font-family: var(--body-copy-mobile-font-family);
+  font-size: var(--body-copy-mobile-font-size);
+  font-style: var(--body-copy-mobile-font-style);
+  font-weight: var(--body-copy-mobile-font-weight);
+  letter-spacing: var(--body-copy-mobile-letter-spacing);
+  line-height: var(--body-copy-mobile-line-height);
+}
+
+.successful-order .group {
+  position: absolute;
+  width: 129px;
+  height: 248px;
+  top: 99px;
+  left: 137px;
+}
+
+.successful-order .loaf {
+  position: absolute;
+  width: 36px;
+  height: 17px;
+  top: 132px;
+  left: 238px;
+}
+
+.successful-order .order-confirmation {
+  position: absolute;
+  width: 398px;
+  height: 60px;
+  top: 659px;
+  left: 17px;
+  background-color: var(--cloud-white);
+  border-radius: 15px;
+  box-shadow: var(--drop-shadow);
+}
+
+.successful-order .text-wrapper-4 {
+  position: absolute;
+  width: 302px;
+  height: 60px;
+  top: 15px;
+  left: 49px;
+  font-family: var(--h2-mobile-font-family);
+  font-weight: var(--h2-mobile-font-weight);
+  color: var(--med-dark-grey);
+  font-size: var(--h2-mobile-font-size);
+  text-align: center;
+  letter-spacing: var(--h2-mobile-letter-spacing);
+  line-height: var(--h2-mobile-line-height);
+  font-style: var(--h2-mobile-font-style);
+}
+
+.successful-order .nav-bar {
+  position: fixed;
+  width: 430px;
+  height: 97px;
+  top: 838px;
+  left: 0;
+  background-color: var(--cloud-white);
+  box-shadow: var(--nav-shadow);
+}
+
+.successful-order .frame {
+  display: inline-flex;
+  align-items: center;
+  gap: 67px;
+  position: absolute;
+  top: 13px;
+  left: 43px;
+}
+
+.successful-order .img {
+  position: relative;
+  width: 32px;
+  height: 38.83px;
+}
+
+.successful-order .group-2 {
+  position: relative;
+  width: 38px;
+  height: 38.83px;
+}
+
+.successful-order .text-wrapper-5 {
+  position: absolute;
+  height: 14px;
+  top: 56px;
+  left: 42px;
+  font-family: var(--nav-text-font-family);
+  font-weight: var(--nav-text-font-weight);
+  color: #000000;
+  font-size: var(--nav-text-font-size);
+  text-align: center;
+  letter-spacing: var(--nav-text-letter-spacing);
+  line-height: var(--nav-text-line-height);
+  white-space: nowrap;
+  font-style: var(--nav-text-font-style);
+}
+
+.successful-order .text-wrapper-6 {
+  position: absolute;
+  height: 14px;
+  top: 56px;
+  left: 143px;
+  font-family: var(--nav-text-font-family);
+  font-weight: var(--nav-text-font-weight);
+  color: #000000;
+  font-size: var(--nav-text-font-size);
+  text-align: center;
+  letter-spacing: var(--nav-text-letter-spacing);
+  line-height: var(--nav-text-line-height);
+  white-space: nowrap;
+  font-style: var(--nav-text-font-style);
+}
+
+.successful-order .text-wrapper-7 {
+  position: absolute;
+  height: 14px;
+  top: 56px;
+  left: 255px;
+  font-family: var(--nav-text-font-family);
+  font-weight: var(--nav-text-font-weight);
+  color: #000000;
+  font-size: var(--nav-text-font-size);
+  text-align: center;
+  letter-spacing: var(--nav-text-letter-spacing);
+  line-height: var(--nav-text-line-height);
+  white-space: nowrap;
+  font-style: var(--nav-text-font-style);
+}
+
+.successful-order .text-wrapper-8 {
+  position: absolute;
+  height: 14px;
+  top: 56px;
+  left: 352px;
+  font-family: var(--nav-text-font-family);
+  font-weight: var(--nav-text-font-weight);
+  color: #000000;
+  font-size: var(--nav-text-font-size);
+  text-align: center;
+  letter-spacing: var(--nav-text-letter-spacing);
+  line-height: var(--nav-text-line-height);
+  white-space: nowrap;
+  font-style: var(--nav-text-font-style);
+}
+
+.successful-order .back-button {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 51px;
+  left: 3px;
+}
+
+.successful-order .group-3 {
+  position: absolute;
+  width: 165px;
+  height: 40px;
+  top: 51px;
+  left: 62px;
+}
+
+.successful-order .text-wrapper-9 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Farm to Market Bold-Regular", Helvetica;
+  font-weight: 400;
+  color: var(--semi-black);
+  font-size: 30.1px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
