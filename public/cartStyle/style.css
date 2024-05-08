@@ -50,6 +50,7 @@
   left: 16px;
   position: relative;
   height: 120px;
+  margin: 20px;
 }
 
 .shopping-cart-page .cart-image {
@@ -270,8 +271,8 @@
   top: 180px;
   left: 16px;
   background-color: var(--cloud-white);
-  /* border-radius: 16px;
-  box-shadow: var(--center-drop-shadow); */
+  border-radius: 16px;
+  box-shadow: var(--center-drop-shadow);
 }
 
 .shopping-cart-page .text-wrapper-8 {
@@ -292,7 +293,7 @@
   position: absolute;
   height: 21px;
   top: 39px;
-  left: 336px;
+  left: 300px;
   font-family: var(--medium-header-mobile-font-family);
   font-weight: var(--medium-header-mobile-font-weight);
   color: var(--semi-black);
@@ -525,4 +526,8 @@
 body a {
   text-decoration: none;
   color: black;
+}
+
+.cart-product-wrapper {
+  margin-bottom: 20px;
 }
