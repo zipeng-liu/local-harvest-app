@@ -580,7 +580,8 @@
   width: 199px;
   height: 178px;
   top: -1px;
-  left: -1px;
+  left: -10px;
+  border-radius: 10px;
 }
 
 .home-page .category {
@@ -1058,4 +1059,9 @@
   height: 40px;
   top: 125px;
   left: 5px;
+}
+
+body a {
+  text-decoration: none;
+  color: black;
 }
