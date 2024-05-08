@@ -81,7 +81,6 @@ class VendorProductController implements IController {
                 secondaryPhoto1: uploadResults[1].url,
                 secondaryPhoto2: uploadResults[2].url,
                 secondaryPhoto3: uploadResults[3].url,
-                // primary: uploadResults.map(result => result.url)  // Assuming you want to store URLs
             };
             //@ts-ignore
             await this._service.addProductToVendor(vendorId, product);
