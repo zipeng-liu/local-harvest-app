@@ -31,6 +31,7 @@ class CartController implements IController {
     this.router.post(`${this.path}/decrease`, ensureAuthenticated, this.decreaseQuantity);
     this.router.post(`${this.path}/delete`, ensureAuthenticated, this.removeFromCart);
     this.router.get(`${this.path}/success`, ensureAuthenticated, this.showSuccessPage);
+    this.router.get(`${this.path}/viewOrder`, ensureAuthenticated, this.viewOrder);
   }
 
   private showCart = async (req: express.Request, res: express.Response) => {
@@ -96,7 +97,30 @@ class CartController implements IController {
 
 
   private showSuccessPage = async (req: Request, res: Response) => {
-    res.render("success")
+    try {
+      const profileLink = getProfileLink(req, res);
+      if (profileLink) {
+        res.render("success", { profileLink });
+      } else {
+        res.redirect("401");
+      }
+    } catch(error) {
+      throw new Error("Failed to load successful page for order")
+    }
+  };
+
+  // add logic to check customer ID here to show order details
+  private viewOrder = async(req: Request, res: Response) => {
+    try {
+      const profileLink = getProfileLink(req, res);
+      if (profileLink) {
+        res.render("orderDetails", { profileLink });
+      } else {
+        res.redirect("401");
+      }
+    } catch(error) {
+      throw new Error("Failed to load order details")
+    } 
   }
 }
 
