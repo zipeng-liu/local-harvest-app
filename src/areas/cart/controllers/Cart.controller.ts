@@ -14,7 +14,6 @@ declare module "express-session" {
   }
 }
 
-
 class CartController implements IController {
   public path = "/cart";
   public router = express.Router();
@@ -27,20 +26,30 @@ class CartController implements IController {
 
   private initializeRoutes() {
     this.router.get(`${this.path}`, ensureAuthenticated, this.showCart);
-    this.router.post(`${this.path}/increase`, ensureAuthenticated, this.increaseQuantity);
-    this.router.post(`${this.path}/decrease`, ensureAuthenticated, this.decreaseQuantity);
+    this.router.get(`${this.path}/api/getCount`, this.getCartCount);
+    this.router.post(
+      `${this.path}/increase/:cartId`,
+      ensureAuthenticated,
+      this.handleIncreaseQuantity
+    );
+    this.router.post(
+      `${this.path}/decrease/:cartId`,
+      ensureAuthenticated,
+      this.handleDecreaseQuantity
+    );
     this.router.post(`${this.path}/delete`, ensureAuthenticated, this.removeFromCart);
     this.router.get(`${this.path}/success`, ensureAuthenticated, this.showSuccessPage);
+
   }
 
   private showCart = async (req: express.Request, res: express.Response) => {
     try {
       const customerId = req.session.userId?.customerId;
       if (!customerId) {
-        return res.redirect("401"); 
+        return res.redirect("401");
       }
       const cartItems = await this._service.getCartByUserId(customerId);
-      console.log(cartItems)
+      console.log("cartItems");
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
         res.render("cart", { profileLink, cartItems });
@@ -52,33 +61,56 @@ class CartController implements IController {
     }
   };
 
-  private increaseQuantity = async (req: Request, res: Response) => {
-    const customerId = req.session.userId?.customerId;
-    const { productId } = req.body;
-    if (!customerId || !productId) {
-      return res.status(400).json({ message: "Invalid request" });
-    }
-    const result = await this._service.increaseProductQuantity(customerId, Number(productId));
-    if (result) {
-      res.redirect("/cart");
-    } else {
-      res.status(500).json({ message: "Unable to increase product quantity" });
+  private getCartCount = async (
+    req: express.Request,
+    res: express.Response
+  ) => {
+    try {
+      const customerId = req.session.userId?.customerId || 1;
+      if (!customerId) {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
+      const count = await this._service.getCartItemCount(customerId);
+      res.json({ count });
+    } catch (error) {
+      res.status(500).json({ error: "Internal Server Error" });
     }
   };
 
-  private decreaseQuantity = async (req: Request, res: Response) => {
-    const customerId = req.session.userId?.customerId;
-    const { productId } = req.body;
-    if (!customerId || !productId) {
-      return res.status(400).json({ message: "Invalid request" });
-    }
-    const result = await this._service.decreaseProductQuantity(customerId, Number(productId));
-    if (result) {
-      res.redirect("/cart");
-    } else {
-      res.status(500).json({ message: "Unable to decrease product quantity" });
+  private handleIncreaseQuantity = async (
+    req: express.Request,
+    res: express.Response
+  ) => {
+    try {
+      const cartId = parseInt(req.params.cartId);
+      const customerId = req.session.userId?.customerId || 0;
+      const updatedCart = await this._service.increaseCartItem(
+        cartId,
+        customerId
+      );
+      res.json(updatedCart);
+    } catch (error) {
+      res.status(500).json({ message: "Unable to update cart item!" });
     }
   };
+
+  private handleDecreaseQuantity = async (
+    req: express.Request,
+    res: express.Response
+  ) => {
+    try {
+      const cartId = parseInt(req.params.cartId);
+      const customerId = req.session.userId?.customerId || 0;
+      const updatedCart = await this._service.decreaseCartItem(
+        cartId,
+        customerId
+      );
+      res.json(updatedCart);
+    } catch (error) {
+      res.status(500).json({ message: "Unable to update cart item!" });
+    }
+  };
+
 
   private removeFromCart = async (req: Request, res: Response) => {
     const customerId = req.session.userId?.customerId;

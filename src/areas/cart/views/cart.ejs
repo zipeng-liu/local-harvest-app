@@ -21,23 +21,23 @@
                 <img class="cart-image" src="<%= item.product.primaryPhoto %>" alt="<%= item.product.name %>" />
               <% } %>
             </div>
-            <p class="p"><a class="button-color-effect" href="/products/<%= item.productId %>"><%= item.product.name %></p></a>
-            <div class="text-wrapper-3">$<%= item.product.price.toFixed(2) %></div>
-            <div class="product-amount">
-              <div class="overlap-group">
-                <form action="/cart/increase" method="post">
-                  <input type="hidden" name="productId" value="<%= item.productId %>" />
-                  <button type="submit" class="ADD button-enlarge-effect">+</button>
-                </form>
-                <form action="/cart/decrease" method="post">
-                  <input type="hidden" name="productId" value="<%= item.productId %>" />
-                  <button type="submit" class="MINUS button-enlarge-effect">-</button>
-                </form>
-                <form action="/cart/delete" method="post">
-                  <input type="hidden" name="productId" value="<%= item.productId %>" />
-                  <button type="submit" class="TRASH button-enlarge-effect" style="background-image: url('/image/trash.png'); background-repeat: no-repeat; background-size: cover;"></button>
-                </form>
-                <div class="text-wrapper-4"><%= item.quantity %></div>
+              <p class="p"><a class="button-color-effect" href="/products/<%= item.productId %>"><%= item.product.name %></p></a>
+              <div class="text-wrapper-3">$<%= item.product.price.toFixed(2) %></div>
+              <div class="product-amount">
+                <div class="overlap-group">
+                  <form action="/cart/delete" method="post">
+                    <input type="hidden" name="productId" value="<%= item.productId %>" />
+                    <button type="submit" class="TRASH button-enlarge-effect" style="background-image: url('/image/trash.png'); background-repeat: no-repeat; background-size: cover;">
+                    </button>
+                  </form>
+                  <form action="#" method="post">
+                    <button type="button" class="ADD button-enlarge-effect" data-cart-id="<%= item.cartId %>">+</button>
+                  </form>
+                  <form action="#" method="post">
+                    <button type="button" class="MINUS button-enlarge-effect" data-cart-id="<%= item.cartId %>">-</button>
+                  </form>                  
+                  <div class="text-wrapper-4"><%= item.quantity %></div>
+                </div>
               </div>
             </div>
           </div>
@@ -69,6 +69,53 @@
         </div>
       </div>
     </div>
+   
+      
+
     <%- include('../../../components/footer') %>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const addButtons = document.querySelectorAll('.ADD');
+        const minusButtons = document.querySelectorAll('.MINUS');
+    
+        addButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            const cartId = this.getAttribute('data-cart-id');
+            updateCartItem(cartId, 1);
+          });
+        });
+    
+        minusButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            const cartId = this.getAttribute('data-cart-id');
+            updateCartItem(cartId, -1);
+          });
+        });
+    
+        function updateCartItem(cartId, change) {
+          fetch(`/cart/update/${cartId}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ change })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              document.querySelector(`[data-cart-id="${cartId}"]`).closest('.cart-product').querySelector('.text-wrapper-4').textContent = data.newQuantity;
+            } else {
+              alert('Failed to update cart item.');
+            }
+          })
+          .catch(error => {
+            console.error('Error updating cart item:', error);
+          });
+        }
+      });
+    </script>
+    
   </body>
 </html>
