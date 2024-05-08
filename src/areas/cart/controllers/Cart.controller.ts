@@ -17,6 +17,17 @@ class CartController implements IController {
 
   private initializeRoutes() {
     this.router.get(`${this.path}`, ensureAuthenticated, this.showCart);
+    this.router.get(`${this.path}/api/getCount`, this.getCartCount);
+    this.router.post(
+      `${this.path}/increase/:cartId`,
+      ensureAuthenticated,
+      this.handleIncreaseQuantity
+    );
+    this.router.post(
+      `${this.path}/decrease/:cartId`,
+      ensureAuthenticated,
+      this.handleDecreaseQuantity
+    );
   }
 
   private showCart = async (req: express.Request, res: express.Response) => {
@@ -27,16 +38,64 @@ class CartController implements IController {
       }
       const cartItems = await this._service.getCartByUserId(customerId);
       console.log("cartItems");
-      // console.log(cartItems);
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
         res.render("cart", { profileLink, cartItems });
-        // res.json("test");
       } else {
         res.redirect("401");
       }
     } catch (error) {
       throw new Error("Failed to load cart page");
+    }
+  };
+
+  private getCartCount = async (
+    req: express.Request,
+    res: express.Response
+  ) => {
+    try {
+      const customerId = req.session.userId?.customerId || 1;
+      if (!customerId) {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
+      const count = await this._service.getCartItemCount(customerId);
+      res.json({ count });
+    } catch (error) {
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };
+
+  private handleIncreaseQuantity = async (
+    req: express.Request,
+    res: express.Response
+  ) => {
+    try {
+      const cartId = parseInt(req.params.cartId);
+      const customerId = req.session.userId?.customerId || 0;
+      const updatedCart = await this._service.increaseCartItem(
+        cartId,
+        customerId
+      );
+      res.json(updatedCart);
+    } catch (error) {
+      res.status(500).json({ message: "Unable to update cart item!" });
+    }
+  };
+
+  private handleDecreaseQuantity = async (
+    req: express.Request,
+    res: express.Response
+  ) => {
+    try {
+      const cartId = parseInt(req.params.cartId);
+      const customerId = req.session.userId?.customerId || 0;
+      const updatedCart = await this._service.decreaseCartItem(
+        cartId,
+        customerId
+      );
+      res.json(updatedCart);
+    } catch (error) {
+      res.status(500).json({ message: "Unable to update cart item!" });
     }
   };
 }
