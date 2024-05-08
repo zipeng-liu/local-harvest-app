@@ -14,35 +14,41 @@
         <div class="text-wrapper-2">Order Details</div>
 
 
-        <% cartItems.forEach((item) => { %>
-          <div class="cart-product">
-            <div class="cart-image">
-              <% if (item.product.primaryPhoto) { %>
-                <img class="cart-image" src="<%= item.product.primaryPhoto %>" alt="<%= item.product.name %>" />
-              <% } %>
-            </div>
-              <p class="p"><a class="button-color-effect" href="/products/<%= item.productId %>"><%= item.product.name %></p></a>
+        <% if (cartItems.length === 0) { %>
+          <div><p>Your cart is empty</p></div>
+        <% } else { %>
+          <% cartItems.forEach((item) => { %>
+            <div class="cart-product">
+              <div class="cart-image">
+                <% if (item.product.primaryPhoto) { %>
+                  <img class="cart-image" src="<%= item.product.primaryPhoto %>" alt="<%= item.product.name %>" />
+                <% } %>
+              </div>
+              <p class="p">
+                <a class="button-color-effect" href="/products/<%= item.productId %>">
+                  <%= item.product.name %>
+                </a>
+              </p>
               <div class="text-wrapper-3">$<%= item.product.price.toFixed(2) %></div>
               <div class="product-amount">
-                <div class="overlap-group">
-                  <form action="/cart/delete" method="post">
-                    <input type="hidden" name="productId" value="<%= item.productId %>" />
-                    <button type="submit" class="TRASH button-enlarge-effect" style="background-image: url('/image/trash.png'); background-repeat: no-repeat; background-size: cover;">
-                    </button>
-                  </form>
-                  <form action="#" method="post">
-                    <button type="button" class="ADD button-enlarge-effect" data-cart-id="<%= item.cartId %>">+</button>
-                  </form>
-                  <form action="#" method="post">
-                    <button type="button" class="MINUS button-enlarge-effect" data-cart-id="<%= item.cartId %>">-</button>
-                  </form>                  
-                  <div class="text-wrapper-4"><%= item.quantity %></div>
-                </div>
+                  <div class="overlap-group">
+                    <form action="/cart/delete/<%= item.cartId %>" method="post">
+                      <button type="submit" class="TRASH button-enlarge-effect" data-cart-id="<%= item.cartId %>" style="background-image: url('/image/trash.png'); background-repeat: no-repeat; background-size: cover;">
+                      </button>
+                    </form>
+                    <form action="/cart/increase/<%= item.cartId %>" method="post">
+                      <button type="button" class="ADD button-enlarge-effect" data-cart-id="<%= item.cartId %>">+</button>
+                    </form>
+                    <form action="/cart/decrease/<%= item.cartId %>" method="post">
+                      <button type="button" class="MINUS button-enlarge-effect" data-cart-id="<%= item.cartId %>">-</button>
+                    </form>                  
+                    <div class="text-wrapper-4"><%= item.quantity %></div>
+                  </div>
               </div>
             </div>
-          </div>
-        <% }); %>
-        
+          <% }); %>
+        <% } %>
+
 
         <div class="payment-method">
           <div class="overlap">
@@ -70,8 +76,6 @@
       </div>
     </div>
    
-      
-
     <%- include('../../../components/footer') %>
 
 
@@ -79,39 +83,70 @@
       document.addEventListener('DOMContentLoaded', function() {
         const addButtons = document.querySelectorAll('.ADD');
         const minusButtons = document.querySelectorAll('.MINUS');
+        const deleteButtons = document.querySelectorAll('.TRASH');
     
         addButtons.forEach(button => {
-          button.addEventListener('click', function() {
+          button.addEventListener('click', function(event) {
+            event.preventDefault(); 
             const cartId = this.getAttribute('data-cart-id');
-            updateCartItem(cartId, 1);
+            updateCartItem(cartId, 'increase');
           });
         });
     
         minusButtons.forEach(button => {
-          button.addEventListener('click', function() {
+          button.addEventListener('click', function(event) {
+            event.preventDefault(); 
             const cartId = this.getAttribute('data-cart-id');
-            updateCartItem(cartId, -1);
+            updateCartItem(cartId, 'decrease');
+          });
+        });
+
+        deleteButtons.forEach(button => {
+          button.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            const cartId = this.getAttribute('data-cart-id');
+            deleteCartItem(cartId);
           });
         });
     
-        function updateCartItem(cartId, change) {
-          fetch(`/cart/update/${cartId}`, {
+        function updateCartItem(cartId, action) {
+          fetch(`/cart/${action}/${cartId}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ change })
+            }
           })
           .then(response => response.json())
           .then(data => {
             if (data.success) {
-              document.querySelector(`[data-cart-id="${cartId}"]`).closest('.cart-product').querySelector('.text-wrapper-4').textContent = data.newQuantity;
+              const quantityElement = document.querySelector(`[data-cart-id="${cartId}"]`).closest('.cart-product').querySelector('.text-wrapper-4');
+              quantityElement.textContent = data.newQuantity;
             } else {
               alert('Failed to update cart item.');
             }
           })
           .catch(error => {
-            console.error('Error updating cart item:', error);
+            console.error(`Error updating cart item (${action}):`, error);
+          });
+        }
+
+        function deleteCartItem(cartId) {
+          fetch(`/cart/delete/${cartId}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              document.querySelector(`[data-cart-id="${cartId}"]`).closest('.cart-product').remove();
+            } else {
+              alert('Failed to delete cart item.');
+            }
+          })
+          .catch(error => {
+            console.error('Error deleting cart item:', error);
           });
         }
       });

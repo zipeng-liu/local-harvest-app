@@ -1,18 +1,8 @@
 import express, { Request, Response } from "express";
 import IController from "../../../interfaces/controller.interface";
 import ensureAuthenticated from "../../../middleware/authentication.middleware";
+import { ICartService } from "../services/ICart.service";
 import { getProfileLink } from "../../../helper/profileLink";
-import ICartService from "../services/ICart.service";
-
-declare module "express-session" {
-  interface SessionData {
-    userId: {
-      vendorId: number | null;
-      customerId: number | null;
-    };
-    messages: string | null;
-  }
-}
 
 class CartController implements IController {
   public path = "/cart";
@@ -27,109 +17,77 @@ class CartController implements IController {
   private initializeRoutes() {
     this.router.get(`${this.path}`, ensureAuthenticated, this.showCart);
     this.router.get(`${this.path}/api/getCount`, this.getCartCount);
-    this.router.post(
-      `${this.path}/increase/:cartId`,
-      ensureAuthenticated,
-      this.handleIncreaseQuantity
-    );
-    this.router.post(
-      `${this.path}/decrease/:cartId`,
-      ensureAuthenticated,
-      this.handleDecreaseQuantity
-    );
-    this.router.post(`${this.path}/delete`, ensureAuthenticated, this.removeFromCart);
-    this.router.get(`${this.path}/success`, ensureAuthenticated, this.showSuccessPage);
-
+    this.router.post(`${this.path}/increase/:cartId`, ensureAuthenticated, this.handleIncreaseQuantity);
+    this.router.post(`${this.path}/decrease/:cartId`, ensureAuthenticated, this.handleDecreaseQuantity);
+    this.router.post(`${this.path}/delete/:cartId`, ensureAuthenticated, this.handleRemoveProductFromCart);
   }
 
-  private showCart = async (req: express.Request, res: express.Response) => {
+  private showCart = async (req: Request, res: Response) => {
     try {
       const customerId = req.session.userId?.customerId;
-      if (!customerId) {
-        return res.redirect("401");
-      }
+      if (!customerId) return res.redirect("401");
+
       const cartItems = await this._service.getCartByUserId(customerId);
-      console.log("cartItems");
+      if (!cartItems) throw new Error("Cart not found");
+
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
-        res.render("cart", { profileLink, cartItems });
+        res.render("cart", { cartItems, profileLink });
       } else {
         res.redirect("401");
       }
     } catch (error) {
-      throw new Error("Failed to load cart page");
+      console.error("Failed to load cart:", error);
+      res.status(500).json({ message: "Internal server error" });
     }
   };
 
-  private getCartCount = async (
-    req: express.Request,
-    res: express.Response
-  ) => {
+  private getCartCount = async (req: Request, res: Response) => {
     try {
-      const customerId = req.session.userId?.customerId || 1;
-      if (!customerId) {
-        return res.status(401).json({ error: "Unauthorized" });
-      }
-      const count = await this._service.getCartItemCount(customerId);
+      const customerId = req.session.userId?.customerId;
+      if (!customerId) return res.status(401).json({ error: "Unauthorized" });
+
+      const count = await this._service.getCartCount(customerId);
       res.json({ count });
     } catch (error) {
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({ error: "Internal server error" });
     }
   };
 
-  private handleIncreaseQuantity = async (
-    req: express.Request,
-    res: express.Response
-  ) => {
+  private handleIncreaseQuantity = async (req: Request, res: Response) => {
     try {
       const cartId = parseInt(req.params.cartId);
-      const customerId = req.session.userId?.customerId || 0;
-      const updatedCart = await this._service.increaseCartItem(
-        cartId,
-        customerId
-      );
-      res.json(updatedCart);
+      const updatedCart = await this._service.increaseCartItem(cartId);
+      res.json({ success: true, newQuantity: updatedCart.quantity });
     } catch (error) {
-      res.status(500).json({ message: "Unable to update cart item!" });
+      res.status(500).json({ success: false, message: "Unable to update cart item!" });
     }
   };
-
-  private handleDecreaseQuantity = async (
-    req: express.Request,
-    res: express.Response
-  ) => {
+  
+  private handleDecreaseQuantity = async (req: Request, res: Response) => {
     try {
       const cartId = parseInt(req.params.cartId);
-      const customerId = req.session.userId?.customerId || 0;
-      const updatedCart = await this._service.decreaseCartItem(
-        cartId,
-        customerId
-      );
-      res.json(updatedCart);
+      const updatedCart = await this._service.decreaseCartItem(cartId);
+      res.json({ success: true, newQuantity: updatedCart.quantity });
     } catch (error) {
-      res.status(500).json({ message: "Unable to update cart item!" });
+      res.status(500).json({ success: false, message: "Unable to update cart item!" });
     }
   };
 
-
-  private removeFromCart = async (req: Request, res: Response) => {
-    const customerId = req.session.userId?.customerId;
-    const { productId } = req.body; 
-    if (!customerId || !productId) {
-      return res.status(400).json({ message: "Invalid request" });
-    }
-    const success = await this._service.removeProductFromCart(customerId, Number(productId));
-    if (success) {
-      res.redirect("/cart");
-    } else {
-      res.status(500).json({ message: "Unable to remove product from cart" });
+  private handleRemoveProductFromCart = async (req: Request, res: Response) => {
+    try {
+      const cartId = parseInt(req.params.cartId);
+      const removed = await this._service.removeProductFromCart(cartId);
+      if (removed) {
+        res.json({ success: true, message: "Product removed successfully from the cart" });
+      } else {
+        res.status(404).json({ success: false, message: "Product not found in the cart" });
+      }
+    } catch (error) {
+      console.error("Error removing product from cart:", error);
+      res.status(500).json({ success: false, message: "Internal server error" });
     }
   };
-
-
-  private showSuccessPage = async (req: Request, res: Response) => {
-    res.render("success")
-  }
 }
 
 export default CartController;
