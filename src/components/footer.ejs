@@ -43,6 +43,7 @@
     </a>
   </div>
 </div>
+
 <script>
   // Grab the cart counter element
   const cartCounter = document.getElementById("cart-counter");
@@ -79,27 +80,11 @@
     cartCounter.style.display = count > 0 ? "inline" : "none";
   }
 
-  // Function to handle cart updates
-  function updateCartCount() {
-    console.log('Updating cart count...');
-    fetchCartCount();
-  }
+  // Polling the server every 1 seconds to check for cart updates
+  setInterval(fetchCartCount, 1000);
 
-  // Set up event listeners for adding and removing items from the cart
-  function setupEventListeners() {
-    console.log('Setting up event listeners...');
-    document.body.addEventListener('click', function(event) {
-      if (event.target.matches('.ADD-TO-CART, .TRASH')) {
-        console.log('Cart update action triggered.');
-        updateCartCount();
-      }
-    });
-  }
-
-  // Initialize everything when the document is loaded
+  // Initial fetch when the document loads
   document.addEventListener("DOMContentLoaded", function() {
-    console.log('Document loaded. Fetching initial cart count and setting up listeners.');
     fetchCartCount(); // Fetch the cart count initially
-    setupEventListeners(); // Set up the event listeners for dynamic updates
   });
 </script>
