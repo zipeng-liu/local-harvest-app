@@ -7,18 +7,19 @@
     <link rel="stylesheet" href="/productStyle/style.css" />
   </head>
   <body>
+    <!-- Logo header bar -->
     <%- include('../../../components/header') %>
-
     <div class="item-page">
       <div class="div">
-        <div class="add-to-cart">
-          <a href="/customer/addCart"></a>
-            <div class="group">
-              <div class="text-wrapper">Add to Cart</div>
-              <img class="vector" src="/image/shopping-cart.png" />
-            </div>  
+        
+        <!-- Back button -->
+        <div class="back-button">
+          <a href="/home">
+            <img class="back-button button-full-effect" src="/image/navigate_before.svg" />
           </a>
         </div>
+        
+        <!-- Product images -->
         <div class="item-page-image">
           <img class="rectangle" src="<%= product.primaryPhoto %>" />
           <div class="filled-item">
@@ -26,13 +27,12 @@
           </div>
           <div class="filled-item-2">
             <img class="rectangle" src="<%= product.secondaryPhoto2 %>" />
-
           </div>
           <div class="mini-item-picture">
             <img class="rectangle" src="<%= product.secondaryPhoto3 %>" />
-
           </div>
         </div>
+
         <div class="item-description">
           <img class="favourite" src="/image/Property 1=Default.svg" />
           <div class="item-name"><%= product.name %></div>
@@ -69,10 +69,23 @@
           <div class="text-wrapper-8">$1</div>
           <div class="text-wrapper-9">$1</div>
         </div>
-        <img class="back-button" src="/image/navigate_before.svg" />
+        
+        <!-- Add to cart button -->
+        <div class="add-to-cart">
+          <div class="group">
+            <form action="/customer/addToCart" method="post">
+              <button class="ADD-TO-CART" type="submit">
+                <div class="text-wrapper">Add to Cart</div>
+                <img class="vector" src="/image/shopping-cart.png" />
+              </button>
+            </form>
+          </div> 
+        </div>
+
         </div>
       </div>
     </div>
+    <!-- Footer nav bar -->
     <%- include('../../../components/footer') %>
   </body>
 </html>

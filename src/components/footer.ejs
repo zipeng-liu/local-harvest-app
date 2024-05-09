@@ -44,55 +44,62 @@
   </div>
 </div>
 <script>
+  // Grab the cart counter element
   const cartCounter = document.getElementById("cart-counter");
 
-  document.addEventListener("DOMContentLoaded", function () {
-    function fetchCartCount() {
-      fetch("/cart/api/getCount")
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error("Network response was not ok.");
-        })
-        .then((data) => {
-          // Update the counter value
-          cartCounter.textContent = data.count;
-
-          // Toggle visibility based on item count
-          if (data.count > 0) {
-            cartCounter.style.display = "inline";
-          } else {
-            cartCounter.style.display = "none";
-          }
-        })
-        .catch((error) => {
-          console.error(
-            "There has been a problem with your fetch operation:",
-            error
-          );
-        });
-    }
-
-    fetchCartCount();
-  });
-
-  function updateCartCount(change) {
-    let currentCount = parseInt(cartCounter.textContent);
-    currentCount += change;
-
-    // Prevent negative values
-    if (currentCount < 0) {
-      currentCount = 0;
-    }
-
-    cartCounter.textContent = currentCount;
-
-    // Toggle visibility based on updated count
-    if (currentCount > 0) {
-      cartCounter.style.display = "inline";
-    } else {
-      cartCounter.style.display = "none";
-    }
+  // Function to fetch the current cart count from the server
+  function fetchCartCount() {
+    console.log('Fetching cart count...');
+    fetch("/cart/api/getCount", {
+      headers: {
+        'Cache-Control': 'no-cache' // Prevent caching
+      }
+    })
+    .then(response => {
+      // Check for successful response
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Log and update the cart counter display
+      console.log('Cart count fetched:', data.count);
+      updateCartDisplay(data.count);
+    })
+    .catch(error => {
+      console.error("There has been a problem with your fetch operation:", error);
+    });
   }
+
+  // Function to update the cart counter display
+  function updateCartDisplay(count) {
+    console.log('Updating display with count:', count);
+    cartCounter.textContent = count;
+    cartCounter.style.display = count > 0 ? "inline" : "none";
+  }
+
+  // Function to handle cart updates
+  function updateCartCount() {
+    console.log('Updating cart count...');
+    fetchCartCount();
+  }
+
+  // Set up event listeners for adding and removing items from the cart
+  function setupEventListeners() {
+    console.log('Setting up event listeners...');
+    document.body.addEventListener('click', function(event) {
+      if (event.target.matches('.ADD-TO-CART, .TRASH')) {
+        console.log('Cart update action triggered.');
+        updateCartCount();
+      }
+    });
+  }
+
+  // Initialize everything when the document is loaded
+  document.addEventListener("DOMContentLoaded", function() {
+    console.log('Document loaded. Fetching initial cart count and setting up listeners.');
+    fetchCartCount(); // Fetch the cart count initially
+    setupEventListeners(); // Set up the event listeners for dynamic updates
+  });
 </script>
