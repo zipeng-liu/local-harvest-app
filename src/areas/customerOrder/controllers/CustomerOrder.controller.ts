@@ -27,7 +27,9 @@ class CustomerOrderController implements IController {
   }
 
   private initializeRoutes() {
-    this.router.post(`${this.path}/addToCart/:productId`, this.handleAddProductToCart);
+    this.router.post(`${this.path}/addToCart/:productId`, ensureAuthenticated, this.handleAddProductToCart);
+    this.router.get(`${this.path}/order/success`, ensureAuthenticated, this.showOrderSuccessPage);
+    this.router.get(`${this.path}/order/details`, ensureAuthenticated, this.showOrderDetailPage);
   }
 
   private handleAddProductToCart = async (req: express.Request, res: express.Response) => {
@@ -57,7 +59,24 @@ class CustomerOrderController implements IController {
       return res.status(500).json({ success: false, message: "Failed to add product to cart" });
     }
   };
-  
+
+  private showOrderSuccessPage = async (req: express.Request, res: express.Response) => {
+    const profileLink = getProfileLink(req, res);
+    if (profileLink) {
+      res.render("success", { profileLink });
+    } else {
+      res.redirect("404");
+    }
+  }
+
+  private showOrderDetailPage = async (req: express.Request, res: express.Response) => {
+    const profileLink = getProfileLink(req, res);
+    if (profileLink) {
+      res.render("orderDetails", { profileLink });
+    } else {
+      res.redirect("404");
+    }
+  }
 }
 
 export default CustomerOrderController;
