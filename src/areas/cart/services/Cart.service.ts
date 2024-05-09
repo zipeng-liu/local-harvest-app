@@ -5,21 +5,6 @@ import DBClient from "../../../PrismaClient";
 export class CartService implements ICartService {
   readonly _db: DBClient = DBClient.getInstance();
 
-  async addProductToCart(customerId: number, productId: number, quantity: number): Promise<Cart> {
-    try {
-      return await this._db.prisma.cart.create({
-        data: {
-          userId: customerId,
-          productId,
-          quantity,
-        },
-      });
-    } catch (error) {
-      console.error("Error adding product to cart:", error);
-      throw new Error("Failed to add product to cart");
-    }
-  }
-
   async getCartByUserId(customerId: number): Promise<any> {
     try {
       return await this._db.prisma.cart.findMany({
@@ -67,9 +52,13 @@ export class CartService implements ICartService {
 
       const newQuantity = existingCartItem.quantity + change;
       if (newQuantity <= 0) {
+        const newCartItem = await this._db.prisma.cart.update({
+          where: { cartId: existingCartItem.cartId },
+          data: { quantity: newQuantity },
+        });
         await this._db.prisma.cart.delete({ where: { cartId: existingCartItem.cartId } });
-        return existingCartItem;
-      }
+        return newCartItem;
+      } 
 
       return await this._db.prisma.cart.update({
         where: { cartId: existingCartItem.cartId },

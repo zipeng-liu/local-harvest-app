@@ -33,7 +33,7 @@
     width: auto;
     min-width: 200px;
     height: 29px;
-    top: 16px;
+    top: 0;
     left: 121px;
     display: flex;
     align-items: center;
@@ -60,7 +60,7 @@
   .item-page .item-page-image {
     position: absolute;
     width: 430px;
-    height: 530px;
+    height: 350px;
     top: 0;
     left: 0;
   }
@@ -68,8 +68,8 @@
   .item-page .item-page-image img {
     position: absolute;
     width: 430px;
-    height: auto;
-    top: 20px;
+    height: 350px;
+    top: 100px;
     left: 0;
     border-radius: 8px;
   }
@@ -90,7 +90,7 @@
     width: 60px;
     height: 60px;
     top: 470px;
-    left: 20px;
+    left: 0px;
     background-size: 100% 100%;
     border-radius: 8px;
 
@@ -101,7 +101,7 @@
     width: 60px;
     height: 60px;
     top: 470px;
-    left: 103px;
+    left: 80px;
     background-size: 100% 100%;
     border-radius: 8px;
 
@@ -112,7 +112,7 @@
     width: 60px;
     height: 60px;
     top: 470px;
-    left: 186px;
+    left: 160px;
     background-color: var(--med-dark-grey);
     border-radius: 8px;
   }
@@ -415,8 +415,9 @@
     position: absolute;
     width: 40px;
     height: 40px;
-    top: 40px;
-    left: 12px;
+    top: 20px;
+    left: 0px;
+    z-index: 2;
   }
 
   
@@ -514,7 +515,61 @@
     white-space: nowrap;
     font-style: var(--nav-text-font-style);
   }
-  
+
+  .add-to-cart {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px 0;
+  }
+
+  /* Styling the form container */
+  .add-to-cart .group {
+      display: inline-block;
+      padding: 5px;
+  }
+
+  /* Styling the form itself */
+  .add-to-cart form {
+      display: inline-block;
+      margin: 0;
+  }
+
+  /* Styling the button */
+  .add-to-cart button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent; /* No custom color */
+      border: none; /* No border */
+      cursor: pointer;
+      padding: 8px 12px; /* Adjust spacing */
+      text-decoration: none;
+      font-family: inherit;
+      font-size: inherit;
+      color: white;
+  }
+
+  /* Remove button default styles */
+  .add-to-cart button:focus {
+      outline: none;
+  }
+
+  /* Styling the text inside the button */
+  .add-to-cart .text-wrapper {
+      margin-right: 8px; /* Space between text and image */
+      font-size: 16px; /* Adjust font size as needed */
+      color: inherit; /* No custom color */
+      text-align: center;
+  }
+
+  /* Styling the image inside the button */
+  .add-to-cart .vector {
+      width: 24px; /* Adjust size as needed */
+      height: 24px;
+      display: inline-block;
+  }
+    
 
   /* products page */
   .vendor-product-page {
