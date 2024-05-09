@@ -73,7 +73,7 @@
         <!-- Add to cart button -->
         <div class="add-to-cart">
           <div class="group">
-            <form action="/customer/addToCart" method="post">
+            <form action="/customer/addToCart/<%= product.productId %>" method="post" id="add-to-cart-form">
               <button class="ADD-TO-CART" type="submit">
                 <div class="text-wrapper">Add to Cart</div>
                 <img class="vector" src="/image/shopping-cart.png" />
@@ -87,5 +87,35 @@
     </div>
     <!-- Footer nav bar -->
     <%- include('../../../components/footer') %>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const addToCartForm = document.getElementById("add-to-cart-form");
+        addToCartForm.addEventListener("submit", function(event) {
+          event.preventDefault();
+          const formData = new FormData(addToCartForm);
+          const productId = "<%= product.productId %>";
+  
+          fetch(`/customer/addToCart/${productId}`, {
+            method: "POST",
+            body: formData,
+          })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                alert("Product successfully added to cart!");
+              } else {
+                alert(`Error: ${data.message}`);
+              }
+            })
+            .catch(error => {
+              console.error("Error submitting form:", error);
+              alert("An unexpected error occurred. Please try again later.");
+            });
+        });
+      });
+    </script>
+
+
   </body>
 </html>

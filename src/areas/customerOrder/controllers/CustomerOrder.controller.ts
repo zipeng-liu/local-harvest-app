@@ -27,7 +27,7 @@ class CustomerOrderController implements IController {
   }
 
   private initializeRoutes() {
-    this.router.post(`${this.path}/addToCart`, this.handleAddProductToCart);
+    this.router.post(`${this.path}/addToCart/:productId`, this.handleAddProductToCart);
   }
 
   private handleAddProductToCart = async (req: express.Request, res: express.Response) => {
@@ -37,19 +37,27 @@ class CustomerOrderController implements IController {
         return res.status(401).json({ success: false, message: "Unauthorized" });
       }
 
-      const { productId } = req.body;
-      if (!productId ) {
-        return res.status(400).json({ success: false, message: "Invalid input" });
+      const productId = parseInt(req.params.productId);
+      if (isNaN(productId)) {
+        return res.status(400).json({ success: false, message: "Invalid product ID" });
       }
-
-      const cartItem = await this._service.addProductToCart(userId, productId);
-      
-      return res.json({ success: true, cartItem });
+  
+      const existingCartItem = await this._service.getCartItemByUserIdAndProductId(userId, productId);
+      console.log(existingCartItem);
+  
+      if (existingCartItem) {
+        const updatedCartItem = await this._service.addQuantityByOne(existingCartItem.cartId);
+        return res.json({ success: true, cartItem: updatedCartItem });
+      } else {
+        const newCartItem = await this._service.addProductToCart(userId, productId, 1);
+        return res.json({ success: true, cartItem: newCartItem });
+      }
     } catch (error) {
       console.error("Error handling add to cart:", error);
       return res.status(500).json({ success: false, message: "Failed to add product to cart" });
     }
   };
+  
 }
 
 export default CustomerOrderController;

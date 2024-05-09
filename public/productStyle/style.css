@@ -60,7 +60,7 @@
   .item-page .item-page-image {
     position: absolute;
     width: 430px;
-    height: 530px;
+    height: 350px;
     top: 0;
     left: 0;
   }
@@ -68,7 +68,7 @@
   .item-page .item-page-image img {
     position: absolute;
     width: 430px;
-    height: auto;
+    height: 350px;
     top: 100px;
     left: 0;
     border-radius: 8px;
