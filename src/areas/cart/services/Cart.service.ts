@@ -52,9 +52,13 @@ export class CartService implements ICartService {
 
       const newQuantity = existingCartItem.quantity + change;
       if (newQuantity <= 0) {
+        const newCartItem = await this._db.prisma.cart.update({
+          where: { cartId: existingCartItem.cartId },
+          data: { quantity: newQuantity },
+        });
         await this._db.prisma.cart.delete({ where: { cartId: existingCartItem.cartId } });
-        return existingCartItem;
-      }
+        return newCartItem;
+      } 
 
       return await this._db.prisma.cart.update({
         where: { cartId: existingCartItem.cartId },

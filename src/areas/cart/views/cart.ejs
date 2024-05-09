@@ -85,25 +85,29 @@
         const minusButtons = document.querySelectorAll('.MINUS');
         const deleteButtons = document.querySelectorAll('.TRASH');
         
+        // Add event listeners to all ADD buttons
         addButtons.forEach(button => {
           button.addEventListener('click', function(event) {
-            event.preventDefault(); 
+            event.preventDefault();
             const cartId = this.getAttribute('data-cart-id');
             updateCartItem(cartId, 'increase');
           });
         });
         
+        // Add event listeners to all MINUS buttons
         minusButtons.forEach(button => {
           button.addEventListener('click', function(event) {
-            event.preventDefault(); 
+            event.preventDefault();
             const cartId = this.getAttribute('data-cart-id');
             updateCartItem(cartId, 'decrease');
           });
         });
-    
+      
+        // Add event listeners to all TRASH buttons
         deleteButtons.forEach(button => {
           button.addEventListener('click', function(event) {
-            event.preventDefault(); 
+            event.preventDefault();
+            const cartId = this.getAttribute('data-cart-id');
             deleteCartItem(cartId);
           });
         });
@@ -117,10 +121,16 @@
           })
           .then(response => response.json())
           .then(data => {
+            console.log('Update Response:', data);
             if (data.success) {
               const cartProductElement = document.querySelector(`[data-cart-id="${cartId}"]`).closest('.cart-product');
               const quantityElement = cartProductElement.querySelector('.text-wrapper-4');
-              quantityElement.textContent = data.newQuantity;
+              if (data.newQuantity > 0) {
+                quantityElement.textContent = data.newQuantity;
+              } else {
+                document.querySelector(`[data-cart-id="${cartId}"]`).closest('.cart-product').remove(); 
+                // Remove the product from the DOM if quantity is zero
+              }
               updateSubtotal(); // Call to update the subtotal
             } else {
               alert('Failed to update cart item.');
@@ -130,7 +140,7 @@
             console.error(`Error updating cart item (${action}):`, error);
           });
         }
-    
+      
         function deleteCartItem(cartId) {
           fetch(`/cart/delete/${cartId}`, {
             method: 'POST',
@@ -140,6 +150,7 @@
           })
           .then(response => response.json())
           .then(data => {
+            console.log('Delete Response:', data);
             if (data.success) {
               document.querySelector(`[data-cart-id="${cartId}"]`).closest('.cart-product').remove();
               updateSubtotal(); // Update the subtotal when an item is removed
@@ -151,7 +162,7 @@
             console.error('Error deleting cart item:', error);
           });
         }
-    
+      
         function updateSubtotal() {
           const cartProducts = document.querySelectorAll('.cart-product');
           let subtotal = 0;
@@ -163,7 +174,8 @@
           document.querySelector('.text-wrapper-9').textContent = `$${subtotal.toFixed(2)}`;
         }
       });
-    </script>
+      </script>
+      
     
   </body>
 </html>
