@@ -21,6 +21,8 @@ import ProductController from "./areas/products/controllers/Product.controller";
 import { ProductService } from "./areas/products/services/Product.service";
 import CustomerProfileController from "./areas/customerProfile/controllers/CustomerProfile.controller";
 import { CustomerProfileService } from "./areas/customerProfile/services/CustomerProfile.service";
+import CustomerOrderController from "./areas/customerOrder/controllers/CustomerOrder.controller";
+import { CustomerOrderService } from "./areas/customerOrder/services/CustomerOrder.service";
 
 const server = new App([
   new LandingController(),
@@ -32,7 +34,8 @@ const server = new App([
   new SearchController(new SearchService()),
   new CartController(new CartService()),
   new ProductController(new ProductService()),
-  new CustomerProfileController(new CustomerProfileService())
+  new CustomerProfileController(new CustomerProfileService()),
+  new CustomerOrderController(new CustomerOrderService()),
 ]);
 
 server.start();
