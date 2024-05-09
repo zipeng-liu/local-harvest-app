@@ -42,32 +42,22 @@
           <img class="star" src="/image/star.png" />
           <p class="a-true-embodiment-of"><%= product.description %></p>
         </div>
+        <div class="text-wrapper-3">Other items</div>
         <div class="item-carosel">
-          <div class="text-wrapper-3">Other items</div>
           <div class="item-content">
-            <div class="overlap-group">
-              <div class="rectangle-wrapper"><img class="img" src="/image/defaultProductImg.png" /></div>
-              <div class="add-to-cart-wrapper"><img class="add-to-cart-2" src="/image/add_24px.svg" /></div>
-            </div>
+            <% randomProducts.forEach(product => { %>
+              <div class="overlap-group">
+                <div class="rectangle-wrapper"><img class="img" src="<%= product.primaryPhoto %>" /></div>
+                <a href="/customerOrder/addToCart"><div class="add-to-cart-wrapper"><img class="add-to-cart-2" src="/image/add_24px.svg" /></div></a>
+              
+                <div class="product-info">
+                  <div class="text-wrapper-product-name"><a href="/products/<%= product.productId %>"><%= product.name %></a></div>
+                  <div class="text-wrapper-product-price">$<%= product.price %></div>
+                </div>
+              </div>
+            <% }) %>
+          
           </div>
-          <div class="overlap-wrapper">
-            <div class="overlap-group">
-              <div class="rectangle-wrapper"><img class="img" src="/image/defaultProductImg.png" /></div>
-              <div class="add-to-cart-wrapper"><img class="add-to-cart-2" src="/image/add_24px.svg" /></div>
-            </div>
-          </div>
-          <div class="overlap-group-wrapper">
-            <div class="overlap-group">
-              <div class="rectangle-wrapper"><img class="rectangle-2" src="/image/defaultProductImg.png" /></div>
-              <img class="group-2" src="/image/defaultProductImg.png" />
-            </div>
-          </div>
-          <div class="text-wrapper-4">Gala Apple</div>
-          <div class="text-wrapper-5">Juicy Orange</div>
-          <div class="text-wrapper-6">Chocolate C...</div>
-          <div class="text-wrapper-7">$1</div>
-          <div class="text-wrapper-8">$1</div>
-          <div class="text-wrapper-9">$1</div>
         </div>
         <img class="back-button" src="/image/navigate_before.svg" />
         </div>

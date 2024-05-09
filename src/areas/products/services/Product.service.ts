@@ -43,4 +43,17 @@ export class ProductService implements IProductService {
             throw new Error("Failed to get vendor by id")
         }
     }
+
+    async getAllProductsByVendorId(vendorId: number): Promise<Product[]> {
+        try {
+            const products = await this._db.prisma.product.findMany({
+                where: {
+                    vendorId: vendorId
+                }
+            });
+            return products;
+        } catch(error) {
+            throw new Error("Failed to get all products by vendorId")
+        }
+    }
 }
