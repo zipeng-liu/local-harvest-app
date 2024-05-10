@@ -103,6 +103,7 @@
           })
             .then(response => response.json())
             .then(data => {
+              fetchCartCount()
               if (data.success) {
                 alert("Product successfully added to cart!");
               } else {
