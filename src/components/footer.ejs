@@ -44,47 +44,4 @@
   </div>
 </div>
 
-<script>
-  // Grab the cart counter element
-  const cartCounter = document.getElementById("cart-counter");
-
-  // Function to fetch the current cart count from the server
-  function fetchCartCount() {
-    console.log('Fetching cart count...');
-    fetch("/cart/api/getCount", {
-      headers: {
-        'Cache-Control': 'no-cache' // Prevent caching
-      }
-    })
-    .then(response => {
-      // Check for successful response
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Log and update the cart counter display
-      console.log('Cart count fetched:', data.count);
-      updateCartDisplay(data.count);
-    })
-    .catch(error => {
-      console.error("There has been a problem with your fetch operation:", error);
-    });
-  }
-
-  // Function to update the cart counter display
-  function updateCartDisplay(count) {
-    console.log('Updating display with count:', count);
-    cartCounter.textContent = count;
-    cartCounter.style.display = count > 0 ? "inline" : "none";
-  }
-
-  // Polling the server every 1 seconds to check for cart updates
-  setInterval(fetchCartCount, 1000);
-
-  // Initial fetch when the document loads
-  document.addEventListener("DOMContentLoaded", function() {
-    fetchCartCount(); // Fetch the cart count initially
-  });
-</script>
+<script src="/scripts/footer.js"></script>
