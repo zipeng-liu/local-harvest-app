@@ -82,6 +82,7 @@ class VendorProductController implements IController {
                 secondaryPhoto2: uploadResults[2].url,
                 secondaryPhoto3: uploadResults[3].url,
             };
+            console.log(product)
             //@ts-ignore
             await this._service.addProductToVendor(vendorId, product);
             res.redirect(`${this.path}/inventory`);
