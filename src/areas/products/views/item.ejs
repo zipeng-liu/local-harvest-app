@@ -50,7 +50,7 @@
               <div class="overlap-group">
                 <div class="rectangle-wrapper"><img class="img" src="<%= product.primaryPhoto %>" /></div>
                 
-                <form class= "add-to-cart-form" action="/customer/addToCart/<%= product.productId %>" method="POST">
+                <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
                   <button type="submit" class="add-to-cart-wrapper"><img class="add-to-cart-2" src="/image/add_24px.svg" /></button>
                 </form>
               
@@ -67,7 +67,7 @@
         <!-- Add to cart button -->
         <div class="add-to-cart">
           <div class="group">
-            <form action="/customer/addToCart/<%= product.productId %>" method="post" id="add-to-cart-form">
+            <form action="/customer/addToCart/<%= product.productId %>" method="post" class="add-to-cart-form">
               <button class="ADD-TO-CART" type="submit">
                 <div class="text-wrapper">Add to Cart</div>
                 <img class="vector" src="/image/shopping-cart.png" />
@@ -84,31 +84,37 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function() {
-        const addToCartForm = document.getElementById("add-to-cart-form");
-        addToCartForm.addEventListener("submit", function(event) {
-          event.preventDefault();
-          const formData = new FormData(addToCartForm);
-          const productId = "<%= product.productId %>";
+        const addToCartForm = document.querySelectorAll(".add-to-cart-form");
+
+        console.log(addToCartForm, "addToCartForm");
+        addToCartForm.forEach(form => {
+          form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+
+            const productId = "<%= product.productId %>";
+            const actionUrl = event.currentTarget.action;
   
-          fetch(`/customer/addToCart/${productId}`, {
-            method: "POST",
-            body: formData,
-          })
-            .then(response => response.json())
-            .then(data => {
-              fetchCartCount()
-              if (data.success) {
-                alert("Product successfully added to cart!");
-              } else {
-                alert(`Error: ${data.message}`);
-              }
+            fetch(actionUrl, {
+              method: "POST",
+              body: formData,
             })
-            .catch(error => {
-              console.error("Error submitting form:", error);
-              alert("An unexpected error occurred. Please try again later.");
-            });
+              .then(response => response.json())
+              .then(data => {
+                fetchCartCount()
+                if (data.success) {
+                  alert("Product successfully added to cart!");
+                } else {
+                  alert(`Error: ${data.message}`);
+                }
+              })
+              .catch(error => {
+                console.error("Error submitting form:", error);
+                alert("An unexpected error occurred. Please try again later.");
+              });
+           });
+         });
         });
-      });
     </script>
 
 
