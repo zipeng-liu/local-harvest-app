@@ -49,7 +49,10 @@
             <% randomProducts.forEach(product => { %>
               <div class="overlap-group">
                 <div class="rectangle-wrapper"><img class="img" src="<%= product.primaryPhoto %>" /></div>
-                <a href="/customerOrder/addToCart"><div class="add-to-cart-wrapper"><img class="add-to-cart-2" src="/image/add_24px.svg" /></div></a>
+                
+                <form class= "add-to-cart-form" action="/customer/addToCart/<%= product.productId %>" method="POST">
+                  <button type="submit" class="add-to-cart-wrapper"><img class="add-to-cart-2" src="/image/add_24px.svg" /></button>
+                </form>
               
                 <div class="product-info">
                   <div class="text-wrapper-product-name"><a href="/products/<%= product.productId %>"><%= product.name %></a></div>
