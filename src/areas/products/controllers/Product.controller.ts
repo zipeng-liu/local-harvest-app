@@ -5,6 +5,7 @@ import { ProductService } from "../services/Product.service";
 import { Vendor, Product } from "@prisma/client";
 import IProductService from "../services/IProduct.service";
 import { getProfileLink } from "../../../helper/profileLink";
+import { shuffle } from "../../../helper/randomProducts";
 
 
 class ProductController implements IController {
@@ -42,19 +43,39 @@ class ProductController implements IController {
   };
 
   private showItemById = async (req: express.Request, res: express.Response) => {
+    const productId = req.params.id;
+    if (!productId) {
+      return res.status(400).send("Product ID is required");
+    }
+  
     try {
-      const productId = req.params.id;
-      const product = await this._service.findItemById(parseInt(productId))
+      const product = await this._service.findItemById(parseInt(productId));
+      if (!product) {
+        return res.status(404).send("Product not found");
+      }
+  
+      const products = await this._service.getAllProductsByVendorId(product.vendorId);
+
+      // get shuffed product list 
+      const shuffledProducts = shuffle(products);
+
+      // get 4 products in the shuffled list
+      const randomProducts = shuffledProducts.slice(0, 4);
+
+      // console.log(randomProducts);
+  
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
-        res.render("item", { product: product, profileLink });
+        res.render("item", { product, profileLink, randomProducts });
       } else {
-        res.redirect("landing");
+        res.redirect("/landing");
       }
     } catch (error) {
-      throw new Error("Failed to get product by id")
+      console.error("Failed to retrieve product details", error);
+      res.status(500).send("Failed to retrieve product details due to a server error");
     }
   };
+  
 };
 
 export default ProductController;
