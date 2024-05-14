@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/cartStyle/style.css" />
-    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
     <link rel="stylesheet" href="/sharedStyle/style.css" />
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
   </head>
   <body>
     <%- include('../../../components/header') %>
@@ -14,42 +14,67 @@
         <div class="text-wrapper">My Cart</div>
         <div class="text-wrapper-2">Order Details</div>
 
-
         <% if (cartItems.length === 0) { %>
-          <div><p>Your cart is empty</p></div>
-        <% } else { %>
-          <% cartItems.forEach((item) => { %>
-            <div class="cart-product">
-              <div class="cart-image">
-                <% if (item.product.primaryPhoto) { %>
-                  <img class="cart-image" src="<%= item.product.primaryPhoto %>" alt="<%= item.product.name %>" />
-                <% } %>
-              </div>
-              <p class="p">
-                <a class="button-color-effect" href="/products/<%= item.productId %>">
-                  <%= item.product.name %>
-                </a>
-              </p>
-              <div class="text-wrapper-3">$<%= item.product.price.toFixed(2) %></div>
-              <div class="product-amount">
-                  <div class="overlap-group">
-                    <form action="/cart/delete/<%= item.cartId %>" method="post">
-                      <button type="submit" class="TRASH button-enlarge-effect" data-cart-id="<%= item.cartId %>" style="background-image: url('/image/trash.png'); background-repeat: no-repeat; background-size: cover;">
-                      </button>
-                    </form>
-                    <form action="/cart/increase/<%= item.cartId %>" method="post">
-                      <button type="button" class="ADD button-enlarge-effect" data-cart-id="<%= item.cartId %>">+</button>
-                    </form>
-                    <form action="/cart/decrease/<%= item.cartId %>" method="post">
-                      <button type="button" class="MINUS button-enlarge-effect" data-cart-id="<%= item.cartId %>">-</button>
-                    </form>                  
-                    <div class="text-wrapper-4"><%= item.quantity %></div>
-                  </div>
-              </div>
+        <div><p>Your cart is empty</p></div>
+        <% } else { %> <% cartItems.forEach((item) => { %>
+        <div class="cart-product">
+          <div class="cart-image">
+            <% if (item.product.primaryPhoto) { %>
+            <img
+              class="cart-image"
+              src="<%= item.product.primaryPhoto %>"
+              alt="<%= item.product.name %>"
+            />
+            <% } %>
+          </div>
+          <p class="p">
+            <a
+              class="button-color-effect"
+              href="/products/<%= item.productId %>"
+            >
+              <%= item.product.name %>
+            </a>
+          </p>
+          <div class="text-wrapper-3">
+            $<%= item.product.price.toFixed(2) %>
+          </div>
+          <div class="product-amount">
+            <div class="overlap-group">
+              <form action="/cart/delete/<%= item.cartId %>" method="post">
+                <button
+                  type="submit"
+                  class="TRASH button-enlarge-effect"
+                  data-cart-id="<%= item.cartId %>"
+                  style="
+                    background-image: url('/image/trash.png');
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                  "
+                ></button>
+              </form>
+              <form action="/cart/increase/<%= item.cartId %>" method="post">
+                <button
+                  type="button"
+                  class="ADD button-enlarge-effect"
+                  data-cart-id="<%= item.cartId %>"
+                >
+                  +
+                </button>
+              </form>
+              <form action="/cart/decrease/<%= item.cartId %>" method="post">
+                <button
+                  type="button"
+                  class="MINUS button-enlarge-effect"
+                  data-cart-id="<%= item.cartId %>"
+                >
+                  -
+                </button>
+              </form>
+              <div class="text-wrapper-4"><%= item.quantity %></div>
             </div>
-          <% }); %>
-        <% } %>
-
+          </div>
+        </div>
+        <% }); %> <% } %>
 
         <div class="payment-method">
           <div class="overlap">
@@ -57,7 +82,9 @@
             <div class="text-wrapper-5">Choose your Payment Method</div>
             <div class="rectangle-2"></div>
             <div class="rectangle-3"></div>
-            <div class="text-wrapper-6 button-enlarge-effect"><a href="/customer/order/success">Pay In Person</a></div>
+            <div class="text-wrapper-6 button-enlarge-effect">
+              <a href="/customer/order/success">Pay In Person</a>
+            </div>
             <div class="text-wrapper-7 button-enlarge-effect">Pay Online</div>
             <img class="line" src="img/line-27.svg" />
           </div>
@@ -65,21 +92,22 @@
         <img class="img" src="img/line-3.svg" />
         <div class="payment-method-order">
           <div class="text-wrapper-8">Order Subtotal</div>
-          <% const sumTotal = cartItems.reduce((sum, item) => { %>
-            <% return sum + (item.product.price * item.quantity); %>
-          <% }, 0); %>
+          <% const sumTotal = cartItems.reduce((sum, item) => { %> <% return sum
+          + (item.product.price * item.quantity); %> <% }, 0); %>
           <div class="text-wrapper-9"><%= `$${sumTotal.toFixed(2)}` %></div>
         </div>
         <div class="header-variants">
           <a href="/home">
-            <img class="back-button button-full-effect" src="/image/navigate_before.svg"/></a>
+            <img
+              class="back-button button-full-effect"
+              src="/image/navigate_before.svg"
+          /></a>
         </div>
       </div>
     </div>
-   
+
     <%- include('../../../components/footer') %>
 
-  <script src="/scripts/cart.js"></script>
-    
+    <script src="/scripts/cart.js"></script>
   </body>
 </html>
