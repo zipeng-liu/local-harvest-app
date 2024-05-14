@@ -1,0 +1,899 @@
+.checkout-page-card,
+.checkout-page-card * {
+  box-sizing: border-box;
+}
+.checkout-page-card {
+  background: var(--cloud-white, #f6f6f6);
+  padding: 10px;
+  height: 1476px;
+  position: relative;
+  overflow: hidden;
+}
+.checkout {
+  position: absolute;
+  left: 29rem;
+  top: 140px;
+  width: 295px;
+  height: 40px;
+  color: #000000;
+  text-align: left;
+  font-family: var(--h1-mobile-font-family, "RoobertTrial-Bold", sans-serif);
+  font-size: var(--h1-mobile-font-size, 25.799999237060547px);
+  font-weight: var(--h1-mobile-font-weight, 700);
+}
+.large-button {
+  width: 398px;
+  height: 60px;
+  position: absolute;
+  right: 450px;
+  top: 1270px;
+  box-shadow: var(
+    --drop-shadow-box-shadow,
+    3px 3px 4px 0px rgba(0, 0, 0, 0.25)
+  );
+}
+.rectangle-132 {
+  background: var(--sandy-brown, #e36b00);
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+}
+.submit-order {
+  color: var(--cloud-white, #f6f6f6);
+  text-align: center;
+  font-family: var(--h2-mobile-font-family, "RoobertTrial-Bold", sans-serif);
+  font-size: var(--h2-mobile-font-size, 20.799999237060547px);
+  font-weight: var(--h2-mobile-font-weight, 700);
+  position: absolute;
+  left: calc(50% - 95px);
+  top: calc(50% - 14px);
+  width: 191px;
+  height: 29px;
+}
+.contact-info {
+  width: 398px;
+  height: 220px;
+  position: absolute;
+  right: 450px;
+  top: 500px;
+}
+.rectangle-141 {
+  background: var(--cloud-white, #f6f6f6);
+  border-radius: 16px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+  box-shadow: var(
+    --center-drop-shadow-box-shadow,
+    0px 0px 4px 0px rgba(0, 0, 0, 0.3)
+  );
+}
+.text-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6.71px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 91.71%;
+  height: 30.89%;
+  position: absolute;
+  right: 4.02%;
+  left: 4.27%;
+  bottom: 8.43%;
+  top: 60.68%;
+}
+.label {
+  color: var(--dark-grey, #343434);
+  text-align: left;
+  font-family: var(
+    --medium-header-mobile-font-family,
+    "RoobertTrial-Medium",
+    sans-serif
+  );
+  font-size: var(--medium-header-mobile-font-size, 17px);
+  font-weight: var(--medium-header-mobile-font-weight, 500);
+  position: relative;
+}
+.text-field2 {
+  background: var(--pure-white, #ffffff);
+  border-radius: 6.71px;
+  border-style: solid;
+  border-color: var(--med-grey, #b5b5b5);
+  border-width: 0.84px;
+  padding: 6.71px 6.71px 6.71px 13.41px;
+  display: flex;
+  flex-direction: row;
+  gap: 6.71px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 365px;
+  height: 40.24px;
+  position: relative;
+  overflow: hidden;
+}
+.email {
+  flex-shrink: 0;
+  width: 16.77px;
+  height: 16.77px;
+  position: relative;
+  overflow: visible;
+}
+.placeholder {
+  color: var(--dark-grey, #343434);
+  text-align: left;
+  font-family: var(
+    --reduced-focus-mobile-font-family,
+    "Arimo-Regular",
+    sans-serif
+  );
+  font-size: var(--reduced-focus-mobile-font-size, 12px);
+  font-weight: var(--reduced-focus-mobile-font-weight, 400);
+  position: relative;
+}
+.contact-info2 {
+  color: var(--semi-black, #090909);
+  text-align: left;
+  font-family: var(
+    --h3-mobile-font-family,
+    "RoobertTrial-SemiBold",
+    sans-serif
+  );
+  font-size: var(--h3-mobile-font-size, 18px);
+  font-weight: var(--h3-mobile-font-weight, 600);
+  position: absolute;
+  right: 39.7%;
+  left: 4.02%;
+  width: 56.28%;
+  bottom: 85%;
+  top: 0%;
+  height: 15%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.short-text-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6.71px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 43.97%;
+  height: 30.89%;
+  position: absolute;
+  right: 52.01%;
+  left: 4.02%;
+  bottom: 44.79%;
+  top: 24.32%;
+}
+.text-field3 {
+  background: var(--pure-white, #ffffff);
+  border-radius: 6.71px;
+  border-style: solid;
+  border-color: var(--med-grey, #b5b5b5);
+  border-width: 0.84px;
+  padding: 6.71px 6.71px 6.71px 13.41px;
+  display: flex;
+  flex-direction: row;
+  gap: 6.71px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 175px;
+  height: 40.24px;
+  position: relative;
+  overflow: hidden;
+}
+.short-text-field2 {
+  display: flex;
+  flex-direction: column;
+  gap: 6.71px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 43.97%;
+  height: 30.89%;
+  position: absolute;
+  right: 4.02%;
+  left: 52.01%;
+  bottom: 44.79%;
+  top: 24.32%;
+}
+.payment {
+  width: 398px;
+  height: 316.51px;
+  position: absolute;
+  right: 450px;
+  top: 750px;
+}
+.rectangle-142 {
+  background: var(--cloud-white, #f6f6f6);
+  border-radius: 16px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+  box-shadow: var(
+    --center-drop-shadow-box-shadow,
+    0px 0px 4px 0px rgba(0, 0, 0, 0.3)
+  );
+}
+.text-field4 {
+  display: flex;
+  flex-direction: column;
+  gap: 6.71px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 91.71%;
+  height: 21.47%;
+  position: absolute;
+  right: 4.27%;
+  left: 4.02%;
+  bottom: 63.55%;
+  top: 14.98%;
+}
+.text-field5 {
+  display: flex;
+  flex-direction: column;
+  gap: 6.71px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 91.71%;
+  height: 21.47%;
+  position: absolute;
+  right: 4.27%;
+  left: 4.02%;
+  bottom: 38%;
+  top: 40.54%;
+}
+.payment2 {
+  color: var(--semi-black, #090909);
+  text-align: left;
+  font-family: var(
+    --h3-mobile-font-family,
+    "RoobertTrial-SemiBold",
+    sans-serif
+  );
+  font-size: var(--h3-mobile-font-size, 18px);
+  font-weight: var(--h3-mobile-font-weight, 600);
+  position: absolute;
+  right: 39.2%;
+  left: 4.52%;
+  width: 56.28%;
+  bottom: 89.46%;
+  top: 0%;
+  height: 10.54%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.short-text-field3 {
+  display: flex;
+  flex-direction: column;
+  gap: 6.71px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 43.97%;
+  height: 21.47%;
+  position: absolute;
+  right: 52.01%;
+  left: 4.02%;
+  bottom: 12.44%;
+  top: 66.09%;
+}
+.short-text-field4 {
+  display: flex;
+  flex-direction: column;
+  gap: 6.71px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 43.97%;
+  height: 21.47%;
+  position: absolute;
+  right: 4.27%;
+  left: 51.76%;
+  bottom: 12.44%;
+  top: 66.09%;
+}
+.payment-method-order-summary {
+  width: 398px;
+  height: 100px;
+  position: absolute;
+  right: 450px;
+  top: 1098px;
+}
+.order-subtotal {
+  color: var(--semi-black, #090909);
+  text-align: left;
+  font-family: var(
+    --h3-mobile-font-family,
+    "RoobertTrial-SemiBold",
+    sans-serif
+  );
+  font-size: var(--h3-mobile-font-size, 18px);
+  font-weight: var(--h3-mobile-font-weight, 600);
+  position: absolute;
+  right: 64.57%;
+  left: 4.27%;
+  width: 31.16%;
+  bottom: 39%;
+  top: 38%;
+  height: 23%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+._2-00 {
+  color: var(--semi-black, #090909);
+  text-align: right;
+  font-family: var(
+    --medium-header-mobile-font-family,
+    "RoobertTrial-Medium",
+    sans-serif
+  );
+  font-size: var(--medium-header-mobile-font-size, 17px);
+  font-weight: var(--medium-header-mobile-font-weight, 500);
+  position: absolute;
+  right: 4.27%;
+  left: 84.42%;
+  width: 11.31%;
+  top: calc(50% - 10px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.payment-method {
+  background: var(--ebb, #f4f1f1);
+  border-radius: 16px;
+  width: 398px;
+  height: 120px;
+  position: absolute;
+  right: 450px;
+  top: 355px;
+}
+.rectangle-137 {
+  background: var(--cloud-white, #f6f6f6);
+  border-radius: 16px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+  box-shadow: var(
+    --center-drop-shadow-box-shadow,
+    0px 0px 4px 0px rgba(0, 0, 0, 0.3)
+  );
+}
+.choose-your-payment-method {
+  color: var(--semi-black, #090909);
+  text-align: left;
+  font-family: "Rowdies-Light", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  position: absolute;
+  right: 39.7%;
+  left: 4.02%;
+  width: 56.28%;
+  bottom: 72.5%;
+  top: 0%;
+  height: 27.5%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.rectangle-139 {
+  background: var(--pure-white, #ffffff);
+  border-radius: 8px 0px 0px 8px;
+  width: 45.98%;
+  height: 33.33%;
+  position: absolute;
+  right: 50%;
+  left: 4.02%;
+  bottom: 16.67%;
+  top: 50%;
+  box-shadow: var(
+    --drop-shadow-box-shadow,
+    3px 3px 4px 0px rgba(0, 0, 0, 0.25)
+  );
+}
+.rectangle-140 {
+  background: var(--sandy-brown, #e36b00);
+  border-radius: 0px 8px 8px 0px;
+  width: 45.98%;
+  height: 33.33%;
+  position: absolute;
+  right: 3.77%;
+  left: 50.25%;
+  bottom: 16.67%;
+  top: 50%;
+  box-shadow: var(
+    --drop-shadow-box-shadow,
+    3px 3px 4px 0px rgba(0, 0, 0, 0.25)
+  );
+}
+.pay-in-person {
+  color: var(--med-dark-grey, #7c7c7c);
+  text-align: center;
+  font-family: var(
+    --h3-mobile-font-family,
+    "RoobertTrial-SemiBold",
+    sans-serif
+  );
+  font-size: var(--h3-mobile-font-size, 18px);
+  font-weight: var(--h3-mobile-font-weight, 600);
+  position: absolute;
+  right: 53.52%;
+  left: 5.28%;
+  width: 41.21%;
+  bottom: 16.67%;
+  top: 50%;
+  height: 33.33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pay-online {
+  color: var(--cloud-white, #f6f6f6);
+  text-align: center;
+  font-family: var(
+    --h3-mobile-font-family,
+    "RoobertTrial-SemiBold",
+    sans-serif
+  );
+  font-size: var(--h3-mobile-font-size, 18px);
+  font-weight: var(--h3-mobile-font-weight, 600);
+  position: absolute;
+  right: 5.28%;
+  left: 53.52%;
+  width: 41.21%;
+  bottom: 16.67%;
+  top: 50%;
+  height: 33.33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.line-27 {
+  border-style: solid;
+  border-color: var(--concrete-grey, #d9d9d9);
+  border-width: 1px 0 0 0;
+  width: 40px;
+  height: 0%;
+  position: absolute;
+  left: calc(50% - 0px);
+  bottom: 50%;
+  top: 50%;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.cart-product {
+  width: 398px;
+  height: 120px;
+  position: absolute;
+  right: 450px;
+  top: 200px;
+}
+.cart-image {
+  width: 30.15%;
+  height: 100%;
+  position: absolute;
+  right: 69.85%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+  box-shadow: var(
+    --drop-shadow-box-shadow,
+    3px 3px 4px 0px rgba(0, 0, 0, 0.25)
+  );
+}
+.rectangle-134 {
+  background: linear-gradient(to left, #d9d9d9, #d9d9d9);
+  border-radius: 16px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+  object-fit: cover;
+}
+.product-name-from-product-place {
+  color: #000000;
+  text-align: left;
+  font-family: var(
+    --h3-mobile-font-family,
+    "RoobertTrial-SemiBold",
+    sans-serif
+  );
+  font-size: var(--h3-mobile-font-size, 18px);
+  font-weight: var(--h3-mobile-font-weight, 600);
+  position: absolute;
+  right: 22.11%;
+  left: 34.42%;
+  width: 43.47%;
+  bottom: 67.5%;
+  top: 0%;
+  height: 32.5%;
+}
+._2-002 {
+  color: #000000;
+  text-align: left;
+  font-family: var(--body-copy-mobile-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--body-copy-mobile-font-size, 16px);
+  font-weight: var(--body-copy-mobile-font-weight, 400);
+  position: absolute;
+  right: 16.33%;
+  left: 34.42%;
+  width: 49.25%;
+  bottom: 42.5%;
+  top: 40.83%;
+  height: 16.67%;
+}
+.product-amount {
+  width: 65.83%;
+  height: 25.83%;
+  position: absolute;
+  right: 0%;
+  left: 34.17%;
+  bottom: 0%;
+  top: 74.17%;
+}
+.trash {
+  width: 11.83%;
+  height: 100%;
+  position: absolute;
+  right: 88.17%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+  overflow: visible;
+}
+.add {
+  width: 11.83%;
+  height: 100%;
+  position: absolute;
+  right: 53.82%;
+  left: 34.35%;
+  bottom: 0%;
+  top: 0%;
+  overflow: visible;
+}
+._1 {
+  color: var(--semi-black, #090909);
+  text-align: center;
+  font-family: var(--body-copy-mobile-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--body-copy-mobile-font-size, 16px);
+  font-weight: var(--body-copy-mobile-font-weight, 400);
+  position: absolute;
+  right: 65.65%;
+  left: 11.83%;
+  width: 22.52%;
+  bottom: 0%;
+  top: 0%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rectangle-2713 {
+  background: var(--cloud-white, #f6f6f6);
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+  box-shadow: var(
+    --center-drop-shadow-box-shadow,
+    0px 0px 4px 0px rgba(0, 0, 0, 0.3)
+  );
+}
+.vector {
+  width: 6.78%;
+  height: 49.18%;
+  position: absolute;
+  right: 88.94%;
+  left: 4.27%;
+  bottom: 24.59%;
+  top: 26.23%;
+  overflow: visible;
+}
+.schedule {
+  color: #000000;
+  text-align: left;
+  font-family: "Arimo-Bold", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  position: absolute;
+  right: 30.9%;
+  left: 14.82%;
+  width: 54.27%;
+  bottom: 49.18%;
+  top: 18.03%;
+  height: 32.79%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.select-a-date {
+  color: #000000;
+  text-align: left;
+  font-family: var(
+    --reduced-focus-mobile-font-family,
+    "Arimo-Regular",
+    sans-serif
+  );
+  font-size: var(--reduced-focus-mobile-font-size, 12px);
+  font-weight: var(--reduced-focus-mobile-font-weight, 400);
+  position: absolute;
+  right: 57.04%;
+  left: 14.82%;
+  width: 28.14%;
+  bottom: 16.39%;
+  top: 50.82%;
+  height: 32.79%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.nav-bar {
+  height: 60px;
+  position: sticky;
+  left: 0px;
+  bottom: -3px;
+  box-shadow: var(
+    --nav-shadow-box-shadow,
+    0px -2px 4px 0px rgba(0, 0, 0, 0.25)
+  );
+}
+.rectangle-81 {
+  background: var(--cloud-white, #f6f6f6);
+  border-radius: 10px 10px 0px 0px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+}
+.frame-46 {
+  display: flex;
+  flex-direction: row;
+  gap: 67px;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  left: 43px;
+  top: 13px;
+}
+.group-39 {
+  flex-shrink: 0;
+  width: 32px;
+  height: 38.83px;
+  position: relative;
+  overflow: visible;
+}
+.group-40 {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38.83px;
+  position: relative;
+  overflow: visible;
+}
+.group-41 {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38.83px;
+  position: relative;
+  overflow: visible;
+}
+.group-42 {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38.83px;
+  position: relative;
+  overflow: visible;
+}
+.home {
+  color: #000000;
+  text-align: center;
+  font-family: var(--nav-text-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--nav-text-font-size, 12px);
+  font-weight: var(--nav-text-font-weight, 400);
+  position: absolute;
+  left: 42px;
+  top: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search {
+  color: #000000;
+  text-align: center;
+  font-family: var(--nav-text-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--nav-text-font-size, 12px);
+  font-weight: var(--nav-text-font-weight, 400);
+  position: absolute;
+  left: 143px;
+  top: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart {
+  color: #000000;
+  text-align: center;
+  font-family: var(--nav-text-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--nav-text-font-size, 12px);
+  font-weight: var(--nav-text-font-weight, 400);
+  position: absolute;
+  left: 255px;
+  top: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile {
+  color: #000000;
+  text-align: center;
+  font-family: var(--nav-text-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--nav-text-font-size, 12px);
+  font-weight: var(--nav-text-font-weight, 400);
+  position: absolute;
+  left: 352px;
+  top: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-variants {
+  width: 430px;
+  height: 107px;
+  position: sticky;
+  left: 0px;
+  top: 0px;
+}
+.rectangle-113 {
+  background: var(--cloud-white, #f6f6f6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+}
+.back-button {
+  width: 9.3%;
+  height: 37.38%;
+  position: absolute;
+  right: 90%;
+  left: 0.7%;
+  bottom: 14.95%;
+  top: 47.66%;
+  overflow: visible;
+}
+.group-76 {
+  position: absolute;
+  inset: 0;
+}
+.orang {
+  width: 20.86px;
+  height: 39.83px;
+  position: absolute;
+  left: 62px;
+  top: 51px;
+  overflow: visible;
+}
+.logos {
+  width: 132px;
+  height: 30px;
+  position: static;
+}
+.local-harvest {
+  color: var(--semi-black, #090909);
+  text-align: left;
+  font-family: "FarmToMarketBold-Regular", sans-serif;
+  font-size: 30.071317672729492px;
+  font-weight: 400;
+  position: absolute;
+  right: 47.21%;
+  left: 22.09%;
+  width: 30.7%;
+  bottom: 19.63%;
+  top: 52.34%;
+  height: 28.04%;
+}
+.status-bar-i-phone {
+  padding: 14px 26px 12px 27px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 430px;
+  height: 50px;
+  position: sticky;
+  left: 0px;
+  top: 0px;
+}
+.time-i-phone {
+  flex-shrink: 0;
+  width: 54px;
+  height: 21px;
+  position: relative;
+}
+.time {
+  color: var(--system-colours-label-colour-primary-light, #000000);
+  text-align: center;
+  font-family: var(
+    --default-body-bold-font-family,
+    "SfProText-Semibold",
+    sans-serif
+  );
+  font-size: var(--default-body-bold-font-size, 17px);
+  line-height: var(--default-body-bold-line-height, 22px);
+  letter-spacing: var(--default-body-bold-letter-spacing, -0.41px);
+  font-weight: var(--default-body-bold-font-weight, 600);
+  position: absolute;
+  left: 0px;
+  top: calc(50% - 10.5px);
+  width: 54px;
+}
+.cellular-wifi-battery-i-phone {
+  flex-shrink: 0;
+  width: 78.26px;
+  height: 13px;
+  position: relative;
+}
+.battery {
+  width: 34.92%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 65.08%;
+  bottom: 0%;
+  top: 0%;
+  overflow: visible;
+}
+.wifi {
+  width: 17px;
+  height: 12px;
+  position: absolute;
+  left: 26.6px;
+  top: 0.67px;
+  overflow: visible;
+}
+.cellular-connection {
+  width: 19.2px;
+  height: 12px;
+  position: absolute;
+  left: 0px;
+  top: 0.67px;
+  overflow: visible;
+}
+.notch {
+  flex-shrink: 0;
+  width: 153.43px;
+  height: 50px;
+  position: absolute;
+  left: calc(50% - 76.74px);
+  top: 0px;
+  overflow: visible;
+}
