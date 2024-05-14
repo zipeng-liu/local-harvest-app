@@ -22,15 +22,15 @@
         
         <!-- Product images -->
         <div class="item-page-image">
-          <img class="rectangle" src="<%= product.primaryPhoto %>" />
+          <img class="rectangle primary" src="<%= product.primaryPhoto %>" />
           <div class="filled-item">
-            <img class="rectangle" src="<%= product.secondaryPhoto1 %>" />
+            <img class="rectangle secondary" src="<%= product.secondaryPhoto1 %>" />
           </div>
           <div class="filled-item-2">
-            <img class="rectangle" src="<%= product.secondaryPhoto2 %>" />
+            <img class="rectangle secondary" src="<%= product.secondaryPhoto2 %>" />
           </div>
           <div class="mini-item-picture">
-            <img class="rectangle" src="<%= product.secondaryPhoto3 %>" />
+            <img class="rectangle secondary" src="<%= product.secondaryPhoto3 %>" />
           </div>
         </div>
 
@@ -114,6 +114,18 @@
               });
            });
          });
+
+
+
+         document.querySelectorAll(".secondary").forEach(image => {
+          image.addEventListener('click', function() {
+            const primaryImg = document.querySelector('.primary');
+            const tempSrc = primaryImg.src;
+
+            primaryImg.src = image.src;
+            image.src = tempSrc;
+          })
+         })
         });
     </script>
 

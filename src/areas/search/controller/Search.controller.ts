@@ -16,8 +16,9 @@ class SearchController implements IController {
 
   private initializeRoutes() {
     this.router.get(`${this.path}`, this.showSearchPage);
-    this.router.post(`${this.path}`, this.showSearchResult);
+    this.router.post(`${this.path}`, this.showSearchResults);
   }
+
 
   private showSearchPage = async (req: express.Request, res: express.Response) => {
     try {
@@ -34,36 +35,31 @@ class SearchController implements IController {
    
   };
 
-  private showSearchResult = async (req: express.Request, res: express.Response)=> {
+  private showSearchResults = async (req: express.Request, res: express.Response) => {
     try {
       // check user log in here
-      let keyword = req.body.keyword;
-      console.log("keyword", keyword)
-      const marketResults = await this._service.searchMarket(keyword) || [];
-
-      console.log("market", marketResults)
-      const vendorResults = await this._service.searchVendor(keyword) || [];
-      const productResults = await this._service.searchProduct(keyword) || [];
-
-      if(marketResults && vendorResults && productResults) {
-        const profileLink = getProfileLink(req, res);
-        if (profileLink) {
-          res.render("searchResults", { 
-            markets: marketResults, 
-            vendors: vendorResults, 
-            products: productResults,
-            profileLink: profileLink 
-          })
-        } else {
-          res.redirect("landing");
-        }
-      } else {
-        res.redirect("/home");
+      const profileLink = getProfileLink(req, res);
+      if (!profileLink) {
+        res.status(401).json({ message: "Unauthorized access"})
       }
-    } catch(error) {
-      throw new Error("Failed to search")
-    }
+        const query = req.body.query as string;
+        if(typeof query !== 'string') {
+          res.status(400).json({ message: "Invalid query parameter" });
+          return;
+        }
+        const results = await this._service.searchResults(query) || [];
+  
 
+        res.json({
+          profileLink: profileLink,
+          results: results,
+      
+        });
+    
+    } catch(error) {
+        res.status(500).json({ message: "Failed to load search page" })
+    }
+   
   };
 }
 

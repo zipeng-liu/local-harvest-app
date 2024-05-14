@@ -14,64 +14,38 @@
     position: relative;
   }
 
-  .search .results {
-    width: 100%; 
-    padding: 20px; 
-    margin-top: 220px;
+  /* style for search results AJAX from line 17 - 40 */
+  .search #result-container {
+    width: 100%;
+    padding-top: 200px;
+    padding-left: 50px;
     font-family: var(--body-copy-mobile-font-family);
     font-size: var(--body-copy-mobile-font-size);
   }
+  
 
-  .search .results .market-title p,
-  .search .results .vendor-title p,
-  .search .results .product-title p {
-    padding-left: 5px; 
-    font-weight: bold;
-  }
-
-  .search .results .market-title p {
-    color: #8bbd8b
-  }
-
-  .search .results .product-title p {
-    color: #ff7c08
-  }
-
-  .search .results ul {
-    list-style-type: none; 
-    padding: 0;
-    margin: 0;
-  }
-  .search .results .market-title .market-list ul li,
-  .search .results .vendor-title .vendor-list ul li,
-  .search .results .product-title .product-list ul li {
-    padding-left: 5px; 
-  }
-
-  .search .results li {
-    display: flex; 
-    align-items: center; 
-    padding: 10px 0; 
-    /* border-bottom: 1px solid #ccc; */
-  }
-
-  .search .results .product-image, 
-  .search .results .vendor-image, 
-  .search .results .market-image {
-    width: 50px; 
-    height: 50px; 
-    margin-right: 10px; 
-    object-fit: cover; 
+  .search .product-item, .market-item, .vendor-item {
+    padding: 10px;
+    cursor: pointer; 
   }
   
+  .search .product-link, .market-link, .vendor-link {
+    color: var(--semi-black); 
+    text-decoration: none;
+  }
+  
+  .search .product-item:hover, .market-item:hover, .vendor-item:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+  }
+  
+
   .search .searchbar-condensed .search-input {
     position: absolute;
     width: 300px;
     height: 40px;
     top: 120px;
     padding: 0px 10px;
-    /* top: 120px; */
-    /* left: 66px; */
     left: 46px;
     right: 80px;
     background-color: var(--cloud-white);
@@ -86,15 +60,12 @@
     position: absolute;
     height: 40px; /* Same height as the input */
     top: 125px;
-    /* left: 400px; */
     right: 0px;
     width: 80px; /* Width of the button */
     border: none;
-    /* border-radius: 0 22.08px 22.08px 0; */
     background-color: var(--primary-color); /* Adjust color accordingly */
     color: black;
     font-family: var(--body-copy-mobile-font-family);
-    /* font-size: var(--body-copy-mobile-font-size); */
      font-size: 14px;
   }
 

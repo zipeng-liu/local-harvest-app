@@ -1,9 +1,9 @@
 import { Market, Vendor, Product } from "@prisma/client"
 
 export default interface ISearchService {
-    searchMarket(keyword: string): Promise<Market[]> | [];
+    searchResults(query: string): Promise<[Market[], Vendor[], Product[]] | undefined>;
 
-    searchVendor(keyword: string): Promise<Vendor[]> | [];
+    // searchVendor(keyword: string): Promise<Vendor[]> | [];
 
-    searchProduct(keyword: string): Promise<Product[]> | [];
+    // searchProduct(keyword: string): Promise<Product[]> | [];
 }

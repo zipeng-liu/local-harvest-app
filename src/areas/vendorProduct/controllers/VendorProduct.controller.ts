@@ -77,7 +77,7 @@ class VendorProductController implements IController {
                 quantity: parseInt(req.body.quantity),
                 description: req.body.description,
                 vendorId: vendorId,
-                primaryPhoto: uploadResults[0]?.url,
+                primaryPhoto: uploadResults[0].url,
                 secondaryPhoto1: uploadResults[1]?.url,
                 secondaryPhoto2: uploadResults[2]?.url,
                 secondaryPhoto3: uploadResults[3]?.url,
