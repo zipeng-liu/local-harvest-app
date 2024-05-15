@@ -31,6 +31,8 @@ model Order {
   orderId     Int             @id @default(autoincrement())
   date        DateTime        @default(now())
   customerId  Int             // Foreign key to Customer
+  type        String
+  total       Float
   customer    Customer        @relation(fields: [customerId], references: [customerId])
   productOrders ProductOrder[] // One-to-many relationship with ProductOrder
 }
