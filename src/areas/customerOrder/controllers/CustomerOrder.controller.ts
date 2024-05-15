@@ -43,9 +43,14 @@ class CustomerOrderController implements IController {
       this.showOrderDetailPage
     );
     this.router.get(
-      `${this.path}/checkout`,
+      `${this.path}/checkout/inperson`,
       ensureAuthenticated,
-      this.showCheckoutPage
+      this.showInpersonCheckoutPage
+    );
+    this.router.get(
+      `${this.path}/checkout/online`,
+      ensureAuthenticated,
+      this.showOnlineCheckoutPage
     );
   }
 
@@ -117,10 +122,19 @@ class CustomerOrderController implements IController {
     }
   };
 
-  private showCheckoutPage = (req: express.Request, res: express.Response) => {
+  private showInpersonCheckoutPage = (req: express.Request, res: express.Response) => {
     const profileLink = getProfileLink(req, res);
     if (profileLink) {
-      res.render("checkout", { profileLink });
+      res.render("inpersonCheckout", { profileLink });
+    } else {
+      res.render("landing");
+    }
+  };
+
+  private showOnlineCheckoutPage = (req: express.Request, res: express.Response) => {
+    const profileLink = getProfileLink(req, res);
+    if (profileLink) {
+      res.render("onlineCheckout", { profileLink });
     } else {
       res.render("landing");
     }
