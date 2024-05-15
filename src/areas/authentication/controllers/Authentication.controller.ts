@@ -46,7 +46,7 @@ export class VendorAuthenticationController implements IController {
       minute: "2-digit",
       hour12: false,
     });
-    res.render("login", { errorMessage, currentTime, loginUrl });
+    res.render("vendorLogin", { errorMessage, currentTime, loginUrl });
   };
 
   private vendorLogin = async (req: express.Request, res: express.Response) => {
@@ -85,15 +85,20 @@ export class CustomerAuthenticationController implements IController {
     req: express.Request,
     res: express.Response
   ) => {
-    const loginUrl = req.originalUrl;
-    const errorMessage = req.session?.messages || null;
+    const errorMessage = req.session?.messages || "";
     req.session.messages = "";
+    const loginUrl = "/customer/login";
     const currentTime = new Date().toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
       hour12: false,
     });
-    res.render("login", { errorMessage, currentTime, loginUrl });
+    res.render("customerLogin", {
+      errorMessage,
+      currentTime,
+      loginUrl,
+      userType: "Customer",
+    });
   };
 
   private customerLogin = async (
