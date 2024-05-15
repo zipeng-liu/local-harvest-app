@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/vendorStyle/style.css" />
     <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
     <link rel="stylesheet" href="/sharedStyle/style.css" />
+    <script src="/scripts/photo.js" defer></script>
   </head>
   <body>
     <%- include('../../../components/header') %>
@@ -16,7 +17,7 @@
         <form action="/vendor/addItem" method="POST" enctype="multipart/form-data">
           <div class="image-upload primary-image">
               <label for="primaryImage" class="group">
-                  <img class="icons-file-upload" src="/image/uploadImg.png" alt="Upload Primary Image"/>
+                  <img class="icons-file-upload primary" src="/image/uploadImg.png" alt="Upload Primary Image"/>
               </label>
               <input id="primaryImage" name="primaryImage" type="file" style="display: none;"/>
               <div class="text-wrapper-1">Primary Image</div>
@@ -25,12 +26,12 @@
 
           <div class="image-upload primary-image">
               <label for="secondaryImage" class="icons-file-upload-wrapper">
-                  <img class="icons-file-upload" src="/image/uploadImg.png" alt="Upload Secondary Image"/>
+                  <img class="icons-file-upload secondary" src="/image/uploadImg.png" alt="Upload Secondary Image"/>
               </label>
               <input id="secondaryImage" name="secondaryImage" type="file" style="display: none;" multiple/>
 
               <div class="text-wrapper-2">Secondary Image</div>
-              <p class="text-wrapper-4">Additional images if needed (choose three images)</p>
+              <p class="text-wrapper-4">Additional images if needed (choose three images at once)</p>
           </div>
               
           <div class="short-text-field">

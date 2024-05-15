@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="/searchStyle/style.css" />
     <link rel="stylesheet" href="/sharedStyle/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
+    <script src="/scripts/ajaxSearch.js" defer></script>
+ 
   </head>
   <body>
     <%- include('../../../components/header') %>
@@ -17,12 +18,10 @@
         <div class="searchbar-condensed">
           <div class="group">
             <div class="overlap-group">
-              <!-- <div class="ellipse"></div> -->
-              <!-- <img class="line" src="image/search_24px.svg" /> -->
             </div>
           </div>
           <form action="/search" method="POST">
-            <input type="text" name="keyword" class="search-input" placeholder="Markets, Vendors, Product">
+            <input type="text" name="query" class="search-input" placeholder="Markets, Vendors, Product">
             <button type="submit" class="search-button">
                 <i class="fas fa-search button-full-effect"></i>
             </button>
@@ -31,7 +30,11 @@
         </div>
         <div>
         </div>
+        <div id="result-container">
+
+        </div>
       </div>
+
     </div>
     <%- include('../../../components/footer') %>
 
