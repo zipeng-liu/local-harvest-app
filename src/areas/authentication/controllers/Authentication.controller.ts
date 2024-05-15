@@ -87,7 +87,7 @@ export class CustomerAuthenticationController implements IController {
   ) => {
     const errorMessage = req.session?.messages || "";
     req.session.messages = "";
-    const loginUrl = "/customer/login";
+    const loginUrl = req.originalUrl;
     const currentTime = new Date().toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
