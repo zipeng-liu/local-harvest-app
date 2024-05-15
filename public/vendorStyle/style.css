@@ -1,3 +1,21 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fafafa; 
+} 
+
+@media (min-width: 800px) {
+  .vendor-item {
+    flex-direction: column;
+    align-items: center; /* Centers the content on larger screens */
+    padding-bottom: 80px; /* Provides space for the nav-bar */
+  }
+}
+
+
 /* addProduct page */
 .vendor-item {
   background-color: #f5f5f5;
@@ -9,8 +27,9 @@
 
 .vendor-item .div {
   background-color: var(--cloud-white);
-  width: 430px;
-  height: 932px;
+  min-width: 430px;
+  max-width: 100%;
+  height: 2000px;
   position: relative;
 }
 
@@ -48,7 +67,7 @@
 
 .vendor-item .group {
   top: -150px;
-  left: 20px;
+  left: 30px;
   position: absolute;
   width: 97px;
   height: 75px;
@@ -66,8 +85,8 @@
 }
 
 .vendor-item .icons-file-upload-wrapper {
-  top: 20px;
-  left: 20px;
+  top: 40px;
+  left: 30px;
   position: absolute;
   width: 97px;
   height: 75px;
@@ -92,7 +111,7 @@
   position: absolute;
   width: 190px;
   top: -220px;
-  left: 20px;
+  left: 30px;
   font-family: var(--body-copy-16-hifi-font-family);
   font-weight: var(--body-copy-16-hifi-font-weight);
   color: #000000;
@@ -109,7 +128,7 @@
   position: absolute;
   width: 190px;
   top: -50px;
-  left: 20px;
+  left: 30px;
   font-family: var(--body-copy-16-hifi-font-family);
   font-weight: var(--body-copy-16-hifi-font-weight);
   color: #000000;
@@ -123,10 +142,10 @@
 /* The firs image...text */
 .vendor-item .text-wrapper-3 {
   position: absolute;
-  width: 207px;
+  width: 180px;
   height: 20px;
   top: -200px;
-  left: 20px;
+  left: 30px;
   font-family: var(--reduced-focus-mobile-font-family);
   font-weight: var(--reduced-focus-mobile-font-weight);
   color: #000000;
@@ -139,10 +158,10 @@
 /* addtional image text */
 .vendor-item .text-wrapper-4 {
   position: absolute;
-  width: 207px;
+  width: 180px;
   height: 20px;
   top: -30px;
-  left: 20px;
+  left: 30px;
   font-family: var(--reduced-focus-mobile-font-family);
   font-weight: var(--reduced-focus-mobile-font-weight);
   color: #000000;
@@ -189,22 +208,12 @@
   border: 0.84px solid;
   border-color: var(--med-grey);
   left:20px;
-}
-
-.vendor-item .text-wrapper-4 {
-  position: relative;
-  width: fit-content;
-  font-family: var(--reduced-focus-mobile-font-family);
-  font-weight: var(--reduced-focus-mobile-font-weight);
-  color: var(--dark-grey);
-  font-size: var(--reduced-focus-mobile-font-size);
-  letter-spacing: var(--reduced-focus-mobile-letter-spacing);
-  line-height: var(--reduced-focus-mobile-line-height);
-  white-space: nowrap;
-  font-style: var(--reduced-focus-mobile-font-style);
+  font-family: var(--body-copy-mobile-font-family);
+  font-size: 14px;
 }
 
 .vendor-item .short-text-field-2 {
+  margin-top: 10px;
   top: 200px;
   display: inline-flex;
   flex-direction: column;
@@ -215,6 +224,7 @@
 }
 
 .vendor-item .short-text-field-3 {
+  margin-top: 20px;
   top: 280px;
   display: inline-flex;
   flex-direction: column;
@@ -225,6 +235,7 @@
 }
 
 .vendor-item .short-text-field-4 {
+  margin-top: 30px;
   top: 360px;
   display: inline-flex;
   flex-direction: column;
@@ -342,7 +353,7 @@
 .vendor-inventory .div {
   background-color: var(--cloud-white);
   width: 430px;
-  height: 1000px;
+  height: 2000px;
   position: relative;
 }
 
@@ -583,7 +594,7 @@
   position: absolute;
   width: 191px;
   height: 40px;
-  top: 59px;
+  top: 65px;
   left: 120px;
   font-family: var(--h2-mobile-font-family);
   font-weight: var(--h2-mobile-font-weight);
@@ -638,7 +649,7 @@
 
 .vendor-account .frame-2 {
   width: 87px;
-  left: 311px;
+  left: 300px;
   height: 40px;
   position: absolute;
   top: 0;
@@ -843,8 +854,8 @@
 .vendor-account .text-wrapper-4 {
   position: absolute;
   width: 151px;
-  top: 64px;
-  left: 247px;
+  top: 80px;
+  left: 200px;
   font-family: var(--body-copy-mobile-italic-font-family);
   font-weight: var(--body-copy-mobile-italic-font-weight);
   font-style: var(--body-copy-mobile-italic-font-style);
