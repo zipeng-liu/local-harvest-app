@@ -1,0 +1,521 @@
+.directory-of-markets,
+.directory-of-markets * {
+  box-sizing: border-box;
+}
+.directory-of-markets {
+  background: var(--cloud-white, #f6f6f6);
+  padding: 10px;
+  height: 1097px;
+  position: relative;
+  overflow: hidden;
+}
+.vendor {
+  width: 398px;
+  height: 173px;
+  position: absolute;
+  left: 16px;
+  top: 200px;
+}
+.lorem-ipsum-dolor-sit-amet-consectetur {
+  color: #000000;
+  text-align: left;
+  font-family: var(--body-copy-mobile-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--body-copy-mobile-font-size, 16px);
+  font-weight: var(--body-copy-mobile-font-weight, 400);
+  position: absolute;
+  right: 0%;
+  left: 50%;
+  width: 50%;
+  bottom: -2.89%;
+  top: 61.27%;
+  height: 41.62%;
+}
+.business-name {
+  color: var(--semi-black, #090909);
+  text-align: left;
+  font-family: "RoobertTrial-Bold", sans-serif;
+  font-size: 20.799999237060547px;
+  font-weight: 700;
+  position: absolute;
+  right: 0%;
+  left: 50%;
+  width: 50%;
+  bottom: 84.97%;
+  top: 0%;
+  height: 15.03%;
+}
+.rectangle-3 {
+  background: linear-gradient(to left, #f9a65c, #f9a65c);
+  border-radius: 10px;
+  width: 47.99%;
+  height: 98.27%;
+  position: absolute;
+  right: 52.01%;
+  left: 0%;
+  bottom: 1.73%;
+  top: 0%;
+  box-shadow: var(
+    --drop-shadow-box-shadow,
+    3px 3px 4px 0px rgba(0, 0, 0, 0.25)
+  );
+  object-fit: cover;
+}
+.category {
+  width: 29.15%;
+  height: 15.03%;
+  position: absolute;
+  right: 20.85%;
+  left: 50%;
+  bottom: 63.01%;
+  top: 21.97%;
+}
+.rectangle-15 {
+  background: var(--olivine-light, #e3f9e3);
+  border-radius: 9px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+  box-shadow: var(
+    --small-drop-shadow-box-shadow,
+    2px 2px 4px 0px rgba(0, 0, 0, 0.25)
+  );
+}
+.hastings-park {
+  color: var(--semi-black, #090909);
+  text-align: center;
+  font-family: var(--body-copy-mobile-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--body-copy-mobile-font-size, 16px);
+  font-weight: var(--body-copy-mobile-font-weight, 400);
+  position: absolute;
+  right: 6.9%;
+  left: 6.9%;
+  width: 86.21%;
+  bottom: 15.38%;
+  top: 15.38%;
+  height: 69.23%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.category2 {
+  width: 30.15%;
+  height: 15.03%;
+  position: absolute;
+  right: 19.85%;
+  left: 50%;
+  bottom: 45.66%;
+  top: 39.31%;
+}
+.hastings-park2 {
+  color: var(--semi-black, #090909);
+  text-align: center;
+  font-family: var(--body-copy-mobile-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--body-copy-mobile-font-size, 16px);
+  font-weight: var(--body-copy-mobile-font-weight, 400);
+  position: absolute;
+  right: 8.94%;
+  left: 7.73%;
+  width: 83.33%;
+  bottom: 15.38%;
+  top: 15.38%;
+  height: 69.23%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vendor2 {
+  width: 398px;
+  height: 173px;
+  position: absolute;
+  left: 16px;
+  top: 396px;
+}
+.hastings-park3 {
+  color: var(--semi-black, #090909);
+  text-align: center;
+  font-family: var(--body-copy-mobile-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--body-copy-mobile-font-size, 16px);
+  font-weight: var(--body-copy-mobile-font-weight, 400);
+  position: absolute;
+  right: 14.66%;
+  left: 15.52%;
+  width: 69.83%;
+  bottom: 15.38%;
+  top: 15.38%;
+  height: 69.23%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hastings-park4 {
+  color: var(--semi-black, #090909);
+  text-align: center;
+  font-family: var(--body-copy-mobile-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--body-copy-mobile-font-size, 16px);
+  font-weight: var(--body-copy-mobile-font-weight, 400);
+  position: absolute;
+  right: 3.1%;
+  left: 1.9%;
+  width: 95%;
+  bottom: 15.38%;
+  top: 15.38%;
+  height: 69.23%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vendor3 {
+  width: 398px;
+  height: 173px;
+  position: absolute;
+  left: 16px;
+  top: 592px;
+}
+.hastings-park5 {
+  color: var(--semi-black, #090909);
+  text-align: center;
+  font-family: var(--body-copy-mobile-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--body-copy-mobile-font-size, 16px);
+  font-weight: var(--body-copy-mobile-font-weight, 400);
+  position: absolute;
+  right: 14.66%;
+  left: 14.66%;
+  width: 70.69%;
+  bottom: 15.38%;
+  top: 15.38%;
+  height: 69.23%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hastings-park6 {
+  color: var(--semi-black, #090909);
+  text-align: center;
+  font-family: var(--body-copy-mobile-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--body-copy-mobile-font-size, 16px);
+  font-weight: var(--body-copy-mobile-font-weight, 400);
+  position: absolute;
+  right: 14.77%;
+  left: 14.4%;
+  width: 70.83%;
+  bottom: 15.38%;
+  top: 15.38%;
+  height: 69.23%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vendor-overflow {
+  width: 398px;
+  height: 173px;
+  position: absolute;
+  left: 16px;
+  top: 788px;
+}
+.lorem-ipsum-dolor-sit-amet-consectetur2 {
+  color: #000000;
+  text-align: left;
+  font-family: var(--body-copy-mobile-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--body-copy-mobile-font-size, 16px);
+  font-weight: var(--body-copy-mobile-font-weight, 400);
+  position: absolute;
+  right: 0%;
+  left: 50%;
+  width: 50%;
+  bottom: -19.08%;
+  top: 77.46%;
+  height: 41.62%;
+}
+.business-name2 {
+  color: var(--semi-black, #090909);
+  text-align: left;
+  font-family: "RoobertTrial-Bold", sans-serif;
+  font-size: 20.799999237060547px;
+  font-weight: 700;
+  position: absolute;
+  right: 0%;
+  left: 50%;
+  width: 50%;
+  bottom: 69.94%;
+  top: 0%;
+  height: 30.06%;
+}
+.category3 {
+  width: 29.15%;
+  height: 15.03%;
+  position: absolute;
+  right: 20.85%;
+  left: 50%;
+  bottom: 46.82%;
+  top: 38.15%;
+}
+.hastings-park7 {
+  color: var(--semi-black, #090909);
+  text-align: center;
+  font-family: var(--body-copy-mobile-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--body-copy-mobile-font-size, 16px);
+  font-weight: var(--body-copy-mobile-font-weight, 400);
+  position: absolute;
+  right: 4.31%;
+  left: 4.31%;
+  width: 91.38%;
+  bottom: 15.38%;
+  top: 15.38%;
+  height: 69.23%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.category4 {
+  width: 30.15%;
+  height: 15.03%;
+  position: absolute;
+  right: 19.85%;
+  left: 50%;
+  bottom: 29.48%;
+  top: 55.49%;
+}
+.all-markets {
+  color: #000000;
+  text-align: left;
+  font-family: "RoobertTrial-Bold", sans-serif;
+  font-size: 25.799999237060547px;
+  font-weight: 700;
+  position: absolute;
+  left: 16px;
+  top: 148px;
+  width: 398px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.nav-bar {
+  width: 430px;
+  height: 97px;
+  position: sticky;
+  right: 0px;
+  bottom: -3px;
+  box-shadow: var(
+    --nav-shadow-box-shadow,
+    0px -2px 4px 0px rgba(0, 0, 0, 0.25)
+  );
+}
+.rectangle-81 {
+  background: var(--cloud-white, #f6f6f6);
+  border-radius: 10px 10px 0px 0px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+}
+.frame-46 {
+  display: flex;
+  flex-direction: row;
+  gap: 67px;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  left: 43px;
+  top: 13px;
+}
+.group-39 {
+  flex-shrink: 0;
+  width: 32px;
+  height: 38.83px;
+  position: relative;
+  overflow: visible;
+}
+.group-40 {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38.83px;
+  position: relative;
+  overflow: visible;
+}
+.group-41 {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38.83px;
+  position: relative;
+  overflow: visible;
+}
+.group-42 {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38.83px;
+  position: relative;
+  overflow: visible;
+}
+.home {
+  color: #000000;
+  text-align: center;
+  font-family: var(--nav-text-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--nav-text-font-size, 12px);
+  font-weight: var(--nav-text-font-weight, 400);
+  position: absolute;
+  left: 42px;
+  top: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search {
+  color: #000000;
+  text-align: center;
+  font-family: var(--nav-text-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--nav-text-font-size, 12px);
+  font-weight: var(--nav-text-font-weight, 400);
+  position: absolute;
+  left: 143px;
+  top: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart {
+  color: #000000;
+  text-align: center;
+  font-family: var(--nav-text-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--nav-text-font-size, 12px);
+  font-weight: var(--nav-text-font-weight, 400);
+  position: absolute;
+  left: 255px;
+  top: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile {
+  color: #000000;
+  text-align: center;
+  font-family: var(--nav-text-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--nav-text-font-size, 12px);
+  font-weight: var(--nav-text-font-weight, 400);
+  position: absolute;
+  left: 352px;
+  top: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-variants {
+  width: 430px;
+  height: 107px;
+  position: sticky;
+  left: 0px;
+  top: 0px;
+}
+.rectangle-113 {
+  background: var(--cloud-white, #f6f6f6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+}
+.back-button {
+  width: 9.3%;
+  height: 37.38%;
+  position: absolute;
+  right: 90%;
+  left: 0.7%;
+  bottom: 12.15%;
+  top: 50.47%;
+  overflow: visible;
+}
+.group-76 {
+  position: absolute;
+  inset: 0;
+}
+.logo-with-wordmark-4-x-1 {
+  width: 54.88%;
+  height: 35.51%;
+  position: absolute;
+  right: 31.63%;
+  left: 13.49%;
+  bottom: 15.89%;
+  top: 48.6%;
+  object-fit: cover;
+}
+.status-bar-i-phone {
+  padding: 14px 26px 12px 27px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 430px;
+  height: 50px;
+  position: sticky;
+  left: 0px;
+  top: 0px;
+}
+.time-i-phone {
+  flex-shrink: 0;
+  width: 54px;
+  height: 21px;
+  position: relative;
+}
+.time {
+  color: var(--system-colours-label-colour-primary-light, #000000);
+  text-align: center;
+  font-family: "SfProText-Semibold", sans-serif;
+  font-size: 17px;
+  line-height: 22px;
+  letter-spacing: -0.41px;
+  font-weight: 600;
+  position: absolute;
+  left: 0px;
+  top: calc(50% - 10.5px);
+  width: 54px;
+}
+.cellular-wifi-battery-i-phone {
+  flex-shrink: 0;
+  width: 78.26px;
+  height: 13px;
+  position: relative;
+}
+.battery {
+  width: 34.92%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 65.08%;
+  bottom: 0%;
+  top: 0%;
+  overflow: visible;
+}
+.wifi {
+  width: 17px;
+  height: 12px;
+  position: absolute;
+  left: 26.6px;
+  top: 0.67px;
+  overflow: visible;
+}
+.cellular-connection {
+  width: 19.2px;
+  height: 12px;
+  position: absolute;
+  left: 0px;
+  top: 0.67px;
+  overflow: visible;
+}
+.notch {
+  flex-shrink: 0;
+  width: 153.43px;
+  height: 50px;
+  position: absolute;
+  left: calc(50% - 76.74px);
+  top: 0px;
+  overflow: visible;
+}
