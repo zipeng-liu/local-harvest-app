@@ -9,11 +9,21 @@
   </head>
   <body>
     <%- include('../../../components/header') %>
+
     <div class="shopping-cart-page">
       <div class="div">
         <div class="text-wrapper">My Cart</div>
         <div class="text-wrapper-2">Order Details</div>
-
+        <!-- Back button -->
+        <div class="header-variants">
+          <a href="/home">
+            <img
+              class="back-button button-full-effect"
+              src="/image/navigate_before.svg"
+          /></a>
+        </div>
+        
+        <!-- Item list -->
         <% if (cartItems.length === 0) { %>
         <div><p>Your cart is empty</p></div>
         <% } else { %> <% cartItems.forEach((item) => { %>
@@ -75,37 +85,81 @@
           </div>
         </div>
         <% }); %> <% } %>
-
+        
+        <!-- Payment method -->
         <div class="payment-method">
           <div class="overlap">
             <div class="rectangle"></div>
             <div class="text-wrapper-5">Choose your Payment Method</div>
-            <div class="rectangle-2"></div>
-            <div class="rectangle-3"></div>
+            <div class="rectangle-2" id="payInPersonButtonBackground"></div>
+            <div class="rectangle-3" id="payOnlineButtonBackground"></div>
 
             <div class="text-wrapper-6 button-enlarge-effect">
-              <a href="/customer/order/success">Pay In Person</a>
+              <a href="#" id="payInPersonButton">Pay In Person</a>
             </div>
             <div class="text-wrapper-7 button-enlarge-effect">
-              <a href="/customer/checkout">Pay Online</a>
+              <a href="#" id="payOnlineButton">Pay Online</a>
             </div>
-            <img class="line" src="img/line-27.svg" />
-
           </div>
         </div>
-        <!-- <img class="img" src="img/line-3.svg" /> -->
+        
+        <!-- Order total -->
         <div class="payment-method-order">
           <div class="text-wrapper-8">Order Subtotal</div>
           <% const sumTotal = cartItems.reduce((sum, item) => { %> <% return sum
           + (item.product.price * item.quantity); %> <% }, 0); %>
           <div class="text-wrapper-9"><%= `$${sumTotal.toFixed(2)}` %></div>
         </div>
-        <div class="header-variants">
-          <a href="/home">
-            <img
-              class="back-button button-full-effect"
-              src="/image/navigate_before.svg"
-          /></a>
+        
+        <!--In-person Checkout form -->
+        <div class="in-pserson-checkout-form">
+          <form action="/customer/order/checkout" method="post">
+            
+            <div class="rectangle-schedule"></div>
+            <div class="schedule">
+              <img class="vector" src="/image/calender-icon.png">
+              <div class="schedule-text">Schedule</div>
+              <input class="text-field-date" type="datetime-local" placeholder="" name="schedule">
+            </div>
+
+            <div class="rectangle-contact"></div>
+
+            <div class="contact-info-text">Contact Info</div>
+            <div class="firstname-text-field">
+              <div class="label">First Name</div>
+              <div class="text-field3">
+                <input class="short-input-field" type="text" placeholder="First Name" name="contactFirstname">
+              </div>
+            </div>  
+
+            <div class="lastname-text-field">
+              <div class="label">Last Name</div>
+              <div class="text-field3">
+                <input class="short-input-field" type="text" placeholder="Last Name" name="contactLastname">
+              </div>
+            </div> 
+
+            <div class="email-text-field">
+              <div class="label">Email</div>
+              <div class="text-field-email">
+                <input class="long-input-field" type="email" placeholder="example@gmail.com" name="contactEmail">
+              </div>
+            </div> 
+            
+            <input type="hidden" name="type" value="In Person">
+            <input type="hidden" name="total" value="<%= sumTotal %>">
+          
+            <button type="submit" class="large-button button-color-effect">
+              <div class="submit-order-button-box"></div>
+              <div class="submit-order-button button-enlarge-effect">Submit Order</div>
+            </button>
+            
+          </div>
+        </form>
+
+        <!-- Online Checkout form -->
+        <div class="online-checkout-form">
+
         </div>
       </div>
     </div>
@@ -113,5 +167,6 @@
     <%- include('../../../components/footer') %>
 
     <script src="/scripts/cart.js"></script>
+    <script src="/scripts/payment.js"></script>
   </body>
 </html>
