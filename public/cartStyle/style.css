@@ -836,3 +836,64 @@ background-color: #f5f5f5;
 .order-details #order-subtotal p {
   text-align: right;
 }
+
+
+/* Payment info */
+.in-pserson-checkout-form {
+  display: none;
+}
+
+.in-pserson-checkout-form .rectangle-schedule {
+  position: relative;
+  width: 398px;
+  height: 60px;
+  top: 350px;
+  left: 16px;
+  background-color: var(--cloud-white);
+  border-radius: 16px;
+  box-shadow: var(--center-drop-shadow);
+}
+
+.in-pserson-checkout-form .vector {
+  width: 7%;
+  position: relative;
+  left: 8%;
+  top: 303px;
+  overflow: visible;
+}
+
+.in-pserson-checkout-form .schedule-text {
+  color: #000000;
+  text-align: left;
+  font-family: "Arimo-Bold", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  position: relative;
+  left: 18%;
+  top: 265px;
+  height: 32.79%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.in-pserson-checkout-form .select-a-date {
+  color: #000000;
+  text-align: left;
+  font-family: var(--reduced-focus-mobile-font-family, "Arimo-Regular", sans-serif);
+  font-size: var(--reduced-focus-mobile-font-size, 12px);
+  font-weight: var(--reduced-focus-mobile-font-weight, 400);
+  position: relative;
+  left: 18%;
+  top: 270px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.in-pserson-checkout-form .text-field-1 {
+  position: relative;
+  left: 36%;
+  top: 251px;
+}
+
