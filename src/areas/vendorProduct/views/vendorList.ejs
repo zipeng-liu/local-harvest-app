@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/vendorStyle/style.css" />
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+  </head>
+  <body>
+
+    <%- include('../../../components/header') %>
+
+    <div class="vendor-list">
+      <div class="div">
+        <a href="/home"><img class="back-button" src="/image/navigate_before.svg" /></a>
+        <div class="vendors">All Vendors</div>
+        <% allVendors.forEach(vendor => { %>
+            <div class="vendor">
+                <p class="description"><%= vendor.description %></p>
+                <div class="business-name"><a href="/vendor/<%= vendor.vendorId %>"><%= vendor.name %></a></div>
+                <img class="rectangle" src=<%= vendor.photo %> />
+                <div class="category"><div class="text-wrapper">Hastings Park</div></div>
+                <div class="hastings-park-wrapper"><div class="hastings-park">Seafood</div></div>
+              </div>
+       <% }) %>
+      </div>
+    </div>
+    <%- include('../../../components/footer') %>
+  </body>
+</html>
+
+

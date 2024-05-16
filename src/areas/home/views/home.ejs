@@ -7,61 +7,47 @@
     <link rel="stylesheet" href="/sharedStyle/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="/homeStyle/style.css" />
+    <script src="/scripts/add-to-cart.js"></script>
   </head>
   <body>
     <%- include('../../../components/header') %>
     <div class="home-page">
       <div class="div">
-        <!-- <div class="searchbar">
-          <div class="searchbar-condensed">
-            <form action="/search" method="POST">
-              <input type="text" name="keyword" class="search-input" placeholder="Markets, Vendors, Product">
-              <button type="submit" class="search-button">
-                  <i class="fas fa-search button-full-effect"></i>
-              </button>
-            </form>
-            <a href="/"><img class="back-button button-full-effect" src="/image/navigate_before.svg" /></a>
-          </div>
-        </div> -->
-
-        <div class="text-wrapper">Categories</div>
-        <div class="text-wrapper-2">Featured Market</div>
-        <div class="text-wrapper-3">Browse Markets</div>
-        <div class="text-wrapper-4">Browse Vendors</div>
+        <div class="category-header">Categories</div>
+        <div class="featured-market-header">Featured Market</div>
+        <div class="browse-markets-header">Browse Markets</div>
+        <div class="browse-vendors-header">Browse Vendors</div>
         
-        <div class="text-wrapper-13">View all</div>
-        <div class="text-wrapper-14">View all</div>
-        <div class="text-wrapper-15">View all</div>
+        <div class="view-all-vendors"><a href="/vendor/list">View all</a></div>
+        <div class="view-all-markets"><a href="/market/list">View all</a></div>
+        <div class="view-all-categories">View all</div>
 
-        <div class="mid-banner">
-          <div class="overlap-group-2">
-            <div class="div-wrapper"><img class="div-wrapper" src="image/market.png" /><div class="rectangle-2"></div></div>
-            <div class="text-wrapper-16">Hastings Park Market</div>
-          </div>
+        <div class="all-markets">
+          <% randomMarkets.forEach(market => { %>
+            <div class="market-item">
+              <div class="div-wrapper"><img class="market-img" src=<%= market.photo %> />
+              <div class="market-name"><%= market.name %></div>
+              </div>
+            </div>
+          <% }) %>
         </div>
-        <div class="mid-banner-2">
-          <div class="overlap-group-2">
-            <div class="mid-banner-3"><img class="div-wrapper" src="image/market.png" /><div class="rectangle-2"></div></div>
-            <div class="hastings-park-market">Bob’s Tomato Farm</div>
-          </div>
+
+        <div class="all-vendors">
+          <% randomVendors.forEach(vendor => { %>
+            <div class="vendor-item">
+              <div class="mid-banner-3"><img class="vendor-img" src=<%= vendor.photo %> />
+              <a href="/home"><div class="vendor-name"><%= vendor.name %></div></a>
+            </div>
+            </div>
+          <% }) %>
+    
         </div>
-        <div class="mid-banner-4">
-          <div class="overlap-group-2">
-            <div class="mid-banner-5"><img class="div-wrapper" src="image/market.png" /><div class="rectangle-2"></div></div>
-            <div class="text-wrapper-16">Hastings Park Market</div>
-          </div>
-        </div>
-        <div class="mid-banner-6">
-          <div class="overlap-group-2">
-            <div class="mid-banner-7"><img class="div-wrapper" src="image/market.png" /><div class="rectangle-2"></div></div>
-            <div class="hastings-park-market-2">Seb’s Fish Monger</div>
-          </div>
-        </div>
-        
+      
+
         <div class="vendor">
-          <p class="lorem-ipsum-dolor">Over 30 vendors each week with variety of selections.</p>
-          <div class="business-name"><a class="button-full-effect" href="/market">Hastings Park</a></div>
-          <img class="rectangle-3" src="image/market.png" />
+          <p class="featured-market-description">Over 30 vendors each week with variety of selections.</p>
+          <a class="button-full-effect" href="/market"><div class="business-name"><%= featuredMarket.name %></div></a>
+          <img class="featured-market-photo" src=<%= featuredMarket.photo %> />
           <div class="category"><div class="text-wrapper-17">Hastings Park</div></div>
           <div class="hastings-park-wrapper"><div class="hastings-park">Winter Market</div></div>
         </div>
@@ -76,33 +62,25 @@
         <div class="category-9"><div class="hastings-park-4">Baked Goods</div></div>
 
         <div class="overlap">
-          <div class="text-wrapper-5">Popular Items</div>
-          <div class="text-wrapper-6"><a class="button-full-effect" href="/products">View all</a></div>
+          <div class="popular-items-header">Popular Items</div>
           <div class="item-carosel">
             <div class="item-content">
-              <div class="overlap-group">
-                <div class="rectangle-wrapper"><img class="rectangle" src="image/tomato.jpeg" /></div>
-                <div class="group"><img class="add-to-cart" src="image/plus.png" /></div>
-              </div>
+              <% randomProducts.forEach(product => { %>
+                <div class="overlap-group">
+                  <div class="rectangle-wrapper"><img class="img" src="<%= product.primaryPhoto %>" /></div>
+                  
+                  <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
+                    <button type="submit" class="add-to-cart-wrapper"><img class="add-to-cart-2" src="/image/add_24px.svg" /></button>
+                  </form>
+                
+                  <div class="product-info">
+                    <div class="text-wrapper-product-name"><a href="/products/<%= product.productId %>"><%= product.name %></a></div>
+                    <div class="text-wrapper-product-price">$<%= product.price %></div>
+                  </div>
+                </div>
+              <% }) %>
+            
             </div>
-            <div class="overlap-wrapper">
-              <div class="overlap-group">
-                <div class="rectangle-wrapper"><img class="rectangle" src="image/tomato.jpeg" /></div>
-                <div class="group"><img class="add-to-cart" src="image/plus.png" /></div>
-              </div>
-            </div>
-            <div class="overlap-group-wrapper">
-              <div class="overlap-group">
-                <div class="rectangle-wrapper"><img class="img" src="image/tomato.jpeg" /></div>
-                <img class="group-2" src="image/plus.png" />
-              </div>
-            </div>
-            <div class="text-wrapper-7">Gala Apple</div>
-            <div class="text-wrapper-8">Juicy Orange</div>
-            <div class="text-wrapper-9">Chocolate C...</div>
-            <div class="text-wrapper-10">$1</div>
-            <div class="text-wrapper-11">$1</div>
-            <div class="text-wrapper-12">$1</div>
           </div>
         </div>
       </div>
