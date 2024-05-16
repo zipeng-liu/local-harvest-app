@@ -5,7 +5,7 @@ import { ProductService } from "../services/Product.service";
 import { Vendor, Product } from "@prisma/client";
 import IProductService from "../services/IProduct.service";
 import { getProfileLink } from "../../../helper/profileLink";
-import { shuffle } from "../../../helper/randomProducts";
+import { shuffle } from "../../../helper/randomFunction";
 
 
 class ProductController implements IController {
