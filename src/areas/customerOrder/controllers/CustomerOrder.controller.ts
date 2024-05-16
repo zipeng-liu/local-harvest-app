@@ -94,18 +94,61 @@ class CustomerOrderController implements IController {
   };
 
 
+  // private handleCheckout = async (
+  //   req: express.Request,
+  //   res: express.Response
+  // ) => {
+
+    
+
+  //   const profileLink = getProfileLink(req, res);
+  //   if (profileLink) {
+  //     res.render("success", { profileLink });
+  //   } else {
+  //     res.redirect("404");
+  //   }
+  // };
+
+
   private handleCheckout = async (
     req: express.Request,
     res: express.Response
   ) => {
-
-    
-
+    const userId = req.session.userId?.customerId;
     const profileLink = getProfileLink(req, res);
-    if (profileLink) {
-      res.render("success", { profileLink });
-    } else {
-      res.redirect("404");
+    if (!userId) {
+      return res.status(401).json({ success: false, message: "Unauthorized" });
+    }
+
+    const { contactFirstname, contactLastname, contactEmail, schedule, total, type } = req.body;
+
+    try {
+      // Check if all items in the cart are available
+      await this._service.checkCartItemsAvailability(userId);
+
+      // Create the order
+      const order = await this._service.createOrder(
+        userId,
+        contactFirstname,
+        contactLastname,
+        contactEmail,
+        new Date(schedule),
+        parseFloat(total),
+        type
+      );
+
+      // Delete cart items for the user
+      await this._service.deleteCartItemsForUser(userId);
+
+      // Redirect to order success page
+      res.redirect("success");
+    } catch (error) {
+      if (error instanceof Error) {
+        req.session.messages = error.message;
+      } else {
+        req.session.messages = "An unexpected error occurred";
+      }
+      res.redirect("/cart");
     }
   };
 

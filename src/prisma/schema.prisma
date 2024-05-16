@@ -33,6 +33,10 @@ model Order {
   customerId  Int             // Foreign key to Customer
   type        String
   total       Float
+  contactFirstname String
+  contactLastname String
+  contactEmail String
+  schedule    DateTime
   customer    Customer        @relation(fields: [customerId], references: [customerId])
   productOrders ProductOrder[] // One-to-many relationship with ProductOrder
 }
