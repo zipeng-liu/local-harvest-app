@@ -23,7 +23,9 @@ import CustomerProfileController from "./areas/customerProfile/controllers/Custo
 import { CustomerProfileService } from "./areas/customerProfile/services/CustomerProfile.service";
 import CustomerOrderController from "./areas/customerOrder/controllers/CustomerOrder.controller";
 import { CustomerOrderService } from "./areas/customerOrder/services/CustomerOrder.service";
+import MarketController from "./areas/market/controllers/Market.controller";
 import { HomeService } from "./areas/home/services/Home.services";
+
 
 const server = new App([
   new LandingController(),
@@ -37,6 +39,7 @@ const server = new App([
   new ProductController(new ProductService()),
   new CustomerProfileController(new CustomerProfileService()),
   new CustomerOrderController(new CustomerOrderService()),
+  new MarketController(),
 ]);
 
 server.start();
