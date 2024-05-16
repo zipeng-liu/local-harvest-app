@@ -24,13 +24,15 @@ import { CustomerProfileService } from "./areas/customerProfile/services/Custome
 import CustomerOrderController from "./areas/customerOrder/controllers/CustomerOrder.controller";
 import { CustomerOrderService } from "./areas/customerOrder/services/CustomerOrder.service";
 import MarketController from "./areas/market/controllers/Market.controller";
+import { HomeService } from "./areas/home/services/Home.services";
+
 
 const server = new App([
   new LandingController(),
   new VendorAuthenticationController(new VendorAuthenticationService()),
   new CustomerAuthenticationController(new CustomerAuthenticationService()),
   new VendorProductController(new VendorProductService()),
-  new HomeController(),
+  new HomeController(new HomeService()),
   new VendorProfileController(new VendorProfileService()),
   new SearchController(new SearchService()),
   new CartController(new CartService()),
