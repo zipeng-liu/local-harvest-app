@@ -25,7 +25,7 @@ import CustomerOrderController from "./areas/customerOrder/controllers/CustomerO
 import { CustomerOrderService } from "./areas/customerOrder/services/CustomerOrder.service";
 import MarketController from "./areas/market/controllers/Market.controller";
 import { HomeService } from "./areas/home/services/Home.services";
-
+import { MarketService } from "./areas/market/services/Market.services";
 
 const server = new App([
   new LandingController(),
@@ -39,7 +39,7 @@ const server = new App([
   new ProductController(new ProductService()),
   new CustomerProfileController(new CustomerProfileService()),
   new CustomerOrderController(new CustomerOrderService()),
-  new MarketController(),
+  new MarketController(new MarketService()),
 ]);
 
 server.start();
