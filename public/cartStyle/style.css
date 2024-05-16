@@ -10,7 +10,7 @@
   background-color: var(--cloud-white);
   overflow: hidden;
   width: 430px;
-  min-height: 200vh;
+  min-height: 300vh;
   position: relative;
 }
 
@@ -870,30 +870,170 @@ background-color: #f5f5f5;
   font-weight: 700;
   position: relative;
   left: 18%;
-  top: 265px;
+  top: 277px;
   height: 32.79%;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
 }
 
-.in-pserson-checkout-form .select-a-date {
-  color: #000000;
-  text-align: left;
-  font-family: var(--reduced-focus-mobile-font-family, "Arimo-Regular", sans-serif);
-  font-size: var(--reduced-focus-mobile-font-size, 12px);
-  font-weight: var(--reduced-focus-mobile-font-weight, 400);
+.in-pserson-checkout-form .text-field-date {
   position: relative;
-  left: 18%;
-  top: 270px;
+  left: 45%;
+  top: 255px;
+  z-index: 100;
+  background: var(--pure-white, #ffffff);
+  border-radius: 6.71px;
+  border-style: solid;
+  border-color: var(--med-grey, #b5b5b5);
+  border-width: 0.84px;
+  flex-direction: row;
+  gap: 6.71px;
+  align-items: center;
+  flex-shrink: 0;
+  height: 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+.in-pserson-checkout-form .rectangle-contact {
+  position: relative;
+  width: 398px;
+  height: 220px;
+  top: 290px;
+  left: 16px;
+  background-color: var(--cloud-white);
+  border-radius: 16px;
+  box-shadow: var(--center-drop-shadow);
+}
+
+.in-pserson-checkout-form .contact-info-text {
+  color: var(--semi-black, #090909);
+  font-family: var(--h3-mobile-font-family, "RoobertTrial-SemiBold", sans-serif);
+  font-size: var(--h3-mobile-font-size, 18px);
+  font-weight: var(--h3-mobile-font-weight, 600);
+  position: relative;
+  left: 8%;
+  top: 15px;
+  height: 15%;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
 }
 
-.in-pserson-checkout-form .text-field-1 {
+.in-pserson-checkout-form .firstname-text-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   position: relative;
-  left: 36%;
-  top: 251px;
+  left: 8%;
+  top: 5%;
 }
 
+
+.in-pserson-checkout-form .lastname-text-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6.71px;
+  position: relative;
+  left: 54%;
+  bottom: 5.5%;
+}
+
+.in-pserson-checkout-form .email-text-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6.71px;
+  position: relative;
+  left: 8%;
+  bottom: 4%;
+}
+
+.in-pserson-checkout-form .short-input-field {
+  background: var(--pure-white, #ffffff);
+  border-radius: 6.71px;
+  border-style: solid;
+  border-color: var(--med-grey, #b5b5b5);
+  border-width: 0.84px;
+  padding: 6.71px 6.71px 6.71px 13.41px;
+  display: flex;
+  flex-direction: row;
+  gap: 6.71px;
+  align-items: center;
+  flex-shrink: 0;
+  width: 120px;
+  height: 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+.in-pserson-checkout-form .long-input-field {
+  background: var(--pure-white, #ffffff);
+  border-radius: 6.71px;
+  border-style: solid;
+  border-color: var(--med-grey, #b5b5b5);
+  border-width: 0.84px;
+  padding: 6.71px 6.71px 6.71px 13.41px;
+  display: flex;
+  flex-direction: row;
+  gap: 6.71px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 300px;
+  height: 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.in-pserson-checkout-form .label {
+  color: var(--dark-grey, #343434);
+  text-align: left;
+  font-family: var(
+    --medium-header-mobile-font-family,
+    "RoobertTrial-Medium",
+    sans-serif
+  );
+  font-size: var(--medium-header-mobile-font-size, 17px);
+  font-weight: var(--medium-header-mobile-font-weight, 500);
+  position: relative;
+}
+
+
+.in-pserson-checkout-form .large-button {
+  width: 398px;
+  height: 60px;
+  position: relative;
+  left: 15px;
+  top: 20px;
+  box-shadow: var(--drop-shadow-box-shadow, 3px 3px 4px 0px rgba(0, 0, 0, 0.25));
+  border: none;
+  border-radius: 20px;
+}
+
+.in-pserson-checkout-form .submit-order-button-box {
+  background: var(--sandy-brown, #e36b00);
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+}
+
+.in-pserson-checkout-form .submit-order-button {
+  color: var(--cloud-white, #f6f6f6);
+  text-align: center;
+  font-family: var(--h2-mobile-font-family, "RoobertTrial-Bold", sans-serif);
+  font-size: var(--h2-mobile-font-size, 20.799999237060547px);
+  font-weight: var(--h2-mobile-font-weight, 700);
+  position: absolute;
+  left: calc(50% - 95px);
+  top: calc(50% - 14px);
+  width: 191px;
+  height: 29px;
+  border-radius: 15px;
+}
