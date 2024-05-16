@@ -34,7 +34,7 @@ export class VendorProductService implements IVendorProductService {
       } catch (error) {
         console.log(error)
       }
-    }
+    };
 
   async findAllProductsByVendor(vendorId: number): Promise<Product[]> {
     const vendorWithProducts = await this._db.prisma.vendor.findUnique({
@@ -46,5 +46,14 @@ export class VendorProductService implements IVendorProductService {
       },
     });
     return vendorWithProducts ? vendorWithProducts.products : [];
-  }
+  };
+
+  async getAllVendors(): Promise<Vendor[]> {
+    try {
+      const allVendors = await this._db.prisma.vendor.findMany();
+      return allVendors;
+    } catch(error) {
+      throw new Error ("Failed to get all vendors")
+    }
+  };
 }
