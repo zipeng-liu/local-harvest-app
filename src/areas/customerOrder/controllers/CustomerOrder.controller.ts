@@ -42,15 +42,10 @@ class CustomerOrderController implements IController {
       ensureAuthenticated,
       this.showOrderDetailPage
     );
-    this.router.get(
-      `${this.path}/checkout/inperson`,
+    this.router.post(
+      `${this.path}/order/checkout`,
       ensureAuthenticated,
-      this.showInpersonCheckoutPage
-    );
-    this.router.get(
-      `${this.path}/checkout/online`,
-      ensureAuthenticated,
-      this.showOnlineCheckoutPage
+      this.handleCheckout
     );
   }
 
@@ -98,6 +93,23 @@ class CustomerOrderController implements IController {
     }
   };
 
+
+  private handleCheckout = async (
+    req: express.Request,
+    res: express.Response
+  ) => {
+
+    
+
+    const profileLink = getProfileLink(req, res);
+    if (profileLink) {
+      res.render("success", { profileLink });
+    } else {
+      res.redirect("404");
+    }
+  };
+
+
   private showOrderSuccessPage = async (
     req: express.Request,
     res: express.Response
@@ -119,24 +131,6 @@ class CustomerOrderController implements IController {
       res.render("orderDetails", { profileLink });
     } else {
       res.redirect("404");
-    }
-  };
-
-  private showInpersonCheckoutPage = (req: express.Request, res: express.Response) => {
-    const profileLink = getProfileLink(req, res);
-    if (profileLink) {
-      res.render("inpersonCheckout", { profileLink });
-    } else {
-      res.render("landing");
-    }
-  };
-
-  private showOnlineCheckoutPage = (req: express.Request, res: express.Response) => {
-    const profileLink = getProfileLink(req, res);
-    if (profileLink) {
-      res.render("onlineCheckout", { profileLink });
-    } else {
-      res.render("landing");
     }
   };
 }
