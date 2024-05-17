@@ -26,6 +26,7 @@ class VendorProductController implements IController {
     this.router.get(`${this.path}/inventory`, this.showInventoryPage);
     this.router.post(`${this.path}/addItem`, multiUpload, this.addProduct);
     this.router.get(`${this.path}/list`, this.showVendorList);
+    this.router.get(`${this.path}/:id`, this.showVendorPage);
   }
 
   private showAddProduct = (req: express.Request, res: express.Response) => {
@@ -133,6 +134,21 @@ class VendorProductController implements IController {
       res.status(500).json({ message: "Failed to get all vendors", error})
     }
   };
+
+  private showVendorPage = async (req: express.Request, res: express.Response) => {
+    try {
+      const profileLink = getProfileLink(req, res);
+      if(!profileLink) {
+        res.redirect("landing");
+      } else {
+        const vendorId = parseInt(req.params.id);
+        const vendorById = await this._service.findVendorById(vendorId);
+        res.render("vendor", { profileLink, vendorById });
+      }
+    } catch(error) {
+      res.status(500).json({ message: "Failed to get vendor by Id for vendor page", error })
+    }
+  }
     
 };
 
