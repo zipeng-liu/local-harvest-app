@@ -4,6 +4,18 @@ import ensureAuthenticated from "../../../middleware/authentication.middleware";
 import { ICartService } from "../services/ICart.service";
 import { getProfileLink } from "../../../helper/profileLink";
 
+
+declare module "express-session" {
+  interface SessionData {
+    userId?: {
+      vendorId?: number;
+      customerId: number;
+    };
+    messages?: string;
+  }
+}
+
+
 class CartController implements IController {
   public path = "/cart";
   public router = express.Router();
@@ -27,6 +39,8 @@ class CartController implements IController {
   private showCart = async (req: Request, res: Response) => {
     try {
       const customerId = req.session.userId?.customerId;
+      const errorMessage = req.session.messages;
+      req.session.messages = '';
       if (!customerId) return res.redirect("401");
 
       const cartItems = await this._service.getCartByUserId(customerId);
@@ -34,7 +48,7 @@ class CartController implements IController {
 
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
-        res.render("cart", { cartItems, profileLink });
+        res.render("cart", { cartItems, profileLink, errorMessage });
       } else {
         res.redirect("401");
       }

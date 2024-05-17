@@ -15,6 +15,9 @@ interface ICustomerOrderService {
     total: number,
     type: string
   ): Promise<Order>
+  deductProductQuantities(userId: number): Promise<void>;
+  createProductOrders(userId: number, orderId: number): Promise<void>;
+  getCart(userId: number): Promise<Cart[]>;
 }
 
 export default ICustomerOrderService;

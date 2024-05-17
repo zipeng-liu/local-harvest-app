@@ -93,23 +93,6 @@ class CustomerOrderController implements IController {
     }
   };
 
-
-  // private handleCheckout = async (
-  //   req: express.Request,
-  //   res: express.Response
-  // ) => {
-
-    
-
-  //   const profileLink = getProfileLink(req, res);
-  //   if (profileLink) {
-  //     res.render("success", { profileLink });
-  //   } else {
-  //     res.redirect("404");
-  //   }
-  // };
-
-
   private handleCheckout = async (
     req: express.Request,
     res: express.Response
@@ -123,8 +106,22 @@ class CustomerOrderController implements IController {
     const { contactFirstname, contactLastname, contactEmail, schedule, total, type } = req.body;
 
     try {
+      //Check if cart is empty
+      const cartItems = await this._service.getCart(userId);
+      if (cartItems.length === 0) {
+        throw new Error("Your cart is empty!");
+      }
+
+      // Check if there are any empty feild in contact form
+      if (!contactFirstname || !contactLastname || !contactEmail || !schedule) {
+        throw new Error("Contact information missing!")
+      }
+
       // Check if all items in the cart are available
       await this._service.checkCartItemsAvailability(userId);
+
+      // Deduct the quantities of each item in the cart from the product table
+      await this._service.deductProductQuantities(userId);
 
       // Create the order
       const order = await this._service.createOrder(
@@ -136,6 +133,9 @@ class CustomerOrderController implements IController {
         parseFloat(total),
         type
       );
+
+      // Create product orders entries
+      await this._service.createProductOrders(userId, order.orderId);
 
       // Delete cart items for the user
       await this._service.deleteCartItemsForUser(userId);
