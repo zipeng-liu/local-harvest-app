@@ -624,3 +624,13 @@
   top: 0;
   left: 138px;
 }
+
+.business-name {
+  position: absolute;
+  font-family: var(--h1-mobile-font-family);
+  font-weight: var(--h1-mobile-font-weight);
+  font-size: 27px;
+  color: #000000;
+  top: 154px;
+  left: 22px;
+}

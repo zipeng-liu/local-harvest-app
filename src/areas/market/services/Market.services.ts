@@ -38,4 +38,13 @@ export class MarketService implements IMarketService {
       include: { vendors: true },
     });
   }
+
+  async getVendorsByMarketId(marketId: number): Promise<Vendor[] | null> {
+    const market = await this._db.prisma.market.findUnique({
+      where: { marketId },
+      include: { vendors: true },
+    });
+
+    return market?.vendors || null;
+  }
 }

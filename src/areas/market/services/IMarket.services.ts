@@ -8,6 +8,8 @@ interface IMarketService {
   getAllProducts(): Promise<Product[]>;
 
   getMarketById(marketId: number): Promise<Market | null>;
+
+  getVendorsByMarketId(marketId: number): Promise<Vendor[] | null>;
 }
 
 export default IMarketService;

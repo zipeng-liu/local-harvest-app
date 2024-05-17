@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-0" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/homeStyle/style.css" />
     <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
     <link rel="stylesheet" href="/sharedStyle/style.css" />
     <link
@@ -29,7 +30,7 @@
           <% randomMarkets.forEach(market => { %>
           <div class="market-item">
             <div class="div-wrapper">
-              <img class="market-img" src="<%" ="market.photo" % /> />
+              <img class="market-img" src="<%= market.photo %>" />
               <div class="market-name"><%= market.name %></div>
             </div>
           </div>
@@ -40,10 +41,10 @@
           <% randomVendors.forEach(vendor => { %>
           <div class="vendor-item">
             <div class="mid-banner-3">
-              <img class="vendor-img" src="<%" ="vendor.photo" % /> />
-              <a href="/home"
-                ><div class="vendor-name"><%= vendor.name %></div></a
-              >
+              <img class="vendor-img" src="<%= vendor.photo %>" />
+              <a href="/vendor/<%= vendor.vendorId %>">
+                <div class="vendor-name"><%= vendor.name %></div>
+              </a>
             </div>
           </div>
           <% }) %>
@@ -51,17 +52,17 @@
 
         <div class="vendor">
           <p class="featured-market-description">
-            Over 30 vendors each week with variety of selections.
+            Over 30 vendors each week with a variety of selections.
           </p>
-          <a class="button-full-effect" href="/market"
-            ><div class="business-name"><%= featuredMarket.name %></div></a
+          <a
+            class="button-full-effect"
+            href="/market/<%= featuredMarket.marketId %>"
           >
+            <div class="business-name"><%= featuredMarket.name %></div>
+          </a>
           <img
             class="featured-market-photo"
-            src="<%"
-            ="featuredMarket.photo"
-            %
-          />
+            src="<%= featuredMarket.photo %>"
           />
           <div class="category">
             <div class="text-wrapper-17">Hastings Park</div>
@@ -88,7 +89,7 @@
 
         <div class="overlap">
           <div class="popular-items-header">Popular Items</div>
-          <div class="item-carosel">
+          <div class="item-carousel">
             <div class="item-content">
               <% randomProducts.forEach(product => { %>
               <div class="overlap-group">
@@ -108,9 +109,9 @@
 
                 <div class="product-info">
                   <div class="text-wrapper-product-name">
-                    <a href="/products/<%= product.productId %>"
-                      ><%= product.name %></a
-                    >
+                    <a href="/products/<%= product.productId %>">
+                      <%= product.name %>
+                    </a>
                   </div>
                   <div class="text-wrapper-product-price">
                     $<%= product.price %>

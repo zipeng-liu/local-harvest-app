@@ -35,11 +35,18 @@ class MarketController implements IController {
   ) => {
     let marketId = req.params.id;
     const market = await this._service.getMarketById(+marketId);
-    console.log(market);
+    const vendor = await this._service.getAllVendors();
+
     const profileLink = getProfileLink(req, res);
     const allMarkets = await this._service.getAllMarkets();
     const shuffledMarkets = shuffle(allMarkets);
+    const randomMarkets = shuffledMarkets.slice(0, 2);
     const featuredMarket = shuffledMarkets[0];
+
+    const allVendors = await this._service.getAllVendors();
+    const shuffledVendors = shuffle(allVendors);
+    const randomVendors = shuffledVendors.slice(0, 2);
+
     if (profileLink) {
       res.render("market", {
         profileLink,
@@ -48,6 +55,9 @@ class MarketController implements IController {
         featuredMarket,
         market,
         marketId,
+        randomVendors,
+        vendor,
+        randomMarkets,
       });
     } else {
       res.redirect("landing");
