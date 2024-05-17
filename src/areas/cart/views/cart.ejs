@@ -119,7 +119,8 @@
             <div class="schedule">
               <img class="vector" src="/image/calender-icon.png">
               <div class="schedule-text">Schedule</div>
-              <input class="text-field-date" type="datetime-local" placeholder="" name="schedule">
+              <input class="text-field-date" type="datetime-local" placeholder="" name="schedule" id="scheduleField">
+              <script src="/scripts/time-limit.js"></script>
             </div>
 
             <div class="rectangle-contact"></div>
@@ -147,7 +148,7 @@
             </div> 
             
             <input type="hidden" name="type" value="In Person">
-            <input type="hidden" name="total" value="<%= sumTotal %>">
+            <input type="hidden" name="total" value="<%= sumTotal.toFixed(2) %>">
           
             <button type="submit" class="large-button button-color-effect">
               <div class="submit-order-button-box"></div>
@@ -161,12 +162,22 @@
         <div class="online-checkout-form">
 
         </div>
+      
       </div>
     </div>
 
     <%- include('../../../components/footer') %>
-
+    
     <script src="/scripts/cart.js"></script>
     <script src="/scripts/payment.js"></script>
+
+    <script>
+      window.onload = function() {
+        const errorMsg = '<%= errorMessage %>';
+        if (errorMsg) {
+          alert('<%= errorMessage %>');
+        }
+      }
+    </script>
   </body>
 </html>

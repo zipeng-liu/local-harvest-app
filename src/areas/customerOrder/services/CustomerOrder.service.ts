@@ -52,6 +52,14 @@ export class CustomerOrderService implements ICustomerOrderService {
     }
   }
 
+  async getCart(userId: number): Promise<Cart[]> {
+    const cartItems = await this._db.prisma.cart.findMany({
+      where: { userId },
+      include: { product: true },
+    });
+    return cartItems;
+  }
+
   async checkCartItemsAvailability(userId: number): Promise<void> {
     try {
       const cartItems = await this._db.prisma.cart.findMany({
@@ -66,10 +74,11 @@ export class CustomerOrderService implements ICustomerOrderService {
       }
     } catch (error) {
       console.error("Error checking cart items availability:", error);
-      throw new Error("Failed to check cart items availability");
+      throw new Error("Product is not available in the requested quantity.");
     }
   }
 
+  
   async deleteCartItemsForUser(userId: number): Promise<void> {
     try {
       await this._db.prisma.cart.deleteMany({
@@ -110,4 +119,37 @@ export class CustomerOrderService implements ICustomerOrderService {
       throw new Error("Failed to create order");
     }
   }
+
+  async deductProductQuantities(userId: number): Promise<void> {
+    const cartItems = await this._db.prisma.cart.findMany({
+      where: { userId },
+      include: { product: true },
+    });
+
+    for (const item of cartItems) {
+      await this._db.prisma.product.update({
+        where: { productId: item.productId },
+        data: { quantity: Math.max(0, item.product.quantity - item.quantity) },
+      });
+    }
+  }
+
+async createProductOrders(userId: number, orderId: number): Promise<void> {
+    const cartItems = await this._db.prisma.cart.findMany({
+      where: { userId },
+      select: { productId: true, quantity: true },
+    });
+
+    for (const item of cartItems) {
+      await this._db.prisma.productOrder.create({
+        data: {
+          orderId,
+          productId: item.productId,
+          quantity: item.quantity
+        },
+      });
+    }
+  }
 }
+
+
