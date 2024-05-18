@@ -42,10 +42,10 @@ class CustomerOrderController implements IController {
       ensureAuthenticated,
       this.showOrderDetailPage
     );
-    this.router.get(
-      `${this.path}/checkout`,
+    this.router.post(
+      `${this.path}/order/checkout`,
       ensureAuthenticated,
-      this.showCheckoutPage
+      this.handleCheckout
     );
   }
 
@@ -93,6 +93,66 @@ class CustomerOrderController implements IController {
     }
   };
 
+  private handleCheckout = async (
+    req: express.Request,
+    res: express.Response
+  ) => {
+    const userId = req.session.userId?.customerId;
+    const profileLink = getProfileLink(req, res);
+    if (!userId) {
+      return res.status(401).json({ success: false, message: "Unauthorized" });
+    }
+
+    const { contactFirstname, contactLastname, contactEmail, schedule, total, type } = req.body;
+
+    try {
+      //Check if cart is empty
+      const cartItems = await this._service.getCart(userId);
+      if (cartItems.length === 0) {
+        throw new Error("Your cart is empty!");
+      }
+
+      // Check if there are any empty feild in contact form
+      if (!contactFirstname || !contactLastname || !contactEmail || !schedule) {
+        throw new Error("Contact information missing!")
+      }
+
+      // Check if all items in the cart are available
+      await this._service.checkCartItemsAvailability(userId);
+
+      // Deduct the quantities of each item in the cart from the product table
+      await this._service.deductProductQuantities(userId);
+
+      // Create the order
+      const order = await this._service.createOrder(
+        userId,
+        contactFirstname,
+        contactLastname,
+        contactEmail,
+        new Date(schedule),
+        parseFloat(total),
+        type
+      );
+
+      // Create product orders entries
+      await this._service.createProductOrders(userId, order.orderId);
+
+      // Delete cart items for the user
+      await this._service.deleteCartItemsForUser(userId);
+
+      // Redirect to order success page
+      res.redirect("success");
+    } catch (error) {
+      if (error instanceof Error) {
+        req.session.messages = error.message;
+      } else {
+        req.session.messages = "An unexpected error occurred";
+      }
+      res.redirect("/cart");
+    }
+  };
+
+
   private showOrderSuccessPage = async (
     req: express.Request,
     res: express.Response
@@ -114,15 +174,6 @@ class CustomerOrderController implements IController {
       res.render("orderDetails", { profileLink });
     } else {
       res.redirect("404");
-    }
-  };
-
-  private showCheckoutPage = (req: express.Request, res: express.Response) => {
-    const profileLink = getProfileLink(req, res);
-    if (profileLink) {
-      res.render("checkout", { profileLink });
-    } else {
-      res.render("landing");
     }
   };
 }
