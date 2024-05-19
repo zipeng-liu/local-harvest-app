@@ -510,7 +510,6 @@
   font-style: var(--h3-mobile-font-style);
 }
 
-
 .home-page .group-3 {
   position: absolute;
   width: 21px;
@@ -783,7 +782,11 @@
 
 .home-page .group-wrapper {
   height: 107px;
-  background: linear-gradient(180deg, rgba(246, 246, 246, 0) 0%, rgb(246, 246, 246) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(246, 246, 246, 0) 0%,
+    rgb(246, 246, 246) 100%
+  );
 }
 
 .home-page .group-4 {
@@ -906,27 +909,26 @@
   /* text-decoration: underline; */
 }
 
-
 /* popular items */
 .home-page .item-carosel {
   /* transform: translate(5%); */
   position: absolute;
-  width: 90%; 
+  width: 90%;
   height: 187px;
   /* top: 0px; */
   /* left: 16px; */
-  overflow-x: auto; 
-  overflow-y: hidden; 
+  overflow-x: auto;
+  overflow-y: hidden;
   white-space: nowrap;
   padding-bottom: 60px;
 }
 
 .home-page .item-carosel .overlap-group {
   position: relative;
-  display: inline-block; 
+  display: inline-block;
   width: 140px;
   height: 148px;
-  margin-right: 20px; 
+  margin-right: 20px;
 }
 
 .home-page .item-carosel .rectangle-wrapper {
@@ -936,7 +938,7 @@
 }
 
 .home-page .item-carosel .img {
-  border-radius:10px;
+  border-radius: 10px;
   position: absolute;
   width: 140px;
   height: 148px;
@@ -944,8 +946,8 @@
 
 .home-page .item-carosel .add-to-cart-wrapper {
   position: absolute;
-  bottom: 10px; 
-  right: 10px; 
+  bottom: 10px;
+  right: 10px;
   width: 33px;
   height: 33px;
   background-color: #f5f5f5;
@@ -971,13 +973,12 @@
 
 .home-page .item-carosel .text-wrapper-product-name,
 .home-page .item-carosel .text-wrapper-product-price {
-display: block; 
-font-size: 12px;
-margin: 2px 0;
-padding: 2px 0; 
-color: #000;
-font-family: var(--body-copy-mobile-font-family);
-font-weight: var(--body-copy-mobile-font-weight);
-font-style: var(--body-copy-mobile-font-style);
+  display: block;
+  font-size: 12px;
+  margin: 2px 0;
+  padding: 2px 0;
+  color: #000;
+  font-family: var(--body-copy-mobile-font-family);
+  font-weight: var(--body-copy-mobile-font-weight);
+  font-style: var(--body-copy-mobile-font-style);
 }
-
