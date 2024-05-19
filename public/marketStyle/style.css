@@ -355,11 +355,22 @@
   left: 107px;
 }
 
+.all-vendors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.vendor-item {
+  flex: 1 1 calc(50% - 16px);
+  box-sizing: border-box;
+}
+
 .market-info-page .mini-vendor-card-3 {
   top: 772px;
   left: 15px;
   position: absolute;
-  width: 191px;
+  width: 100%;
   height: 200px;
 }
 
@@ -633,4 +644,9 @@
   color: #000000;
   top: 154px;
   left: 22px;
+}
+
+.vendor-img {
+  max-width: 100%;
+  height: auto;
 }

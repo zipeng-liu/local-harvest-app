@@ -16,16 +16,6 @@
           <div class="group">
             <div class="social-media"></div>
           </div>
-          <div class="mini-vendor-card">
-            <div class="vendor">Artisan Cutting Boards</div>
-            <img class="rectangle" src="<%= vendor.photo %>" />
-            <img class="icon-overlay" src="/image/more.png" />
-          </div>
-          <div class="mini-vendor-card-2">
-            <div class="vendor">Vancouver and Sons</div>
-            <img class="rectangle" src="<%= vendor.photo %>" />
-            <img class="icon-overlay" src="/image/more.png" />
-          </div>
         </div>
         <img class="placeholder" src="<%= market.photo %>" />
 
@@ -67,14 +57,18 @@
           <img class="icons-arrow-forward" src="/image/arrowsRight.png" />
         </button>
         <div class="mini-vendor-card-3">
-          <div class="vendor">Seb’s Fish Monger</div>
-          <img class="rectangle" src="<%= vendor.photo %>" />
-          <img class="icon-overlay" src="/image/more.png" />
-        </div>
-        <div class="mini-vendor-card-4">
-          <div class="vendor">Bob’s Tomato Farm</div>
-          <img class="rectangle" src="<%= vendor.photo %>" />
-          <img class="icon-overlay" src="/image/more.png" />
+          <div class="all-vendors">
+            <% randomVendors.forEach(vendor => { %>
+            <div class="vendor-item">
+              <div class="mid-banner-3">
+                <img class="vendor-img" src="<%= vendor.photo %>" />
+                <a href="/vendor/<%= vendor.vendorId %>">
+                  <div class="vendor-name"><%= vendor.name %></div>
+                </a>
+              </div>
+            </div>
+            <% }) %>
+          </div>
         </div>
         <div class="nav-bar">
           <div class="text-wrapper-6">Home</div>
