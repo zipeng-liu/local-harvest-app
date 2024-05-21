@@ -50,8 +50,8 @@ class MarketController implements IController {
   };
 
   private showMarketList = (req: express.Request, res: express.Response) => {
-    const profileLink = getProfileLink(req, res);
-    if (profileLink) {
+    const profileLink = getProfileLink;
+    if (!profileLink) {
       res.render("marketList", { profileLink });
     } else {
       res.redirect("landing");
