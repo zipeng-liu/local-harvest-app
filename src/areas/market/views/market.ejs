@@ -58,7 +58,8 @@
         </button>
         <div class="mini-vendor-card-3">
           <div class="all-vendors">
-            <% randomVendors.forEach(vendor => { %>
+            <% vendorsByMarket = market.vendors; %>
+            <% vendorsByMarket.forEach(vendor => { %>
             <div class="vendor-item">
               <div class="mid-banner-3">
                 <img class="vendor-img" src="<%= vendor.photo %>" />
