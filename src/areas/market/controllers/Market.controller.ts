@@ -49,12 +49,23 @@ class MarketController implements IController {
     }
   };
 
-  private showMarketList = (req: express.Request, res: express.Response) => {
-    const profileLink = getProfileLink;
-    if (!profileLink) {
-      res.render("marketList", { profileLink });
-    } else {
-      res.redirect("landing");
+  private showMarketList = async (
+    req: express.Request,
+    res: express.Response
+  ) => {
+    try {
+      const profileLink = getProfileLink(req, res);
+      const allMarkets = await this._service.getAllMarkets();
+
+      if (!profileLink) {
+        res.redirect("landing");
+      } else {
+        console.log("hello world");
+        res.render("marketList", { profileLink, allMarkets });
+      }
+    } catch (error) {
+      console.error("Error fetching market list:", error);
+      res.status(500).send("Error fetching market data");
     }
   };
 }
