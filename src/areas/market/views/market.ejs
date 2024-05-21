@@ -16,26 +16,16 @@
           <div class="group">
             <div class="social-media"></div>
           </div>
-          <div class="mini-vendor-card">
-            <div class="vendor">Artisan Cutting Boards</div>
-            <img class="rectangle" src="image/small-tomato.jpeg" />
-            <img class="icon-overlay" src="image/more.png" />
-          </div>
-          <div class="mini-vendor-card-2">
-            <div class="vendor">Vancouver and Sons</div>
-            <img class="rectangle" src="image/tomato.jpeg" />
-            <img class="icon-overlay" src="image/more.png" />
-          </div>
         </div>
-        <img class="placeholder" src="image/market.png" />
-        <div class="text-wrapper">Hastings Market</div>
+        <img class="placeholder" src="<%= market.photo %>" />
+
+        <div class="business-name"><%= market.name %></div>
+
         <div class="overlap-group">
           <div class="rectangle-2"></div>
           <div class="rectangle-3"></div>
           <div class="element-col-info">
-            <p class="info-info-info-info">
-              2901 E Hastings St, <br />Vancouver, BC <br />V5K 5J1
-            </p>
+            <p class="info-info-info-info"><%= market.location %></p>
             <div class="words">Location</div>
           </div>
           <div class="element-col-info-with-two">
@@ -64,23 +54,22 @@
         <div class="text-wrapper-4">Vendors</div>
         <button class="small-button-arrow">
           <div class="frame"><div class="text-wrapper-5">View More</div></div>
-          <img class="icons-arrow-forward" src="image/arrowsRight.png" />
+          <img class="icons-arrow-forward" src="/image/arrowsRight.png" />
         </button>
         <div class="mini-vendor-card-3">
-          <div class="vendor">Seb's Fish Monger</div>
-          <img class="rectangle" src="image/tomato.jpeg" />
-          <img class="icon-overlay" src="image/more.png" />
+          <div class="all-vendors">
+            <% randomVendors.forEach(vendor => { %>
+            <div class="vendor-item">
+              <div class="mid-banner-3">
+                <img class="vendor-img" src="<%= vendor.photo %>" />
+                <a href="/vendor/<%= vendor.vendorId %>">
+                  <div class="vendor-name"><%= vendor.name %></div>
+                </a>
+              </div>
+            </div>
+            <% }) %>
+          </div>
         </div>
-        <div class="mini-vendor-card-4">
-          <div class="vendor">Bob's Tomato Farm</div>
-          <img class="rectangle" src="image/small-tomato.jpeg" />
-          <img class="icon-overlay" src="image/more.png" />
-        </div>
-        <form action="/" method="GET">
-          <button type="submit" class="small-button">
-            <div class="our-story">Vendor Sign Up</div>
-          </button>
-        </form>
         <div class="nav-bar">
           <div class="text-wrapper-6">Home</div>
           <div class="text-wrapper-7">Search</div>
