@@ -50,7 +50,9 @@ export class VendorProductService implements IVendorProductService {
 
   async getAllVendors(): Promise<Vendor[]> {
     try {
-      const allVendors = await this._db.prisma.vendor.findMany();
+      const allVendors = await this._db.prisma.vendor.findMany({
+        include: { market: true }
+      });
       return allVendors;
     } catch(error) {
       throw new Error ("Failed to get all vendors")

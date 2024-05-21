@@ -13,15 +13,15 @@
 
     <div class="vendor-list">
       <div class="div">
-        <a href="/home"><img class="back-button" src="/image/navigate_before.svg" /></a>
+        <a href="javascript:window.history.back()"><img class="back-button" src="/image/navigate_before.svg" /></a>
         <div class="vendors">All Vendors</div>
         <% allVendors.forEach(vendor => { %>
             <div class="vendor">
                 <p class="description"><%= vendor.description %></p>
                 <div class="business-name"><a href="/vendor/<%= vendor.vendorId %>"><%= vendor.name %></a></div>
                 <img class="rectangle" src=<%= vendor.photo %> />
-                <div class="category"><div class="text-wrapper">Hastings Park</div></div>
-                <div class="hastings-park-wrapper"><div class="hastings-park">Seafood</div></div>
+                <a href="/market/<%= vendor.market.marketId %>"></a><div class="category"><div class="text-wrapper"><%= vendor.market.name %></div></div></a>
+                <div class="hastings-park-wrapper"><div class="hastings-park">N/A</div></div>
               </div>
        <% }) %>
       </div>

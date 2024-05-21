@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
     <link rel="stylesheet" href="/vendorStyle/style.css" />
     <link rel="stylesheet" href="/sharedStyle/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script src="/scripts/add-to-cart.js"></script>
   </head>
   <body>
     <%- include('../../../components/header') %>
@@ -16,36 +19,37 @@
           <div class="rectangle"></div>
           <div class="rectangle-2"></div>
           <div class="element-col-info">
-            <p class="text-wrapper">2901 E Hastings St, <br />Vancouver, BC <br />V5K 5J1</p>
-            <div class="text-wrapper-2">Location</div>
+            <p class="text-wrapper"><%= vendorById.address %></p>
+            <div class="info-title">Location</div>
           </div>
           <div class="element-col-info-with-two">
             <div class="hour">
               <p class="mon-thur-fri-sat-sun">Mon - Thur<br />Fri<br />Sat / Sun</p>
               <div class="closed">Closed<br />15:00-19:00<br />10:00-19:00</div>
-              <div class="text-wrapper-3">Hours</div>
+              <div class="hour-title">Hours</div>
             </div>
           </div>
         </div>
         <div class="component-wrapper">
           <div class="component">
-            <div class="text-wrapper">123-345-6789<br />bobtomato@gmail.com</div>
+            <div class="text-wrapper"><%= vendorById.phone %><br /><%= vendorById.email %></div>
             <p class="for-inquires">For inquires regarding custom orders, contact us by email.</p>
-            <div class="text-wrapper-2">Contact</div>
+            <div class="info-title">Contact</div>
           </div>
         </div>
 
         <div class="products-container">
-            <% const productsByVendor = vendorById.products %>
 
-              <% productsByVendor.forEach(product => { %>
+              <% productOnVendorPage.forEach(product => { %>
                   <div class="product-card">
+                    <div class="overlap-group">
+                      <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
+                        <button type="submit" class="add-to-cart-wrapper"><i class="fa fa-plus"></i></button>
+                      </form>
+                    </div>
                       <img src="<%= product.primaryPhoto %>" alt="product-image" class="product-image">
                       <div class="product-name"><a href="/products/<%= product.productId %>"><%= product.name %></a></div>
                       <div class="product-price">$<%= product.price %></div>
-                      <div class="overlap-group">
-                        <img class="add-to-cart" src="/image/add_24px.svg" />
-                      </div>
                   </div>
               <% }) %>
         </div>
@@ -53,13 +57,13 @@
 
         <div class="overlap-2">
           <div class="vendor-name"><%= vendorById.name %></div>
-          <img class="back-button" src="/image/navigate_before.svg" />
+          <a href="javascript:window.history.back()"><img class="back-button" src="/image/navigate_before.svg" /></a>
           <div class="small-button"><div class="our-story">Our Story</div></div>
         </div>
         <div class="products-header">Products</div>
         <div class="rectangle-3"><img src=<%= vendorById.photo %> /></div>
         <button class="small-button-arrow">
-          <div class="frame"><div class="view-more">View More</div></div>
+          <a href="/products/vendor/<%= vendorById.vendorId %>"><div class="frame"><div class="view-more">View More</div></div></a>
           <img class="icons-arrow-forward" src="/image/right-arrow.png" />
         </button>
 

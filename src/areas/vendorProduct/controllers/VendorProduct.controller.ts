@@ -143,7 +143,9 @@ class VendorProductController implements IController {
       } else {
         const vendorId = parseInt(req.params.id);
         const vendorById = await this._service.findVendorById(vendorId);
-        res.render("vendor", { profileLink, vendorById });
+        const productByVendor = await this._service.findAllProductsByVendor(vendorId);
+        const productOnVendorPage = productByVendor.slice(0,4);
+        res.render("vendor", { profileLink, vendorById, productOnVendorPage });
       }
     } catch(error) {
       res.status(500).json({ message: "Failed to get vendor by Id for vendor page", error })

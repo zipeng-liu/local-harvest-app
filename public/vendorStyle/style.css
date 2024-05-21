@@ -5,6 +5,7 @@ body {
   align-items: center;
   min-height: 100vh;
   background-color: #fafafa; 
+  margin-bottom: 100px;
 } 
 
 @media (min-width: 800px) {
@@ -889,7 +890,8 @@ body {
 
 .vendor-list .div {
   background-color: var(--cloud-white);
-  overflow: hidden;
+  overflow: visible;
+  max-width: 100%;
   width: 430px;
   height: 2000px;
   position: relative;
@@ -916,12 +918,12 @@ body {
   height: 173px;
   margin-bottom: 40px;
   top: 200px;
-  left: 50px;
+  left: 30px;
 }
 
 .vendor-list .description {
   position: absolute;
-  width: 180px;
+  width: 160px;
   top: 105px;
   left: 220px;
   font-family: var(--body-copy-mobile-font-family);
@@ -952,6 +954,7 @@ body {
   height: 178px;
   top: -1px;
   left: -1px;
+  border-radius: 8px;
 }
 
 .vendor-list .category {
@@ -968,12 +971,14 @@ body {
 .vendor-list .text-wrapper {
   position: absolute;
   height: 18px;
-  top: 3px;
-  left: 0px;
+  width: 100%;  
+  top: 50%;     
+  left: 50%;  
+  transform: translate(-50%, -50%); 
   font-family: var(--body-copy-mobile-font-family);
   font-weight: var(--body-copy-mobile-font-weight);
   color: var(--semi-black);
-  font-size: var(--body-copy-mobile-font-size);
+  font-size: 12px;
   text-align: center;
   letter-spacing: var(--body-copy-mobile-letter-spacing);
   line-height: var(--body-copy-mobile-line-height);
@@ -982,7 +987,7 @@ body {
 }
 
 .vendor-list .hastings-park-wrapper {
-  width: 120px;
+  width: 116px;
   top: 80px;
   position: absolute;
   height: 26px;
@@ -996,11 +1001,13 @@ body {
   left: 29px;
   position: absolute;
   height: 18px;
-  top: 3px;
+  top: 50%;     
+  left: 50%;  
+  transform: translate(-50%, -50%); 
   font-family: var(--body-copy-mobile-font-family);
   font-weight: var(--body-copy-mobile-font-weight);
   color: var(--semi-black);
-  font-size: var(--body-copy-mobile-font-size);
+  font-size: 12px;
   text-align: center;
   letter-spacing: var(--body-copy-mobile-letter-spacing);
   line-height: var(--body-copy-mobile-line-height);
@@ -1071,11 +1078,17 @@ body {
 @media (min-width: 800px) {
   .vendor-page {
     flex-direction: column;
-    align-items: center; /* Centers the content on larger screens */
-    padding-bottom: 80px; /* Provides space for the nav-bar */
+    align-items: center; 
+    padding-bottom: 80px; 
   }
 }
-
+@media (min-width: 800px) {
+  .vendor-page .products-container {
+    padding-left: 10px; /* Less padding on smaller screens */
+    padding-right: 10px; /* Less padding on smaller screens */
+    width: calc(100% - 10px); /* Adjusts width for smaller padding */
+  }
+}
 
 .vendor-page {
   background-color: #f5f5f5;
@@ -1133,24 +1146,26 @@ body {
 
 .vendor-page .text-wrapper {
   position: absolute;
+  margin-top: 20px;
   width: 170px;
   top: 30px;
   left: 0;
   font-family: var(--body-copy-mobile-font-family);
   font-weight: var(--body-copy-mobile-font-weight);
   color: #000000;
-  font-size: var(--body-copy-mobile-font-size);
+  font-size: 14px;
   letter-spacing: var(--body-copy-mobile-letter-spacing);
   line-height: var(--body-copy-mobile-line-height);
   font-style: var(--body-copy-mobile-font-style);
+  text-align: center;
 }
 
-.vendor-page .text-wrapper-2 {
+.vendor-page .info-title {
   position: absolute;
   width: 170px;
   height: 31px;
-  top: -1px;
-  left: 0;
+  top: 5px;
+  left: 10px;
   font-family: "Roobert TRIAL-SemiBold", Helvetica;
   font-weight: 600;
   color: #000000;
@@ -1181,7 +1196,7 @@ body {
   font-family: var(--body-copy-mobile-font-family);
   font-weight: var(--body-copy-mobile-font-weight);
   color: #000000;
-  font-size: var(--body-copy-mobile-font-size);
+  font-size: 14px;
   letter-spacing: var(--body-copy-mobile-letter-spacing);
   line-height: var(--body-copy-mobile-line-height);
   font-style: var(--body-copy-mobile-font-style);
@@ -1190,24 +1205,24 @@ body {
 .vendor-page .closed {
   position: absolute;
   width: 104px;
-  top: 38px;
+  top: 54px;
   left: 64px;
   font-family: var(--body-copy-mobile-font-family);
   font-weight: var(--body-copy-mobile-font-weight);
   color: #000000;
-  font-size: var(--body-copy-mobile-font-size);
+  font-size: 14px;
   text-align: right;
   letter-spacing: var(--body-copy-mobile-letter-spacing);
   line-height: var(--body-copy-mobile-line-height);
   font-style: var(--body-copy-mobile-font-style);
 }
 
-.vendor-page .text-wrapper-3 {
+.vendor-page .hour-title {
   position: absolute;
   width: 185px;
   height: 48px;
-  top: 0;
-  left: 0;
+  top: 15px;
+  left: 10px;
   font-family: "Roobert TRIAL-SemiBold", Helvetica;
   font-weight: 600;
   color: #000000;
@@ -1238,108 +1253,26 @@ body {
 .vendor-page .for-inquires {
   position: absolute;
   width: 170px;
-  top: 138px;
+  top: 165px;
   left: 0;
   font-family: var(--body-copy-mobile-font-family);
   font-weight: var(--body-copy-mobile-font-weight);
   color: #000000;
-  font-size: var(--body-copy-mobile-font-size);
+  font-size: 14px;
   letter-spacing: var(--body-copy-mobile-letter-spacing);
   line-height: var(--body-copy-mobile-line-height);
   font-style: var(--body-copy-mobile-font-style);
-}
-
-.vendor-page .product-card-for {
-  position: absolute;
-  width: 191px;
-  height: 200px;
-  top: 772px;
-  left: 15px;
-}
-
-.vendor-page .product-name {
-  position: absolute;
-  width: 149px;
-  height: 21px;
-  top: 178px;
-  left: 8px;
-  font-family: "Roobert TRIAL-Medium", Helvetica;
-  font-weight: 500;
-  color: #000000;
-  font-size: 17px;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-.vendor-page .product-price {
-  position: absolute;
-  height: 21px;
-  top: 179px;
-  left: 171px;
-  font-family: "Roobert TRIAL-Medium", Helvetica;
-  font-weight: 500;
-  color: #000000;
-  font-size: 17px;
-  text-align: right;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-.vendor-page .group-wrapper {
-  position: absolute;
-  width: 199px;
-  height: 178px;
-  top: -1px;
-  left: -1px;
-  background-size: 100% 100%;
-}
-
-.vendor-page .group {
-  position: relative;
-  width: 33px;
-  height: 33px;
-  top: 129px;
-  left: 150px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
+  text-align: center;
 }
 
 .vendor-page .add-to-cart {
   position: absolute;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   top: 6px;
   left: 6px;
+  z-index: 5;
 }
-
-.vendor-page .product-card-for-2 {
-  top: 992px;
-  left: 15px;
-  position: absolute;
-  width: 191px;
-  height: 200px;
-}
-
-.vendor-page .product-card-for-3 {
-  top: 772px;
-  left: 223px;
-  position: absolute;
-  width: 191px;
-  height: 200px;
-}
-
-.vendor-page .div-wrapper {
-  position: absolute;
-  width: 199px;
-  height: 178px;
-  top: -1px;
-  left: -1px;
-  background-image: url(./img/rectangle-3-3.png);
-  background-size: cover;
-  background-position: 50% 50%;
-}
-
-
 
 .vendor-page .overlap-2 {
   position: absolute;
@@ -1378,7 +1311,7 @@ body {
   position: absolute;
   width: 117px;
   height: 27px;
-  top: 5px;
+  top: 10px;
   left: 12px;
   font-family: "Roobert TRIAL-SemiBold", Helvetica;
   font-weight: 600;
@@ -1420,8 +1353,6 @@ body {
   top: 200px;
   left: 16px;
   border-radius: 8px;
-  /* background-size: cover;
-  background-position: 50% 50%; */
 }
 
 .vendor-page .small-button-arrow {
@@ -1479,16 +1410,6 @@ body {
   left: 3px;
 }
 
-
-.vendor-page .frame-2 {
-  display: inline-flex;
-  gap: 67px;
-  top: 13px;
-  left: 43px;
-  align-items: center;
-  position: absolute;
-}
-
 .vendor-page .img {
   position: relative;
   width: 32px;
@@ -1501,88 +1422,22 @@ body {
   height: 38.83px;
 }
 
-.vendor-page .text-wrapper-9 {
-  position: absolute;
-  height: 14px;
-  top: 56px;
-  left: 42px;
-  font-family: var(--nav-text-font-family);
-  font-weight: var(--nav-text-font-weight);
-  color: #000000;
-  font-size: var(--nav-text-font-size);
-  text-align: center;
-  letter-spacing: var(--nav-text-letter-spacing);
-  line-height: var(--nav-text-line-height);
-  white-space: nowrap;
-  font-style: var(--nav-text-font-style);
-}
-
-.vendor-page .text-wrapper-10 {
-  position: absolute;
-  height: 14px;
-  top: 56px;
-  left: 143px;
-  font-family: var(--nav-text-font-family);
-  font-weight: var(--nav-text-font-weight);
-  color: #000000;
-  font-size: var(--nav-text-font-size);
-  text-align: center;
-  letter-spacing: var(--nav-text-letter-spacing);
-  line-height: var(--nav-text-line-height);
-  white-space: nowrap;
-  font-style: var(--nav-text-font-style);
-}
-
-.vendor-page .text-wrapper-11 {
-  position: absolute;
-  height: 14px;
-  top: 56px;
-  left: 255px;
-  font-family: var(--nav-text-font-family);
-  font-weight: var(--nav-text-font-weight);
-  color: #000000;
-  font-size: var(--nav-text-font-size);
-  text-align: center;
-  letter-spacing: var(--nav-text-letter-spacing);
-  line-height: var(--nav-text-line-height);
-  white-space: nowrap;
-  font-style: var(--nav-text-font-style);
-}
-
-.vendor-page .text-wrapper-12 {
-  position: absolute;
-  height: 14px;
-  top: 56px;
-  left: 352px;
-  font-family: var(--nav-text-font-family);
-  font-weight: var(--nav-text-font-weight);
-  color: #000000;
-  font-size: var(--nav-text-font-size);
-  text-align: center;
-  letter-spacing: var(--nav-text-letter-spacing);
-  line-height: var(--nav-text-line-height);
-  white-space: nowrap;
-  font-style: var(--nav-text-font-style);
-}
-
-
 /* vendor-page: products */
 .vendor-page .products-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr); 
-  gap: 20px; 
+  row-gap: 60px; 
   justify-content: center;
   align-items: start;
-  padding: 0 10px; 
-  margin-top: 800px; 
+  margin-top: 780px;
   width: 100%; 
+  justify-items: center;
 }
 
 .vendor-page .product-image {
   width: 100%; 
-  height: 199px; 
-  border-top-left-radius: 8px; 
-  border-top-right-radius: 8px;
+  height: 190px;
+  border-radius: 8px; 
 }
 
 .vendor-page .product-card {
@@ -1590,13 +1445,12 @@ body {
   position: relative;
   background-color: var(--cloud-white);
   border-radius: 8px;
-  overflow: hidden; 
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 191px;
-  height: 200px;
+  width: 180px;
+  height: 190px;
 }
 
 
@@ -1604,8 +1458,8 @@ body {
   position: absolute;
   width: 130px;
   height: 21px;
-  top: 220px;
-  left: 12px;
+  top: 210px;
+  left: 3px;
   font-family: var(--medium-header-mobile-font-family);
   font-weight: var(--medium-header-mobile-font-weight);
   color: #000000;
@@ -1619,8 +1473,8 @@ body {
 .vendor-page .product-price {
   position: absolute;
   height: 21px;
-  top: 220px;
-  left: 150px;
+  top: 210px;
+  right: 3px;
   font-family: var(--medium-header-mobile-font-family);
   font-weight: var(--medium-header-mobile-font-weight);
   color: #000000;
@@ -1630,8 +1484,8 @@ body {
   font-style: var(--medium-header-mobile-font-style);
 }
 
-.vendor-page .overlap-group {
-  transform: translate(0%, 400%);
+.vendor-page .overlap-group button {
+  /* transform: translate(380%, 400%); */
   position: absolute;
   right: 10px;  
   bottom: 10px; 
@@ -1644,9 +1498,15 @@ body {
   align-items: center;
 }
 
-.vendor-page .add-to-cart {
-  width: 24px;
-  height: 24px;
+.vendor-page .product-name a {
+  text-decoration: none;
+  color: var(--semi-black);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.vendor-page .product-name a:hover {
+  background-color: var(--sandy-brown);
+  color: var(--cloud-white);
 }
 
 

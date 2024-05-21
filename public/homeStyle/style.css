@@ -965,5 +965,11 @@ color: #000;
 font-family: var(--body-copy-mobile-font-family);
 font-weight: var(--body-copy-mobile-font-weight);
 font-style: var(--body-copy-mobile-font-style);
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+line-height: 14px;
+height: auto;
+width: 130px;
 }
 
