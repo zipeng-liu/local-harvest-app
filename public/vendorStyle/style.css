@@ -5,6 +5,7 @@ body {
   align-items: center;
   min-height: 100vh;
   background-color: #fafafa; 
+  margin-bottom: 100px;
 } 
 
 @media (min-width: 800px) {
@@ -889,7 +890,8 @@ body {
 
 .vendor-list .div {
   background-color: var(--cloud-white);
-  overflow: hidden;
+  overflow: visible;
+  max-width: 100%;
   width: 430px;
   height: 2000px;
   position: relative;
@@ -916,12 +918,12 @@ body {
   height: 173px;
   margin-bottom: 40px;
   top: 200px;
-  left: 50px;
+  left: 30px;
 }
 
 .vendor-list .description {
   position: absolute;
-  width: 180px;
+  width: 160px;
   top: 105px;
   left: 220px;
   font-family: var(--body-copy-mobile-font-family);
@@ -952,6 +954,7 @@ body {
   height: 178px;
   top: -1px;
   left: -1px;
+  border-radius: 8px;
 }
 
 .vendor-list .category {
@@ -968,12 +971,14 @@ body {
 .vendor-list .text-wrapper {
   position: absolute;
   height: 18px;
-  top: 3px;
-  left: 0px;
+  width: 100%;  
+  top: 50%;     
+  left: 50%;  
+  transform: translate(-50%, -50%); 
   font-family: var(--body-copy-mobile-font-family);
   font-weight: var(--body-copy-mobile-font-weight);
   color: var(--semi-black);
-  font-size: var(--body-copy-mobile-font-size);
+  font-size: 12px;
   text-align: center;
   letter-spacing: var(--body-copy-mobile-letter-spacing);
   line-height: var(--body-copy-mobile-line-height);
@@ -982,7 +987,7 @@ body {
 }
 
 .vendor-list .hastings-park-wrapper {
-  width: 120px;
+  width: 116px;
   top: 80px;
   position: absolute;
   height: 26px;
@@ -996,11 +1001,13 @@ body {
   left: 29px;
   position: absolute;
   height: 18px;
-  top: 3px;
+  top: 50%;     
+  left: 50%;  
+  transform: translate(-50%, -50%); 
   font-family: var(--body-copy-mobile-font-family);
   font-weight: var(--body-copy-mobile-font-weight);
   color: var(--semi-black);
-  font-size: var(--body-copy-mobile-font-size);
+  font-size: 12px;
   text-align: center;
   letter-spacing: var(--body-copy-mobile-letter-spacing);
   line-height: var(--body-copy-mobile-line-height);
@@ -1065,3 +1072,441 @@ body {
   background-color: var(--sandy-brown);
   color: var(--cloud-white);
 }
+
+
+/* vendor-page */
+@media (min-width: 800px) {
+  .vendor-page {
+    flex-direction: column;
+    align-items: center; 
+    padding-bottom: 80px; 
+  }
+}
+@media (min-width: 800px) {
+  .vendor-page .products-container {
+    padding-left: 10px; /* Less padding on smaller screens */
+    padding-right: 10px; /* Less padding on smaller screens */
+    width: calc(100% - 10px); /* Adjusts width for smaller padding */
+  }
+}
+
+.vendor-page {
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.vendor-page .div {
+  background-color: var(--cloud-white);
+  overflow: hidden;
+  width: 430px;
+  height: 2000px;
+  position: relative;
+}
+
+.vendor-page .overlap {
+  position: absolute;
+  width: 196px;
+  height: 257px;
+  top: 420px;
+  left: 16px;
+}
+
+.vendor-page .rectangle {
+  position: absolute;
+  width: 191px;
+  height: 120px;
+  top: 0;
+  left: 0;
+  background-color: var(--cloud-white);
+  border-radius: 16px;
+  box-shadow: var(--center-drop-shadow);
+}
+
+.vendor-page .rectangle-2 {
+  position: absolute;
+  width: 191px;
+  height: 120px;
+  top: 134px;
+  left: 0;
+  background-color: var(--cloud-white);
+  border-radius: 16px;
+  box-shadow: var(--center-drop-shadow);
+}
+
+.vendor-page .element-col-info {
+  position: absolute;
+  width: 170px;
+  height: 140px;
+  top: 6px;
+  left: 11px;
+}
+
+.vendor-page .text-wrapper {
+  position: absolute;
+  margin-top: 20px;
+  width: 170px;
+  top: 30px;
+  left: 0;
+  font-family: var(--body-copy-mobile-font-family);
+  font-weight: var(--body-copy-mobile-font-weight);
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: var(--body-copy-mobile-letter-spacing);
+  line-height: var(--body-copy-mobile-line-height);
+  font-style: var(--body-copy-mobile-font-style);
+  text-align: center;
+}
+
+.vendor-page .info-title {
+  position: absolute;
+  width: 170px;
+  height: 31px;
+  top: 5px;
+  left: 10px;
+  font-family: "Roobert TRIAL-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.vendor-page .element-col-info-with-two {
+  position: absolute;
+  width: 185px;
+  height: 126px;
+  top: 131px;
+  left: 11px;
+}
+
+.vendor-page .hour {
+  position: relative;
+  height: 117px;
+  top: -1px;
+}
+
+.vendor-page .mon-thur-fri-sat-sun {
+  position: absolute;
+  width: 103px;
+  top: 38px;
+  left: 0;
+  font-family: var(--body-copy-mobile-font-family);
+  font-weight: var(--body-copy-mobile-font-weight);
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: var(--body-copy-mobile-letter-spacing);
+  line-height: var(--body-copy-mobile-line-height);
+  font-style: var(--body-copy-mobile-font-style);
+}
+
+.vendor-page .closed {
+  position: absolute;
+  width: 104px;
+  top: 54px;
+  left: 64px;
+  font-family: var(--body-copy-mobile-font-family);
+  font-weight: var(--body-copy-mobile-font-weight);
+  color: #000000;
+  font-size: 14px;
+  text-align: right;
+  letter-spacing: var(--body-copy-mobile-letter-spacing);
+  line-height: var(--body-copy-mobile-line-height);
+  font-style: var(--body-copy-mobile-font-style);
+}
+
+.vendor-page .hour-title {
+  position: absolute;
+  width: 185px;
+  height: 48px;
+  top: 15px;
+  left: 10px;
+  font-family: "Roobert TRIAL-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.vendor-page .component-wrapper {
+  position: absolute;
+  width: 191px;
+  height: 254px;
+  top: 420px;
+  left: 223px;
+  background-color: var(--cloud-white);
+  border-radius: 16px;
+  box-shadow: var(--center-drop-shadow);
+}
+
+.vendor-page .component {
+  position: relative;
+  width: 170px;
+  height: 236px;
+  top: 4px;
+  left: 8px;
+}
+
+.vendor-page .for-inquires {
+  position: absolute;
+  width: 170px;
+  top: 165px;
+  left: 0;
+  font-family: var(--body-copy-mobile-font-family);
+  font-weight: var(--body-copy-mobile-font-weight);
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: var(--body-copy-mobile-letter-spacing);
+  line-height: var(--body-copy-mobile-line-height);
+  font-style: var(--body-copy-mobile-font-style);
+  text-align: center;
+}
+
+.vendor-page .add-to-cart {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 6px;
+  left: 6px;
+  z-index: 5;
+}
+
+.vendor-page .overlap-2 {
+  position: absolute;
+  width: 399px;
+  height: 40px;
+  top: 147px;
+  left: 16px;
+}
+
+.vendor-page .vendor-name {
+  position: absolute;
+  width: 276px;
+  height: 40px;
+  top: 0;
+  left: 0;
+  font-family: "Roobert TRIAL-Bold", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 25.8px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.vendor-page .small-button {
+  position: absolute;
+  width: 140px;
+  height: 40px;
+  top: 0;
+  left: 259px;
+  background-color: var(--sandy-brown);
+  border-radius: 10px;
+  box-shadow: var(--drop-shadow);
+}
+
+.vendor-page .our-story {
+  position: absolute;
+  width: 117px;
+  height: 27px;
+  top: 10px;
+  left: 12px;
+  font-family: "Roobert TRIAL-SemiBold", Helvetica;
+  font-weight: 600;
+  color: var(--cloud-white);
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.vendor-page .products-header {
+  position: absolute;
+  height: 26px;
+  top: 720px;
+  left: 16px;
+  font-family: "Roobert TRIAL-Bold", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 20.8px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.vendor-page .rectangle-3 {
+  position: absolute;
+  width: 398px;
+  height: 200px;
+  top: 200px;
+  left: 16px;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.vendor-page .rectangle-3 img {
+  transform: translate(-4%, -100%);
+  position: absolute;
+  width: 398px;
+  height: 200px;
+  top: 200px;
+  left: 16px;
+  border-radius: 8px;
+}
+
+.vendor-page .small-button-arrow {
+  all: unset;
+  box-sizing: border-box;
+  position: absolute;
+  width: 140px;
+  height: 40px;
+  top: 714px;
+  left: 274px;
+  background-color: var(--sandy-brown);
+  border-radius: 10px;
+  box-shadow: var(--drop-shadow);
+}
+
+.vendor-page .frame {
+  display: flex;
+  width: 97px;
+  height: 40px;
+  gap: 20px;
+  padding: 0px 10px;
+  top: 0;
+  left: 2px;
+  align-items: center;
+  position: absolute;
+}
+
+.vendor-page .view-more {
+  position: relative;
+  width: fit-content;
+  margin-right: -10px;
+  font-family: "Roobert TRIAL-SemiBold", Helvetica;
+  font-weight: 600;
+  color: var(--cloud-white);
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.vendor-page .icons-arrow-forward {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 8px;
+  left: 107px;
+}
+
+.vendor-page .back-button {
+  transform: translate(-10%, -300%);
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 54px;
+  left: 3px;
+}
+
+.vendor-page .img {
+  position: relative;
+  width: 32px;
+  height: 38.83px;
+}
+
+.vendor-page .group-3 {
+  position: relative;
+  width: 38px;
+  height: 38.83px;
+}
+
+/* vendor-page: products */
+.vendor-page .products-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  row-gap: 60px; 
+  justify-content: center;
+  align-items: start;
+  margin-top: 780px;
+  width: 100%; 
+  justify-items: center;
+}
+
+.vendor-page .product-image {
+  width: 100%; 
+  height: 190px;
+  border-radius: 8px; 
+}
+
+.vendor-page .product-card {
+  background-color: var(--cloud-white);
+  position: relative;
+  background-color: var(--cloud-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+  height: 190px;
+}
+
+
+.vendor-page .product-name {
+  position: absolute;
+  width: 130px;
+  height: 21px;
+  top: 210px;
+  left: 3px;
+  font-family: var(--medium-header-mobile-font-family);
+  font-weight: var(--medium-header-mobile-font-weight);
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: var(--medium-header-mobile-letter-spacing);
+  line-height: var(--medium-header-mobile-line-height);
+  font-style: var(--medium-header-mobile-font-style);
+  margin-bottom: 30px;
+}
+
+.vendor-page .product-price {
+  position: absolute;
+  height: 21px;
+  top: 210px;
+  right: 3px;
+  font-family: var(--medium-header-mobile-font-family);
+  font-weight: var(--medium-header-mobile-font-weight);
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: var(--medium-header-mobile-letter-spacing);
+  line-height: var(--medium-header-mobile-line-height);
+  font-style: var(--medium-header-mobile-font-style);
+}
+
+.vendor-page .overlap-group button {
+  /* transform: translate(380%, 400%); */
+  position: absolute;
+  right: 10px;  
+  bottom: 10px; 
+  width: 36px; 
+  height: 36px; 
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 8px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vendor-page .product-name a {
+  text-decoration: none;
+  color: var(--semi-black);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.vendor-page .product-name a:hover {
+  background-color: var(--sandy-brown);
+  color: var(--cloud-white);
+}
+
+

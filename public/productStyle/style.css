@@ -469,7 +469,7 @@ body {
 
 .vendor-product-page .product-image {
   width: 100%; 
-  height: auto; 
+  height: 199px; 
   border-radius: 8px; 
 }
 
@@ -485,7 +485,6 @@ body {
   padding: 10px;
   margin-bottom: 50px;
   box-sizing: border-box;
-  
 
 }
   
