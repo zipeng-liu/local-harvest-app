@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/sharedStyle/searchStyle.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
+    <script src="/scripts/add-to-cart.js" defer></script>
   </head>
   <body>
 <%- include('../../../components/header') %>
@@ -16,8 +17,7 @@
       <div class="div">
           <div class="text-wrapper">Products</div>
           <div class="text-wrapper-2">from <%= vendor.name %></div>
-          <%- include('../../../components/search') %>
-
+          <a href="javascript:window.history.back()"><img class="back-button" src="/image/navigate_before.svg" /></a>
           <div class="products-container">
             <% const productsByVendor = vendor.products %>
 
@@ -27,7 +27,10 @@
                       <div class="product-name"><a href="/products/<%= product.productId %>"><%= product.name %></a></div>
                       <div class="product-price">$<%= product.price %></div>
                       <div class="overlap-group">
-                        <img class="add-to-cart" src="/image/add_24px.svg" />
+                        <!-- <img class="add-to-cart" src="/image/add_24px.svg" /> -->
+                        <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
+                          <button type="submit" class="add-to-cart-wrapper"><i class="fa fa-plus"></i></button>
+                        </form>
                       </div>
                   </div>
               <% }) %>

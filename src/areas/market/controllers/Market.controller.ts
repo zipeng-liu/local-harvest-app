@@ -35,13 +35,9 @@ class MarketController implements IController {
   ) => {
     let marketId = req.params.id;
     const market = await this._service.getMarketById(+marketId);
-    console.log("market", market)
 
     const profileLink = getProfileLink(req, res);
 
-    const allVendors = await this._service.getAllVendors();
-    const shuffledVendors = shuffle(allVendors);
-    const randomVendors = shuffledVendors.slice(0, 4);
     if (profileLink) {
       res.render("market", {
         profileLink,
