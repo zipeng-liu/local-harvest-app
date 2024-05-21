@@ -26,7 +26,7 @@
           <% randomMarkets.forEach(market => { %>
             <div class="market-item">
               <div class="div-wrapper"><img class="market-img" src=<%= market.photo %> />
-              <div class="market-name"><%= market.name %></div>
+              <a href="/market/<%= market.marketId %>"><div class="market-name"><%= market.name %></div></a>
               </div>
             </div>
           <% }) %>
@@ -46,7 +46,7 @@
 
         <div class="vendor">
           <p class="featured-market-description">Over 30 vendors each week with variety of selections.</p>
-          <a class="button-full-effect" href="/market"><div class="business-name"><%= featuredMarket.name %></div></a>
+          <a class="button-full-effect" href="/market/<%= featuredMarket.marketId %>"><div class="business-name"><%= featuredMarket.name %></div></a>
           <img class="featured-market-photo" src=<%= featuredMarket.photo %> />
           <div class="category"><div class="text-wrapper-17">Hastings Park</div></div>
           <div class="hastings-park-wrapper"><div class="hastings-park">Winter Market</div></div>

@@ -463,8 +463,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     position: relative;
-    margin-top: 70px;
-
+    margin-top: 20px;
 }
 
 .vendor-product-page .product-image {
@@ -480,8 +479,6 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: var(--cloud-white);
-  /* box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  border-radius: 8px; */
   padding: 10px;
   margin-bottom: 50px;
   box-sizing: border-box;
@@ -490,7 +487,7 @@ body {
   
   .vendor-product-page .text-wrapper {
     width: 320px;
-    margin-top: 20px;
+    margin-top: 100px;
     margin-left: 10px;
     text-align: left;
     font-family: var(--h2-mobile-font-family);
@@ -573,14 +570,32 @@ body {
 .vendor-product-page a {
   text-decoration: none;
   color: var(--semi-black);
-  transition: color 0.3s ease; 
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .vendor-product-page a:hover {
-  text-decoration: underline;
+  background-color: var(--sandy-brown);
+  color: var(--cloud-white);
 }
 
+.vendor-product-page .back-button {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 80px;
+  left: 150px;
+}
 
-
-
+.vendor-product-page .overlap-group button {
+  position: absolute;
+  right: 10px;  
+  bottom: 10px; 
+  width: 36px; 
+  height: 36px; 
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 8px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
