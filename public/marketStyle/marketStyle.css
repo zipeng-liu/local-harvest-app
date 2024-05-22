@@ -6,8 +6,8 @@
   background: var(--cloud-white, #f6f6f6);
   padding: 10px;
   height: 1097px;
+  width: 450px;
   position: relative;
-  overflow: hidden;
 }
 .vendor {
   width: 398px;
@@ -286,7 +286,7 @@
   font-size: 25.799999237060547px;
   font-weight: 700;
   position: absolute;
-  left: 16px;
+  left: 65px;
   top: 148px;
   width: 398px;
   height: 40px;
@@ -424,14 +424,11 @@
   top: 0%;
 }
 .back-button {
-  width: 9.3%;
-  height: 37.38%;
   position: absolute;
-  right: 90%;
-  left: 0.7%;
-  bottom: 12.15%;
-  top: 50.47%;
-  overflow: visible;
+  width: 40px;
+  height: 40px;
+  top: 144px;
+  left: 9px;
 }
 .group-76 {
   position: absolute;

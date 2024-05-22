@@ -5,6 +5,7 @@ import ensureAuthenticated from "../../../middleware/authentication.middleware";
 import { getProfileLink } from "../../../helper/profileLink";
 import { shuffle } from "../../../helper/randomFunction";
 import IMarketService from "../services/IMarket.services";
+import e from "express";
 
 class MarketController implements IController {
   public path = "/market";
@@ -18,7 +19,7 @@ class MarketController implements IController {
 
   private initializeRoutes() {
     this.router.get(
-      `${this.path}/:id`,
+      `${this.path}/show/:id`,
       ensureAuthenticated,
       this.showMarketPage
     );
@@ -49,12 +50,24 @@ class MarketController implements IController {
     }
   };
 
-  private showMarketList = (req: express.Request, res: express.Response) => {
-    const profileLink = getProfileLink(req, res);
-    if (profileLink) {
-      res.render("marketList", { profileLink });
-    } else {
-      res.redirect("landing");
+  private showMarketList = async (
+    req: express.Request,
+    res: express.Response
+  ) => {
+    try {
+      const profileLink = getProfileLink(req, res);
+      const allMarkets = await this._service.getAllMarkets();
+
+      console.log(allMarkets)
+
+      if (!profileLink) {
+        res.redirect("landing");
+      } else {
+        res.render("marketList", { profileLink, allMarkets });
+      }
+    } catch (error) {
+      console.error("Error fetching market list:", error);
+      res.status(500).send("Error fetching market data");
     }
   };
 }
