@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/vendorStyle/viewOrders.css" />
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+  </head>
+  <body>
+    <%- include('../../../components/header') %>
+    <div class="vendor-order-page">
+      <div class="div">
+        <div class="text-wrapper">All Orders</div>
+        <a href="javascript:window.history.back()"><img class="back-button" src="/image/navigate_before.svg" /></a>
+        <% if(groupedOrders.length === 0) { %>
+          <div class="date-header">
+              <div class="order-day"><%= message %></div>
+          </div>
+
+        <% } else { %>
+          <% Object.keys(groupedOrders).forEach(date => { %>
+          <div class="date-container">
+            <div class="date-header">
+            
+              <div class="order-day"><%= date %></div>
+            </div>
+    
+              <% groupedOrders[date].forEach(order => { %>
+              <div class="order-card">
+                <div class="order-box">
+                  <div class="group">
+                    <div class="overlap-group">
+                      <p class="order-number">
+                          <span class="order-number">Order Number: #<%= order.orderId %><br /></span>
+                          <% let newDate = new Date(order.date) %>
+                          <% let shortDate = newDate.toLocaleDateString('en-US'); %>
+                          <span class="order-date">Date: <%= shortDate %><br /><br /><br /></span>
+                          <span class="text-wrapper-6"><br /></span>
+                        </p>
+                        <div class="order-total">$<%= order.total %></div>
+                      </div>
+                    </div>
+                    <div class="category"><div class="order-type"><%= order.type %></div></div>
+                    <div class="order-quantity"><%= order.productOrders.length %> item(s)</div>
+                  </div>               
+              </div>
+              <% }) %>  
+          </div>
+          <div class="space"></div>
+          <% }) %>
+        <% } %>
+          
+        
+        <div class="rectangle"></div>
+        <div class="large-button"><div class="submit-order">Close</div></div>
+      </div>
+    </div>
+    <%- include('../../../components/footer') %>
+  </body>
+</html>

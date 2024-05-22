@@ -4,11 +4,13 @@ import IVendorProductService from "../services/IVendorProduct.service";
 import path from "path";
 import { VendorProductService } from "../services/VendorProduct.service";
 import { randomUUID } from "crypto";
-import { Product } from "@prisma/client";
+import { Product, Order } from "@prisma/client";
 import { getProfileLink } from "../../../helper/profileLink";
 import { multiUpload } from "../../../middleware/multer.middleware";
 import { cloudinary } from "../../../config/cloudinaryConfig";
 import { MulterRequest } from "../../../middleware/multer.middleware";
+import ensureAuthenticated from "../../../middleware/authentication.middleware";
+import { profile } from "console";
 
 
 class VendorProductController implements IController {
@@ -26,7 +28,10 @@ class VendorProductController implements IController {
     this.router.get(`${this.path}/inventory`, this.showInventoryPage);
     this.router.post(`${this.path}/addItem`, multiUpload, this.addProduct);
     this.router.get(`${this.path}/list`, this.showVendorList);
+    this.router.get(`${this.path}/viewOrders`, this.showViewOrders)
+
     this.router.get(`${this.path}/:id`, this.showVendorPage);
+   
   }
 
   private showAddProduct = (req: express.Request, res: express.Response) => {
@@ -97,6 +102,46 @@ class VendorProductController implements IController {
     }
 };
 
+private showViewOrders = async (req: express.Request, res: express.Response) => {
+  const vendorId = req.session.userId?.vendorId;
+  if (!vendorId) {
+    res.status(400).send("Vendor ID is required in the session");
+    return;
+  }
+  try {
+    const profileLink = getProfileLink(req, res);
+    if(!profileLink) {
+      res.redirect("landing");
+    } else {
+      if (!req.session?.userId?.vendorId) {
+        return res.status(401).send("VendorId not found");
+    }
+      const vendorId = req.session.userId.vendorId;
+      const ordersByVendor = await this._service.findAllOrdersByVendor(vendorId);
+      if(!ordersByVendor || ordersByVendor.length === 0) {
+        res.render("viewOrders", { profileLink, groupedOrders: {}, message: "No order found "})
+        return;
+      }
+
+      // Group order by date
+      const groupedOrders: Record<string, Order[]> = {};
+      ordersByVendor.forEach(order => {
+        const orderDate = new Date(order.date).toDateString();
+        if(!groupedOrders[orderDate]) {
+          groupedOrders[orderDate] = [order];
+        } else {
+          groupedOrders[orderDate].push(order);
+        }
+      })
+      console.log("ordersByVendor", ordersByVendor);
+      console.log("groupedOrders", groupedOrders);
+
+      res.render("viewOrders", { profileLink, groupedOrders })
+    }
+  } catch(error) {
+    res.status(500).json({ message: "Failed to show all orders by vendor", error })
+  }
+}
 
   private showInventoryPage = async (req: express.Request, res: express.Response) => {
     const vendorId = req.session.userId?.vendorId;
@@ -150,7 +195,9 @@ class VendorProductController implements IController {
     } catch(error) {
       res.status(500).json({ message: "Failed to get vendor by Id for vendor page", error })
     }
-  }
+  };
+
+  
     
 };
 

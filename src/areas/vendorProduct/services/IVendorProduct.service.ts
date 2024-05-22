@@ -1,4 +1,4 @@
-import type { Vendor, Product } from "@prisma/client";
+import type { Vendor, Product, Order } from "@prisma/client";
 
 interface IVendorProductService {
   findVendorById(vendorId: number): Promise<Vendor | null>;
@@ -8,6 +8,8 @@ interface IVendorProductService {
   findAllProductsByVendor(vendorId: number): Promise<Product[]>;
 
   getAllVendors(): Promise<Vendor[]>;
+
+  findAllOrdersByVendor(vendorId: number): Promise<Order[]>;
 }
 
 export default IVendorProductService;
