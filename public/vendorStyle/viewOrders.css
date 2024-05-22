@@ -1,45 +1,49 @@
 /* .vendor-order-page, view all orders by vendor */
-/* body {
+body {
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    width: 100%;
     background-color: #fafafa; 
-    margin-bottom: 100px;
-  }  */
+  } 
 
 @media (min-width: 800px) {
     .vendor-order-page {
       background-color: #f5f5f5;
       display: flex;
-      flex-direction: row;
-      justify-content: center;
-      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      max-width: 100%;
+      width: 430px;
+      flex-direction: column;
+    align-items: center; 
+    padding-bottom: 80px
+    
     }
   }
+  
 .vendor-order-page {
     background-color: #f5f5f5;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 100%;
+    max-width: 100%;
   }
   
-  @media (max-width: 800px) {
-    .vendor-order-page .div {
-        width: 100%;
-        height: auto;
-        padding: 0 10px;
-    }
-  }
   .vendor-order-page .div {
     background-color: var(--cloud-white);
-    width: 100%;
-    height: 2000px;
+    max-width: 100%;
+    width: 430px;
+    min-height: 2000px;
     position: relative;
+    margin: 0 auto;
   }
   
+  .vendor-order-page .date-container {
+    transform: translate(3px, 0px);
+  }
   .vendor-order-page .text-wrapper {
     position: absolute;
     width: 222px;
@@ -55,12 +59,18 @@
     line-height: normal;
   }
   
+  .vendor-order-page .back-button-link {
+    position: absolute;
+    top: 60px;
+    left: 23px;
+    display: inline-block;
+    z-index: 1000;
+  }
   .vendor-order-page .back-button {
     position: absolute;
     width: 40px;
     height: 40px;
-    top: 60px;
-    left: 23px;
+    display: block;
   }
   
   .vendor-order-page .date-header {
@@ -95,20 +105,17 @@
   .vendor-order-page .order-box {
     position: relative;
     width: 402px;
+    max-width: 100%;
     height: 100px;
     border: 2px solid #cccc;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     width: calc(100% - 10px);
     background-color: #ffff;
-    /* display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    width: 100%; */
   }
 
   .vendor-order-page .space {
-    height: 50px;
+    height: 100px;
     background-color: transparent;
   }
   
@@ -219,31 +226,23 @@
     font-style: var(--reduced-focus-mobile-font-style);
   }
   
-  .vendor-order-page .rectangle {
-    position: fixed;
-    width: 430px;
-    height: 207px;
-    top: 880px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%);
-  }
-  
   .vendor-order-page .large-button {
-    position: fixed;
-    width: 398px;
+    max-width: 360px;
+    width: 90%;
     height: 60px;
-    top: 931px;
-    left: 290px;
+    left: 50%;
     background-color: var(--sandy-brown);
     border-radius: 15px;
     box-shadow: var(--drop-shadow);
-    width: calc(100% - 32px);
+    margin: 0 auto; 
   }
   
   .vendor-order-page .submit-order {
-    position: absolute;
+    position: relative;
     width: 191px;
     top: 15px;
-    left: 104px;
+    left: 50%;
+    transform: translateX(-50%);
     font-family: "Roobert TRIAL-Bold", Helvetica;
     font-weight: 700;
     color: var(--cloud-white);

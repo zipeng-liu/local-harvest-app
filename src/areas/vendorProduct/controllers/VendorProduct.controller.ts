@@ -28,9 +28,8 @@ class VendorProductController implements IController {
     this.router.get(`${this.path}/inventory`, this.showInventoryPage);
     this.router.post(`${this.path}/addItem`, multiUpload, this.addProduct);
     this.router.get(`${this.path}/list`, this.showVendorList);
-    this.router.get(`${this.path}/viewOrders`, this.showViewOrders)
-
-    this.router.get(`${this.path}/:id`, this.showVendorPage);
+    this.router.get(`${this.path}/viewOrders`, this.showViewOrders);
+    this.router.get(`${this.path}/show/:id`, this.showVendorPage);
    
   }
 
