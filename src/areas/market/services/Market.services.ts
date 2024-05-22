@@ -32,11 +32,22 @@ export class MarketService implements IMarketService {
     }
   }
 
-  async getMarketById(marketId: number) {
-    return await this._db.prisma.market.findUnique({
-      where: { marketId: marketId },
-      include: { vendors: true },
-    });
+  async getMarketById(marketId: number): Promise<Market | null> {
+    try {
+      // Check if marketId is a valid number
+      if (!Number.isInteger(marketId)) {
+        console.error("Invalid market ID provided:", marketId);
+        return null; // or throw an Error depending on how you want to handle this case
+      }
+
+      return await this._db.prisma.market.findUnique({
+        where: { marketId },
+        include: { vendors: true },
+      });
+    } catch (error) {
+      console.error("Error fetching market by ID:", error);
+      throw error;
+    }
   }
 
   async getVendorsByMarketId(marketId: number): Promise<Vendor[] | null> {

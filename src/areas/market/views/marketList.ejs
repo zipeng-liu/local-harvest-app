@@ -13,15 +13,18 @@
   <body>
     <%- include('../../../components/header') %>
     <div class="directory-of-markets">
+      <a href="javascript:window.history.back()"><img class="back-button" src="/image/navigate_before.svg" /></a>
       <div class="vendor">
         <div class="lorem-ipsum-dolor-sit-amet-consectetur">
           Over 30 vendors each week with variety of selections.
         </div>
-        <div class="business-name">Hastings Park</div>
-        <img class="rectangle-3" src="rectangle-30.png" />
+        <a href="/market/show/<%= allMarkets[0].marketId %>">
+          <div class="business-name"><%= allMarkets[0].name %></div>
+        </a>
+        <img class="rectangle-3" src="<%= allMarkets[0].photo %>" />
         <div class="category">
           <div class="rectangle-15"></div>
-          <div class="hastings-park">Hastings Park</div>
+          <div class="hastings-park">Hastings</div>
         </div>
         <div class="category2">
           <div class="rectangle-15"></div>
@@ -32,8 +35,10 @@
         <div class="lorem-ipsum-dolor-sit-amet-consectetur">
           Over 50 vendors featuring food and coffee trucks.
         </div>
-        <div class="business-name">Kits Market</div>
-        <img class="rectangle-3" src="rectangle-31.png" />
+        <a href="/market/show/<%= allMarkets[1].marketId %>">
+          <div class="business-name"><%= allMarkets[1].name %></div>
+        </a>
+        <img class="rectangle-3" src="<%= allMarkets[1].photo %>" />
         <div class="category">
           <div class="rectangle-15"></div>
           <div class="hastings-park3">Kits Market</div>
@@ -47,8 +52,10 @@
         <div class="lorem-ipsum-dolor-sit-amet-consectetur">
           Local BC produce, artisan crafts, and delicious baked goods.
         </div>
-        <div class="business-name">Port Moody Market</div>
-        <img class="rectangle-3" src="rectangle-32.png" />
+        <a href="/market/show/<%= allMarkets[2].marketId %>">
+          <div class="business-name"><%= allMarkets[2].name %></div>
+        </a>
+        <img class="rectangle-3" src="<%= allMarkets[2].photo %>" />
         <div class="category">
           <div class="rectangle-15"></div>
           <div class="hastings-park5">Port Moody</div>
@@ -62,8 +69,10 @@
         <div class="lorem-ipsum-dolor-sit-amet-consectetur2">
           Custom cutting boards hand-made with care.
         </div>
-        <div class="business-name2">Port Coquitlam Market</div>
-        <img class="rectangle-3" src="rectangle-33.png" />
+        <a href="/market/show/<%= allMarkets[3].marketId %>">
+          <div class="business-name"><%= allMarkets[3].name %></div>
+        </a>
+        <img class="rectangle-3" src="<%= allMarkets[3].photo %>" />
         <div class="category3">
           <div class="rectangle-15"></div>
           <div class="hastings-park7">Port Coquitlam</div>

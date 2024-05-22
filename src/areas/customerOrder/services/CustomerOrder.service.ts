@@ -134,7 +134,7 @@ export class CustomerOrderService implements ICustomerOrderService {
     }
   }
 
-async createProductOrders(userId: number, orderId: number): Promise<void> {
+  async createProductOrders(userId: number, orderId: number): Promise<void> {
     const cartItems = await this._db.prisma.cart.findMany({
       where: { userId },
       select: { productId: true, quantity: true },
@@ -148,6 +148,27 @@ async createProductOrders(userId: number, orderId: number): Promise<void> {
           quantity: item.quantity
         },
       });
+    }
+  }
+
+  async getRecentOrder(userId: number): Promise<Order | null> {
+    try {
+      const recentOrder = await this._db.prisma.order.findFirst({
+        where: { customerId: userId },
+        orderBy: { date: 'desc' },
+        include: {
+          productOrders: {
+            include: {
+              product: true,
+            },
+          },
+        },
+      });
+  
+      return recentOrder;
+    } catch (error) {
+      console.error("Error fetching recent order:", error);
+      throw new Error("Failed to fetch recent order");
     }
   }
 }
