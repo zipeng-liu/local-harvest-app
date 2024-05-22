@@ -252,3 +252,6 @@ body {
     line-height: normal;
   }
   
+  .vendor-order-page a {
+    text-decoration: none;
+  }
