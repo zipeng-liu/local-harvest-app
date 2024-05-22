@@ -5,6 +5,7 @@ import ensureAuthenticated from "../../../middleware/authentication.middleware";
 import { getProfileLink } from "../../../helper/profileLink";
 import { shuffle } from "../../../helper/randomFunction";
 import IMarketService from "../services/IMarket.services";
+import e from "express";
 
 class MarketController implements IController {
   public path = "/market";
@@ -18,7 +19,7 @@ class MarketController implements IController {
 
   private initializeRoutes() {
     this.router.get(
-      `${this.path}/:id`,
+      `${this.path}/show/:id`,
       ensureAuthenticated,
       this.showMarketPage
     );
@@ -57,10 +58,11 @@ class MarketController implements IController {
       const profileLink = getProfileLink(req, res);
       const allMarkets = await this._service.getAllMarkets();
 
+      console.log(allMarkets)
+
       if (!profileLink) {
         res.redirect("landing");
       } else {
-        console.log("hello world");
         res.render("marketList", { profileLink, allMarkets });
       }
     } catch (error) {
