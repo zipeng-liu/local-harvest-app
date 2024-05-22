@@ -18,6 +18,7 @@ interface ICustomerOrderService {
   deductProductQuantities(userId: number): Promise<void>;
   createProductOrders(userId: number, orderId: number): Promise<void>;
   getCart(userId: number): Promise<Cart[]>;
+  getRecentOrder(userId: number): Promise<Order | null>;
 }
 
 export default ICustomerOrderService;

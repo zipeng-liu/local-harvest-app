@@ -169,13 +169,28 @@ class CustomerOrderController implements IController {
     req: express.Request,
     res: express.Response
   ) => {
-    const profileLink = getProfileLink(req, res);
-    if (profileLink) {
-      res.render("orderDetails", { profileLink });
-    } else {
-      res.redirect("404");
+    try {
+      const userId = req.session.userId?.customerId;
+      const profileLink = getProfileLink(req, res);
+      
+      let recentOrder;
+      if (typeof userId === "number") {
+        recentOrder = await this._service.getRecentOrder(userId);
+      }
+
+      console.log(recentOrder);
+
+      if (profileLink && recentOrder) {
+        res.render("orderDetails", { profileLink, recentOrder });
+      } else {
+        res.redirect("404");
+      }
+    } catch (error) {
+      console.error("Error fetching recent order:", error);
+      res.redirect("500");
     }
   };
+  
 }
 
 export default CustomerOrderController;
