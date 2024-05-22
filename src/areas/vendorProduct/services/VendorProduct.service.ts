@@ -2,7 +2,7 @@ import IVendor from "../../../interfaces/vendor.interface";
 import IProduct from "../../../interfaces/product.interface";
 import IMarket from "../../../interfaces/market.interface";
 import IVendorProductService from "./IVendorProduct.service";
-import type { Vendor, Market, Product } from "@prisma/client";
+import type { Vendor, Market, Product, Order } from "@prisma/client";
 import DBClient from "../../../PrismaClient";
 
 export class VendorProductService implements IVendorProductService {
@@ -56,6 +56,40 @@ export class VendorProductService implements IVendorProductService {
       return allVendors;
     } catch(error) {
       throw new Error ("Failed to get all vendors")
+    }
+  };
+
+  async findAllOrdersByVendor(vendorId: number): Promise<Order[]> {
+    try {
+      const ordersByVendor = await this._db.prisma.order.findMany({
+        where: { 
+          productOrders: {
+            some: {
+              product: {
+                vendorId: vendorId
+              }
+            }
+          }
+        }, 
+        include: {
+          productOrders: {
+            include: {
+              product: true
+            },
+            where: {
+              product: {
+                vendorId: vendorId
+              }
+            }
+          }
+        }
+      });
+
+
+  
+      return ordersByVendor;
+    } catch(error) {
+      throw new Error ("Failed to get all orders by vendor")
     }
   };
 }

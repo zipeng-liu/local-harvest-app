@@ -41,7 +41,9 @@ class VendorProfileController implements IController {
     } catch (error) {
       res.status(500).send("An error occurred while retrieving vendor data");
     }
-  }
+  };
+
+ 
 }
 
 export default VendorProfileController;
