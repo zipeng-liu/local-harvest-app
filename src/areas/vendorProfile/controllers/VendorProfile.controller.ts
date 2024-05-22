@@ -31,7 +31,7 @@ class VendorProfileController implements IController {
       if (vendor) {
         const profileLink = getProfileLink(req, res);
         if (profileLink) {
-          res.render('vendorProfile', { vendorName: vendor.name, profileLink });
+          res.render('vendorProfile', { vendor, profileLink });
         } else {
           res.redirect("landing");
         }
@@ -41,7 +41,9 @@ class VendorProfileController implements IController {
     } catch (error) {
       res.status(500).send("An error occurred while retrieving vendor data");
     }
-  }
+  };
+
+ 
 }
 
 export default VendorProfileController;

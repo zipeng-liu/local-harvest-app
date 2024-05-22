@@ -18,7 +18,7 @@
         <% allVendors.forEach(vendor => { %>
             <div class="vendor">
                 <p class="description"><%= vendor.description %></p>
-                <div class="business-name"><a href="/vendor/<%= vendor.vendorId %>"><%= vendor.name %></a></div>
+                <div class="business-name"><a href="/vendor/show/<%= vendor.vendorId %>"><%= vendor.name %></a></div>
                 <img class="rectangle" src=<%= vendor.photo %> />
                 <a href="/market/<%= vendor.market.marketId %>"></a><div class="category"><div class="text-wrapper"><%= vendor.market.name %></div></div></a>
                 <div class="hastings-park-wrapper"><div class="hastings-park">N/A</div></div>

@@ -5,7 +5,6 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #fafafa;
 }
 
 @media (min-width: 800px) {
@@ -65,13 +64,6 @@ body {
   width: 80%;
   height: 100%;
 }
-
-/* .landing-page {
-    position: relative;
-    width: 100%;
-    height: auto; /* Height automatically adjusts based on content */
-/* background-color: transparent;
-    overflow: hidden; /* Ensures no spill over */
 
 /* Adjustments to internal elements */
 .landing-page .square-rectangle,

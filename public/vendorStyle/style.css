@@ -579,7 +579,7 @@ body {
 .vendor-account .div {
   background-color: var(--cloud-white);
   width: 430px;
-  height: 932px;
+  height: 1100px;
   position: relative;
 }
 
@@ -611,7 +611,7 @@ body {
   position: absolute;
   width: 398px;
   height: 40px;
-  top: 240px;
+  top: 260px;
   left: 16px;
 }
 
@@ -627,10 +627,12 @@ body {
   top: 0;
 }
 
+
 .vendor-account .img {
   position: relative;
   width: 40px;
   height: 40px;
+  margin-bottom: 18px;
 }
 
 .vendor-account .text {
@@ -653,18 +655,43 @@ body {
   left: 300px;
   height: 40px;
   position: absolute;
-  top: 0;
+  top: -10px;
 }
 
 .vendor-account .account-nav-2 {
-  top: 300px;
+  top: 320px;
   position: absolute;
   width: 398px;
   height: 40px;
   left: 16px;
 }
 
-.vendor-account .account-nav-3 {
+
+
+.vendor-account .group {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-size: 100% 100%;
+}
+.vendor-account .component-view-orders {
+  top: 380px;
+  position: absolute;
+  width: 398px;
+  height: 40px;
+  left: 16px;
+}
+
+.vendor-account .component {
+  top: 440px;
+  position: absolute;
+  width: 398px;
+  height: 40px;
+  left: 16px;
+}
+
+
+.vendor-account .component-3 {
   top: 500px;
   position: absolute;
   width: 398px;
@@ -672,16 +699,18 @@ body {
   left: 16px;
 }
 
-.vendor-account .group {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  background-image: url(./img/icons-person-outline-24px-1.svg);
-  background-size: 100% 100%;
+.vendor-account .line-after-inventory {
+  position: absolute;
+  width: calc(100% - 50px);
+  height: 1px;
+  top: 550px; 
+  left: 16px;
+  background-color: #cccccc; 
+  transform: translateX(2.5%);
 }
 
-.vendor-account .component {
-  top: 360px;
+.vendor-account .account-nav-3 {
+  top: 570px;
   position: absolute;
   width: 398px;
   height: 40px;
@@ -689,15 +718,7 @@ body {
 }
 
 .vendor-account .component-2 {
-  top: 560px;
-  position: absolute;
-  width: 398px;
-  height: 40px;
-  left: 16px;
-}
-
-.vendor-account .component-3 {
-  top: 420px;
+  top: 630px;
   position: absolute;
   width: 398px;
   height: 40px;
@@ -705,15 +726,25 @@ body {
 }
 
 .vendor-account .component-4 {
-  top: 620px;
+  top: 690px;
   position: absolute;
   width: 398px;
   height: 40px;
   left: 16px;
 }
 
+.vendor-account .line-after-privacy {
+  position: absolute;
+  width: calc(100% - 50px);
+  height: 1px;
+  top: 740px; 
+  left: 16px;
+  background-color: #cccccc;
+  transform: translateX(2.5%);
+}
+
 .vendor-account .component-5 {
-  top: 699px;
+  top: 770px;
   position: absolute;
   width: 398px;
   height: 40px;
@@ -721,20 +752,44 @@ body {
 }
 
 .vendor-account .component-6 {
-  top: 759px;
+  top: 830px;
   position: absolute;
   width: 398px;
   height: 40px;
   left: 16px;
 }
 
+
+.vendor-account .line-after-help {
+  position: absolute;
+  width: calc(100% - 50px);
+  height: 1px;
+  top: 880px; 
+  left: 16px;
+  background-color: #cccccc;
+  transform: translateX(2.5%);
+}
+
 .vendor-account .component-7 {
-  top: 839px;
+  top: 900px;
   position: absolute;
   width: 398px;
   height: 40px;
   left: 16px;
 }
+.vendor-account .line-after-vendor-name {
+  position: absolute;
+  width: calc(100% - 50px);
+  height: 1px;  
+  background-color: #cccccc; 
+  top: 120px; 
+  left: 16px;
+  transform: translateX(2.5%);
+}
+
+
+
+
 
 .vendor-account .text-2 {
   position: absolute;
@@ -809,14 +864,26 @@ body {
   background-color: #8bbf8b;
   border-radius: 45px;
 }
-
+/* 
+icon to edit vendor profile
 .vendor-account .interface-edit-write {
   position: absolute;
   width: 36px;
   height: 36px;
   top: 54px;
   left: 50px;
+} */
+
+
+.vendor-account .vendor-photo {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  top: 0;
+  left: 0;
+  border-radius: 45px;
 }
+
 
 .vendor-account .text-wrapper-2 {
   position: absolute;
@@ -1506,5 +1573,10 @@ body {
   background-color: var(--sandy-brown);
   color: var(--cloud-white);
 }
+
+
+
+
+
 
 

@@ -36,7 +36,7 @@
           <% randomVendors.forEach(vendor => { %>
             <div class="vendor-item">
               <div class="mid-banner-3"><img class="vendor-img" src=<%= vendor.photo %> />
-              <a href="/vendor/<%= vendor.vendorId %>"><div class="vendor-name"><%= vendor.name %></div></a>
+              <a href="/vendor/show/<%= vendor.vendorId %>"><div class="vendor-name"><%= vendor.name %></div></a>
             </div>
             </div>
           <% }) %>

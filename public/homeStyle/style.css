@@ -168,7 +168,7 @@
   width: 140px;
   height: 148px;
   top: 39px;
-  background-image: url(./img/item-content-3.svg);
+  /* background-image: url(./img/item-content-3.svg); */
   background-size: cover;
   background-position: 50% 50%;
 }
@@ -179,7 +179,7 @@
   width: 140px;
   height: 148px;
   top: 39px;
-  background-image: url(./img/item-content-2.svg);
+  /* background-image: url(./img/item-content-2.svg); */
   background-size: cover;
   background-position: 50% 50%;
 }
