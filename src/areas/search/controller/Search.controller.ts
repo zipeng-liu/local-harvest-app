@@ -25,7 +25,7 @@ class SearchController implements IController {
       // check user log in here
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
-        res.render("search", { profileLink });
+        res.render("search", { profileLink, session:req.session });
       } else {
         res.redirect("landing");
       }     

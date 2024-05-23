@@ -32,7 +32,7 @@ class VendorProductController implements IController {
   private showAddProduct = (req: express.Request, res: express.Response) => {
     const profileLink = getProfileLink(req, res);
     if (profileLink) {
-      res.render("addProduct", { profileLink });
+      res.render("addProduct", { profileLink, session:req.session });
     } else {
       res.redirect("landing");
     }
@@ -107,7 +107,7 @@ class VendorProductController implements IController {
         );
         const profileLink = getProfileLink(req, res);
         if (profileLink) {
-          res.render("inventory", { inventoryList: inventoryList, profileLink });
+          res.render("inventory", { inventoryList: inventoryList, profileLink, session:req.session });
         } else {
           res.redirect("landing");
         }
@@ -128,7 +128,7 @@ class VendorProductController implements IController {
         res.redirect("landing");
       } else {
         const allVendors = await this._service.getAllVendors();
-        res.render("vendorList", { profileLink, allVendors });
+        res.render("vendorList", { profileLink, allVendors, session:req.session });
       }
     } catch(error) {
       res.status(500).json({ message: "Failed to get all vendors", error})
@@ -145,7 +145,7 @@ class VendorProductController implements IController {
         const vendorById = await this._service.findVendorById(vendorId);
         const productByVendor = await this._service.findAllProductsByVendor(vendorId);
         const productOnVendorPage = productByVendor.slice(0,4);
-        res.render("vendor", { profileLink, vendorById, productOnVendorPage });
+        res.render("vendor", { profileLink, vendorById, productOnVendorPage, session:req.session });
       }
     } catch(error) {
       res.status(500).json({ message: "Failed to get vendor by Id for vendor page", error })
