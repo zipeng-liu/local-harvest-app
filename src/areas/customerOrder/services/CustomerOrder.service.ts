@@ -1,4 +1,4 @@
-import { PrismaClient, Cart, Order } from "@prisma/client";
+import { PrismaClient, Cart, Order, Customer } from "@prisma/client";
 import ICustomerOrderService from "./ICustomerOrder.service";
 import DBClient from "../../../PrismaClient";
 
@@ -170,6 +170,12 @@ export class CustomerOrderService implements ICustomerOrderService {
       console.error("Error fetching recent order:", error);
       throw new Error("Failed to fetch recent order");
     }
+  }
+
+  async findCustomerById(customerId: number): Promise<Customer | null> {
+    return await this._db.prisma.customer.findUnique({
+      where: { customerId },
+    });
   }
 }
 
