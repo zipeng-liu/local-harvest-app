@@ -31,7 +31,7 @@ class VendorProfileController implements IController {
       if (vendor) {
         const profileLink = getProfileLink(req, res);
         if (profileLink) {
-          res.render('vendorProfile', { vendor, profileLink });
+          res.render('vendorProfile', { vendor, profileLink, session: req.session });
         } else {
           res.redirect("landing");
         }

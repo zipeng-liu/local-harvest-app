@@ -159,7 +159,7 @@ class CustomerOrderController implements IController {
   ) => {
     const profileLink = getProfileLink(req, res);
     if (profileLink) {
-      res.render("success", { profileLink });
+      res.render("success", { profileLink, session:req.session });
     } else {
       res.redirect("404");
     }
@@ -181,7 +181,7 @@ class CustomerOrderController implements IController {
       console.log(recentOrder);
 
       if (profileLink && recentOrder) {
-        res.render("orderDetails", { profileLink, recentOrder });
+        res.render("orderDetails", { profileLink, recentOrder, session:req.session });
       } else {
         res.redirect("404");
       }
