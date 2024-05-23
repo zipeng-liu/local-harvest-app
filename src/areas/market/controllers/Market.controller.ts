@@ -42,6 +42,7 @@ class MarketController implements IController {
           profileLink,
           market,
           marketId,
+          session:req.session
         });
       } else {
         res.redirect("landing");
@@ -60,13 +61,11 @@ class MarketController implements IController {
       const profileLink = getProfileLink(req, res);
       const allMarkets = await this._service.getAllMarkets();
       console.log(allMarkets);
-
-      console.log(allMarkets)
-
+      console.log(req.session)
       if (!profileLink) {
         res.redirect("landing");
       } else {
-        res.render("marketList", { profileLink, allMarkets });
+        res.render("marketList", { profileLink, allMarkets, session:req.session });
       }
     } catch (error) {
       console.error("Error fetching market list:", error);

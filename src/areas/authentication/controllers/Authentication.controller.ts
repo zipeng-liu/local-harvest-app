@@ -41,6 +41,7 @@ export class VendorAuthenticationController implements IController {
     const loginUrl = req.originalUrl;
     const errorMessage = req.session?.messages || null;
     req.session.messages = "";
+    console.log(req.session)
     const currentTime = new Date().toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",

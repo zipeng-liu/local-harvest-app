@@ -32,7 +32,7 @@ class ProductController implements IController {
       }
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
-        res.render("productsByVendor", { vendor: vendor, profileLink: profileLink})
+        res.render("productsByVendor", { vendor: vendor, profileLink: profileLink, session:req.session})
 
       } else {
         res.redirect("landing");

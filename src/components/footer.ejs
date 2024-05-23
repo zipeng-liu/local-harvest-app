@@ -30,11 +30,18 @@
     </a>
   </div>
   <div class="nav-item">
-    <a href="/cart" class="button-link">
-      <img src="/image/Cart.svg" alt="Cart" />
-      <span>Cart</span>
-      <span class="cart-counter" id="cart-counter" style="color: white;"></span>
-    </a>
+    <% if (session.userType === 'vendor') { %>
+      <a href="/vendor/inventory" class="button-link">
+        <img src="/image/checklists.svg" alt="Inventory" />
+        <span>Inventory</span>
+      </a>
+    <% } else { %>
+      <a href="/cart" class="button-link">
+        <img src="/image/Cart.svg" alt="Cart" />
+        <span>Cart</span>
+        <span class="cart-counter" id="cart-counter" style="color: white;"></span>
+      </a>
+    <% } %>
   </div>
   <div class="nav-item">
     <a href="<%= profileLink %>" class="button-link">
@@ -43,5 +50,6 @@
     </a>
   </div>
 </div>
+
 
 <script src="/scripts/footer.js"></script>
