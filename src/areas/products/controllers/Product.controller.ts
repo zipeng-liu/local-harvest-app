@@ -66,7 +66,7 @@ class ProductController implements IController {
   
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
-        res.render("item", { product, profileLink, randomProducts });
+        res.render("item", { product, profileLink, randomProducts, session:req.session });
       } else {
         res.redirect("/landing");
       }
