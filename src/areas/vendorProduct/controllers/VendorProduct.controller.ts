@@ -132,10 +132,8 @@ private showViewOrders = async (req: express.Request, res: express.Response) => 
           groupedOrders[orderDate].push(order);
         }
       })
-      console.log("ordersByVendor", ordersByVendor);
-      console.log("groupedOrders", groupedOrders);
 
-      res.render("viewOrders", { profileLink, groupedOrders })
+      res.render("viewOrders", { profileLink, groupedOrders, session: req.session })
     }
   } catch(error) {
     res.status(500).json({ message: "Failed to show all orders by vendor", error })
