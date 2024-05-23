@@ -29,7 +29,7 @@ class CustomerProfileController implements IController {
       if (customer) {
         const profileLink = getProfileLink(req, res);
         if (profileLink) {
-          res.render('customerProfile', { customerName: customer.username, profileLink });
+          res.render('customerProfile', { customerName: customer.username, profileLink, session:req.session });
         } else {
           res.redirect("landing");
         }

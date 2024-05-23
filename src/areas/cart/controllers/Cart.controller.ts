@@ -48,7 +48,7 @@ class CartController implements IController {
 
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
-        res.render("cart", { cartItems, profileLink, errorMessage });
+        res.render("cart", { cartItems, profileLink, errorMessage, session:req.session });
       } else {
         res.redirect("401");
       }
