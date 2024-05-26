@@ -15,7 +15,7 @@
         
         <!-- Back button -->
         <div class="back-button">
-          <a href="/home">
+          <a href="javascript:window.history.back()">
             <img class="back-button button-full-effect" src="/image/navigate_before.svg" />
           </a>
         </div>
@@ -49,7 +49,7 @@
           <div class="item-content">
             <% randomProducts.forEach(product => { %>
               <div class="overlap-group">
-                <div class="rectangle-wrapper"><img class="img" src="<%= product.primaryPhoto %>" /></div>
+                <div class="rectangle-wrapper"><a href="/products/<%= product.productId %>" title="<%= product.name %>"><img class="img" src="<%= product.primaryPhoto %>" /></a></div>
                 
                 <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
                   <button type="submit" class="add-to-cart-wrapper"><img class="add-to-cart-2" src="/image/add_24px.svg" /></button>

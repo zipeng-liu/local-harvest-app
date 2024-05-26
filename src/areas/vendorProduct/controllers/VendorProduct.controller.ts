@@ -117,13 +117,14 @@ private showViewOrders = async (req: express.Request, res: express.Response) => 
     }
       const vendorId = req.session.userId.vendorId;
       const ordersByVendor = await this._service.findAllOrdersByVendor(vendorId);
-      if(!ordersByVendor || ordersByVendor.length === 0) {
-        res.render("viewOrders", { profileLink, groupedOrders: {}, message: "No order found", session: req.session})
-        return;
-      }
-
+    
       // Group order by date
       const groupedOrders: Record<string, Order[]> = {};
+      if(!ordersByVendor || ordersByVendor.length === 0) {
+        console.log(groupedOrders.length)
+        res.render("viewOrders", { profileLink, groupedOrders, message: "No order found", session: req.session})
+        return;
+      }
       ordersByVendor.forEach(order => {
         const orderDate = new Date(order.date).toDateString();
         if(!groupedOrders[orderDate]) {

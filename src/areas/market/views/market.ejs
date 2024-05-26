@@ -58,7 +58,7 @@
             <% vendorsByMarket.forEach(vendor => { %>
             <div class="vendor-item">
               <div class="mid-banner-3">
-                <img class="vendor-img" src="<%= vendor.photo %>" />
+                <a href="/vendor/show/<%= vendor.vendorId %>"><img class="vendor-img" src="<%= vendor.photo %>" /></a>
                 
                   <div class="vendor-name"><a href="/vendor/show/<%= vendor.vendorId %>"><%= vendor.name %></a></div>
                 </a>
