@@ -13,9 +13,9 @@
       <div class="div">
         <div class="text-wrapper">All Orders</div>
         <a href="javascript:window.history.back()" class="back-button-link"><img class="back-button" src="/image/navigate_before.svg" /></a>
-        <% if(groupedOrders.length === 0) { %>
+        <% if(groupedOrders.length === undefined) { %>
           <div class="date-header">
-              <div class="order-day"><%= message %></div>
+              <div class="show-error"><%= message %></div>
           </div>
 
         <% } else { %>

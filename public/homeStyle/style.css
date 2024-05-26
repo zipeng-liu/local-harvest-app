@@ -553,9 +553,9 @@
 .home-page .business-name {
   transform: translate(10%);
   position: absolute;
-  width: 199px;
+  width: 180px;
   top: -1px;
-  left: 199px;
+  left: 210px;
   font-family: var(--h2-mobile-font-family);
   font-weight: var(--h2-mobile-font-weight);
   color: var(--semi-black);
@@ -565,12 +565,24 @@
   font-style: var(--h2-mobile-font-style);
 }
 
+.home-page .business-name a:hover {
+  background-color: var(--sandy-brown);
+  color: var(--cloud-white);
+}
+
+
+.home-page .business-name a {
+  text-decoration: none;
+  color: var(--semi-black);
+  cursor: pointer;
+}
+
 .home-page .featured-market-description {
   transform: translate(10%);
   position: absolute;
   width: 199px;
   top: 105px;
-  left: 199px;
+  left: 210px;
   font-family: var(--body-copy-mobile-font-family);
   font-weight: var(--body-copy-mobile-font-weight);
   color: #000000;

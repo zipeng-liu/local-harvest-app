@@ -47,7 +47,7 @@
                         <button type="submit" class="add-to-cart-wrapper"><i class="fa fa-plus"></i></button>
                       </form>
                     </div>
-                      <img src="<%= product.primaryPhoto %>" alt="product-image" class="product-image">
+                    <a href="/products/<%= product.productId %>"><img src="<%= product.primaryPhoto %>" alt="product-image" class="product-image"></a>
                       <div class="product-name"><a href="/products/<%= product.productId %>"><%= product.name %></a></div>
                       <div class="product-price">$<%= product.price %></div>
                   </div>
