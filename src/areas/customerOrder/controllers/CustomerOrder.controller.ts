@@ -4,7 +4,7 @@ import IController from "../../../interfaces/controller.interface";
 import ICustomerOrderService from "../services/ICustomerOrder.service";
 import ensureAuthenticated from "../../../middleware/authentication.middleware";
 import { getProfileLink } from "../../../helper/profileLink";
-import { Product, Cart } from "@prisma/client";
+import { Product, Cart, Customer } from "@prisma/client";
 
 declare module "express-session" {
   interface SessionData {
@@ -158,8 +158,15 @@ class CustomerOrderController implements IController {
     res: express.Response
   ) => {
     const profileLink = getProfileLink(req, res);
-    if (profileLink) {
-      res.render("success", { profileLink, session:req.session });
+    const userId = req.session.userId?.customerId;
+    let customer: Customer | null = null;
+  
+    if (typeof userId === "number") {
+      customer = await this._service.findCustomerById(userId);
+    }
+  
+    if (profileLink && customer!) {
+      res.render("success", { profileLink, session: req.session, customer });
     } else {
       res.redirect("404");
     }
@@ -190,7 +197,6 @@ class CustomerOrderController implements IController {
       res.redirect("500");
     }
   };
-  
 }
 
 export default CustomerOrderController;

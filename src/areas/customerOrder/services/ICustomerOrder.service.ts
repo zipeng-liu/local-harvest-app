@@ -1,4 +1,4 @@
-import type { Cart, Product, Order } from "@prisma/client";
+import type { Cart, Product, Order, Customer } from "@prisma/client";
 
 interface ICustomerOrderService {
   addProductToCart(customerId: number, productId: number, quantity: number): Promise<Cart>;
@@ -19,6 +19,7 @@ interface ICustomerOrderService {
   createProductOrders(userId: number, orderId: number): Promise<void>;
   getCart(userId: number): Promise<Cart[]>;
   getRecentOrder(userId: number): Promise<Order | null>;
+  findCustomerById(customerId: number): Promise<Customer | null>
 }
 
 export default ICustomerOrderService;

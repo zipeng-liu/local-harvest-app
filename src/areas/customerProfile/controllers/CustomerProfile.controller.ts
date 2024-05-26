@@ -18,6 +18,7 @@ class CustomerProfileController implements IController {
     this.router.get(`${this.path}/profile`, this.showCustomerProfile);
   }
 
+
   private showCustomerProfile = async (req: express.Request, res: express.Response) => {
     const customerId = req.session.userId?.customerId;
     if (!customerId) {
@@ -26,10 +27,19 @@ class CustomerProfileController implements IController {
     }
     try {
       const customer = await this._service.findCustomerById(customerId);
+      const orders = await this._service.findRecentCustomerOrders(customerId);
+
+      console.log(orders);
+      
       if (customer) {
         const profileLink = getProfileLink(req, res);
         if (profileLink) {
-          res.render('customerProfile', { customerName: customer.username, profileLink, session:req.session });
+          res.render('customerProfile', { 
+            customerName: customer.username, 
+            profileLink, 
+            session: req.session,
+            orders
+          });
         } else {
           res.redirect("landing");
         }

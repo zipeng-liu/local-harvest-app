@@ -11,26 +11,29 @@
     <%- include('../../../components/header') %>
     <div class="user-account">
       <div class="div">
+
         <a href="javascript:window.history.back()"><img class="back-button" src="/image/navigate_before.svg" /></a>
+
         <div class="text-wrapper">Customer</div>
-        <div class="account-nav">
+        <div class="account-nav button-full-effect">
           <div class="frame"><img src="/image/person_outline_24px.svg" /></div>
           <div class="text">Manage Account</div>
           <img class="img" src="/image/navigate_next.svg" />
         </div>
-        <div class="overlap">
+        <div class="overlap button-full-effect">
           <div class="account-nav-2">
             <div class="text">Favorited Items</div>
             <img class="img" src="/image/navigate_next.svg" />
+            <img class="favourite" src="/image/favourite.png" />
           </div>
-          <img class="favourite" src="/image/favourite.png" />
+          
         </div>
-        <div class="component">
+        <div class="component button-full-effect">
           <div class="frame"><img class="img-2" src="/image/interface-key.svg" /></div>
           <div class="text">Password</div>
           <img class="img" src="/image/navigate_next.svg" />
         </div>
-        <div class="component-2">
+        <div class="component-2 button-full-effect">
           <div class="frame">
             <img
               class="img-2"
@@ -40,12 +43,12 @@
           <div class="text">Privacy</div>
           <img class="img" src="/image/navigate_next.svg" />
         </div>
-        <div class="component-3">
+        <div class="component-3 button-full-effect">
           <div class="frame"><img class="img-2" src="/image/interface-file-multiple--double-common-file.svg" /></div>
           <div class="text">Terms and Conditions</div>
           <img class="img" src="/image/navigate_next.svg" />
         </div>
-        <div class="component-4">
+        <div class="component-4 button-full-effect">
           <div class="frame">
             <img
               class="img-2"
@@ -55,72 +58,72 @@
           <div class="text">Help</div>
           <img class="img" src="/image/navigate_next.svg" />
         </div>
-        <div class="component-5">
+        <div class="component-5 button-full-effect">
           <div class="frame">
             <img class="img-2" src="/image/interface-logout--arrow-exit-frame-leave-logout-rectangle-right.svg" />
           </div>
           <div class="text-2">Log Out</div>
           <img class="img" src="/image/navigate_next.svg" />
         </div>
+
+        <!-- Recent purchases -->
         <div class="recent-purchases">
-          <div class="div-wrapper"><div class="text-wrapper-2">Your Recent Purchases:</div></div>
+          <div class="div-wrapper">
+            <div class="text-wrapper-2">Your Recent Purchases:</div>
+          </div>
           <div class="frame-2">
-            <div class="product-user">
-              <div class="rectangle-wrapper"><div class="rectangle"></div></div>
-              <div class="frame-3">
-                <div class="text-wrapper-3">Product name here</div>
-                <div class="text-wrapper-4">Vendor name here</div>
-              </div>
-              <img class="frame-4" src="/image/line.png" />
-              <div class="frame-5">
-                <div class="frame-6">
-                  <div class="text-wrapper-5">Date:</div>
-                  <div class="text-wrapper-6">xx/xx/xxxx</div>
+            <% orders.forEach(order => { %>
+              <div class="product-user button-color-effect" onclick="showOrderDetails('<%= order.orderId %>')">
+                <div class="rectangle-wrapper">
+                  <div class="rectangle"></div>
                 </div>
-                <div class="frame-7">
-                  <div class="text-wrapper-7">Hasting Park Market</div>
-                  <div class="text-wrapper-8">Market:</div>
+                <div class="frame-3">
+                  <div class="text-wrapper-3">Order ID: <%= order.orderId %></div>
+                  <div class="text-wrapper-4">Total: $<%= order.total.toFixed(2) %></div>
                 </div>
-              </div>
-            </div>
-            <div class="product-user">
-              <div class="rectangle-wrapper"><div class="rectangle"></div></div>
-              <div class="frame-3">
-                <div class="text-wrapper-3">Product name here</div>
-                <div class="text-wrapper-4">Vendor name here</div>
-              </div>
-              <img class="frame-4" src="/image/line.png" />
-              <div class="frame-5">
-                <div class="frame-6">
-                  <div class="text-wrapper-5">Date:</div>
-                  <div class="text-wrapper-6">xx/xx/xxxx</div>
-                </div>
-                <div class="frame-7">
-                  <div class="text-wrapper-7">Hasting Park Market</div>
-                  <div class="text-wrapper-8">Market:</div>
+                <div class="frame-5">
+                  <div class="frame-6">
+                    <div class="text-wrapper-5">Date: </div>
+                    <div class="text-wrapper-6"><%= order.date.toLocaleString() %></div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="product-user">
-              <div class="rectangle-wrapper"><div class="rectangle"></div></div>
-              <div class="frame-3">
-                <div class="text-wrapper-3">Product name here</div>
-                <div class="text-wrapper-4">Vendor name here</div>
-              </div>
-              <img class="frame-4" src="/image/line.png" />
-              <div class="frame-5">
-                <div class="frame-6">
-                  <div class="text-wrapper-5">Date:</div>
-                  <div class="text-wrapper-6">xx/xx/xxxx</div>
+              <div id="order-<%= order.orderId %>" class="modal">
+                <div class="modal-content">
+                  <span class="close" onclick="closeOrderDetails('<%= order.orderId %>')">&times;</span>
+                  <h2>Order ID: <%= order.orderId %></h2>
+                  <p>Type:  <%= order.type %></p>
+                  <p>Total: $<%= order.total.toFixed(2) %></p>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Sum</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% order.productOrders.forEach(productOrder => { %>
+                        <tr>
+                          <td>
+                            <a class="button-color-effect" href="/products/<%= productOrder.product.productId  %>">
+                              <%= productOrder.product.name %>
+                            </a>
+                          </td>
+                          <td><%= productOrder.quantity %></td>
+                          <td>$<%= productOrder.product.price * productOrder.quantity %></td>
+                        </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
                 </div>
-                <div class="frame-7">
-                  <div class="text-wrapper-7">Hasting Park Market</div>
-                  <div class="text-wrapper-8">Market:</div>
-                </div>
               </div>
-            </div>
+            <% }) %>
           </div>
         </div>
+        <script src="/scripts/order-details.js"></script>
+
+      
         <div class="profile">
           <div class="overlap-group">
             <img
