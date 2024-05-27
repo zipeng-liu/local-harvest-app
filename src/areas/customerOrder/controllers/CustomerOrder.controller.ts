@@ -5,6 +5,10 @@ import ICustomerOrderService from "../services/ICustomerOrder.service";
 import ensureAuthenticated from "../../../middleware/authentication.middleware";
 import { getProfileLink } from "../../../helper/profileLink";
 import { Product, Cart, Customer } from "@prisma/client";
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 declare module "express-session" {
   interface SessionData {
@@ -93,6 +97,7 @@ class CustomerOrderController implements IController {
     }
   };
 
+  
   private handleCheckout = async (
     req: express.Request,
     res: express.Response
@@ -139,6 +144,30 @@ class CustomerOrderController implements IController {
 
       // Delete cart items for the user
       await this._service.deleteCartItemsForUser(userId);
+
+      // Send order confirmation email
+      let transporter = nodemailer.createTransport({
+        service: 'outlook', // You can use any email service
+        auth: {
+          user: process.env.EMAIL, // Your email
+          pass: process.env.PASSWORD // Your email password
+        }
+      });
+
+      let mailOptions = {
+        from: process.env.EMAIL,
+        to: contactEmail,
+        subject: 'Order Confirmation',
+        text: `Hello ${contactFirstname} ${contactLastname},\n\nYour order has been received.\n\nDetails:\nSchedule: ${schedule}\nTotal: $${total}\n\nThank you for your purchase!`
+      };
+
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error('Error sending email:', error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
 
       // Redirect to order success page
       res.redirect("success");
