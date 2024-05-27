@@ -60,6 +60,5 @@ class HomeController implements IController {
   }
   };
 }
-import { Prisma } from "@prisma/client";
 
 export default HomeController;
