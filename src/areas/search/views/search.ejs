@@ -37,6 +37,7 @@
             <h3 style="color: rgb(139, 189, 139);">Market</h3>
             <% randomMarkets.forEach(market => { %>
               <div class="market-item">
+                <img src="<%= market.photo %>" class="market-photo"/>
                 <a href="/market/show/<%= market.marketId %>" class="market-link"><%= market.name %></a>
               </div>
             <% }) %>
@@ -46,6 +47,7 @@
             <h3>Vendor</h3>
             <% randomVendors.forEach(vendor => { %>
               <div class="vendor-item">
+                <img src="<%= vendor.photo %>" class="vendor-photo"/>
                 <a href="/vendor/show/<%= vendor.vendorId %>" class="vendor-link"><%= vendor.name %></a>
               </div>
             <% }) %>
@@ -54,6 +56,7 @@
             <h3 style="color: rgb(255, 124, 8);">Product</h3>
             <% randomProducts.forEach(product => { %>
               <div class="product-item">
+                <img src="<%= product.primaryPhoto %>" class="product-photo"/>
                 <a href="/products/<%= product.productId %>" class="product-link"><%= product.name %></a>
               </div>
             <% }) %>

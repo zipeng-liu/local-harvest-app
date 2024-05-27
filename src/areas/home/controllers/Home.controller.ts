@@ -39,9 +39,21 @@ class HomeController implements IController {
         const allProducts = await this._service.getAllProducts();
         const shuffledProducts = shuffle(allProducts);
         const randomProducts = shuffledProducts.slice(0,5);
-        console.log(req.session.userId)
 
-        res.render("home", { profileLink, randomMarkets, randomVendors, randomProducts, featuredMarket, session:req.session });
+        let accountInfo: any;
+        const session = req.session.userId;
+        if(session?.vendorId !== 0 && session?.vendorId !== undefined) {
+          const vendorId = session.vendorId;
+          const vendorInfo = await this._service.findVendorById(vendorId);
+          accountInfo = vendorInfo;
+      
+        } else if(session?.customerId !== 0 && session?.customerId !== undefined) {
+          const customerId = session?.customerId;
+          const customerInfo = await this._service.findCustomerById(customerId);
+          accountInfo = customerInfo;
+        }
+
+        res.render("home", { profileLink, randomMarkets, randomVendors, randomProducts, featuredMarket, accountInfo, session:req.session });
       }
   } catch(error) {
     res.status(500).json({ message: "Failed to get home page", error})
