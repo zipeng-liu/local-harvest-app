@@ -49,11 +49,16 @@ function displayResults(results) {
               const marketDiv = document.createElement('div');
               marketDiv.className = 'market-item';
 
+              const marketImg = document.createElement('img');
+              marketImg.src = `${market.photo}`;
+              marketImg.className = 'market-photo';
+
               const marketAttribute = document.createElement('a');
-              marketAttribute.setAttribute('href', `/markets/${market.marketId}`);
+              marketAttribute.setAttribute('href', `/market/show/${market.marketId}`);
               marketAttribute.className = 'market-link';
               marketAttribute.textContent = market.name;
 
+              marketDiv.appendChild(marketImg);
               marketDiv.appendChild(marketAttribute);
               marketResults.appendChild(marketDiv);
           })
@@ -67,12 +72,17 @@ function displayResults(results) {
           vendors.forEach(vendor => {
               const vendorDiv = document.createElement('div');
               vendorDiv.className = 'vendor-item';
+
+              const vendorImg = document.createElement('img');
+              vendorImg.src = `${vendor.photo}`;
+              vendorImg.className = 'vendor-photo';
               
               const vendorAttribute = document.createElement('a');
-              vendorAttribute.setAttribute('href', `/vendors/${vendor.vendorId}`);
+              vendorAttribute.setAttribute('href', `/vendor/show/${vendor.vendorId}`);
               vendorAttribute.className = 'vendor-link';
               vendorAttribute.textContent = vendor.name;
 
+              vendorDiv.appendChild(vendorImg);
               vendorDiv.appendChild(vendorAttribute);
               vendorResults.appendChild(vendorDiv);
           })
@@ -87,11 +97,16 @@ function displayResults(results) {
               const productDiv = document.createElement('div');
               productDiv.className = 'product-item';
 
+              const productImg = document.createElement('img');
+              productImg.src = `${product.primaryPhoto}`;
+              productImg.className = 'product-photo';
+
               const productAttribute = document.createElement('a')
               productAttribute.setAttribute('href', `/products/${product.productId}`);
               productAttribute.className = 'product-link';
               productAttribute.textContent = product.name;
               
+              productDiv.appendChild(productImg);
               productDiv.appendChild(productAttribute)
               productResults.appendChild(productDiv);
           })
