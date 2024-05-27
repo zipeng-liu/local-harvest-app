@@ -1574,6 +1574,11 @@ icon to edit vendor profile
   color: var(--cloud-white);
 }
 
+.add-product {
+  position: absolute;
+  top: 50px;
+  right: 30px
+}
 
 
 
