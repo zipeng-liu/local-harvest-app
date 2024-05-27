@@ -197,9 +197,9 @@
   width: 183px;
   height: 40px;
   top: 61px;
-  left: 16px;
+  left: 111px;
   background-color: #ffffff;
-  border-radius: 8px 0px 0px 8px;
+  border-radius: 8px;
   box-shadow: var(--drop-shadow);
 }
 
@@ -219,7 +219,7 @@
   width: 164px;
   height: 40px;
   top: 69px;
-  left: 21px;
+  left: 122px;
   font-family: var(--h3-mobile-font-family);
   font-weight: var(--h3-mobile-font-weight);
   color: var(--semi-black);

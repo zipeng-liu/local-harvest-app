@@ -23,8 +23,8 @@
         <div class="all-markets">
           <% randomMarkets.forEach(market => { %>
             <div class="market-item">
-              <div class="div-wrapper"><img class="market-img" src=<%= market.photo %> />
-              <a href="/market/<%= market.marketId %>"><div class="market-name"><%= market.name %></div></a>
+              <div class="div-wrapper"><a href="/market/show/<%= market.marketId %>"><img class="market-img" src=<%= market.photo %> /></a>
+              <a href="/market/show/<%= market.marketId %>"><div class="market-name"><%= market.name %></div></a>
               </div>
             </div>
           <% }) %>
@@ -33,7 +33,7 @@
         <div class="all-vendors">
           <% randomVendors.forEach(vendor => { %>
             <div class="vendor-item">
-              <div class="mid-banner-3"><img class="vendor-img" src=<%= vendor.photo %> />
+              <div class="mid-banner-3"><a href="/vendor/show/<%= vendor.vendorId %>"><img class="vendor-img" src=<%= vendor.photo %> /></a>
               <a href="/vendor/show/<%= vendor.vendorId %>"><div class="vendor-name"><%= vendor.name %></div></a>
             </div>
             </div>
@@ -44,10 +44,10 @@
 
         <div class="vendor">
           <p class="featured-market-description">Over 30 vendors each week with variety of selections.</p>
-          <a class="button-full-effect" href="/market/show/<%= featuredMarket.marketId %>"><div class="business-name"><%= featuredMarket.name %></div></a>
-          <img class="featured-market-photo" src=<%= featuredMarket.photo %> />
+          <div class="business-name"><a class="button-full-effect" href="/market/show/<%= featuredMarket.marketId %>"><%= featuredMarket.name %></a></div>
+          <a class="button-full-effect" href="/market/show/<%= featuredMarket.marketId %>"><img class="featured-market-photo" src=<%= featuredMarket.photo %> /></a>
           <div class="category"><div class="text-wrapper-17">Hastings Park</div></div>
-          <div class="hastings-park-wrapper"><div class="hastings-park">Winter Market</div></div>
+          <!-- <div class="hastings-park-wrapper"><div class="hastings-park">Winter Market</div></div> -->
         </div>
 
         <div class="overlap">
@@ -56,11 +56,14 @@
             <div class="item-content">
               <% randomProducts.forEach(product => { %>
                 <div class="overlap-group">
-                  <div class="rectangle-wrapper"><img class="img" src="<%= product.primaryPhoto %>" /></div>
+                  <div class="rectangle-wrapper"><a href="/products/<%= product.productId %>" title="<%= product.name %>"><img class="img" src="<%= product.primaryPhoto %>" /></a></div>
                   
-                  <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
+                  <!----if(vendor), don't show add-to-cart button -->
+                  <% if(session.userId.vendorId === 0 && session.userId.customerId !== 0) { %>
+                     <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
                     <button type="submit" class="add-to-cart-wrapper"><img class="add-to-cart-2" src="/image/add_24px.svg" /></button>
                   </form>
+                  <% } %>
                 
                   <div class="product-info">
                     <div class="text-wrapper-product-name"><a href="/products/<%= product.productId %>" title="<%= product.name %>"><%= product.name %></a></div>

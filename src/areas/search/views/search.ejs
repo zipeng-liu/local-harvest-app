@@ -26,11 +26,38 @@
                 <i class="fas fa-search button-full-effect"></i>
             </button>
           </form>
-          <a href="/home"><img class="back-button button-full-effect" src="/image/navigate_before.svg" /></a>
+          <a href="javascript:window.history.back()"><img class="back-button button-full-effect" src="/image/navigate_before.svg" /></a>
         </div>
         <div>
         </div>
         <div id="result-container">
+
+          <!---- put some random results before user search -->
+          <div>
+            <h3 style="color: rgb(139, 189, 139);">Market</h3>
+            <% randomMarkets.forEach(market => { %>
+              <div class="market-item">
+                <a href="/market/show/<%= market.marketId %>" class="market-link"><%= market.name %></a>
+              </div>
+            <% }) %>
+            
+          </div>
+          <div>
+            <h3>Vendor</h3>
+            <% randomVendors.forEach(vendor => { %>
+              <div class="vendor-item">
+                <a href="/vendor/show/<%= vendor.vendorId %>" class="vendor-link"><%= vendor.name %></a>
+              </div>
+            <% }) %>
+          </div>
+          <div>
+            <h3 style="color: rgb(255, 124, 8);">Product</h3>
+            <% randomProducts.forEach(product => { %>
+              <div class="product-item">
+                <a href="/products/<%= product.productId %>" class="product-link"><%= product.name %></a>
+              </div>
+            <% }) %>
+          </div>
 
         </div>
       </div>

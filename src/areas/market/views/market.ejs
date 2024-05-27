@@ -48,17 +48,21 @@
           </div>
         </div>
         <div class="text-wrapper-4">Vendors</div>
-        <button class="small-button-arrow">
-          <div class="frame"><div class="text-wrapper-5">View More</div></div>
-          <img class="icons-arrow-forward" src="/image/arrowsRight.png" />
-        </button>
+        <% vendorsByMarket = market.vendors; %>
+        <% if(vendorsByMarket.length > 4) { %>
+          <button class="small-button-arrow">
+            <div class="frame"><div class="text-wrapper-5">View More</div></div>
+            <img class="icons-arrow-forward" src="/image/arrowsRight.png" />
+          </button>
+        <% } %>
+    
         <div class="mini-vendor-card-3">
           <div class="all-vendors">
-            <% vendorsByMarket = market.vendors; %>
+            
             <% vendorsByMarket.forEach(vendor => { %>
             <div class="vendor-item">
               <div class="mid-banner-3">
-                <img class="vendor-img" src="<%= vendor.photo %>" />
+                <a href="/vendor/show/<%= vendor.vendorId %>"><img class="vendor-img" src="<%= vendor.photo %>" /></a>
                 
                   <div class="vendor-name"><a href="/vendor/show/<%= vendor.vendorId %>"><%= vendor.name %></a></div>
                 </a>

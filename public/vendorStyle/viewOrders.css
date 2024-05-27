@@ -92,6 +92,19 @@ body {
     line-height: normal;
   }
   
+  .vendor-order-page .show-error {
+    position: relative;
+    width: 295px;
+    top: 160px;
+    left: 40px;
+    font-family: "Roobert TRIAL-Bold", Helvetica;
+    font-weight: 500;
+    color: black;
+    font-size: 20px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
   
   .vendor-order-page .order-card {
     top: 170px;

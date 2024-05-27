@@ -117,13 +117,14 @@ private showViewOrders = async (req: express.Request, res: express.Response) => 
     }
       const vendorId = req.session.userId.vendorId;
       const ordersByVendor = await this._service.findAllOrdersByVendor(vendorId);
-      if(!ordersByVendor || ordersByVendor.length === 0) {
-        res.render("viewOrders", { profileLink, groupedOrders: {}, message: "No order found", session: req.session})
-        return;
-      }
-
+    
       // Group order by date
       const groupedOrders: Record<string, Order[]> = {};
+      if(!ordersByVendor || ordersByVendor.length === 0) {
+        console.log(groupedOrders.length)
+        res.render("viewOrders", { profileLink, groupedOrders, message: "No order found", session: req.session})
+        return;
+      }
       ordersByVendor.forEach(order => {
         const orderDate = new Date(order.date).toDateString();
         if(!groupedOrders[orderDate]) {
@@ -185,9 +186,9 @@ private showViewOrders = async (req: express.Request, res: express.Response) => 
       } else {
         const vendorId = parseInt(req.params.id);
         const vendorById = await this._service.findVendorById(vendorId);
-        const productByVendor = await this._service.findAllProductsByVendor(vendorId);
-        const productOnVendorPage = productByVendor.slice(0,4);
-        res.render("vendor", { profileLink, vendorById, productOnVendorPage, session:req.session });
+        const productsByVendor = await this._service.findAllProductsByVendor(vendorId);
+        const productOnVendorPage = productsByVendor.slice(0,4);
+        res.render("vendor", { profileLink, vendorById, productOnVendorPage, productsByVendor, session:req.session });
       }
     } catch(error) {
       res.status(500).json({ message: "Failed to get vendor by Id for vendor page", error })
