@@ -62,11 +62,14 @@
         </div>
         <div class="products-header">Products</div>
         <div class="rectangle-3"><img src=<%= vendorById.photo %> /></div>
-        <button class="small-button-arrow">
-          <a href="/products/vendor/<%= vendorById.vendorId %>"><div class="frame"><div class="view-more">View More</div></div></a>
-          <img class="icons-arrow-forward" src="/image/right-arrow.png" />
-        </button>
 
+        <% if(productsByVendor.length > 4) { %>
+          <button class="small-button-arrow">
+            <a href="/products/vendor/<%= vendorById.vendorId %>"><div class="frame"><div class="view-more">View More</div></div></a>
+            <img class="icons-arrow-forward" src="/image/right-arrow.png" />
+          </button>
+        <% } %>
+        
       </div>
     </div>
     <%- include('../../../components/footer') %>
