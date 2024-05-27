@@ -30,7 +30,7 @@ body {
     background-color: var(--cloud-white);
     overflow: hidden;
     width: 430px;
-    height: 1280px;
+    height: 2000px;
     position: relative;
     top: 50px;
   }
@@ -467,7 +467,8 @@ body {
 }
 
 .vendor-product-page .product-image {
-  width: 100%; 
+  /* width: 100%;  */
+  width: 195px;
   height: 199px; 
   border-radius: 8px; 
 }
@@ -578,18 +579,23 @@ body {
   color: var(--cloud-white);
 }
 
-
 .vendor-product-page .back-button {
   position: absolute;
-    width: 40px;
-    height: 40px;
-    top: 130px;
-    left: 15px;
+  width: 40px;
+  height: 40px;
+  top: 65px;
+  /* left: 125px; */
+  z-index: 2;
 }
+
 @media (min-width: 800px) {
   .vendor-product-page .back-button {
-    top: 130px;
-    left: 380px;
+    position: relative; 
+    margin-left: 0; 
+    margin-top: 0; 
+    top: 70px;
+    left: 0;
+    align-self: start;
   }
 }
 

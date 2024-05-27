@@ -347,7 +347,8 @@
 }
 
 .market-info-page .vendor-img {
-  width: 100%; 
+  /* width: 100%; */
+  width: 195px; 
   height: 190px;;
   border-radius: 8px;
 }

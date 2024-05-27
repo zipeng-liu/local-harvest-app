@@ -43,9 +43,14 @@
               <% productOnVendorPage.forEach(product => { %>
                   <div class="product-card">
                     <div class="overlap-group">
-                      <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
-                        <button type="submit" class="add-to-cart-wrapper"><i class="fa fa-plus"></i></button>
-                      </form>
+
+                      <!----- if(vendor), don't show add-to-cart button -->
+                      <% if(session.userId.vendorId === 0 && session.userId.customerId !== 0) { %>
+                        <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
+                          <button type="submit" class="add-to-cart-wrapper"><i class="fa fa-plus"></i></button>
+                        </form>
+                      <% } %>
+                      
                     </div>
                     <a href="/products/<%= product.productId %>"><img src="<%= product.primaryPhoto %>" alt="product-image" class="product-image"></a>
                       <div class="product-name"><a href="/products/<%= product.productId %>"><%= product.name %></a></div>
@@ -62,11 +67,15 @@
         </div>
         <div class="products-header">Products</div>
         <div class="rectangle-3"><img src=<%= vendorById.photo %> /></div>
-        <button class="small-button-arrow">
-          <a href="/products/vendor/<%= vendorById.vendorId %>"><div class="frame"><div class="view-more">View More</div></div></a>
-          <img class="icons-arrow-forward" src="/image/right-arrow.png" />
-        </button>
 
+        <!-------- if vendor has more than 4 products, show "view more" button -->
+        <% if(productsByVendor.length > 4) { %>
+          <button class="small-button-arrow">
+            <a href="/products/vendor/<%= vendorById.vendorId %>"><div class="frame"><div class="view-more">View More</div></div></a>
+            <img class="icons-arrow-forward" src="/image/right-arrow.png" />
+          </button>
+        <% } %>
+        
       </div>
     </div>
     <%- include('../../../components/footer') %>

@@ -69,9 +69,12 @@
                 <div class="overlap-group">
                   <div class="rectangle-wrapper"><a href="/products/<%= product.productId %>" title="<%= product.name %>"><img class="img" src="<%= product.primaryPhoto %>" /></a></div>
                   
-                  <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
+                  <!----if(vendor), don't show add-to-cart button -->
+                  <% if(session.userId.vendorId === 0 && session.userId.customerId !== 0) { %>
+                     <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
                     <button type="submit" class="add-to-cart-wrapper"><img class="add-to-cart-2" src="/image/add_24px.svg" /></button>
                   </form>
+                  <% } %>
                 
                   <div class="product-info">
                     <div class="text-wrapper-product-name"><a href="/products/<%= product.productId %>" title="<%= product.name %>"><%= product.name %></a></div>
