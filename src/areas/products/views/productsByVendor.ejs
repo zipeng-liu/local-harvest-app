@@ -15,22 +15,34 @@
 <%- include('../../../components/header') %>
     <div class="vendor-product-page">
       <div class="div">
+
+          <!-- Back button -->
+          <div class="back-button">
+            <a href="javascript:window.history.back()">
+              <img class="back-button button-full-effect" src="/image/navigate_before.svg" />
+            </a>
+          </div>
+
           <div class="text-wrapper">Products</div>
           <div class="text-wrapper-2">from <%= vendor.name %></div>
-          <a href="javascript:window.history.back()"><img class="back-button" src="/image/navigate_before.svg" /></a>
+          <!-- <a href="javascript:window.history.back()"><img class="back-button" src="/image/navigate_before.svg" /></a> -->
           <div class="products-container">
             <% const productsByVendor = vendor.products %>
 
               <% productsByVendor.forEach(product => { %>
                   <div class="product-card">
-                      <img src="<%= product.primaryPhoto %>" alt="product-image" class="product-image">
+                    <a href="/products/<%= product.productId %>"><img src="<%= product.primaryPhoto %>" alt="product-image" class="product-image"></a>
                       <div class="product-name"><a href="/products/<%= product.productId %>"><%= product.name %></a></div>
                       <div class="product-price">$<%= product.price %></div>
                       <div class="overlap-group">
                         <!-- <img class="add-to-cart" src="/image/add_24px.svg" /> -->
-                        <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
-                          <button type="submit" class="add-to-cart-wrapper"><i class="fa fa-plus"></i></button>
-                        </form>
+
+                        <!---- if(vendor), don't show add-to-cart button -->
+                        <% if(session.userId.vendorId === 0 && session.userId.customerId !== 0) { %>
+                          <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
+                            <button type="submit" class="add-to-cart-wrapper"><i class="fa fa-plus"></i></button>
+                          </form>
+                        <% } %>
                       </div>
                   </div>
               <% }) %>

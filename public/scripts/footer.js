@@ -30,4 +30,17 @@ function updateCartDisplay(count) {
 
 document.addEventListener("DOMContentLoaded", function() {
   fetchCartCount(); 
+  const path = window.location.pathname;
+
+  console.log(path);
+  const navLinks = document.querySelectorAll('.button-link');
+
+  navLinks.forEach(link => {
+    console.log(link);
+    if(link.getAttribute('href') === path) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  })
 });

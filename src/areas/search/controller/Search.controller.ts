@@ -3,6 +3,8 @@ import IController from "../../../interfaces/controller.interface";
 import ISearchService from "../services/ISearchService";
 import path from "path";
 import { getProfileLink } from "../../../helper/profileLink";
+import { shuffle } from "../../../helper/randomFunction";
+
 
 class SearchController implements IController {
   public path = "/search";
@@ -25,7 +27,26 @@ class SearchController implements IController {
       // check user log in here
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
-        res.render("search", { profileLink, session:req.session });
+
+        const allMarkets = await this._service.getAllMarkets();
+        const shuffledMarkets = shuffle(allMarkets);
+        const randomMarkets = shuffledMarkets.slice(0,2);
+     
+
+        const allVendors = await this._service.getAllVendors();
+        const shuffledVendors = shuffle(allVendors);
+        const randomVendors = shuffledVendors.slice(0,2);
+
+        const allProducts = await this._service.getAllProducts();
+        const shuffledProducts = shuffle(allProducts);
+        const randomProducts = shuffledProducts.slice(0,2);
+
+        res.render("search", { 
+          profileLink, 
+          session:req.session, 
+          randomMarkets, 
+          randomVendors, 
+          randomProducts });
       } else {
         res.redirect("landing");
       }     
@@ -48,8 +69,8 @@ class SearchController implements IController {
           return;
         }
         const results = await this._service.searchResults(query) || [];
-  
 
+      
         res.json({
           profileLink: profileLink,
           results: results,
