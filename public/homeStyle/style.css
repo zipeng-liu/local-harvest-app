@@ -28,6 +28,22 @@
   font-style: var(--h2-mobile-font-style);
 }
 
+.home-page .greeting-header {
+  position: absolute;
+  top: 150px;
+  left: 30px;
+  font-family: var(--h2-mobile-font-family);
+  font-weight: var(--h2-mobile-font-weight);
+  color: #000000;
+  font-size: 24px;
+  letter-spacing: var(--h2-mobile-letter-spacing);
+  line-height: var(--h2-mobile-line-height);
+  font-style: var(--h2-mobile-font-style);
+}
+
+.home-page .greeting-header span {
+  color: var(--sandy-brown);
+}
 .home-page .featured-market-header {
   position: absolute;
   top: 206px;

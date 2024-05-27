@@ -12,7 +12,12 @@
     <div class="vendor-inventory">
       <div class="div">
         <div class="text-wrapper">Vendor Product List</div>
-        <a href="javascript:window.history.back()"><img class="back-button" src="/image/navigate_before.svg" /></a>
+        <a href="/vendor/profile"><img class="back-button" src="/image/navigate_before.svg" /></a>
+        <a href="/vendor/addItem">
+          <div class="add-product">
+            <img class="img button-full-effect" src="/image/interface-setting-tool-box--box-briefcase-tool-settings.svg" />
+          </div>
+        </a>
         <div class="product-detailed">
           <div class="group">
             <% inventoryList.forEach(product=> { %>
@@ -42,11 +47,6 @@
                   </div>
                 </div>
                 <div class="cart-image"><img src="<%= product.primaryPhoto %>"/></div>
-                <div class="overlap-group">
-                  <img class="interface-edit-write"
-                    src="/image/interface-edit-write-2--change-document-edit-modify-paper-pencil-write-writing.svg" />
-                  <div class="text-wrapper-3">Edit</div>
-                </div>
               </div>
             <% }) %>
           </div>
