@@ -29,7 +29,7 @@ export class VendorAuthenticationController implements IController {
   private initializeRoutes() {
     this.router.get(`${this.path}/login`, this.showVendorLoginPage);
     this.router.post(`${this.path}/login`, this.vendorLogin);
-    //this.router.get(`${this.path}/logout`, this.logout);
+    this.router.get(`${this.path}/logout`, this.vendorLogout);
     //this.router.get(`${this.path}/register`, this.showRegistrationPage);
     //this.router.post(`${this.path}/register`, this.registration);
   }
@@ -62,6 +62,16 @@ export class VendorAuthenticationController implements IController {
       res.redirect("/auth/vendor/login");
     }
   };
+
+  private vendorLogout = async (req: express.Request, res: express.Response) => {
+    req.session.destroy(err => {
+      if (err) {
+        return res.redirect("/home");
+      }
+      res.clearCookie("connect.sid");
+      res.redirect("/");
+    });
+  };
 }
 
 export class CustomerAuthenticationController implements IController {
@@ -77,7 +87,7 @@ export class CustomerAuthenticationController implements IController {
   private initializeRoutes() {
     this.router.get(`${this.path}/login`, this.showCustomerLoginPage);
     this.router.post(`${this.path}/login`, this.customerLogin);
-    //this.router.get(`${this.path}/logout`, this.logout);
+    this.router.get(`${this.path}/logout`, this.customerLogout);
     //this.router.get(`${this.path}/register`, this.showRegistrationPage);
     //this.router.post(`${this.path}/register`, this.registration);
   }
@@ -117,4 +127,15 @@ export class CustomerAuthenticationController implements IController {
       res.redirect("/auth/customer/login");
     }
   };
-}
+
+  private customerLogout = async (req: express.Request, res: express.Response) => {
+    req.session.destroy(err => {
+      if (err) {
+        return res.redirect("/home");
+      }
+      res.clearCookie("connect.sid");
+      res.redirect("/");
+    });
+  };
+  }
+
