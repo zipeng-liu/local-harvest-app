@@ -1,4 +1,4 @@
-import type { Vendor, Market, Product } from "@prisma/client";
+import type { Vendor, Market, Product, Customer } from "@prisma/client";
 
 interface IHomeService {
   getAllMarkets(): Promise<Market[]>;
@@ -6,6 +6,10 @@ interface IHomeService {
   getAllVendors(): Promise<Vendor[]> 
 
   getAllProducts(): Promise<Product[]>;
+
+  findVendorById(vendorId: number): Promise<Vendor | null>;
+
+  findCustomerById(customerId: number): Promise<Customer | null>;
 }
 
 export default IHomeService;
