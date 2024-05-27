@@ -59,6 +59,11 @@ body {
   gap: 3px;
 }
 
+/* set css for current page */
+.nav-item .button-link.active {
+  background-color: #e2e2e2;
+  transform: scale(1.10);
+}
 .nav-item .button-link:hover {
   background-color: #e2e2e2;
   transform: scale(1.10);

@@ -467,7 +467,8 @@ body {
 }
 
 .vendor-product-page .product-image {
-  width: 100%; 
+  /* width: 100%;  */
+  width: 195px;
   height: 199px; 
   border-radius: 8px; 
 }
