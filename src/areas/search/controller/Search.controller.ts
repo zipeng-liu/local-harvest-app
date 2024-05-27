@@ -48,8 +48,7 @@ class SearchController implements IController {
           return;
         }
         const results = await this._service.searchResults(query) || [];
-  
-
+      
         res.json({
           profileLink: profileLink,
           results: results,

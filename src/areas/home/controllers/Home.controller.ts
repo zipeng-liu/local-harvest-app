@@ -39,7 +39,7 @@ class HomeController implements IController {
         const allProducts = await this._service.getAllProducts();
         const shuffledProducts = shuffle(allProducts);
         const randomProducts = shuffledProducts.slice(0,5);
-        console.log(req.session)
+        console.log(req.session.userId)
 
         res.render("home", { profileLink, randomMarkets, randomVendors, randomProducts, featuredMarket, session:req.session });
       }
