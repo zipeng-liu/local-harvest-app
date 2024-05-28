@@ -31,7 +31,7 @@
 
               <% productsByVendor.forEach(product => { %>
                   <div class="product-card">
-                    <a href="/products/<%= product.productId %>"><img src="<%= product.primaryPhoto %>" alt="product-image" class="product-image  <%= product.quantity === 0 ? 'blurred' : '' %>"></a>
+                    <a href="/products/<%= product.productId %>"><img src="<%= product.primaryPhoto %>" alt="product-image" class="product-image"></a>
                       <div class="product-name"><a href="/products/<%= product.productId %>"><%= product.name %></a></div>
                       <div class="product-price">$<%= product.price %></div>
                       <div class="overlap-group">

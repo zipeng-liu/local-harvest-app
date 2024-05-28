@@ -488,9 +488,9 @@ body {
   height: 199px; 
   border-radius: 8px; 
 }
-.vendor-product-page .product-image.blurred {
+/* .vendor-product-page .product-image.blurred {
   filter: blur(2px);
-}
+} */
 .vendor-product-page .product-card {
   position: relative;
   width: calc(50% - 10px);
