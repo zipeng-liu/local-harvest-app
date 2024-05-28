@@ -118,8 +118,12 @@ class CustomerOrderController implements IController {
       }
 
       // Check if there are any empty feild in contact form
-      if (!contactFirstname || !contactLastname || !contactEmail || !schedule) {
+      if (!contactFirstname || !contactLastname || !contactEmail) {
         throw new Error("Contact information missing!")
+      }
+
+      if (!schedule) {
+        throw new Error("Schedule missing!")
       }
 
       // Check if all items in the cart are available

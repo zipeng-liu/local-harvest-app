@@ -168,6 +168,7 @@
 
     <%- include('../../../components/footer') %>
     
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/scripts/cart.js"></script>
     <script src="/scripts/payment.js"></script>
 
@@ -175,9 +176,13 @@
       window.onload = function() {
         const errorMsg = '<%= errorMessage %>';
         if (errorMsg) {
-          alert('<%= errorMessage %>');
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: errorMsg,
+          });
         }
-      }
+      };
     </script>
   </body>
 </html>
