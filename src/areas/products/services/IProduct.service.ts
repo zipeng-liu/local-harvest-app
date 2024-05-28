@@ -5,6 +5,6 @@ export default interface IProductService {
 
     findVendorById(vendorId: number): Promise<Vendor | undefined>;
 
-    getAllProductsByVendorId(vendorId: number): Promise<Product[]>
+    getAllAvailableProductsByVendorId(vendorId: number): Promise<Product[]>
 
 }

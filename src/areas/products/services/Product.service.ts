@@ -44,11 +44,14 @@ export class ProductService implements IProductService {
         }
     }
 
-    async getAllProductsByVendorId(vendorId: number): Promise<Product[]> {
+    async getAllAvailableProductsByVendorId(vendorId: number): Promise<Product[]> {
         try {
             const products = await this._db.prisma.product.findMany({
                 where: {
-                    vendorId: vendorId
+                    vendorId: vendorId,
+                    quantity: {
+                        gt: 0
+                    }
                 }
             });
             return products;

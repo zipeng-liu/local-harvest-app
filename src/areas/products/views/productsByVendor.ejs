@@ -37,11 +37,15 @@
                       <div class="overlap-group">
                         <!-- <img class="add-to-cart" src="/image/add_24px.svg" /> -->
 
-                        <!---- if(vendor), don't show add-to-cart button -->
+                        <!---- if(customer), show add-to-cart button -->
                         <% if(session.userId.vendorId === 0 && session.userId.customerId !== 0) { %>
+                          <% if(product.quantity !== 0) { %>
                           <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
                             <button type="submit" class="add-to-cart-wrapper"><i class="fa fa-plus"></i></button>
                           </form>
+                          <% } else { %>
+                            <button class="add-to-cart-wrapper"><i class="fas fa-ban"></i></button>
+                          <% } %>
                         <% } %>
                       </div>
                   </div>

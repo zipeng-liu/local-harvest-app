@@ -9,8 +9,7 @@ import { getProfileLink } from "../../../helper/profileLink";
 import { multiUpload } from "../../../middleware/multer.middleware";
 import { cloudinary } from "../../../config/cloudinaryConfig";
 import { MulterRequest } from "../../../middleware/multer.middleware";
-import ensureAuthenticated from "../../../middleware/authentication.middleware";
-import { profile } from "console";
+import { shuffle } from "../../../helper/randomFunction";
 
 
 class VendorProductController implements IController {
@@ -186,17 +185,17 @@ private showViewOrders = async (req: express.Request, res: express.Response) => 
       } else {
         const vendorId = parseInt(req.params.id);
         const vendorById = await this._service.findVendorById(vendorId);
-        const productsByVendor = await this._service.findAllProductsByVendor(vendorId);
-        const productOnVendorPage = productsByVendor.slice(0,4);
+
+        // to get only available products to show top 4 products in vendor page 
+        const productsByVendor = await this._service.findAllAvailableProductsByVendor(vendorId);
+        const shuffledProducts = shuffle(productsByVendor);
+        const productOnVendorPage = shuffledProducts.slice(0,4);
         res.render("vendor", { profileLink, vendorById, productOnVendorPage, productsByVendor, session:req.session });
       }
     } catch(error) {
       res.status(500).json({ message: "Failed to get vendor by Id for vendor page", error })
     }
   };
-
-  
-    
 };
 
 export default VendorProductController;

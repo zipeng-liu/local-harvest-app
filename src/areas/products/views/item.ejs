@@ -52,11 +52,13 @@
                 <div class="rectangle-wrapper"><a href="/products/<%= product.productId %>" title="<%= product.name %>"><img class="img" src="<%= product.primaryPhoto %>" /></a></div>
                 
 
-                <!---- if(vendor), don't show add-to-cart button-->
+                <!---- if(customer), show add-to-cart button-->
                 <% if(session.userId.vendorId === 0 && session.userId.customerId !== 0) { %>
-                  <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
-                    <button type="submit" class="add-to-cart-wrapper"><img class="add-to-cart-2" src="/image/add_24px.svg" /></button>
-                  </form>
+                  <% if(product.quantity !== 0) { %>
+                      <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
+                        <button type="submit" class="add-to-cart-wrapper"><img class="add-to-cart-2" src="/image/add_24px.svg" /></button>
+                      </form>
+                    <% }  %>
                 <% } %>
               
                 <div class="product-info">
@@ -65,21 +67,35 @@
                 </div>
               </div>
             <% }) %>
-          
+
+           
           </div>
         </div>
         
         <!-- Add to cart button -->
         <!---- if(vendor), don't show add-to-cart button-->
         <% if(session.userId.vendorId === 0 && session.userId.customerId !== 0) { %>
-        <div class="add-to-cart">
-          <div class="group">
-            <form action="/customer/addToCart/<%= product.productId %>" method="post" class="add-to-cart-form">
-              <button class="ADD-TO-CART" type="submit">
-                <div class="text-wrapper">Add to Cart</div>
-                <img class="vector" src="/image/shopping-cart.png" />
-              </button>
-            </form>
+            <% if(!isOutOfStock) { %>
+            <div class="add-to-cart">
+              <div class="group">
+                <form action="/customer/addToCart/<%= product.productId %>" method="post" class="add-to-cart-form">
+                  <button class="ADD-TO-CART" type="submit">
+                    <div class="text-wrapper">Add to Cart</div>
+                    <img class="vector" src="/image/shopping-cart.png" />
+                  </button>
+                </form>
+
+            <!---- if(product is out of stock), show not clickable gray button -->
+
+            <% } else { %>
+              <div class="add-to-cart out-of-stock">
+                <div class="group">
+                    <button class="ADD-TO-CART">
+                      <div class="text-wrapper">Out of stock</div>
+                      <img class="vector" src="/image/shopping-cart.png" />
+                    </button>
+                  </form>
+              <% } %>
             <% } %>
 
           </div> 
