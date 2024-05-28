@@ -189,13 +189,16 @@ class CustomerOrderController implements IController {
     const profileLink = getProfileLink(req, res);
     const userId = req.session.userId?.customerId;
     let customer: Customer | null = null;
+    let recentOrder: any = null;
   
     if (typeof userId === "number") {
       customer = await this._service.findCustomerById(userId);
+      recentOrder = await this._service.getRecentOrder(userId);
     }
   
+    console.log(recentOrder);
     if (profileLink && customer!) {
-      res.render("success", { profileLink, session: req.session, customer });
+      res.render("success", { profileLink, session: req.session, customer, recentOrder });
     } else {
       res.redirect("404");
     }
