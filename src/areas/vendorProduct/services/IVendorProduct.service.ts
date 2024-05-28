@@ -7,6 +7,8 @@ interface IVendorProductService {
 
   findAllProductsByVendor(vendorId: number): Promise<Product[]>;
 
+  findAllAvailableProductsByVendor(vendorId: number): Promise<Product[]>;
+
   getAllVendors(): Promise<Vendor[]>;
 
   findAllOrdersByVendor(vendorId: number): Promise<Order[]>;

@@ -25,10 +25,16 @@ export class HomeService implements IHomeService {
     }
   };
 
-  async getAllProducts(): Promise<Product[]> {
+  async getAllAvailableProducts(): Promise<Product[]> {
     try {
-        const allProducts = await this._db.prisma.product.findMany();
-        return allProducts;
+        const allAvailableProducts = await this._db.prisma.product.findMany({
+          where: {
+            quantity: {
+              gt: 0
+            }
+          }
+        });
+        return allAvailableProducts;
     } catch(error) {
         throw new Error ("Failed to get all markets")
     }

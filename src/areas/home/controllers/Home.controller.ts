@@ -36,10 +36,11 @@ class HomeController implements IController {
         const shuffledVendors = shuffle(allVendors);
         const randomVendors = shuffledVendors.slice(0,2);
 
-        const allProducts = await this._service.getAllProducts();
-        const shuffledProducts = shuffle(allProducts);
+        const allAvailableProducts = await this._service.getAllAvailableProducts();
+        const shuffledProducts = shuffle(allAvailableProducts);
         const randomProducts = shuffledProducts.slice(0,5);
 
+        // set accountInfo to show on homepage
         let accountInfo: any;
         const session = req.session.userId;
         if(session?.vendorId !== 0 && session?.vendorId !== undefined) {

@@ -5,7 +5,7 @@ interface IHomeService {
 
   getAllVendors(): Promise<Vendor[]> 
 
-  getAllProducts(): Promise<Product[]>;
+  getAllAvailableProducts(): Promise<Product[]>;
 
   findVendorById(vendorId: number): Promise<Vendor | null>;
 
