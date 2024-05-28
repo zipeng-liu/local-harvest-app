@@ -1,4 +1,4 @@
-import { PrismaClient, Cart } from "@prisma/client";
+import { PrismaClient, Cart, Customer } from "@prisma/client";
 import { ICartService } from "./ICart.service";
 import DBClient from "../../../PrismaClient";
 
@@ -82,5 +82,10 @@ export class CartService implements ICartService {
     }
   }
   
+  async findCustomerById(customerId: number): Promise<Customer | null> {
+    return await this._db.prisma.customer.findUnique({
+      where: { customerId },
+    });
+  }
 }
 
