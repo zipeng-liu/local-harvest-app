@@ -49,12 +49,19 @@ class ProductController implements IController {
     }
   
     try {
+      let isOutOfStock: boolean;
       const product = await this._service.findItemById(parseInt(productId));
       if (!product) {
         return res.status(404).send("Product not found");
       }
-  
-      const products = await this._service.getAllProductsByVendorId(product.vendorId);
+
+      if(product.quantity === 0) {
+        isOutOfStock = true;
+      } else {
+        isOutOfStock = false;
+      }
+
+      const products = await this._service.getAllAvailableProductsByVendorId(product.vendorId);
 
       // get shuffed product list 
       const shuffledProducts = shuffle(products);
@@ -66,7 +73,7 @@ class ProductController implements IController {
   
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
-        res.render("item", { product, profileLink, randomProducts, session:req.session });
+        res.render("item", { product, profileLink, randomProducts, isOutOfStock, session:req.session });
       } else {
         res.redirect("/landing");
       }

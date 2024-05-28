@@ -13,12 +13,13 @@
     <%- include('../../../components/header') %>
     <div class="home-page">
       <div class="div">
-
+        <!---- Show account name -->
         <% if(accountInfo.customerId !== undefined) { %>
           <div class="greeting-header">Hi, <span><%= accountInfo.firstName %></span>!</div>
         <% } else { %>
           <div class="greeting-header">Hi, <span><%= accountInfo.name %></span>!</div>
           <% } %>
+
         <div class="category-header">Categories</div>
 
         <div class="featured-market-header">Featured Market</div>
