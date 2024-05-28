@@ -43,12 +43,15 @@ class CartController implements IController {
       req.session.messages = '';
       if (!customerId) return res.redirect("401");
 
+      const customerInfo = await this._service.findCustomerById(customerId);
+      console.log(customerInfo)
+
       const cartItems = await this._service.getCartByUserId(customerId);
       if (!cartItems) throw new Error("Cart not found");
-
+   
       const profileLink = getProfileLink(req, res);
       if (profileLink) {
-        res.render("cart", { cartItems, profileLink, errorMessage, session:req.session });
+        res.render("cart", { cartItems, profileLink, errorMessage, session:req.session, customerInfo });
       } else {
         res.redirect("401");
       }
