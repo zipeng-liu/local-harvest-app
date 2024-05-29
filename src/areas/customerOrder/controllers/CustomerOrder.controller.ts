@@ -184,7 +184,7 @@ class CustomerOrderController implements IController {
         from: `Local Harvest <${process.env.EMAIL}>`,
         to: contactEmail,
         subject: 'Order Confirmation',
-        text: `Hello ${contactFirstname} ${contactLastname},\n\nYour order has been received.\n\nDetails:\nSchedule: ${schedule}\n\nItems:\n${orderItemList}\nTotal: $${total}\n\nPlease note that payment will be made in person at the marketplace. \n\nWe look forward to seeing you there. Thank you for your purchase!`
+        text: `Hello ${contactFirstname} ${contactLastname},\n\nYour order has been received.\n\nDetails:\nSchedule: ${schedule.toLocaleString()}\n\nItems:\n${orderItemList}\nTotal: $${total}\n\nPlease note that payment will be made in person at the marketplace. \n\nWe look forward to seeing you there. Thank you for your purchase!`
       };
 
       transporter.sendMail(mailOptions, (error, info) => {
