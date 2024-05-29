@@ -58,7 +58,7 @@
 }
 
 .home-page .browse-markets-header {
-  top: 555px;
+  top: 447px;
   left: 30px;
   position: absolute;
   font-family: var(--h2-mobile-font-family);
@@ -71,7 +71,7 @@
 }
 
 .home-page .browse-vendors-header {
-  top: 735px;
+  top: 638px;
   left: 30px;
   position: absolute;
   font-family: var(--h2-mobile-font-family);
@@ -87,7 +87,7 @@
   position: absolute;
   width: 452px;
   height: 187px;
-  top: 911px;
+  top: 829px;
   left: 16px;
 }
 
@@ -298,7 +298,7 @@
 }
 
 .home-page .view-all-vendors {
-  top: 738px;
+  top: 638px;
   position: absolute;
   left: 340px;
   font-family: var(--h3-mobile-font-family);
@@ -312,7 +312,7 @@
 }
 
 .home-page .view-all-markets {
-  top: 558px;
+  top: 447px;
   position: absolute;
   left: 340px;
   font-family: var(--h3-mobile-font-family);
@@ -344,7 +344,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  top: 588px;
+  top: 489px;
   left: 17px;
   position: absolute;
   width: 90%;
@@ -406,7 +406,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  top: 768px;
+  top: 682px;
   left: 17px;
   position: absolute;
   width: 90%;
