@@ -110,7 +110,9 @@ class CustomerOrderController implements IController {
       return res.status(401).json({ success: false, message: "Unauthorized" });
     }
 
-    const { contactFirstname, contactLastname, contactEmail, schedule, total, type } = req.body;
+    let { contactFirstname, contactLastname, contactEmail, schedule, total, type } = req.body;
+
+    schedule = new Date(schedule);
 
     try {
       //Check if cart is empty
@@ -140,7 +142,7 @@ class CustomerOrderController implements IController {
         contactFirstname,
         contactLastname,
         contactEmail,
-        new Date(schedule),
+        schedule,
         parseFloat(total),
         type
       );
@@ -166,7 +168,7 @@ class CustomerOrderController implements IController {
       let orderItemList = '';
       if (recentOrder) {
         orderItemList = recentOrder.productOrders.map(productOrder => 
-          `- ${productOrder.product.name}, Quantity: ${productOrder.quantity}\n`
+          `<li>${productOrder.product.name} - Quantity: ${productOrder.quantity}</li>`
         ).join('');
       }
 
@@ -184,7 +186,25 @@ class CustomerOrderController implements IController {
         from: `Local Harvest <${process.env.EMAIL}>`,
         to: contactEmail,
         subject: 'Order Confirmation',
-        text: `Hello ${contactFirstname} ${contactLastname},\n\nYour order has been received.\n\nDetails:\nSchedule: ${schedule.toLocaleString()}\n\nItems:\n${orderItemList}\nTotal: $${total}\n\nPlease note that payment will be made in person at the marketplace. \n\nWe look forward to seeing you there. Thank you for your purchase!`
+        html: `
+        <p>Hello ${contactFirstname} ${contactLastname},</p>
+    
+        <p>Thank you for your order! We are pleased to confirm that your order has been received.</p>
+        
+        <h3>Order Details:</h3>
+        <ul>
+          <li><strong>Schedule:</strong> ${schedule}</li>
+          <li><strong>Items:</strong><br><ol>${orderItemList}</ol></li>
+          <li><strong>Total:</strong> $${total}</li>
+        </ul>
+        
+        <p>Please note that payment will be made in person at the marketplace.</p>
+        
+        <p>We look forward to seeing you there. Thank you for your purchase!</p>
+        
+        <p>Best regards,<br>
+        Market place Team</p>
+      `,
       };
 
       transporter.sendMail(mailOptions, (error, info) => {
