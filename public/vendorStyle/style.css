@@ -1580,7 +1580,15 @@ icon to edit vendor profile
   right: 30px
 }
 
+ /* style for success popup */
+ .swal2-popup, .swal2-title, .swal2-html-container {
+  font-family: var(--h2-mobile-font-family);
 
+}
+
+.swal-confirm-btn {
+  background-color: var(--sandy-brown) !important;
+}
 
 
 

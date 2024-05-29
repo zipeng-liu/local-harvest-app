@@ -22,12 +22,18 @@ document.addEventListener("DOMContentLoaded", function() {
               icon: 'success',
               title: 'Success',
               text: 'Product successfully added to cart!',
+              customClass: {
+                confirmButton: 'swal-confirm-btn'
+              }
             });
           } else {
             Swal.fire({
               icon: 'error',
               title: 'Error',
               text: `Error: ${data.message}`,
+              customClass: {
+                confirmButton: 'swal-confirm-btn'
+              }
             });
           }
         })
@@ -37,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function() {
             icon: 'error',
             title: 'Unexpected Error',
             text: 'An unexpected error occurred. Please try again later.',
+            customClass: {
+              confirmButton: 'swal-confirm-btn'
+            }
           });
         });
     });
