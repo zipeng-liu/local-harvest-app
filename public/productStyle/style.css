@@ -177,7 +177,7 @@ body {
   .item-page .item-name {
     transform: translate(8%, 10%);
     position: absolute;
-    width: 295px;
+    width: 300px;
     top: 22px;
     left: 0;
     font-family: var(--h1-mobile-font-family);
@@ -450,6 +450,14 @@ body {
       display: inline-block;
   } */
     
+  /* style for success popup */
+.swal2-popup, .swal2-title, .swal2-html-container {
+  font-family: var(--h2-mobile-font-family);
+}
+
+.swal-confirm-btn {
+  background-color: var(--sandy-brown) !important;
+}
 
   /* products page */
   .vendor-product-page {

@@ -133,7 +133,6 @@
   width: 140px;
   height: 148px;
   top: 39px;
-  background-image: url(./img/item-content.svg);
   background-size: cover;
   background-position: 50% 50%;
 }
@@ -1001,4 +1000,15 @@ text-overflow: ellipsis;
 line-height: 14px;
 height: auto;
 width: 130px;
+}
+
+
+ /* style for success popup */
+.swal2-popup, .swal2-title, .swal2-html-container {
+  font-family: var(--h2-mobile-font-family);
+
+}
+
+.swal-confirm-btn {
+  background-color: var(--sandy-brown) !important;
 }
