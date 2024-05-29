@@ -106,54 +106,9 @@
     </div>
     <!-- Footer nav bar -->
     <%- include('../../../components/footer') %>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const addToCartForm = document.querySelectorAll(".add-to-cart-form");
-
-        console.log(addToCartForm, "addToCartForm");
-        addToCartForm.forEach(form => {
-          form.addEventListener("submit", (event) => {
-            event.preventDefault();
-            const formData = new FormData(form);
-
-            const productId = "<%= product.productId %>";
-            const actionUrl = event.currentTarget.action;
-  
-            fetch(actionUrl, {
-              method: "POST",
-              body: formData,
-            })
-              .then(response => response.json())
-              .then(data => {
-                fetchCartCount()
-                if (data.success) {
-                  alert("Product successfully added to cart!");
-                } else {
-                  alert(`Error: ${data.message}`);
-                }
-              })
-              .catch(error => {
-                console.error("Error submitting form:", error);
-                alert("An unexpected error occurred. Please try again later.");
-              });
-           });
-         });
-
-
-
-         document.querySelectorAll(".secondary").forEach(image => {
-          image.addEventListener('click', function() {
-            const primaryImg = document.querySelector('.primary');
-            const tempSrc = primaryImg.src;
-
-            primaryImg.src = image.src;
-            image.src = tempSrc;
-          })
-         })
-        });
-    </script>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/scripts/add-to-cart.js"></script>
 
   </body>
 </html>

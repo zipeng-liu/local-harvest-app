@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
   const addButtons = document.querySelectorAll('.ADD');
   const minusButtons = document.querySelectorAll('.MINUS');
@@ -52,12 +51,26 @@ document.addEventListener('DOMContentLoaded', function() {
           // Remove the product from the DOM if quantity is zero
         }
         updateSubtotal(); 
+        // Swal.fire({
+        //   icon: 'success',
+        //   title: 'Success',
+        //   text: 'Cart item updated successfully!',
+        // });
       } else {
-        alert('Failed to update cart item.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to update cart item.',
+        });
       }
     })
     .catch(error => {
       console.error(`Error updating cart item (${action}):`, error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'An unexpected error occurred. Please try again later.',
+      });
     });
   }
 
@@ -75,12 +88,26 @@ document.addEventListener('DOMContentLoaded', function() {
       if (data.success) {
         document.querySelector(`[data-cart-id="${cartId}"]`).closest('.cart-product').remove();
         updateSubtotal(); 
+        // Swal.fire({
+        //   icon: 'success',
+        //   title: 'Success',
+        //   text: 'Cart item deleted successfully!',
+        // });
       } else {
-        alert('Failed to delete cart item.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to delete cart item.',
+        });
       }
     })
     .catch(error => {
       console.error('Error deleting cart item:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'An unexpected error occurred. Please try again later.',
+      });
     });
   }
 
@@ -95,4 +122,3 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.text-wrapper-9').textContent = `$${subtotal.toFixed(2)}`;
   }
 });
-
