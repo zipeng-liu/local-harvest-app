@@ -66,6 +66,14 @@ body {
   left: 207px;
 }
 
+.vendor-item .secondary-image {
+  top: 340px;
+  position: absolute;
+  width: 208px;
+  height: 200px;
+  left: 207px;
+}
+
 .vendor-item .group {
   top: -150px;
   left: 30px;
@@ -85,8 +93,30 @@ body {
   left: 12px;
 }
 
-.vendor-item .icons-file-upload-wrapper {
+.vendor-item .icons-file-upload-wrapper-1 {
   top: 40px;
+  left: 30px;
+  position: absolute;
+  width: 97px;
+  height: 75px;
+  background-color: var(--cloud-white);
+  border-radius: 10px;
+  box-shadow: var(--center-drop-shadow);
+}
+
+.vendor-item .icons-file-upload-wrapper-2 {
+  top: 130px;
+  left: 30px;
+  position: absolute;
+  width: 97px;
+  height: 75px;
+  background-color: var(--cloud-white);
+  border-radius: 10px;
+  box-shadow: var(--center-drop-shadow);
+}
+
+.vendor-item .icons-file-upload-wrapper-3 {
+  top: 220px;
   left: 30px;
   position: absolute;
   width: 97px;
@@ -201,7 +231,7 @@ body {
   height: 40.24px;
   align-items: center;
   gap: 6.71px;
-  padding: 6.71px 6.71px 6.71px 13.41px;
+  padding: 10.71px 10.71px 10.71px 10.71px;
   position: relative;
   background-color: #ffffff;
   border-radius: 6.71px;
@@ -213,8 +243,11 @@ body {
   font-size: 14px;
 }
 
+.vendor-item .text-area {
+  width: 148px;
+}
 .vendor-item .short-text-field-2 {
-  margin-top: 10px;
+  margin-top: 30px;
   top: 200px;
   display: inline-flex;
   flex-direction: column;
@@ -225,7 +258,7 @@ body {
 }
 
 .vendor-item .short-text-field-3 {
-  margin-top: 20px;
+  margin-top: 60px;
   top: 280px;
   display: inline-flex;
   flex-direction: column;
@@ -236,7 +269,7 @@ body {
 }
 
 .vendor-item .short-text-field-4 {
-  margin-top: 30px;
+  margin-top: 90px;
   top: 360px;
   display: inline-flex;
   flex-direction: column;
@@ -296,8 +329,9 @@ body {
 
 .vendor-item .submit-order {
   position: absolute;
+  top: 700px;
   width: 191px;
-  left: 104px;
+  left: 120px;
   font-family: var(--h2-mobile-font-family);
   font-weight: var(--h2-mobile-font-weight);
   font-size: var(--h2-mobile-font-size);
@@ -306,6 +340,7 @@ body {
   line-height: var(--h2-mobile-line-height);
   font-style: var(--h2-mobile-font-style);
   background-color: var(--sandy-brown);
+  color: var(--cloud-white)
 }
 
 .vendor-item .overlap-group {
@@ -362,7 +397,7 @@ body {
   position: absolute;
   width: 222px;
   height: 40px;
-  top: 59px;
+  top: 69px;
   left: 104px;
   font-family: var(--h2-mobile-font-family);
   font-weight: var(--h2-mobile-font-weight);
@@ -372,6 +407,12 @@ body {
   letter-spacing: var(--h2-mobile-letter-spacing);
   line-height: var(--h2-mobile-line-height);
   font-style: var(--h2-mobile-font-style);
+}
+
+.vendor-inventory .add-product-btn {
+  position: absolute;
+  top: 10px;
+  right: 0px;
 }
 
 .vendor-inventory .back-button {

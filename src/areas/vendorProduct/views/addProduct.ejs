@@ -17,21 +17,31 @@
         <form action="/vendor/addItem" method="POST" enctype="multipart/form-data">
           <div class="image-upload primary-image">
               <label for="primaryImage" class="group">
-                  <img class="icons-file-upload primary" src="/image/uploadImg.png" alt="Upload Primary Image"/>
+                  <img class="icons-file-upload primary-preview" src="/image/uploadImg.png" alt="Upload Primary Image"/>
               </label>
               <input id="primaryImage" name="primaryImage" type="file" style="display: none;"/>
               <div class="text-wrapper-1">Primary Image</div>
               <p class="text-wrapper-3">The first image a user will see (choose one image - mandatory)</p>
           </div>
 
-          <div class="image-upload primary-image">
-              <label for="secondaryImage" class="icons-file-upload-wrapper">
-                  <img class="icons-file-upload secondary" src="/image/uploadImg.png" alt="Upload Secondary Image"/>
+          <div class="image-upload secondary-image">
+              <label for="secondaryImage1" class="icons-file-upload-wrapper-1">
+                  <img class="icons-file-upload secondary secondary-preview" src="/image/uploadImg.png" alt="Upload Secondary Image"/>
               </label>
-              <input id="secondaryImage" name="secondaryImage" type="file" style="display: none;" multiple/>
+              <input id="secondaryImage1" name="secondaryImage" type="file" style="display: none;" class="secondary-input"/>
+
+              <label for="secondaryImage2" class="icons-file-upload-wrapper-2">
+                <img class="icons-file-upload secondary secondary-preview" src="/image/uploadImg.png" alt="Upload Secondary Image"/>
+              </label>
+              <input id="secondaryImage2" name="secondaryImage" type="file" style="display: none;" class="secondary-input"/>
+
+              <label for="secondaryImage3" class="icons-file-upload-wrapper-3">
+                <img class="icons-file-upload secondary secondary-preview" src="/image/uploadImg.png" alt="Upload Secondary Image"/>
+              </label>
+              <input id="secondaryImage3" name="secondaryImage" type="file" style="display: none;" class="secondary-input"/>
 
               <div class="text-wrapper-2">Secondary Image</div>
-              <p class="text-wrapper-4">Additional images if needed (choose three images at once - optional)</p>
+              <p class="text-wrapper-4">Additional images if needed (optional)</p>
           </div>
               
           <div class="short-text-field">
@@ -66,7 +76,7 @@
             <textarea
               name="description"
               type="text"
-              class="text-field"
+              class="text-field text-area"
               placeholder="Enter product description"
             ></textarea>
           </div>

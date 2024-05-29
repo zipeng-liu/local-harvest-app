@@ -1,31 +1,28 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   const inputPrimaryImg = document.getElementById('primaryImage');
-  const primaryImg = document.querySelector('.primary');
-  const secondaryImg = document.querySelector('.secondary');
-  const inputSecondaryImg = document.getElementById('secondaryImage');
+  const primaryPreview = document.querySelector('.primary-preview');
+
+  
+  const inputSecondaryImgs = document.querySelectorAll('.secondary-input');
+  const secondaryPreviews = document.querySelectorAll('.secondary-preview')
 
 
-  function getImgPrimaryPreview(event) {
-    const file = event.target.files[0];
+  function getImgPreview(input, preview) {
+    input.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if(file) {
+        let url = window.URL.createObjectURL(file);
 
-    console.log(file);
-
-    let url = window.URL.createObjectURL(file);
-
-    primaryImg.src = url;
+        preview.src = url;
+      }
+    })
   }
 
-  function getImgSecondaryPreview(event) {
-    const file = event.target.files[0];
+  getImgPreview(inputPrimaryImg, primaryPreview);
 
-    console.log(file);
 
-    let url = window.URL.createObjectURL(file);
-
-    secondaryImg.src = url;
-  }
-
-  inputPrimaryImg.addEventListener('change', getImgPrimaryPreview);
-  inputSecondaryImg.addEventListener('change', getImgSecondaryPreview);
+  inputSecondaryImgs.forEach((input, index) => {
+    getImgPreview(input, secondaryPreviews[index]);
+  })
 })
