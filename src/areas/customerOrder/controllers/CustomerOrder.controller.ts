@@ -4,9 +4,11 @@ import IController from "../../../interfaces/controller.interface";
 import ICustomerOrderService from "../services/ICustomerOrder.service";
 import ensureAuthenticated from "../../../middleware/authentication.middleware";
 import { getProfileLink } from "../../../helper/profileLink";
-import { Product, Cart, Customer } from "@prisma/client";
+import { Product, Cart, Customer, ProductOrder, PrismaClient } from "@prisma/client";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
+
+const prisma = new PrismaClient();
 
 dotenv.config();
 
@@ -149,9 +151,29 @@ class CustomerOrderController implements IController {
       // Delete cart items for the user
       await this._service.deleteCartItemsForUser(userId);
 
+      // Retrieve the recent order with product details
+      const recentOrder = await prisma.order.findUnique({
+        where: { orderId: order.orderId },
+        include: {
+          productOrders: {
+            include: {
+              product: true,
+            },
+          },
+        },
+      });
+
+      let orderItemList = '';
+      if (recentOrder) {
+        orderItemList = recentOrder.productOrders.map(productOrder => 
+          `- ${productOrder.product.name}, Quantity: ${productOrder.quantity}\n`
+        ).join('');
+      }
+
+      
       // Send order confirmation email
       let transporter = nodemailer.createTransport({
-        service: 'outlook', // You can use any email service
+        service: 'gmail', // You can use any email service
         auth: {
           user: process.env.EMAIL, // Your email
           pass: process.env.PASSWORD // Your email password
@@ -159,10 +181,10 @@ class CustomerOrderController implements IController {
       });
 
       let mailOptions = {
-        from: process.env.EMAIL,
+        from: `Local Harvest <${process.env.EMAIL}>`,
         to: contactEmail,
         subject: 'Order Confirmation',
-        text: `Hello ${contactFirstname} ${contactLastname},\n\nYour order has been received.\n\nDetails:\nSchedule: ${schedule}\nTotal: $${total}\n\nThank you for your purchase!`
+        text: `Hello ${contactFirstname} ${contactLastname},\n\nYour order has been received.\n\nDetails:\nSchedule: ${schedule}\n\nItems:\n${orderItemList}\nTotal: $${total}\n\nPlease note that payment will be made in person at the marketplace. \n\nWe look forward to seeing you there. Thank you for your purchase!`
       };
 
       transporter.sendMail(mailOptions, (error, info) => {
