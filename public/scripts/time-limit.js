@@ -16,9 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Check if the selected hours are outside of 9:00 AM to 9:00 PM
       if (hours < 9 || hours > 21 || (hours === 21 && minutes > 0)) {
-        alert('You can only select a time between 9:00 AM and 9:00 PM.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Invalid Time',
+          text: 'You can only select a time between 9:00 AM and 9:00 PM.',
+        });
         this.value = ''; // Reset the value
       }
     }
   });
 });
+
