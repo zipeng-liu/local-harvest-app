@@ -199,9 +199,10 @@ body {
 }
 
 .landing-page .orang {
+  position: absolute;
+  left: -6px;
   width: 360px;
   height: auto;
-  /* margin-right: 10px;  */
 }
 
 .landing-page .overlay-button {
