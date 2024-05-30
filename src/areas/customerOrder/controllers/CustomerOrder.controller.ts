@@ -4,9 +4,11 @@ import IController from "../../../interfaces/controller.interface";
 import ICustomerOrderService from "../services/ICustomerOrder.service";
 import ensureAuthenticated from "../../../middleware/authentication.middleware";
 import { getProfileLink } from "../../../helper/profileLink";
-import { Product, Cart, Customer } from "@prisma/client";
+import { Product, Cart, Customer, ProductOrder, PrismaClient } from "@prisma/client";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
+
+const prisma = new PrismaClient();
 
 dotenv.config();
 
@@ -108,7 +110,9 @@ class CustomerOrderController implements IController {
       return res.status(401).json({ success: false, message: "Unauthorized" });
     }
 
-    const { contactFirstname, contactLastname, contactEmail, schedule, total, type } = req.body;
+    let { contactFirstname, contactLastname, contactEmail, schedule, total, type } = req.body;
+
+    schedule = new Date(schedule);
 
     try {
       //Check if cart is empty
@@ -138,7 +142,7 @@ class CustomerOrderController implements IController {
         contactFirstname,
         contactLastname,
         contactEmail,
-        new Date(schedule),
+        schedule,
         parseFloat(total),
         type
       );
@@ -149,9 +153,29 @@ class CustomerOrderController implements IController {
       // Delete cart items for the user
       await this._service.deleteCartItemsForUser(userId);
 
+      // Retrieve the recent order with product details
+      const recentOrder = await prisma.order.findUnique({
+        where: { orderId: order.orderId },
+        include: {
+          productOrders: {
+            include: {
+              product: true,
+            },
+          },
+        },
+      });
+
+      let orderItemList = '';
+      if (recentOrder) {
+        orderItemList = recentOrder.productOrders.map(productOrder => 
+          `<li>${productOrder.product.name} - Quantity: ${productOrder.quantity}</li>`
+        ).join('');
+      }
+
+      
       // Send order confirmation email
       let transporter = nodemailer.createTransport({
-        service: 'outlook', // You can use any email service
+        service: 'gmail', // You can use any email service
         auth: {
           user: process.env.EMAIL, // Your email
           pass: process.env.PASSWORD // Your email password
@@ -159,10 +183,28 @@ class CustomerOrderController implements IController {
       });
 
       let mailOptions = {
-        from: process.env.EMAIL,
+        from: `Local Harvest <${process.env.EMAIL}>`,
         to: contactEmail,
         subject: 'Order Confirmation',
-        text: `Hello ${contactFirstname} ${contactLastname},\n\nYour order has been received.\n\nDetails:\nSchedule: ${schedule}\nTotal: $${total}\n\nThank you for your purchase!`
+        html: `
+        <p>Hello ${contactFirstname} ${contactLastname},</p>
+    
+        <p>Thank you for your order! We are pleased to confirm that your order has been received.</p>
+        
+        <h3>Order Details:</h3>
+        <ul>
+          <li><strong>Schedule:</strong> ${schedule}</li>
+          <li><strong>Items:</strong><br><ol>${orderItemList}</ol></li>
+          <li><strong>Total:</strong> $${total}</li>
+        </ul>
+        
+        <p>Please note that payment will be made in person at the marketplace.</p>
+        
+        <p>We look forward to seeing you there. Thank you for your purchase!</p>
+        
+        <p>Best regards,<br>
+        Market place Team</p>
+      `,
       };
 
       transporter.sendMail(mailOptions, (error, info) => {
