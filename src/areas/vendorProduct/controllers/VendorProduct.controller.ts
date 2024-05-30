@@ -120,7 +120,7 @@ private showViewOrders = async (req: express.Request, res: express.Response) => 
       // Group order by date
       const groupedOrders: Record<string, Order[]> = {};
       if(!ordersByVendor || ordersByVendor.length === 0) {
-        
+
         res.render("viewOrders", { profileLink, groupedOrders: {}, message: "No order found", session: req.session})
         return;
       }

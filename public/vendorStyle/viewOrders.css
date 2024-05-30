@@ -240,15 +240,16 @@ body {
   }
   
   .vendor-order-page .large-button {
+    position: relative;
     max-width: 360px;
     width: 90%;
     height: 60px;
-    left: 50%;
+    left: 40px;
     background-color: var(--sandy-brown);
     border-radius: 15px;
     box-shadow: var(--drop-shadow);
-    margin: 0 auto; 
-  }
+    top: 100px;
+}
   
   .vendor-order-page .submit-order {
     position: relative;
