@@ -1012,3 +1012,48 @@ width: 130px;
 .swal-confirm-btn {
   background-color: var(--sandy-brown) !important;
 }
+
+
+/* style for location popup */
+.home-page .find-me {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--cloud-white);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: bottom 0.5s ease;
+  z-index: 1000;
+}
+
+.home-page .popup-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.home-page .btn {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.home-page #acceptBtn {
+  background-color: var(--sandy-brown);
+  color: var(--cloud-white);
+  border: none;
+}
+
+.home-page #denyBtn {
+  background-color: var(--olivine-light);
+  color: var(--semi-black);
+  border: none;
+}
+
+.home-page .show {
+  bottom: 0;
+}
+
+.home-page .hide{
+  bottom: -100%;
+}
