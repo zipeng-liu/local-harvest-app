@@ -14,3 +14,8 @@ document.getElementById('payInPersonButton').addEventListener('click', function(
     payInPersonButton.style.color = 'white';
   }
 });
+
+
+document.getElementById('checkoutForm').onsubmit = function() {
+  document.getElementById('loadingScreen').style.display = 'flex';
+};

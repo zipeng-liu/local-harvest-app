@@ -329,6 +329,15 @@ body {
   left: 25px;
   background-color: var(--sandy-brown);
   border-radius: 15px;
+  font-family: var(--body-copy-16-hifi-font-family);
+  font-weight: var(--body-copy-16-hifi-font-weight);
+  color: var(--cloud-white);
+  font-size: var(--body-copy-16-hifi-font-size);
+  text-align: center;
+  letter-spacing: var(--body-copy-16-hifi-letter-spacing);
+  line-height: var(--body-copy-16-hifi-line-height);
+  white-space: nowrap;
+  font-style: var(--body-copy-16-hifi-font-style);
 }
 .user-log-in-vendor .p {
   position: absolute;
