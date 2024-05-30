@@ -37,6 +37,7 @@ model Order {
   contactLastname String
   contactEmail String
   schedule    DateTime
+  status      String?
   customer    Customer        @relation(fields: [customerId], references: [customerId])
   productOrders ProductOrder[] // One-to-many relationship with ProductOrder
 }
@@ -91,6 +92,8 @@ model Market {
   email        String
   hours        String?
   photo        String?
+  latitude     Float?
+  longitude    Float?
   vendors      Vendor[] // One-to-many relationship with Vendor
 }
 
