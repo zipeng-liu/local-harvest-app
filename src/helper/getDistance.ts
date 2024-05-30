@@ -1,4 +1,4 @@
-function getDistance(lat1: number, lng1: number, lat2: number, lng2: number) {
+export function getDistance(lat1: number, lng1: number, lat2: number, lng2: number) {
     const R = 6371; // Earth's radius in km
 
     // switch dLat, dLng to radian. dLat and dLng are difference of Lat and Lng
@@ -16,3 +16,4 @@ function getDistance(lat1: number, lng1: number, lat2: number, lng2: number) {
     const distance = R * c;
     return distance;
 }
+

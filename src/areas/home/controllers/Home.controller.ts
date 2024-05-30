@@ -6,6 +6,9 @@ import { getProfileLink } from "../../../helper/profileLink";
 import IHomeService from "../services/IHome.services";
 import { shuffle } from "../../../helper/randomFunction";
 import { Market } from "@prisma/client";
+import { getDistance } from "../../../helper/getDistance";
+
+
 
 // extend the Express request interface to include nearestMarket
 declare global {
@@ -76,25 +79,33 @@ class HomeController implements IController {
   private showNearestMarket = async(req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
     const { lat, lng } = req.body;
+    console.log(req.body);
+
+    if (lat == null || lng == null) {
+      throw new Error("Latitude and longitude must be provided.");
+    }
 
     let nearestMarket: Market | null = null;
     let shortestDistance = Infinity;
 
     const markets = await this._service.getAllMarkets();
     markets.forEach(market => {
-      const distance = getDistance(lat, lng, market.latitude, market.longitude);
+      const distance = getDistance(lat, lng, market.latitude!, market.longitude!);
       if(distance < shortestDistance) {
         shortestDistance = distance;
         nearestMarket = market;
       }
     });
-   
-    req.nearestMarket = nearestMarket;
-    next();
+  
+    // attach nearestMarket in req, to use later in homepage
+    // req.nearestMarket = nearestMarket;
+    res.json(nearestMarket);
+
     } catch(error) {
       res.status(500).json({ message: "Failed to get user's location", error });
     }
   };
+
 }
 
 export default HomeController;

@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
   const addToCartForm = document.querySelectorAll(".add-to-cart-form");
 
-  console.log(addToCartForm, "addToCartForm");
   addToCartForm.forEach(form => {
     form.addEventListener("submit", (event) => {
       event.preventDefault();

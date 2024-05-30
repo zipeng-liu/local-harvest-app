@@ -1,3 +1,7 @@
+const findMe = document.getElementById('find-me');
+const acceptBtn = document.getElementById('acceptBtn');
+const denyBtn = document.getElementById('denyBtn');
+const div = document.querySelector('.div');
 
 // get user's location
 function getUserLocation() {
@@ -21,7 +25,7 @@ function showPosition(position) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Nearest market:', data);
+        updateNearestMarket(data);
     })
     .catch(error => console.error('Error', error));
 }
@@ -41,7 +45,74 @@ function showError(error) {
             console.log("An unknown error");
             break;
     }
+};
+
+function updateNearestMarket(market) {
+    if(market) {
+
+        // remove featured Market container
+        const featuredMarketHeader = document.querySelector('.featured-market-header');
+        featuredMarketHeader.remove();
+        const vendorContainer = document.querySelector('.vendor');
+        vendorContainer.remove();
+
+        // create nearest Market container
+        const nearestMarketHeader = document.createElement('div');
+        nearestMarketHeader.className = 'nearest-market-header';
+        nearestMarketHeader.textContent = 'Nearest Market';
+
+        const nearestMarket = document.createElement('div');
+        nearestMarket.className = 'nearest-market';
+
+        const nearestMarketDescription = document.createElement('p');
+        nearestMarketDescription.className = 'nearest-market-description';
+        nearestMarketDescription.textContent = 'Over 30 vendors each week with variety of selections.';
+
+        const businessName = document.createElement('div');
+        businessName.className = 'business-name';
+        const businessNameLink = document.createElement('a');
+        businessNameLink.className = 'button-full-effect';
+        businessNameLink.href = `market/show/${market.marketId}`;
+        businessNameLink.textContent = market.name;
+        businessName.appendChild(businessNameLink);
+
+        const marketPhotoLink = document.createElement('a');
+        marketPhotoLink.className = 'button-full-effect';
+        marketPhotoLink.href = `market/show/${market.marketId}`;
+        const marketPhoto = document.createElement('img');
+        marketPhoto.className = 'nearest-market-photo';
+        marketPhoto.src = market.photo;
+        marketPhotoLink.appendChild(marketPhoto);
+
+        nearestMarket.appendChild(nearestMarketDescription);
+        nearestMarket.appendChild(businessName);
+        nearestMarket.appendChild(marketPhoto);
+        div.appendChild(nearestMarket);
+        div.appendChild(nearestMarketHeader);
+    }
 }
 
 
-document.querySelector('#find-me').addEventListener("click", getUserLocation)
+
+function hidePopup () {
+    findMe.classList.remove("show");
+    findMe.classList.add("hide");
+}
+document.addEventListener("DOMContentLoaded", () => {
+    
+    setTimeout(() => {
+        findMe.classList.add("show");
+    }, 1000);
+    
+    acceptBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        getUserLocation();
+        hidePopup();
+
+    });
+
+    denyBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        hidePopup()
+    })
+})

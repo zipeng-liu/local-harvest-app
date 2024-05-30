@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="/homeStyle/style.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+    <!-- <script src="/scripts/checkNearestMarket.js" defer></script> -->
     <script src="/scripts/add-to-cart.js" defer></script>
   </head>
   <body>
@@ -20,7 +21,17 @@
         <% } else { %>
           <div class="greeting-header">Hi, <span><%= accountInfo.name %></span>!</div>
           <% } %>
-        <div class="featured-market-header">Featured Market</div>
+        
+        <% if(!nearestMarket) { %>
+          <div class="featured-market-header">Featured Market</div>
+          <div class="vendor">
+          <p class="featured-market-description">Over 30 vendors each week with variety of selections.</p>
+          <div class="business-name"><a class="button-full-effect" href="/market/show/<%= featuredMarket.marketId %>"><%= featuredMarket.name %></a></div>
+          <a class="button-full-effect" href="/market/show/<%= featuredMarket.marketId %>"><img class="featured-market-photo" src=<%= featuredMarket.photo %> /></a>
+          <div class="category"><div class="text-wrapper-17">Hastings Park</div></div>
+        </div>
+        <% } %>
+        <!-- <div class="featured-market-header">Featured Market</div> -->
         <div class="browse-markets-header">Browse Markets</div>
         <div class="browse-vendors-header">Browse Vendors</div>
         
@@ -50,15 +61,6 @@
     
         </div>
       
-        <!---- Featured market -->
-        <div class="vendor">
-          <p class="featured-market-description">Over 30 vendors each week with variety of selections.</p>
-          <div class="business-name"><a class="button-full-effect" href="/market/show/<%= featuredMarket.marketId %>"><%= featuredMarket.name %></a></div>
-          <a class="button-full-effect" href="/market/show/<%= featuredMarket.marketId %>"><img class="featured-market-photo" src=<%= featuredMarket.photo %> /></a>
-          <div class="category"><div class="text-wrapper-17">Hastings Park</div></div>
-          <!-- <div class="hastings-park-wrapper"><div class="hastings-park">Winter Market</div></div> -->
-        </div>
-
         <!---- Popular items -->
         <div class="overlap">
           <div class="popular-items-header">Popular Items</div>
@@ -86,15 +88,18 @@
           </div>
         </div>
 
+  
         <div id="find-me" class="find-me">
           <div class="popup-content">
             <p>Do you want to allow access to your location?</p>
-            <button id="acceptBtn" class="btn">Accept</button>
-            <button id="denyBtn" class="btn">Deny</button>
+              <button id="acceptBtn" class="btn">Accept</button>
+              <button id="denyBtn" class="btn">Deny</button>
           </div>
         </div>
+    
       </div>
     </div>
     <%- include('../../../components/footer') %>
+    <script src="/scripts/checkNearestMarket.js"></script>
   </body>
 </html>
