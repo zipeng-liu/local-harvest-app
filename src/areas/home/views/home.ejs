@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="/homeStyle/style.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
-    <!-- <script src="/scripts/checkNearestMarket.js" defer></script> -->
+    <script src="/scripts/checkNearestMarket.js" defer></script>
     <script src="/scripts/add-to-cart.js" defer></script>
   </head>
   <body>
@@ -88,7 +88,7 @@
           </div>
         </div>
 
-  
+        <!---- access location box ---->
         <div id="find-me" class="find-me">
           <div class="popup-content">
             <p>Do you want to allow access to your location?</p>
@@ -97,9 +97,16 @@
           </div>
         </div>
     
+        <!----- loading screen ---->
+        <div id="loadingScreen" style="display:none;">
+          <div class="fa-3x">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </div>
+        <span class="loading-text">Get your nearest market<span class="dots">...</span></span>
+        </div>
       </div>
     </div>
     <%- include('../../../components/footer') %>
-    <script src="/scripts/checkNearestMarket.js"></script>
+    
   </body>
 </html>

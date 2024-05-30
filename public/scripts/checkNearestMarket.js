@@ -105,14 +105,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
     
     acceptBtn.addEventListener("click", (e) => {
-        e.preventDefault();
         getUserLocation();
+        document.getElementById('loadingScreen').style.display = 'flex'
+        setTimeout(() => {
+            document.getElementById('loadingScreen').style.display = 'none';
+        }, 6000);
+       
         hidePopup();
 
     });
 
     denyBtn.addEventListener("click", (e) => {
-        e.preventDefault();
         hidePopup()
     })
 })
