@@ -105,13 +105,15 @@
 
         <div class="line-after-help"></div>
 
+        <a href="/auth/vendor/logout">
         <div class="component-7">
           <div class="frame">
             <img class="img" src="/image/interface-logout--arrow-exit-frame-leave-logout-rectangle-right.svg" />
           </div>
-          <div class="text-2"><a href="/auth/vendor/logout">Log Out</a></div>
+          <div class="text-2" id="vendor-log-out">Log Out</div>
           <img class="frame-2" src="/image/navigate_next.svg" />
         </div>
+        </a>
         <div class="line"><img class="line-2" src="/image/line-28-4.svg" /></div>
         <div class="line-wrapper"><img class="line-2" src="/image/line-28-4.svg" /></div>
         <div class="img-wrapper"><img class="line-2" src="/image/line-28-4.svg" /></div>
@@ -119,5 +121,28 @@
       </div>
     </div>
     <%- include('../../../components/footer') %>
+
+    <script>
+       document.getElementById('vendor-log-out').addEventListener('click', function(e) {
+            e.preventDefault();
+            fetch('/auth/vendor/logout', {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => {
+                if (response.ok) {
+                // Clear sessionStorage after successful logout
+                sessionStorage.clear();
+                // Redirect to the home page
+                window.location.href = '/';
+                } else {
+                console.error('Logout failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            });
+    </script> 
   </body>
 </html>

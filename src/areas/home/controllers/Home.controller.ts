@@ -79,6 +79,9 @@ class HomeController implements IController {
   private showNearestMarket = async(req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
     const { lat, lng } = req.body;
+    // if(req.session) {
+    //   req.session.location = { lat, lng}
+    // }
     console.log(req.body);
 
     if (lat == null || lng == null) {
