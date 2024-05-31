@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let position = sessionStorage.getItem("position");
         if(position !=null){
             passPosition(position);
-        }else{
+        } else{
             findMe.classList.add("show");
         }
     }, 1000);
