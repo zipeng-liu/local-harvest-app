@@ -15,13 +15,18 @@ function getUserLocation() {
 function showPosition(position) {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
+    let userPosition = JSON.stringify({lat:lat,lng:lng});
+    sessionStorage.setItem("position",userPosition);
+    passPosition(userPosition);
+}
 
+function passPosition(position){
     fetch('/home', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ lat, lng })
+        body: position
     })
     .then(response => response.json())
     .then(data => {
@@ -101,7 +106,12 @@ function hidePopup () {
 document.addEventListener("DOMContentLoaded", () => {
     
     setTimeout(() => {
-        findMe.classList.add("show");
+        let position = sessionStorage.getItem("position");
+        if(position !=null){
+            passPosition(position);
+        }else{
+            findMe.classList.add("show");
+        }
     }, 1000);
     
     acceptBtn.addEventListener("click", (e) => {
