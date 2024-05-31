@@ -5,7 +5,19 @@ import ensureAuthenticated from "../../../middleware/authentication.middleware";
 import { getProfileLink } from "../../../helper/profileLink";
 import IHomeService from "../services/IHome.services";
 import { shuffle } from "../../../helper/randomFunction";
+import { Market } from "@prisma/client";
+import { getDistance } from "../../../helper/getDistance";
 
+
+
+// extend the Express request interface to include nearestMarket
+declare global {
+  namespace Express {
+    interface Request {
+      nearestMarket: Market | null;
+    }
+  }
+}
 class HomeController implements IController {
   public path = "/home";
   public router = express.Router();
@@ -19,6 +31,7 @@ class HomeController implements IController {
 
   private initializeRoutes() {
     this.router.get(`${this.path}`, ensureAuthenticated, this.showHomepage);
+    this.router.post(`${this.path}`, ensureAuthenticated, this.showNearestMarket);
   }
 
   private showHomepage = async (req: express.Request, res: express.Response) => {
@@ -54,12 +67,45 @@ class HomeController implements IController {
           accountInfo = customerInfo;
         }
 
-        res.render("home", { profileLink, randomMarkets, randomVendors, randomProducts, featuredMarket, accountInfo, session:req.session });
+        const nearestMarket = req.nearestMarket || null;
+        res.render("home", { profileLink, randomMarkets, randomVendors, randomProducts, featuredMarket, nearestMarket, accountInfo, session:req.session });
       }
   } catch(error) {
     res.status(500).json({ message: "Failed to get home page", error})
   }
   };
+
+
+  private showNearestMarket = async(req: express.Request, res: express.Response, next: express.NextFunction) => {
+    try {
+    const { lat, lng } = req.body;
+    console.log(req.body);
+
+    if (lat == null || lng == null) {
+      throw new Error("Latitude and longitude must be provided.");
+    }
+
+    let nearestMarket: Market | null = null;
+    let shortestDistance = Infinity;
+
+    const markets = await this._service.getAllMarkets();
+    markets.forEach(market => {
+      const distance = getDistance(lat, lng, market.latitude!, market.longitude!);
+      if(distance < shortestDistance) {
+        shortestDistance = distance;
+        nearestMarket = market;
+      }
+    });
+  
+    // attach nearestMarket in req, to use later in homepage
+    // req.nearestMarket = nearestMarket;
+    res.json(nearestMarket);
+
+    } catch(error) {
+      res.status(500).json({ message: "Failed to get user's location", error });
+    }
+  };
+
 }
 
 export default HomeController;
