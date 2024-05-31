@@ -133,9 +133,6 @@ private showViewOrders = async (req: express.Request, res: express.Response) => 
         }
       })
 
-      console.log(groupedOrders);
-      console.log(groupedOrders.length);
-
       res.render("viewOrders", { profileLink, groupedOrders, session: req.session })
     }
   } catch(error) {
