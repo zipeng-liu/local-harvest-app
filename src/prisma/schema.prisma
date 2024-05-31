@@ -29,7 +29,7 @@ model Customer {
 
 model Order {
   orderId     Int             @id @default(autoincrement())
-  date        DateTime        @default(now())
+  date        String        
   customerId  Int             // Foreign key to Customer
   type        String
   total       Float
