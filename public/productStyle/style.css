@@ -207,7 +207,7 @@ body {
     transform: translate(8%, 10%);
     position: absolute;
     width: 295px;
-    top: 58px;
+    top: 80px;
     left: 0;
     font-family: var(--h2-mobile-font-family);
     font-weight: var(--h2-mobile-font-weight);
@@ -221,7 +221,7 @@ body {
   .item-page .element-reviews {
     transform: translate(20%, 10%);
     position: absolute;
-    top: 102px;
+    top: 120px;
     left: 22px;
     font-family: var(--h3-mobile-font-family);
     font-weight: var(--h3-mobile-font-weight);
@@ -238,7 +238,7 @@ body {
     position: absolute;
     width: 19px;
     height: 18px;
-    top: 105px;
+    top: 120px;
     left: 0;
   }
   
