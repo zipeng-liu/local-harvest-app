@@ -28,7 +28,7 @@
         <div class="box" id="order-time">
           <h2>Order Time</h2>
           <% if (recentOrder) { %>
-            <p>Received at: <span id="time-received"><%= recentOrder.date.toLocaleString() %></span></p>
+            <p>Received at: <span id="time-received"><%= recentOrder.date %></span></p>
           <% } else { %>
             <p>Received at: <span id="time-received">N/A</span></p>
           <% } %>
