@@ -101,7 +101,7 @@ export class CustomerOrderService implements ICustomerOrderService {
   ): Promise<Order> {
     try {
       let date = new Date();
-      let pacificTime = date.toLocaleString("en-US", { timeZone: "America/Los_Angeles" });
+      let pacificTime = new Date(date.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
       const order = await this._db.prisma.order.create({
         data: {
           date: pacificTime, 
