@@ -1,6 +1,7 @@
 import { PrismaClient, Cart, Order, Customer } from "@prisma/client";
 import ICustomerOrderService from "./ICustomerOrder.service";
 import DBClient from "../../../PrismaClient";
+import moment from 'moment-timezone';
 
 export class CustomerOrderService implements ICustomerOrderService {
   readonly _db: DBClient = DBClient.getInstance();
@@ -100,8 +101,9 @@ export class CustomerOrderService implements ICustomerOrderService {
     type: string
   ): Promise<Order> {
     try {
-      let date = new Date();
-      let pacificTime = new Date(date.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+      const timeZone = 'America/Vancouver';
+      const pacificTime = moment().tz(timeZone).format('YYYY-MM-DDTHH:mm:ssZ');
+
       const order = await this._db.prisma.order.create({
         data: {
           date: pacificTime, 
