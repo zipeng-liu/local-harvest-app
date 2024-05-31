@@ -118,21 +118,21 @@ private showViewOrders = async (req: express.Request, res: express.Response) => 
       const ordersByVendor = await this._service.findAllOrdersByVendor(vendorId);
     
       // Group order by date
-      const groupedOrders: Record<string, Order[]> = {};
+      const groupedOrders: Record<any, Order[]> = {};
       if(!ordersByVendor || ordersByVendor.length === 0) {
 
         res.render("viewOrders", { profileLink, groupedOrders: {}, session: req.session})
         return;
       }
       ordersByVendor.forEach(order => {
-        const orderDate = new Date(order.date).toDateString();
+        const orderDate = order.date;
         if(!groupedOrders[orderDate]) {
           groupedOrders[orderDate] = [order];
         } else {
           groupedOrders[orderDate].push(order);
         }
       })
-
+      console.log(groupedOrders)
       res.render("viewOrders", { profileLink, groupedOrders, session: req.session })
     }
   } catch(error) {
