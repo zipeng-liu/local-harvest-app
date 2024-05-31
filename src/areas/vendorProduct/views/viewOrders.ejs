@@ -33,9 +33,7 @@
                     <div class="overlap-group">
                       <p class="order-number">
                           <span class="order-number">Order Number: #<%= order.orderId %><br /></span>
-                          <% let newDate = new Date(order.date) %>
-                          <% let shortDate = newDate.toLocaleDateString('en-US'); %>
-                          <span class="order-date">Date: <%= shortDate %><br /><br /><br /></span>
+                          <span class="order-date">Date: <%= order.date %><br /><br /><br /></span>
                           <span class="text-wrapper-6"><br /></span>
                         </p>
                         <div class="order-total">$<%= order.total %></div>
