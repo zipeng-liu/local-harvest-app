@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/cartStyle/style.css" />
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+
+  </head>
+  <body>
+    <%- include('../../../components/header') %>
+
+    <div class="successful-order">
+      <div class="div">
+        <div class="text-wrapper">Thank You!</div>
+
+        <div class="overlap">
+          <p class="we-ve-received-your">
+            <span class="span">We've received your order<br /></span>
+            <span class="text-wrapper-2"><br /></span>
+            <span class="text-wrapper-3"> A confirmation will be sent to <%= recentOrder.contactEmail %> shortly <br /></span>
+          </p>
+          <img class="group" src="/image/BreadGuy.svg" />
+        </div>
+
+        <!-- Order details button -->
+        <a href="/customer/order/details">
+          <button class="order-confirmation button-color-effect">
+            <div class="text-wrapper-4 button-enlarge-effect">Review Order Confirmation</div>
+          </button>
+        </a>
+        
+        <!-- Explore more Vendors button -->
+        <a href="/vendor/list">
+          <button class="large-button">
+            <div class="submit-order">Explore more Vendors</div>
+          </button>
+        </a>
+    </div>
+    </div>
+
+    <%- include('../../../components/footer') %>
+  </body>
+</html>

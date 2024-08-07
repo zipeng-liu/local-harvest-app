@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/productStyle/style.css" />
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+    <link rel="stylesheet" href="/sharedStyle/searchStyle.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+    <script src="/scripts/add-to-cart.js" defer></script>
+  </head>
+  <body>
+<%- include('../../../components/header') %>
+    <div class="vendor-product-page">
+      <div class="div">
+
+          <!-- Back button -->
+          <div class="back-button">
+            <a href="javascript:window.history.back()">
+              <img class="back-button button-full-effect" src="/image/navigate_before.svg" />
+            </a>
+          </div>
+
+          <div class="text-wrapper">Products</div>
+          <div class="text-wrapper-2">from <%= vendor.name %></div>
+          <!-- <a href="javascript:window.history.back()"><img class="back-button" src="/image/navigate_before.svg" /></a> -->
+          <div class="products-container">
+            <% const productsByVendor = vendor.products %>
+
+              <% productsByVendor.forEach(product => { %>
+                  <div class="product-card">
+                    <a href="/products/<%= product.productId %>"><img src="<%= product.primaryPhoto %>" alt="product-image" class="product-image"></a>
+                      <div class="product-name"><a href="/products/<%= product.productId %>"><%= product.name %></a></div>
+                      <div class="product-price">$<%= product.price %></div>
+                      <div class="overlap-group">
+                        <!-- <img class="add-to-cart" src="/image/add_24px.svg" /> -->
+
+                        <!---- if(customer), show add-to-cart button -->
+                        <% if(session.userId.vendorId === 0 && session.userId.customerId !== 0) { %>
+                          <% if(product.quantity !== 0) { %>
+                          <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
+                            <button type="submit" class="add-to-cart-wrapper"><i class="fa fa-plus"></i></button>
+                          </form>
+                          <% } else { %>
+                            <button class="add-to-cart-wrapper"><i class="fas fa-ban"></i></button>
+                          <% } %>
+                        <% } %>
+                      </div>
+                  </div>
+              <% }) %>
+          </div>
+      </div>
+
+  <%- include('../../../components/footer') %>
+  </body>
+</html>

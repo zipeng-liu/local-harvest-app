@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/cartStyle/style.css" />
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  </head>
+  <body>
+    <%- include('../../../components/header') %>
+
+    <div class="shopping-cart-page">
+      <div class="div">
+        <div class="text-wrapper">My Cart</div>
+        <div class="text-wrapper-2">Order Details</div>
+        <!-- Back button -->
+        <div class="header-variants">
+          <a href="javascript:window.history.back()">
+            <img
+              class="back-button button-full-effect"
+              src="/image/navigate_before.svg"
+          /></a>
+        </div>
+        
+        <!-- Item list -->
+        <% if (cartItems.length === 0) { %>
+        <div><p>Your cart is empty</p></div>
+        <% } else { %> <% cartItems.forEach((item) => { %>
+        <div class="cart-product">
+          <div class="cart-image">
+            <% if (item.product.primaryPhoto) { %>
+            <img
+              class="cart-image"
+              src="<%= item.product.primaryPhoto %>"
+              alt="<%= item.product.name %>"
+            />
+            <% } %>
+          </div>
+          <p class="p">
+            <a
+              class="button-color-effect"
+              href="/products/<%= item.productId %>"
+            >
+              <%= item.product.name %>
+            </a>
+          </p>
+          <div class="text-wrapper-3">
+            $<%= item.product.price.toFixed(2) %>
+          </div>
+          <div class="product-amount">
+            <div class="overlap-group">
+              <form action="/cart/delete/<%= item.cartId %>" method="post">
+                <button
+                  type="submit"
+                  class="TRASH button-enlarge-effect"
+                  data-cart-id="<%= item.cartId %>"
+                  style="
+                    background-image: url('/image/trash.png');
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                  "
+                ></button>
+              </form>
+              <form action="/cart/increase/<%= item.cartId %>" method="post">
+                <button
+                  type="button"
+                  class="ADD button-enlarge-effect"
+                  data-cart-id="<%= item.cartId %>"
+                >
+                  +
+                </button>
+              </form>
+              <form action="/cart/decrease/<%= item.cartId %>" method="post">
+                <button
+                  type="button"
+                  class="MINUS button-enlarge-effect"
+                  data-cart-id="<%= item.cartId %>"
+                >
+                  -
+                </button>
+              </form>
+              <div class="text-wrapper-4"><%= item.quantity %></div>
+            </div>
+          </div>
+        </div>
+        <% }); %> <% } %>
+        
+        <!-- Payment method -->
+        <div class="payment-method">
+          <div class="overlap">
+            <div class="rectangle"></div>
+            <div class="text-wrapper-5">Place an Order</div>
+            <div class="rectangle-2" id="payInPersonButtonBackground"></div>
+            <!-- <div class="rectangle-3" id="payOnlineButtonBackground"></div> -->
+
+            <div class="text-wrapper-6 button-enlarge-effect">
+              <a href="#" id="payInPersonButton">Pay In Person</a>
+            </div>
+            <!-- <div class="text-wrapper-7 button-enlarge-effect">
+              <a href="#" id="payOnlineButton">Pay Online</a>
+            </div> -->
+          </div>
+        </div>
+        
+        <!-- Order total -->
+        <div class="payment-method-order">
+          <div class="text-wrapper-8">Order Subtotal</div>
+          <% const sumTotal = cartItems.reduce((sum, item) => { %> <% return sum
+          + (item.product.price * item.quantity); %> <% }, 0); %>
+          <div class="text-wrapper-9"><%= `$${sumTotal.toFixed(2)}` %></div>
+        </div>
+        
+        <!--In-person Checkout form -->
+        <div class="in-pserson-checkout-form">
+          <form id= "checkoutForm" action="/customer/order/checkout" method="post">
+            
+            <div class="rectangle-schedule"></div>
+            <div class="schedule">
+              <img class="vector" src="/image/calender-icon.png">
+              <div class="schedule-text">Schedule</div>
+              <input class="text-field-date" type="datetime-local" placeholder="" name="schedule" id="scheduleField">
+              <script src="/scripts/time-limit.js"></script>
+            </div>
+
+            <div class="rectangle-contact"></div>
+
+            <div class="contact-info-text">Contact Info</div>
+            <div class="firstname-text-field">
+              <div class="label">First Name</div>
+              <div class="text-field3">
+                <input class="short-input-field" type="text" placeholder="First Name" name="contactFirstname" value="<%= customerInfo.firstName %>">
+              </div>
+            </div>  
+
+            <div class="lastname-text-field">
+              <div class="label">Last Name</div>
+              <div class="text-field3">
+                <input class="short-input-field" type="text" placeholder="Last Name" name="contactLastname" value="<%= customerInfo.lastName %>">
+              </div>
+            </div> 
+
+            <div class="email-text-field">
+              <div class="label">Email</div>
+              <div class="text-field-email">
+                <input class="long-input-field" type="email" placeholder="example@gmail.com" name="contactEmail" value="<%= customerInfo.email %>">
+              </div>
+            </div> 
+            
+            <input type="hidden" name="type" value="In Person">
+            <input type="hidden" name="total" value="<%= sumTotal.toFixed(2) %>">
+          
+            <button type="submit" class="large-button button-color-effect">
+              <div class="submit-order-button-box"></div>
+              <div class="submit-order-button button-enlarge-effect">Submit Order</div>
+            </button>
+            
+          </div>
+        </form>
+
+        <!-- Online Checkout form -->
+        <div class="online-checkout-form">
+
+        </div>
+
+        <!---- Loading screen -->
+        <div id="loadingScreen" style="display:none;">
+          <div class="fa-3x">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </div>
+        <span class="loading-text">Loading<span class="dots">...</span></span>
+        </div>
+      
+      </div>
+    </div>
+
+    <%- include('../../../components/footer') %>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/scripts/cart.js"></script>
+    <script src="/scripts/payment.js"></script>
+
+    <script>
+      window.onload = function() {
+        const errorMsg = '<%= errorMessage %>';
+        if (errorMsg) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: errorMsg,
+          });
+        }
+      };
+    </script>
+  </body>
+</html>

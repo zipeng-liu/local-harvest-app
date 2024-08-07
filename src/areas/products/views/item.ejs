@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/productStyle/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+    <script src="/scripts/add-to-cart.js" defer></script>
+
+  </head>
+  <body>
+    <!-- Logo header bar -->
+    <%- include('../../../components/header') %>
+    <div class="item-page">
+      <div class="div">
+        
+        <!-- Back button -->
+        <div class="back-button">
+          <a href="javascript:window.history.back()">
+            <img class="back-button button-full-effect" src="/image/navigate_before.svg" />
+          </a>
+        </div>
+        
+        <!-- Product images -->
+        <div class="item-page-image">
+          <img class="rectangle primary" src="<%= product.primaryPhoto %>" />
+          <div class="filled-item">
+            <img class="rectangle secondary" src="<%= product.secondaryPhoto1 %>" />
+          </div>
+          <div class="filled-item-2">
+            <img class="rectangle secondary" src="<%= product.secondaryPhoto2 %>" />
+          </div>
+          <div class="mini-item-picture">
+            <img class="rectangle secondary" src="<%= product.secondaryPhoto3 %>" />
+          </div>
+        </div>
+
+        <div class="item-description">
+          <img class="favourite" src="/image/Property 1=Default.svg" />
+          <div class="item-name"><%= product.name %></div>
+          <div class="text-wrapper-2">$<%= product.price %></div>
+          <div class="vendor-name"><%= product.vendor.name %></div>
+          <div class="element-reviews">4.8&nbsp;&nbsp;|&nbsp;&nbsp;36 reviews</div>
+          <img class="star" src="/image/star.png" />
+          <p class="a-true-embodiment-of"><%= product.description %></p>
+        </div>
+        
+        <div class="text-wrapper-3">Other items</div>
+        <div class="item-carosel">
+          <div class="item-content">
+            <% randomProducts.forEach(product => { %>
+              <div class="overlap-group">
+                <div class="rectangle-wrapper"><a href="/products/<%= product.productId %>" title="<%= product.name %>"><img class="img" src="<%= product.primaryPhoto %>" /></a></div>
+                
+
+                <!---- if(customer), show add-to-cart button-->
+                <% if(session.userId.vendorId === 0 && session.userId.customerId !== 0) { %>
+                  <% if(product.quantity !== 0) { %>
+                      <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
+                        <button type="submit" class="add-to-cart-wrapper"><img class="add-to-cart-2" src="/image/add_24px.svg" /></button>
+                      </form>
+                    <% }  %>
+                <% } %>
+              
+                <div class="product-info">
+                  <div class="text-wrapper-product-name"><a href="/products/<%= product.productId %>" title="<%= product.name %>"><%= product.name %></a></div>
+                  <div class="text-wrapper-product-price">$<%= product.price %></div>
+                </div>
+              </div>
+            <% }) %>
+
+           
+          </div>
+        </div>
+        
+        <!-- Add to cart button -->
+        <!---- if(vendor), don't show add-to-cart button-->
+        <% if(session.userId.vendorId === 0 && session.userId.customerId !== 0) { %>
+            <% if(!isOutOfStock) { %>
+            <div class="add-to-cart">
+              <div class="group">
+                <form action="/customer/addToCart/<%= product.productId %>" method="post" class="add-to-cart-form">
+                  <button class="ADD-TO-CART" type="submit">
+                    <div class="text-wrapper">Add to Cart</div>
+                    <img class="vector" src="/image/shopping-cart.png" />
+                  </button>
+                </form>
+
+            <!---- if(product is out of stock), show not clickable gray button -->
+
+            <% } else { %>
+              <div class="add-to-cart out-of-stock">
+                <div class="group">
+                    <button class="ADD-TO-CART">
+                      <div class="text-wrapper">Out of stock</div>
+                      <img class="vector" src="/image/shopping-cart.png" />
+                    </button>
+                  </form>
+              <% } %>
+            <% } %>
+
+          </div> 
+        </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- Footer nav bar -->
+    <%- include('../../../components/footer') %>
+    
+
+  </body>
+</html>

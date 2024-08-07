@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/cartStyle/style.css" />
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+  </head>
+  <body>
+    <%- include('../../../components/header') %>
+
+    <div class="order-details">
+      <div class="div">
+        <div class="box" id="order-info">
+          <h2>Order Number and Items</h2>
+          <% if (recentOrder) { %>
+            <p id="order-number">Order #<%= recentOrder.orderId %></p>
+            <ul id="order-items">
+              <% recentOrder.productOrders.forEach(productOrder => { %>
+                <li><%= productOrder.product.name %> - Quantity: <%= productOrder.quantity %></li>
+              <% }) %>
+            </ul>
+          <% } else { %>
+            <p>No recent orders found.</p>
+          <% } %>
+        </div>
+        <div class="box" id="order-time">
+          <h2>Order Time</h2>
+          <% if (recentOrder) { %>
+            <p>Received at: <span id="time-received"><%= recentOrder.date %></span></p>
+          <% } else { %>
+            <p>Received at: <span id="time-received">N/A</span></p>
+          <% } %>
+        </div>
+        <div class="box" id="order-subtotal">
+          <h2>Order Subtotal</h2>
+          <% if (recentOrder) { %>
+            <p>$<%= recentOrder.total.toFixed(2) %></p>
+          <% } else { %>
+            <p>$0.00</p>
+          <% } %>
+        </div>
+        <div class="back-home">
+          <a href="/home" class="back-home-button button-full-effect">Back to Home</a>
+        </div>
+      </div>
+    </div>
+
+    <%- include('../../../components/footer') %>
+  </body>
+</html>

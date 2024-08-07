@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/marketStyle/style.css" />
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/homeStyle/style.css" />
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+  </head>
+  <body>
+    <%- include('../../../components/header') %>
+    <div class="market-info-page">
+      <div class="div">
+        <img class="placeholder" src="<%= market.photo %>" />
+
+        <div class="business-name"><%= market.name %></div>
+        <a href="javascript:window.history.back()"><img class="back-button" src="/image/navigate_before.svg" /></a>
+
+        <div class="overlap-group">
+          <div class="rectangle-2"></div>
+          <div class="rectangle-3"></div>
+          <div class="element-col-info">
+            <p class="info-info-info-info"><%= market.location %></p>
+            <div class="words">Location</div>
+          </div>
+          <div class="element-col-info-with-two">
+            <div class="overlap-group-2">
+              <div class="mon-thur-fri-sat-sun">Mon - Sat<br />Sunday</div>
+              <div class="closed">Closed<br />10:00-14:00</div>
+              <div class="text-wrapper-2">Hours</div>
+            </div>
+          </div>
+        </div>
+        <div class="overlap-2">
+          <div class="rectangle-2"></div>
+          <div class="component">
+            <p class="info-info-info-info">
+              <a
+                href="https://www.google.com/search?client=opera-gx&q=east+hastings+farmers+market+contact&sourceid=opera&ie=UTF-8&oe=UTF-8&lqi=CiRlYXN0IGhhc3RpbmdzIGZhcm1lcnMgbWFya2V0IGNvbnRhY3QiAhABSMni9JPnqoCACFouEAAQARACEAMYABgBGAIYAyIcZWFzdCBoYXN0aW5ncyBmYXJtZXJzIG1hcmtldJIBDmZhcm1lcnNfbWFya2V0qgFZEAEqEiIOZmFybWVycyBtYXJrZXQoADIfEAEiG42J17d4X9IShfJXWDZ6Eh-FNIfZkX47lUIIBjIgEAIiHGVhc3QgaGFzdGluZ3MgZmFybWVycyBtYXJrZXQ#"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="span">(604) 879-3276</span></a
+              >
+              <span class="text-wrapper-3"><%= market.email %></span>
+            </p>
+            <div class="words">Contact</div>
+          </div>
+        </div>
+        <div class="text-wrapper-4">Vendors</div>
+        <% vendorsByMarket = market.vendors; %>
+        <% if(vendorsByMarket.length > 4) { %>
+          <button class="small-button-arrow">
+            <div class="frame"><div class="text-wrapper-5">View More</div></div>
+            <img class="icons-arrow-forward" src="/image/arrowsRight.png" />
+          </button>
+        <% } %>
+    
+        <div class="mini-vendor-card-3">
+          <div class="all-vendors">
+            
+            <% vendorsByMarket.forEach(vendor => { %>
+            <div class="vendor-item">
+              <div class="mid-banner-3">
+                <a href="/vendor/show/<%= vendor.vendorId %>"><img class="vendor-img" src="<%= vendor.photo %>" /></a>
+                
+                  <div class="vendor-name"><a href="/vendor/show/<%= vendor.vendorId %>"><%= vendor.name %></a></div>
+                </a>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('../../../components/footer') %>
+  </body>
+</html>

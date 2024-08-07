@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/customerStyle/style.css" />
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+  </head>
+  <body>
+    <%- include('../../../components/header') %>
+    <div class="user-account">
+      <div class="div">
+
+        <a href="javascript:window.history.back()"><img class="back-button" src="/image/navigate_before.svg" /></a>
+
+        <div class="text-wrapper">Customer</div>
+        <div class="account-nav button-full-effect">
+          <div class="frame"><img src="/image/person_outline_24px.svg" /></div>
+          <div class="text">Manage Account</div>
+          <img class="img" src="/image/navigate_next.svg" />
+        </div>
+        <div class="overlap button-full-effect">
+          <div class="account-nav-2">
+            <div class="text">Favorited Items</div>
+            <img class="img" src="/image/navigate_next.svg" />
+            <img class="favourite" src="/image/favourite.png" />
+          </div>
+          
+        </div>
+        <div class="component button-full-effect">
+          <div class="frame"><img class="img-2" src="/image/interface-key.svg" /></div>
+          <div class="text">Password</div>
+          <img class="img" src="/image/navigate_next.svg" />
+        </div>
+        <div class="component-2 button-full-effect">
+          <div class="frame">
+            <img
+              class="img-2"
+              src="/image/interface-pad-lock-shield--combination-combo-lock-locked-padlock-secure-security-shield-square.svg"
+            />
+          </div>
+          <div class="text">Privacy</div>
+          <img class="img" src="/image/navigate_next.svg" />
+        </div>
+        <div class="component-3 button-full-effect">
+          <div class="frame"><img class="img-2" src="/image/interface-file-multiple--double-common-file.svg" /></div>
+          <div class="text">Terms and Conditions</div>
+          <img class="img" src="/image/navigate_next.svg" />
+        </div>
+        <div class="component-4 button-full-effect">
+          <div class="frame">
+            <img
+              class="img-2"
+              src="/image/interface-help-question-circle--circle-faq-frame-help-info-mark-more-query-question.svg"
+            />
+          </div>
+          <div class="text">Help</div>
+          <img class="img" src="/image/navigate_next.svg" />
+        </div>
+        <a href="/auth/customer/logout">
+        <div class="component-5 button-full-effect">
+            <div class="frame">
+              <img class="img-2" src="/image/interface-logout--arrow-exit-frame-leave-logout-rectangle-right.svg" />
+            </div>
+          
+          <div class="text-2" id="customer-log-out">Log Out</div>
+          <img class="img" src="/image/navigate_next.svg" />
+        </div>
+        </a>
+
+        <!-- Recent purchases -->
+        <div class="recent-purchases">
+          <div class="div-wrapper">
+            <div class="text-wrapper-2">Your Recent Purchases:</div>
+          </div>
+          <div class="frame-2">
+            <% orders.forEach(order => { %>
+              <div class="product-user button-color-effect" onclick="showOrderDetails('<%= order.orderId %>')">
+                <div class="rectangle-wrapper">
+                  <div class="rectangle"></div>
+                </div>
+                <div class="frame-3">
+                  <div class="text-wrapper-3">Order ID: <%= order.orderId %></div>
+                  <div class="text-wrapper-4">Total: $<%= order.total.toFixed(2) %></div>
+                </div>
+                <div class="frame-5">
+                  <div class="frame-6">
+                    <div class="text-wrapper-5">Date: </div>
+                    <div class="text-wrapper-6"><%= order.date %></div>
+                  </div>
+                </div>
+              </div>
+              <div id="order-<%= order.orderId %>" class="modal">
+                <div class="modal-content">
+                  <span class="close" onclick="closeOrderDetails('<%= order.orderId %>')">&times;</span>
+                  <h2>Order ID: <%= order.orderId %></h2>
+                  <p>Type:  <%= order.type %></p>
+                  <p>Total: $<%= order.total.toFixed(2) %></p>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Sum</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% order.productOrders.forEach(productOrder => { %>
+                        <tr>
+                          <td>
+                            <a class="button-color-effect" href="/products/<%= productOrder.product.productId  %>">
+                              <%= productOrder.product.name %>
+                            </a>
+                          </td>
+                          <td><%= productOrder.quantity %></td>
+                          <td>$<%= productOrder.product.price * productOrder.quantity %></td>
+                        </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+        <script src="/scripts/order-details.js"></script>
+
+      
+        <div class="profile">
+          <div class="overlap-group">
+            <img
+              class="interface-edit-write"
+              src="/image/interface-edit-write-2--change-document-edit-modify-paper-pencil-write-writing.svg"
+            />
+          </div>
+          <div class="user-name"><%= customerName %></div>
+          <div class="text-wrapper-9">Account type</div>
+          <div class="edit-basic-profile">Edit Profile</div>
+        </div>
+      </div>
+    </div>
+    <%- include('../../../components/footer') %>
+
+  <script>
+    document.getElementById('customer-log-out').addEventListener('click', function(e) {
+          e.preventDefault();
+          fetch('/auth/customer/logout', {
+              method: 'GET',
+              credentials: 'include'
+          })
+          .then(response => {
+              if (response.ok) {
+              // Clear sessionStorage after successful logout
+              sessionStorage.clear();
+              // Redirect to the home page
+              window.location.href = '/';
+              } else {
+              console.error('Logout failed');
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          });
+          });
+  </script>
+    
+  </body>
+</html>

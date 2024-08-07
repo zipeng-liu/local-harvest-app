@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+        <link rel="stylesheet" href="/sharedStyle/style.css" />
+        <link rel="stylesheet" href="/checkoutStyle/style.css" />
+      </head>
+</head>
+<body>
+    <%- include('../../../components/header') %>
+    <div class="checkout-page-card">
+        <div class="checkout">Checkout</div>
+        <div class="large-button">
+          <div class="rectangle-132"></div>
+          <div class="submit-order">Submit Order</div>
+        </div>
+        <div class="contact-info">
+          <div class="rectangle-141"></div>
+          <div class="text-field">
+            <div class="label">Email</div>
+            <div class="text-field2">
+              <div class="placeholder">email@email.com</div>
+            </div>
+          </div>
+          <div class="contact-info2">Contact Info</div>
+          <div class="short-text-field">
+            <div class="label">First Name</div>
+            <div class="text-field3">
+              <div class="placeholder">Joe</div>
+            </div>
+          </div>
+          <div class="short-text-field2">
+            <div class="label">Last Name</div>
+            <div class="text-field3">
+              <div class="placeholder">Mama</div>
+            </div>
+          </div>
+        </div>
+        <div class="payment">
+          <div class="rectangle-142"></div>
+          <div class="text-field4">
+            <div class="label">Cardholder Name</div>
+            <div class="text-field2">
+              <div class="placeholder">ex. Joe Mahma</div>
+            </div>
+          </div>
+          <div class="text-field5">
+            <div class="label">Card Number</div>
+            <div class="text-field2">
+              <div class="placeholder">xxxx-xxxx-xxxx-xxxx</div>
+            </div>
+          </div>
+          <div class="payment2">Payment</div>
+          <div class="short-text-field3">
+            <div class="label">Expiration Date</div>
+            <div class="text-field3">
+              <div class="placeholder">MM/YY</div>
+            </div>
+          </div>
+          <div class="short-text-field4">
+            <div class="label">Security Code</div>
+            <div class="text-field3">
+              <div class="placeholder">CVC</div>
+            </div>
+          </div>
+        </div>
+        <div class="payment-method-order-summary">
+          <div class="rectangle-142"></div>
+          <div class="order-subtotal">Order Subtotal</div>
+          <div class="_2-00">$2.00</div>
+        </div>
+        <div class="payment-method">
+          <div class="rectangle-137"></div>
+          <div class="choose-your-payment-method">Choose your Payment Method</div>
+          <div class="rectangle-139"></div>
+          <div class="rectangle-140"></div>
+          <div class="pay-in-person">Pay In Person</div>
+          <div class="pay-online">Pay Online</div>
+          <div class="line-27"></div>
+        </div>
+        <div class="cart-product">
+          <div class="cart-image">
+            <img class="rectangle-134" src="rectangle-1340.png" />
+          </div>
+          <div class="product-name-from-product-place">
+            Product Name from Product Place
+          </div>
+          <div class="_2-002">$2.00</div>
+          <div class="product-amount">
+            <img class="trash" src="/image/trash.png" />
+            <img class="add" src="/image/plus.png" />
+            <div class="_1">1</div>
+          </div>
+        </div>
+    </div>
+      <%- include('../../../components/footer') %>      
+</body>
+</html>

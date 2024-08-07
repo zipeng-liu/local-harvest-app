@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/vendorStyle/style.css" />
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+    <script src="/scripts/photo.js" defer></script>
+  </head>
+  <body>
+    <%- include('../../../components/header') %>
+    <div class="vendor-item">
+      <div class="div">
+        <div class="text-wrapper">Add a Product</div>
+        <a href="javascript:window.history.back()"><img class="back-button" src="/image/backButton.png" /></a>
+        <form action="/vendor/addItem" method="POST" enctype="multipart/form-data">
+          <div class="image-upload primary-image">
+              <label for="primaryImage" class="group">
+                  <img class="icons-file-upload primary-preview" src="/image/uploadImg.png" alt="Upload Primary Image"/>
+              </label>
+              <input id="primaryImage" name="primaryImage" type="file" style="display: none;"/>
+              <div class="text-wrapper-1">Primary Image</div>
+              <p class="text-wrapper-3">The first image a user will see (choose one image - mandatory)</p>
+          </div>
+
+          <div class="image-upload secondary-image">
+              <label for="secondaryImage1" class="icons-file-upload-wrapper-1">
+                  <img class="icons-file-upload secondary secondary-preview" src="/image/uploadImg.png" alt="Upload Secondary Image"/>
+              </label>
+              <input id="secondaryImage1" name="secondaryImage" type="file" style="display: none;" class="secondary-input"/>
+
+              <label for="secondaryImage2" class="icons-file-upload-wrapper-2">
+                <img class="icons-file-upload secondary secondary-preview" src="/image/uploadImg.png" alt="Upload Secondary Image"/>
+              </label>
+              <input id="secondaryImage2" name="secondaryImage" type="file" style="display: none;" class="secondary-input"/>
+
+              <label for="secondaryImage3" class="icons-file-upload-wrapper-3">
+                <img class="icons-file-upload secondary secondary-preview" src="/image/uploadImg.png" alt="Upload Secondary Image"/>
+              </label>
+              <input id="secondaryImage3" name="secondaryImage" type="file" style="display: none;" class="secondary-input"/>
+
+              <div class="text-wrapper-2">Secondary Image</div>
+              <p class="text-wrapper-4">Additional images if needed (optional)</p>
+          </div>
+              
+          <div class="short-text-field">
+            <div class="label">Product name</div>
+            <input
+              name="name"
+              type="text"
+              class="text-field"
+              placeholder="Enter product name"
+            />
+          </div>
+          <div class="short-text-field-2">
+            <div class="label">Price</div>
+            <input
+              name="price"
+              type="text"
+              class="text-field"
+              placeholder="Enter price"
+            />
+          </div>
+          <div class="short-text-field-3">
+            <div class="label">Quantity</div>
+            <input
+              name="quantity"
+              type="number"
+              class="text-field"
+              placeholder="Enter inventory count"
+            />
+          </div>
+          <div class="short-text-field-4">
+            <div class="label">Description</div>
+            <textarea
+              name="description"
+              type="text"
+              class="text-field text-area"
+              placeholder="Enter product description"
+            ></textarea>
+          </div>
+          <button type="submit" class="large-button submit-order">
+            Add Product
+          </button>
+        </form>
+      </div>
+    </div>
+    <%- include('../../../components/footer') %>
+  </body>
+</html>

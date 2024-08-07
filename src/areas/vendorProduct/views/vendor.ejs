@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/vendorStyle/style.css" />
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+    <script src="/scripts/add-to-cart.js" defer></script>
+  </head>
+  <body>
+    <%- include('../../../components/header') %>
+
+    <div class="vendor-page">
+      <div class="div">
+        <div class="overlap">
+          <div class="rectangle"></div>
+          <div class="rectangle-2"></div>
+          <div class="element-col-info">
+            <p class="text-wrapper"><%= vendorById.address %></p>
+            <div class="info-title">Location</div>
+          </div>
+          <div class="element-col-info-with-two">
+            <div class="hour">
+              <p class="mon-thur-fri-sat-sun">Mon - Thur<br />Fri<br />Sat / Sun</p>
+              <div class="closed">Closed<br />15:00-19:00<br />10:00-19:00</div>
+              <div class="hour-title">Hours</div>
+            </div>
+          </div>
+        </div>
+        <div class="component-wrapper">
+          <div class="component">
+            <div class="text-wrapper"><%= vendorById.phone %><br /><%= vendorById.email %></div>
+            <p class="for-inquires">For inquires regarding custom orders, contact us by email.</p>
+            <div class="info-title">Contact</div>
+          </div>
+        </div>
+
+        <div class="products-container">
+
+              <% productOnVendorPage.forEach(product => { %>
+                  <div class="product-card">
+                    <div class="overlap-group">
+
+                      <!----- if(vendor), don't show add-to-cart button -->
+                      <% if(session.userId.vendorId === 0 && session.userId.customerId !== 0) { %>
+                        <form action="/customer/addToCart/<%= product.productId %>" method="POST" class="add-to-cart-form">
+                          <button type="submit" class="add-to-cart-wrapper"><i class="fa fa-plus"></i></button>
+                        </form>
+                      <% } %>
+                      
+                    </div>
+                    <a href="/products/<%= product.productId %>"><img src="<%= product.primaryPhoto %>" alt="product-image" class="product-image"></a>
+                      <div class="product-name"><a href="/products/<%= product.productId %>"><%= product.name %></a></div>
+                      <div class="product-price">$<%= product.price %></div>
+                  </div>
+              <% }) %>
+        </div>
+
+
+        <div class="overlap-2">
+          <div class="vendor-name"><%= vendorById.name %></div>
+          <a href="javascript:window.history.back()"><img class="back-button" src="/image/navigate_before.svg" /></a>
+          <div class="small-button"><div class="our-story">Our Story</div></div>
+        </div>
+        <div class="products-header">Products</div>
+        <div class="rectangle-3"><img src=<%= vendorById.photo %> /></div>
+
+        <!-------- if vendor has more than 4 products, show "view more" button -->
+        <% if(productsByVendor.length > 4) { %>
+          <button class="small-button-arrow">
+            <a href="/products/vendor/<%= vendorById.vendorId %>"><div class="frame"><div class="view-more">View More</div></div></a>
+            <img class="icons-arrow-forward" src="/image/right-arrow.png" />
+          </button>
+        <% } %>
+        
+      </div>
+    </div>
+    <%- include('../../../components/footer') %>
+
+  </body>
+</html>

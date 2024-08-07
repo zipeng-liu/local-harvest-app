@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/vendorStyle/styleguide.css" />
+    <link rel="stylesheet" href="/searchStyle/style.css" />
+    <link rel="stylesheet" href="/sharedStyle/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="/scripts/ajaxSearch.js" defer></script>
+ 
+  </head>
+  <body>
+    <%- include('../../../components/header') %>
+    
+    <div class="search">
+      <div class="div">
+        <div class="searchbar-condensed">
+          <div class="group">
+            <div class="overlap-group">
+            </div>
+          </div>
+          <form action="/search" method="POST">
+            <input type="text" name="query" class="search-input" placeholder="Markets, Vendors, Product">
+            <button type="submit" class="search-button">
+                <i class="fas fa-search button-full-effect"></i>
+            </button>
+          </form>
+          <a href="javascript:window.history.back()"><img class="back-button button-full-effect" src="/image/navigate_before.svg" /></a>
+        </div>
+        <div>
+        </div>
+        <div id="result-container">
+
+          <!---- put some random results before user search -->
+          <div>
+            <h3 style="color: rgb(139, 189, 139);">Market</h3>
+            <% randomMarkets.forEach(market => { %>
+              <div class="market-item">
+                <img src="<%= market.photo %>" class="market-photo"/>
+                <a href="/market/show/<%= market.marketId %>" class="market-link"><%= market.name %></a>
+              </div>
+            <% }) %>
+            
+          </div>
+          <div>
+            <h3>Vendor</h3>
+            <% randomVendors.forEach(vendor => { %>
+              <div class="vendor-item">
+                <img src="<%= vendor.photo %>" class="vendor-photo"/>
+                <a href="/vendor/show/<%= vendor.vendorId %>" class="vendor-link"><%= vendor.name %></a>
+              </div>
+            <% }) %>
+          </div>
+          <div>
+            <h3 style="color: rgb(255, 124, 8);">Product</h3>
+            <% randomProducts.forEach(product => { %>
+              <div class="product-item">
+                <img src="<%= product.primaryPhoto %>" class="product-photo"/>
+                <a href="/products/<%= product.productId %>" class="product-link"><%= product.name %></a>
+              </div>
+            <% }) %>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <%- include('../../../components/footer') %>
+
+  </body>
+</html>

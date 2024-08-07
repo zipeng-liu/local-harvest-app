@@ -12,3 +12,107 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+// Define the models based on the ER diagram
+model Customer {
+  customerId Int     @id @default(autoincrement())
+  email      String  @unique
+  password   String
+  username   String  @unique
+  firstName  String?
+  lastName   String?
+  photo      String?
+  orders     Order[] // One-to-many relationship with Order
+  carts      Cart[] // One-to-many relationship with Cart
+  itemReviews ItemReview[] // One-to-many relationship with ItemReview
+}
+
+model Order {
+  orderId     Int             @id @default(autoincrement())
+  date        String        
+  customerId  Int             // Foreign key to Customer
+  type        String
+  total       Float
+  contactFirstname String
+  contactLastname String
+  contactEmail String
+  schedule    DateTime
+  status      String?
+  customer    Customer        @relation(fields: [customerId], references: [customerId])
+  productOrders ProductOrder[] // One-to-many relationship with ProductOrder
+}
+
+model ProductOrder {
+  productOrderId Int @id @default(autoincrement())
+  orderId        Int // Foreign key to Order
+  productId      Int // Foreign key to Product
+  quantity       Int
+  order          Order   @relation(fields: [orderId], references: [orderId])
+  product        Product @relation(fields: [productId], references: [productId])
+}
+
+model Product {
+  productId   Int            @id @default(autoincrement())
+  name        String
+  description String?
+  quantity    Int
+  price       Float
+  primaryPhoto  String?
+  secondaryPhoto1 String?
+  secondaryPhoto2 String?
+  secondaryPhoto3 String?
+  category    String?
+  vendorId    Int            // Foreign key to Vendor
+  vendor      Vendor         @relation(fields: [vendorId], references: [vendorId])
+  productOrders ProductOrder[] // One-to-many relationship with ProductOrder
+  carts       Cart[] // One-to-many relationship with Cart
+  itemReviews ItemReview[] // One-to-many relationship with ItemReview
+}
+
+model Vendor {
+  vendorId   Int      @id @default(autoincrement())
+  name       String
+  email      String   @unique
+  password   String
+  phone      String
+  address    String
+  description String?
+  photo       String?
+  review     String
+  marketId   Int      // Foreign key to Market
+  market     Market   @relation(fields: [marketId], references: [marketId])
+  products   Product[] // One-to-many relationship with Product
+}
+
+model Market {
+  marketId     Int      @id @default(autoincrement())
+  name         String
+  location     String
+  contact      String
+  email        String
+  hours        String?
+  photo        String?
+  latitude     Float?
+  longitude    Float?
+  vendors      Vendor[] // One-to-many relationship with Vendor
+}
+
+model Cart {
+  cartId    Int     @id @default(autoincrement())
+  userId    Int     // Foreign key to Customer
+  productId Int     // Foreign key to Product
+  quantity  Int
+  customer  Customer @relation(fields: [userId], references: [customerId])
+  product   Product  @relation(fields: [productId], references: [productId])
+}
+
+model ItemReview {
+  reviewId   Int      @id @default(autoincrement())
+  productId  Int      // Foreign key to Product
+  userId     Int      // Foreign key to Customer
+  rating     Int      
+  reviewText String?  
+  createdAt  DateTime @default(now()) 
+  product   Product  @relation(fields: [productId], references: [productId])
+  customer  Customer @relation(fields: [userId], references: [customerId])
+}
