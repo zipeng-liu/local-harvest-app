@@ -4,7 +4,13 @@ import IController from "../../../interfaces/controller.interface";
 import ICustomerOrderService from "../services/ICustomerOrder.service";
 import ensureAuthenticated from "../../../middleware/authentication.middleware";
 import { getProfileLink } from "../../../helper/profileLink";
-import { Product, Cart, Customer, ProductOrder, PrismaClient } from "@prisma/client";
+import {
+  Product,
+  Cart,
+  Customer,
+  ProductOrder,
+  PrismaClient,
+} from "@prisma/client";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 
@@ -99,7 +105,6 @@ class CustomerOrderController implements IController {
     }
   };
 
-  
   private handleCheckout = async (
     req: express.Request,
     res: express.Response
@@ -110,7 +115,14 @@ class CustomerOrderController implements IController {
       return res.status(401).json({ success: false, message: "Unauthorized" });
     }
 
-    let { contactFirstname, contactLastname, contactEmail, schedule, total, type } = req.body;
+    let {
+      contactFirstname,
+      contactLastname,
+      contactEmail,
+      schedule,
+      total,
+      type,
+    } = req.body;
 
     schedule = new Date(schedule);
 
@@ -123,11 +135,11 @@ class CustomerOrderController implements IController {
 
       // Check if there are any empty feild in contact form
       if (!contactFirstname || !contactLastname || !contactEmail) {
-        throw new Error("Contact information missing!")
+        throw new Error("Contact information missing!");
       }
 
       if (!schedule) {
-        throw new Error("Schedule missing!")
+        throw new Error("Schedule missing!");
       }
 
       // Check if all items in the cart are available
@@ -165,27 +177,29 @@ class CustomerOrderController implements IController {
         },
       });
 
-      let orderItemList = '';
+      let orderItemList = "";
       if (recentOrder) {
-        orderItemList = recentOrder.productOrders.map(productOrder => 
-          `<li>${productOrder.product.name} - Quantity: ${productOrder.quantity}</li>`
-        ).join('');
+        orderItemList = recentOrder.productOrders
+          .map(
+            (productOrder) =>
+              `<li>${productOrder.product.name} - Quantity: ${productOrder.quantity}</li>`
+          )
+          .join("");
       }
 
-      
       // Send order confirmation email
       let transporter = nodemailer.createTransport({
-        service: 'gmail', // You can use any email service
+        service: "hotmail", // You can use any email service
         auth: {
           user: process.env.EMAIL, // Your email
-          pass: process.env.PASSWORD // Your email password
-        }
+          pass: process.env.PASSWORD, // Your email password
+        },
       });
 
       let mailOptions = {
         from: `Local Harvest <${process.env.EMAIL}>`,
         to: contactEmail,
-        subject: 'Order Confirmation',
+        subject: "Order Confirmation",
         html: `
         <p>Hello ${contactFirstname} ${contactLastname},</p>
     
@@ -209,9 +223,9 @@ class CustomerOrderController implements IController {
 
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-          console.error('Error sending email:', error);
+          console.error("Error sending email:", error);
         } else {
-          console.log('Email sent: ' + info.response);
+          console.log("Email sent: " + info.response);
         }
       });
 
@@ -227,7 +241,6 @@ class CustomerOrderController implements IController {
     }
   };
 
-
   private showOrderSuccessPage = async (
     req: express.Request,
     res: express.Response
@@ -236,15 +249,20 @@ class CustomerOrderController implements IController {
     const userId = req.session.userId?.customerId;
     let customer: Customer | null = null;
     let recentOrder: any = null;
-  
+
     if (typeof userId === "number") {
       customer = await this._service.findCustomerById(userId);
       recentOrder = await this._service.getRecentOrder(userId);
     }
-  
+
     console.log(recentOrder);
     if (profileLink && customer!) {
-      res.render("success", { profileLink, session: req.session, customer, recentOrder });
+      res.render("success", {
+        profileLink,
+        session: req.session,
+        customer,
+        recentOrder,
+      });
     } else {
       res.redirect("404");
     }
@@ -257,7 +275,7 @@ class CustomerOrderController implements IController {
     try {
       const userId = req.session.userId?.customerId;
       const profileLink = getProfileLink(req, res);
-      
+
       let recentOrder;
       if (typeof userId === "number") {
         recentOrder = await this._service.getRecentOrder(userId);
@@ -266,7 +284,11 @@ class CustomerOrderController implements IController {
       console.log(recentOrder);
 
       if (profileLink && recentOrder) {
-        res.render("orderDetails", { profileLink, recentOrder, session:req.session });
+        res.render("orderDetails", {
+          profileLink,
+          recentOrder,
+          session: req.session,
+        });
       } else {
         res.redirect("404");
       }
